@@ -8,6 +8,7 @@ public class WarzoneApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WarzoneApplication.class, args);
+		//System.out.println("test");
 	}
 
 }
