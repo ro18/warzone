@@ -59,8 +59,11 @@ public class MapEditorCommands {
         return "You can edit countries here";
 
     }
-
-
+    
+    @ShellMethod(key= "validateMap")
+     public String validatemap(){
+        return "True";
+    }
 
     
 }
