@@ -1,5 +1,4 @@
 package project.app.warzone.Commands;
-import java.io.File;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
@@ -12,7 +11,7 @@ public class MapEditorCommands {
    
     
     private final MapFeatures mapFeatures;
-    private final Map map;
+    public Map map;
 
 
     public MapEditorCommands(MapFeatures mapFeatures, Map map){
@@ -40,8 +39,8 @@ public class MapEditorCommands {
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public void showmap(){
         String p_mapLocation=map.getMapDirectory()+"\\"+map.get_USER_SELECTED_FILE()+".map";
-        System.out.println("map location:"+p_mapLocation);
-        mapFeatures.readMap(p_mapLocation);
+        //System.out.println("map location:"+p_mapLocation);
+        map = mapFeatures.readMap(p_mapLocation);
 
     }
 

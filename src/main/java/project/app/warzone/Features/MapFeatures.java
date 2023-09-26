@@ -15,7 +15,7 @@ import project.app.warzone.Model.Node;;
 @Component
 public class MapFeatures {
 
-    public void readMap(String filename){
+    public Map readMap(String filename){
 
         String l_line="";
         System.out.println("in map.java");
@@ -111,13 +111,18 @@ public class MapFeatures {
             }   
        
             reader.close();
+            return gameMap;
 
         }
         catch(FileNotFoundException e){
             e.printStackTrace();
+            return gameMap;
+
         }
         catch (IOException e) {
             e.printStackTrace();
+            return gameMap;
+
         }
        
     }

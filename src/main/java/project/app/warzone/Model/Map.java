@@ -13,7 +13,7 @@ public class Map {
 
     private List<Node> nodes;
     private List<Continent> listOfContinents;
-    
+
     public String USER_SELECTED_FILE="europe";
 
 
@@ -23,7 +23,7 @@ public class Map {
     }
 
     public List<Node> getNodes() {
-        return nodes;
+        return nodes; // returns all territories in the map
     }
 
     public void createContinent(String continentName, Integer continentBonus){
