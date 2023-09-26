@@ -17,7 +17,7 @@ public class MyFilenameFilter implements FilenameFilter {
     // interface
     public boolean accept(File p_dir, String p_name)
     {
-        String[] fileName = p_name.split("\\.");
+        String[] fileName = p_name.split("\\."); 
 
         // for(String a : fileName){
         //     System.out.println(a);

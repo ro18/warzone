@@ -3,13 +3,13 @@ package project.app.warzone.Model;
 public class Continent {
 
     private String continentName;
-    private int bonus;
+    private Integer bonus;
 
     public Continent(String continentName) {
         this.continentName = continentName;
     }
 
-    public Continent(String continentName, int bonus) {
+    public Continent(String continentName, Integer bonus) {
         this.continentName = continentName;
         this.bonus = bonus;
     }
@@ -18,16 +18,16 @@ public class Continent {
         return continentName;
     }
 
-    public int getBonus() {
-        return bonus;
-    }
+    // public String getBonus() {
+    //     return bonus;
+    // }
 
     public void setContinentName(String newContinentName) {
         continentName = newContinentName;
     }
 
-    public void setBonus(int newBonus) {
-        bonus = newBonus;
-    }
+    // public void setBonus(int newBonus) {
+    //     bonus = newBonus;
+    // }
     
 }

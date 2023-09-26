@@ -3,21 +3,23 @@ import java.io.File;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-
-import project.app.warzone.Features.Map;
-import project.app.warzone.Utilities.MyFilenameFilter;
+import project.app.warzone.Features.MapFeatures;
+import project.app.warzone.Model.Map;
 
 @ShellComponent
 public class MapEditorCommands {
 
-    String USER_SELECTED_FILE="europe";
-    String MAP_DIRECTORY="src\\main\\java\\project\\app\\warzone\\Utilities\\Maps";
-    String d_userSelectedMapFile="";
-    private final Map mapObject;
+   
+    
+    private final MapFeatures mapFeatures;
+    private final Map map;
 
 
-    public MapEditorCommands(Map mapObject){
-        this.mapObject = mapObject;
+    public MapEditorCommands(MapFeatures mapFeatures, Map map){
+        this.mapFeatures = mapFeatures;
+        this.map = map;
+
+
     }
 
 
@@ -25,14 +27,9 @@ public class MapEditorCommands {
     @ShellMethod(key= "loadmap", value="Player can create or open an existing map")
     public String loadMap(@ShellOption String p_filename){
         
-        File l_mapDirectory = new File(MAP_DIRECTORY);
-        System.out.println(l_mapDirectory);
-        MyFilenameFilter filter = new MyFilenameFilter(p_filename);
-        File[] l_matchingFiles = l_mapDirectory.listFiles(filter);
-
-        if(l_matchingFiles !=null && l_matchingFiles.length ==1 ){
+        if(map.fileExists(p_filename)){
             System.out.println("One file found.");
-            USER_SELECTED_FILE=p_filename;
+            map.set_USER_SELECTED_FILE(p_filename);
             return "Choose one of the below commands to proceed:\n 1. showmap 2.editmap";
         }
         else{
@@ -42,9 +39,9 @@ public class MapEditorCommands {
 
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public void showmap(){
-        String p_mapLocation=MAP_DIRECTORY+"\\"+USER_SELECTED_FILE+".map";
+        String p_mapLocation=map.getMapDirectory()+"\\"+map.get_USER_SELECTED_FILE()+".map";
         System.out.println("map location:"+p_mapLocation);
-        mapObject.readMap(p_mapLocation);
+        mapFeatures.readMap(p_mapLocation);
 
     }
 
@@ -59,6 +56,14 @@ public class MapEditorCommands {
         return "You can edit countries here";
 
     }
+
+    @ShellMethod(key= "editmap", value="This is used to add or create map")
+     public String editmap(@ShellOption String p_filename){
+
+        return "You can edit or create a map here";
+
+    }
+
 
 
 
