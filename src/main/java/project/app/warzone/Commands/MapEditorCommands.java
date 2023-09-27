@@ -12,7 +12,7 @@ public class MapEditorCommands {
     
     private final MapFeatures mapFeatures;
     public Map map;
-
+//test
 
     public MapEditorCommands(MapFeatures mapFeatures, Map map){
         this.mapFeatures = mapFeatures;
