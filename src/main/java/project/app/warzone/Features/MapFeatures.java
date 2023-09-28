@@ -185,6 +185,7 @@ public class MapFeatures
 	 * @param p_c country visited
      * @param continentsListCountry Hashmap of Visited Boolean Values
      * @param continentsList continent being checked for connectivity
+	 
      */	
     public void dfsSubgraph(Country p_c, HashMap<Integer, Boolean> continentsListCountry, Continent continentsList) {
         continentsListCountry.put(p_c.getD_countryId(), true);//to do :create country id obj
@@ -195,7 +196,9 @@ public class MapFeatures
                 }
             }
         }
-    }	
+    }
+
+		/*to do check country conn*/
 	}
             reader.close();
             return gameMap;
