@@ -80,3 +80,32 @@
 1695885575589:gameplayer -r bee
 1695885581628:help gameplayer
 1695885591297:gameplayer -add hell
+1695885982238:help ssh
+1695885991148:help my-ssh
+1695886038127:gameplayer -add hell
+1695886046024:help gameplayer
+1695886090398:help loadmap
+1695886129754:help gameplayer
+1695886325876:help loadmap
+1695886329168:help gameplayer
+1695912346715:gameplayer -a bee
+1695912367765:gameplayer -add bee
+1695912382403:help
+1695912395321:help gameplayer
+1695912544362:gameplayer -add hello
+1695912630852:gameplayer -add bee
+1695912664859:help gameplayer
+1695912672202:gameplayer -add bee
+1695912697259:help my-ssh
+1695912794054:gameplayer -add bee
+1695912817497:help gameplayer
+1695912857543:gameplayer -add bee
+1695912871824:help gameplayer
+1695912965195:gameplayer -add bee
+1695913001527:help gameplayer
+1695913010198:gameplayer
+1695913173647:gameplayer -remove mhir
+1695913332416:gameplayer -add mihir rochelle
+1695913352073:gameplayer -add mihir aish --remove mihir
+1695913432464:gameplayer -add mihir aish -remove mihir
+1695913448255:gameplayer -remove mihir

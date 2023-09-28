@@ -24,10 +24,19 @@ public class PlayerCommands {
         this.gameEngine = gameEngine;
     }
 
-    @ShellMethod(key= "gameplayer", value="Player can create or remove a player")
-    public String gamePlayer(@ShellOption(value = "-add") String add,@ShellOption(value = "-r",defaultValue = ShellOption.NULL) String p_removePlayerCmd){
+    @ShellMethod(key = "my-ssh", prefix = "-", value = "connect to remote server") 
+	public String ssh(@ShellOption String remoteServer) 
+	{    
+        return "tet";
+	} 
 
-        
+    @ShellMethod(key= "gameplayer", prefix = "-", value="Player can create or remove a player")
+    public String gamePlayer(@ShellOption(value="a",defaultValue=ShellOption.NULL, arity = 2) String p_playerNameOne,@ShellOption(value="r", defaultValue=ShellOption.NULL, arity=2) String p_playerNameTwo){
+
+        System.out.println("name:"+p_playerNameOne);
+        System.out.println("name:"+p_playerNameTwo);
+
+
         return "work";
         // String l_addCmd="-add";
         // String l_removeCmd = "-remove";
