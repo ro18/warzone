@@ -12,7 +12,7 @@ public class MapEditorCommands {
     
     private final MapFeatures mapFeatures;
     public Map map;
-
+//test
 
     public MapEditorCommands(MapFeatures mapFeatures, Map map){
         this.mapFeatures = mapFeatures;
@@ -55,19 +55,23 @@ public class MapEditorCommands {
         return "You can edit countries here";
 
     }
-    
+
     @ShellMethod(key= "editmap", value="This is used to add or create map")
      public String editmap(@ShellOption String p_filename){
 
         return "You can edit or create a map here";
 
     }
+	
+	@ShellMethod(key= "validate", value="This is used to validate a map")
+     public Boolean validate(map){
 
+        return (True);
 
-    @ShellMethod(key= "validateMap")
-     public String validatemap(){
-        return "True";
     }
+
+
+
 
     
 }
