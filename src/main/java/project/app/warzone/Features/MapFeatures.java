@@ -13,9 +13,10 @@ import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Node;;
 
 @Component
-public class MapFeatures {
+public class MapFeatures 
+{
 
-    public Map readMap(String filename){
+    public Map readMap(String){
 
         String l_line="";
         System.out.println("in map.java");
@@ -108,8 +109,94 @@ public class MapFeatures {
 
 
 
-            }   
+            }
+	/*
+	Map Validation
+	*/
+	
+	public Boolean Validate() {
+        return (!checkForNullObjects() && checkContinentConnectivity() && checkCountryConnectivity());
+    }
        
+	/* assuming nodelist is country list*/
+	public Boolean checkForNullObjects (){
+	 if(continentsList==null || continentsList.isEmpty()){
+            System.out.println("Invalid Map:Map must possess atleast one continent!");
+        }
+        if(nodesList==null || nodesList.isEmpty()){
+            System.out.println("Invalid Map:Map must possess atleast one country!");
+        }
+        for(Country c: nodesList){
+            if(c.borderString().size()<1){
+                System.out.println("Invalid Map: "+c.getTerritoryName()+" does not possess any neighbour, hence isn't reachable!");
+            }
+        }
+        return false;
+	}
+	
+	 /**
+     * Checks All Continent's Inner Connectivity.
+	 *
+	 * @return Boolean Value True if all are connected
+	 */
+	 /* assuming nodelist is country list*/
+	public Boolean checkContinentConnectivity(){
+		boolean l_flagConnectivity=true;
+		for (Continent c:continentsList){
+			if (null == c.nodesList() || c.nodesList().size()<1){
+				System.out.println("Invalid Map: "+c.getD_continentName() + " has no countries, it must possess atleast 1 country");
+			}
+			if(!subGraphConnectivity(c)){
+				l_flagConnectivity=false;
+			}
+		}
+		return l_flagConnectivity;
+	}	
+	
+	
+    /**
+     * Checks Inner Connectivity of a Continent.
+     *
+     * @param continentsList Continent being checked
+     * @return Bool Value if Continent is Connected
+     */
+    public boolean subGraphConnectivity(Continent continentsList) {
+        HashMap<Integer, Boolean> l_continentCountry = new HashMap<Integer, Boolean>();
+
+        for (Country c : continentsList.nodesList()) {
+            l_continentCountry.put(c.nodesList(), false);
+        }
+        dfsSubgraph(continentsList.nodesList().get(0), l_continentCountry, continentsList);
+
+        // Iterates Over Entries to locate unreachable countries in continent
+        for (Entry<Integer, Boolean> entry : l_continentCountry.entrySet()) {
+            if (!entry.getValue()) {
+                Country l_country = nodesList(entry.getKey());
+                System.out.println("Invalid Map: " + l_country.getTerritoryName() + " in Continent " + continentsList.getD_continentName() + " is not reachable";
+                
+            }
+        }
+        return !l_continentCountry.containsValue(false);
+    }
+
+	 /**
+     * DFS Applied to the Continent Subgraph.
+	 *
+	 * @param p_c country visited
+     * @param continentsListCountry Hashmap of Visited Boolean Values
+     * @param continentsList continent being checked for connectivity
+     */	
+    public void dfsSubgraph(Country p_c, HashMap<Integer, Boolean> continentsListCountry, Continent continentsList) {
+        continentsListCountry.put(p_c.getD_countryId(), true);//to do :create country id obj
+        for (Country c : continentsList.getD_countries()) {
+            if (p_c.borderDetails().contains(c.getcountryId())) {
+                if (!continentsListCountry.get(c.getD_countryId())) {
+                    dfsSubgraph(c, continentsListCountry, continentsList);
+                }
+            }
+        }
+    }	
+	}
             reader.close();
             return gameMap;
 
