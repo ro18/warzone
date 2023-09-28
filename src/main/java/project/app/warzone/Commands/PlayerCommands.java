@@ -3,25 +3,90 @@ package project.app.warzone.Commands;
     
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Territory;
+
 
 @ShellComponent
 public class PlayerCommands {
 
-    @ShellMethod(key= "gameplayer", value="Player can create or remove a player")
-    public String gamePlayer(@ShellOption String p_playername){
+    public GameEngine gameEngine;
+    public String prevUserCommand; 
+
+    public PlayerCommands(GameEngine gameEngine){
+        this.gameEngine = gameEngine;
+    }
+
+    @ShellMethod(key = "my-ssh", prefix = "-", value = "connect to remote server") 
+	public String ssh(@ShellOption String remoteServer) 
+	{    
+        return "tet";
+	} 
+
+    @ShellMethod(key= "gameplayer", prefix = "-", value="Player can create or remove a player")
+    public String gamePlayer(@ShellOption(value="a",defaultValue=ShellOption.NULL, arity = 2) String p_playerNameOne,@ShellOption(value="r", defaultValue=ShellOption.NULL, arity=2) String p_playerNameTwo){
+
+        System.out.println("name:"+p_playerNameOne);
+        System.out.println("name:"+p_playerNameTwo);
+
+
+        return "work";
+        // String l_addCmd="-add";
+        // String l_removeCmd = "-remove";
+
+        // if(gameEngine.prevUserCommand.equals("loadmap")){
+        //     String l_playerCmd[] = p_playerCmd.split(" "); 
+
+        //     if(l_playerCmd[0].equals(l_addCmd)){
+        //         String l_playerName = l_playerCmd[1];
+        //         System.out.println("player name is : "+l_playerName);
+        //         List<Territory> listOfCountries = new ArrayList<>() ;
+        //         Player player= new Player(1, l_playerCmd[1],listOfCountries);
+        //         gameEngine.d_playersList.add(player);
+        //         return "Player added successfully";
+            
+        //     }
+        //     else if(l_playerCmd[0].equals(l_removeCmd)){
+
+        //         Optional<Player> playerToDelete = gameEngine.d_playersList.stream().filter(c-> c.getL_playername().equals(l_playerCmd[1])).findFirst();
+        //         if(playerToDelete!= null){
+        //             gameEngine.d_playersList.remove(playerToDelete);
+        //             return "Player deleted successfully";
+        //         }
+        //         else{
+        //             return "Player not found";
+        //         }
+                
+
+
+        //     }
+        //     else{
+        //     return "Invalid Command";
+        //     }
+
+        // }
+        // else{
+        //     return "You cannnot add players at this stage";
+        // }
+
         
 
-        List<Territory> listOfCountries = new ArrayList<>() ;
-        Player P = new Player(1, p_playername,listOfCountries);
-        return "String";
+        
     }
+
+    //  @ShellMethod(key= "gameplayer", value="Player can create or remove a player")
+    // public String gamePlayer(@ShellOption(value = "-remove") String p_playerCmd){
+    // }
+
+    
+
 
     // @ShellMethod(key= "gameplayer", value="Player can create or remove a player")
     // public String gamePlayer(@ShellOption String p_filename){

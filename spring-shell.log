@@ -32,3 +32,80 @@
 1695756901434:loadmap europe
 1695757749400:showmap europe
 1695759123625:showmap
+1695877204628:loadmap europe
+1695879443437:loadMap
+1695879450214:loadMap europe
+1695879466532:loadmap europe
+1695879586483:showmap
+1695883436615:gameplayer -add rohit
+1695883611942:gameplayer -add r
+1695883739559:gameplayer -add p
+1695883905095:gameplayer -add player
+1695884337604:ssh-add --k test1
+1695884376551:gameplayer -add
+1695884398012:gameplayer -a
+1695884477583:ssh-add k
+1695884523055:ssh-add --k test1
+1695884569418:gameplayer -a bee
+1695884596100:loadmap
+1695884602310:loadmap europe
+1695884606890:showmap
+1695884614227:gameplayer -a bee
+1695884679707:loadmap europe
+1695884682181:showmap
+1695884691096:gameplayer -a bee
+1695884934532:gameplayer -add test
+1695884974705:loadmap
+1695884979856:loadmap europe
+1695884982187:showmap
+1695884992784:gameplayer -a bee
+1695885004865:gameplayer -remove bee
+1695885071993:gameplayer -r bee
+1695885135529:loadmap
+1695885141148:loadmap europe
+1695885143493:showmap
+1695885152586:gameplayer -a bee
+1695885158557:gameplayer -r bee
+1695885314316:loadmap europe
+1695885318702:showmap
+1695885323245:gameplayer -add test
+1695885370672:help
+1695885383073:help gameplayer
+1695885515693:loadmap europe
+1695885518660:showmap
+1695885523036:gameplayer -r bee
+1695885534228:help gameplayer
+1695885570099:loadmap europe
+1695885573401:showmap
+1695885575589:gameplayer -r bee
+1695885581628:help gameplayer
+1695885591297:gameplayer -add hell
+1695885982238:help ssh
+1695885991148:help my-ssh
+1695886038127:gameplayer -add hell
+1695886046024:help gameplayer
+1695886090398:help loadmap
+1695886129754:help gameplayer
+1695886325876:help loadmap
+1695886329168:help gameplayer
+1695912346715:gameplayer -a bee
+1695912367765:gameplayer -add bee
+1695912382403:help
+1695912395321:help gameplayer
+1695912544362:gameplayer -add hello
+1695912630852:gameplayer -add bee
+1695912664859:help gameplayer
+1695912672202:gameplayer -add bee
+1695912697259:help my-ssh
+1695912794054:gameplayer -add bee
+1695912817497:help gameplayer
+1695912857543:gameplayer -add bee
+1695912871824:help gameplayer
+1695912965195:gameplayer -add bee
+1695913001527:help gameplayer
+1695913010198:gameplayer
+1695913173647:gameplayer -remove mhir
+1695913332416:gameplayer -add mihir rochelle
+1695913352073:gameplayer -add mihir aish --remove mihir
+1695913432464:gameplayer -add mihir aish -remove mihir
+1695913448255:gameplayer -remove mihir

@@ -9,12 +9,12 @@ public class Player
 		public int l_playerid;
 		public String l_playername;
 		
-        public List<Territory> listOfCountries;
+        public List<Territory> listOfCountriesOwned;
 
-        public Player(int l_playerid ,String l_playername,List<Territory> listOfCountries) {
+        public Player(int l_playerid ,String l_playername,List<Territory> listOfCountriesOwned) {
             this.l_playerid = l_playerid;
             this.l_playername = l_playername;
-            this.listOfCountries = new ArrayList<>();
+            this.listOfCountriesOwned = new ArrayList<>();
         }
 
 		
