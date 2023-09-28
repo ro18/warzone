@@ -32,3 +32,51 @@
 1695756901434:loadmap europe
 1695757749400:showmap europe
 1695759123625:showmap
+1695877204628:loadmap europe
+1695879443437:loadMap
+1695879450214:loadMap europe
+1695879466532:loadmap europe
+1695879586483:showmap
+1695883436615:gameplayer -add rohit
+1695883611942:gameplayer -add r
+1695883739559:gameplayer -add p
+1695883905095:gameplayer -add player
+1695884337604:ssh-add --k test1
+1695884376551:gameplayer -add
+1695884398012:gameplayer -a
+1695884477583:ssh-add k
+1695884523055:ssh-add --k test1
+1695884569418:gameplayer -a bee
+1695884596100:loadmap
+1695884602310:loadmap europe
+1695884606890:showmap
+1695884614227:gameplayer -a bee
+1695884679707:loadmap europe
+1695884682181:showmap
+1695884691096:gameplayer -a bee
+1695884934532:gameplayer -add test
+1695884974705:loadmap
+1695884979856:loadmap europe
+1695884982187:showmap
+1695884992784:gameplayer -a bee
+1695885004865:gameplayer -remove bee
+1695885071993:gameplayer -r bee
+1695885135529:loadmap
+1695885141148:loadmap europe
+1695885143493:showmap
+1695885152586:gameplayer -a bee
+1695885158557:gameplayer -r bee
+1695885314316:loadmap europe
+1695885318702:showmap
+1695885323245:gameplayer -add test
+1695885370672:help
+1695885383073:help gameplayer
+1695885515693:loadmap europe
+1695885518660:showmap
+1695885523036:gameplayer -r bee
+1695885534228:help gameplayer
+1695885570099:loadmap europe
+1695885573401:showmap
+1695885575589:gameplayer -r bee
+1695885581628:help gameplayer
+1695885591297:gameplayer -add hell
