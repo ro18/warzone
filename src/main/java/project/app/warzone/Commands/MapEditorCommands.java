@@ -17,8 +17,7 @@ public class MapEditorCommands {
     public MapEditorCommands(MapFeatures mapFeatures, Map map){
         this.mapFeatures = mapFeatures;
         this.map = map;
-
-
+//testßß
     }
 
 
