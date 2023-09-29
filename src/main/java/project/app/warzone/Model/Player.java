@@ -8,13 +8,14 @@ public class Player
 	
 		public int l_playerid;
 		public String l_playername;
-		
+		public int d_reinforcementPool;
         public List<Territory> listOfCountriesOwned;
 
         public Player(int l_playerid ,String l_playername,List<Territory> listOfCountriesOwned) {
             this.l_playerid = l_playerid;
             this.l_playername = l_playername;
             this.listOfCountriesOwned = new ArrayList<>();
+            this.d_reinforcementPool=0;
         }
 
 		
@@ -29,6 +30,18 @@ public class Player
 		}
 		public void setL_playername(String l_playername) {
 			this.l_playername = l_playername;
+		}
+
+		public void setReinforcementMap(int noOfArmies){
+            this.d_reinforcementPool= noOfArmies;
+        }
+
+		public int getReinforcementMap(){
+			return d_reinforcementPool;
+		}
+
+		public List<Territory> getlistOfCountriesOwned() {
+			return listOfCountriesOwned;
 		}
 
 		void issue_order() {
