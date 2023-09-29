@@ -1,4 +1,6 @@
 package project.app.warzone.Commands;
+import java.io.File;
+import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -27,7 +29,6 @@ public class MapEditorCommands {
     }
 
 
-
     @ShellMethod(key= "loadmap", value="Player can create or open an existing map")
     public String loadMap(@ShellOption String p_filename){
         
@@ -43,13 +44,13 @@ public class MapEditorCommands {
 
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public void showmap(){
-        String p_mapLocation=map.getMapDirectory()+"\\"+map.get_USER_SELECTED_FILE()+".map";
+        String p_mapLocation=map.getMapDirectory()+"/"+map.get_USER_SELECTED_FILE()+".map";
         //System.out.println("map location:"+p_mapLocation);
         map = mapFeatures.readMap(p_mapLocation);
 
     }
-
-     @ShellMethod(key= "editcontinent", value="This is used to add or update continents")
+    
+     @ShellMethod(key= "editcontinent", prefix = "-", value="This is used to add or update continents")
     public String editcontinent(@ShellOption String p_editcmd){
         if(prevUserCommand=="editmap"){  
             String l_addCmd = "-add";
@@ -77,7 +78,9 @@ public class MapEditorCommands {
             
                 }
                 else{
+
                     //creating map logic
+                    
                     return "";
                 }
 
@@ -118,8 +121,9 @@ public class MapEditorCommands {
         else{
 
             System.out.println("File not found.");
-            return "Choose the below commands to create new map:\n 1.createmap";  //Create New Map Call createMap function
-            //map.createMap(p_filename);
+            
+            map.createNewMapFile(p_filename);
+            return "New Mapfile created successfully";
         }
     
 

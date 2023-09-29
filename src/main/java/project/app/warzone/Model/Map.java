@@ -1,6 +1,7 @@
 package project.app.warzone.Model;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,8 +76,9 @@ public class Map {
     // }
 
     public String getMapDirectory(){
-        return "src\\main\\java\\project\\app\\warzone\\Utilities\\Maps";
-
+        return System.getProperty("user.dir")+"/warzone/src/main/java/project/app/warzone/Utilities/Maps";
+        //return "/warzone/src/main/java/project/app/warzone/Utilities/Maps";
+       // /Users/aishwaryashinde/Desktop/warzone-project/warzone/src/main/java/project/app/warzone/Utilities/Maps
     }
 
     public String get_USER_SELECTED_FILE() {
@@ -91,6 +93,8 @@ public class Map {
     public boolean fileExists(String p_filename){
 
         File l_mapDirectory = new File(getMapDirectory());
+        System.out.println("getmapdirect"+l_mapDirectory);
+        
         MyFilenameFilter filter = new MyFilenameFilter(p_filename);
         File[] l_matchingFiles = l_mapDirectory.listFiles(filter);
 
@@ -101,6 +105,25 @@ public class Map {
             return false;
         }
         
+    }
+
+    public void createNewMapFile(String mapFile)
+    {
+        //String test=map.getMapDirectory()+"/"+mapFile+".map";
+        File newFile = new File(getMapDirectory()+"/"+mapFile+".map");
+         try {
+            // Create the new file
+            boolean fileCreated = newFile.createNewFile();
+            set_USER_SELECTED_FILE(mapFile);
+            if (fileCreated) {
+                
+                System.out.println("New file created at: ");
+            } else {
+                System.err.println("File already exists at: Please try new name");
+            }
+        } catch (IOException e) {
+            System.err.println("An error occurred while creating the file: " + e.getMessage());
+        }
     }
     
 }
