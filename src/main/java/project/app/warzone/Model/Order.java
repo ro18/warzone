@@ -1,6 +1,4 @@
-package project.app.warzone.Order;
-
-import project.app.warzone.Player.Player;
+package project.app.warzone.Model;
 
 public class Order {
     String d_orderType;

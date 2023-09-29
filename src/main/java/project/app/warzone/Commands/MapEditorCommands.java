@@ -4,6 +4,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Utilities.Commands;
 
 @ShellComponent
 public class MapEditorCommands {
@@ -26,7 +27,7 @@ public class MapEditorCommands {
 
     @ShellMethod(key= "loadmap", value="Player can create or open an existing map")
     public String loadMap(@ShellOption String p_filename){
-        gameEngine.prevUserCommand="loadmap";
+        gameEngine.prevUserCommand=Commands.LOADMAP;
         if(gameEngine.gameMap.fileExists(p_filename)){
             System.out.println("One file found.");
             gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);

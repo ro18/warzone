@@ -109,3 +109,31 @@
 1695913352073:gameplayer -add mihir aish --remove mihir
 1695913432464:gameplayer -add mihir aish -remove mihir
 1695913448255:gameplayer -remove mihir
+1695938582015:gameplayer -add bee
+1695938643184:loadmap europe
+1695938648505:showmap
+1695938656298:gameplayer -add bee
+1695946243416:loadmap europe
+1695946245839:showmap
+1695946264622:gameplayer -add bee boo koo
+1695946279239:gameplayer -add bee boo
+1695946315147:help gameplayer
+1695946668309:gameplayer -add bee boo
+1695946719518:loadmap europe
+1695946721760:showmap
+1695946729119:gameplayer -add bee boo
+1695946750234:gameplayer -remove bee
+1695947080288:loadmap
+1695947085399:loadmap filename
+1695947090621:loadmap europe
+1695947093410:showmap
+1695947102261:gameplayer -add aish mihir
+1695947126878:gameplayer -remove bee
+1695948472893:loadmap europe
+1695948493742:showmap
+1695948517212:gameplayer -add aish mihir
+1695948549929:gameplayer -remove mihir
+1695954043358:loadmap europe
+1695954047144:showmap
+1695954059481:gameplayer -add harshita mihir
+1695954074421:assigncountries

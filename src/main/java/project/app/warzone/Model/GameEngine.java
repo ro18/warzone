@@ -5,13 +5,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import project.app.warzone.Utilities.Commands;
+
 @Component
 public class GameEngine {
 
 
     public List<Player> d_playersList;
     public Map gameMap;
-    public String prevUserCommand;
+    public Commands prevUserCommand;
 
 
     public GameEngine(Map gameMap ){
