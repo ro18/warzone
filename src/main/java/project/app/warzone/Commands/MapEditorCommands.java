@@ -3,6 +3,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import project.app.warzone.Features.MapFeatures;
+import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Utilities.Commands;
 
@@ -14,11 +15,12 @@ public class MapEditorCommands {
     private final MapFeatures mapFeatures;
     public GameEngine gameEngine;
     public PlayerCommands playerCommands;
+    public PlayerFeatures playerFeatures;
 
-    public MapEditorCommands(MapFeatures mapFeatures, GameEngine gameEngine){
+    public MapEditorCommands(MapFeatures mapFeatures, GameEngine gameEngine, PlayerFeatures playerFeatures){
         this.mapFeatures = mapFeatures;
         this.gameEngine = gameEngine;
-        playerCommands = new PlayerCommands(gameEngine);
+        playerCommands = new PlayerCommands(gameEngine,playerFeatures);
 
 
     }

@@ -137,3 +137,39 @@
 1695954047144:showmap
 1695954059481:gameplayer -add harshita mihir
 1695954074421:assigncountries
+1696001985929:loadmap europe
+1696001990412:showmap
+1696002007412:gameplayers -add nola pink
+1696002045170:gameplayer -add nola pink
+1696002072983:assigncountries
+1696006270100:loadmap europe
+1696006277325:showmap
+1696006290290:gameplayer -add mihir harshita
+1696006303697:assigncountries
+1696008922949:showstats
+1696009741326:loadmap
+1696009744866:loadmap europe
+1696009747649:showmap
+1696009756770:gameplayer -add my boo
+1696009770912:assigncountries
+1696009837160:loadmap europe
+1696009840596:showmap
+1696009857612:gamaplayer -add beebo peepo
+1696009865632:gameplayer -add beebo peepo
+1696009897283:assigncountries
+1696009957006:showstats
+1696010033274:loadmap europe
+1696010035928:showmap
+1696010048145:gameplayer -add p1 p2
+1696010055098:assigncountries
+1696010063959:showstats
+1696010254296:loadmap europe
+1696010258092:showmap
+1696010265940:gameplayer -add bee boo
+1696010277500:assigncountries
+1696010343487:showstats
+1696010483009:loadmap europe
+1696010488058:showmap
+1696010523822:gameplayer -add p1 p2
+1696010545967:assigncountries
+1696010551252:showstats
