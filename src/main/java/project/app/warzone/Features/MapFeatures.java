@@ -155,4 +155,66 @@ public class MapFeatures {
                     
             }
     }
+
+    public Map writeToMap( Map p_gameMap, String p_filename){
+
+        BufferedReader l_reader = new BufferedReader(new FileReader(filename));
+        String l_continents = "[continents]";
+        String l_countries = "[countries]";
+        String l_borders="[borders]";
+
+        if(l_reader.readLine() == ""){
+            System.out.println("Writing to an empty map file");
+            Files.writeString(filename, l_continents);
+
+
+        }
+
+    }
+
+
+
+    public void validateMap(List<Nodes> p_allNodes){
+
+        System.out.println(" Running check on file:");
+        //List<Node> l_allNodes = p_gameMap.getNodes();
+
+        Map<Node,boolean> l_visitedList = new HashMap<Node,boolean>();
+
+        for( Node l_currentNode : l_allNodes){ // validating continent by continent           
+            l_visitedList.add(l_currentNode,false);
+
+        }
+        Map.Entry<String,String> entry = map.entrySet().iterator().next();
+= 
+        depthFirstSearch(entry.getKey(),l_visitedList);
+
+    }
+
+    public void validateEntireGraph(GameEngine gameEngine){
+
+        List<Continent> l_listOfContinent = gameEngine.gameMap.getListOfContinents();
+        List>
+
+        for(Continent con : l_listOfContinent){
+
+        }
+
+    }
+
+    public void validateSubGraph(){
+
+    }
+
+    private Map<Node,Integer> depthFirstSearch(Node currentCountry, Map<Node,Integer> l_visitedList){
+
+        l_visitedList.put(l_visitedList.get(currentCountry),true);
+        List<Node> l_listOfBorderNodes = l_visitedList.getBorders();
+
+        for(Node node : l_listOfBorderNodes){
+            if(l_visitedList.get(node) != true){
+                depthFirstSearch(node,l_visitedList);
+            }
+        }
+    }
 }

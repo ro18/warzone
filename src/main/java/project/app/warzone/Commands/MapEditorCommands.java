@@ -51,6 +51,10 @@ public class MapEditorCommands {
     @ShellMethod(key= "editcontinent", value="This is used to add or update continents")
     public String editcontinent(){
         return "You can edit continents here";
+        
+        String p_mapLocation=gameEngine.gameMap.getMapDirectory()+"\\test"+".map";
+
+        mapFeatures.writeToMap(gameMap,p_mapLocation)
 
     }
 
