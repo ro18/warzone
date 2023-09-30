@@ -174,12 +174,11 @@ public class MapFeatures {
 
 
 
-    public void validateMap(List<Nodes> p_allNodes){
+    public void validateByNodes(List<Nodes> p_allNodes, Map<Node,Integer> l_visitedList){
 
-        System.out.println(" Running check on file:");
+  
         //List<Node> l_allNodes = p_gameMap.getNodes();
 
-        Map<Node,boolean> l_visitedList = new HashMap<Node,boolean>();
 
         for( Node l_currentNode : l_allNodes){ // validating continent by continent           
             l_visitedList.add(l_currentNode,false);
@@ -193,16 +192,28 @@ public class MapFeatures {
 
     public void validateEntireGraph(GameEngine gameEngine){
 
+
+        System.out.println(" Running check on file:");
+        Map<Node,boolean> l_visitedList = new HashMap<Node,boolean>();
         List<Continent> l_listOfContinent = gameEngine.gameMap.getListOfContinents();
-        List>
+        List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
+
+        List<Node> l_nodesOfContinent = new ArrayList<>();
+
 
         for(Continent con : l_listOfContinent){
 
+            validateSubGraph(con, l_listOfNodes,l_visitedList);          
+            
         }
 
     }
 
-    public void validateSubGraph(){
+    public void validateSubGraph(Continent con, List<Node> l_listOfNodes,Map<Node,Integer> l_visitedList){
+
+        List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.continent.equals(con));
+        validateMap(l_nodesOfContinent,l_visitedList)
+
 
     }
 
