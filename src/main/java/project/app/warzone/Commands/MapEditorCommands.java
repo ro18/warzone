@@ -51,23 +51,26 @@ public class MapEditorCommands {
     }
     
      @ShellMethod(key= "editcontinent", prefix = "-", value="This is used to add or update continents")
-    public String editcontinent(@ShellOption String p_editcmd){
+    public String editcontinent(@ShellOption(value="a",defaultValue=ShellOption.NULL)String p_editcmd, @ShellOption(value="r",defaultValue=ShellOption.NULL) String p_editremovecmd){
         if(prevUserCommand=="editmap"){  
-            String l_addCmd = "-add";
-            String[] editCmd= p_editcmd.split(" ");
+            //String l_addCmd = "-add";
             Dictionary<Integer,String> continentDict = new Hashtable<Integer,String>();
 
-            if(editCmd[0].equals(l_addCmd)){
+            if(p_editcmd != null && p_editcmd != ""){
+                String[] editCmd= p_editcmd.split(",");
+
                 if(map.getListOfContinents() != null){
                     List<Continent> continentList =map.getListOfContinents();
                 
                     try{
 
-                        Continent continentName = continentList.get(Integer.parseInt(editCmd[1]));
+                        Continent continentName = continentList.get(Integer.parseInt(editCmd[0]));
                         System.out.println("ContinentName:::" +continentName);
-                        String newcContinentName = editCmd[2] ;
+                        String newcContinentName = editCmd[1] ;
                         System.out.println("newcContinentName" +newcContinentName);
                         continentList.add(Integer.parseInt(editCmd[1]),new Continent(newcContinentName));
+
+                        //MapFeatures.saveChangesToFile();
                         
                     
                     } 
@@ -100,6 +103,9 @@ public class MapEditorCommands {
 
     @ShellMethod(key= "editcountry", value="This is used to add or update countries")
      public String editcountry(){
+     
+
+
         return "You can edit countries here";
 
     }

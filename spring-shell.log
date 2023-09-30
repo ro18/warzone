@@ -36,3 +36,22 @@
 1695935648878:loadmap europe
 1695935667815:editmap europe
 1695935753566:loadmap europe
+1696002615585:loadMap europe
+1696002632868:loadmap europe
+1696002766541:editmap europe2
+1696002888332:loadmap europe
+1696003276890:editmap europe
+1696003295814:editcontinent -add 1 Italy
+1696003469196:editmap europe
+1696003528076:editcontinent -add 2 Italy
+1696003540532:editmap europe
+1696003561369:editcontinent -add 2 Italy
+1696003606127:editmap europe
+1696003630744:editcontinent -add 2 Italy
+1696003726694:editcontinent -d
+1696003737368:editcontinent -d ree
+1696003761284:editcontinent -add 2 Italy
+1696003795143:editmap europe
+1696003804003:editcontinent -add 2 Italy
+1696003895228:editmap europe
+1696003906357:editcontinent -add 2 Italy
