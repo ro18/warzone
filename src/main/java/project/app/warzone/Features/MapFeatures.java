@@ -131,6 +131,19 @@ public class MapFeatures {
         
     }
 
+    public void saveChangesToFile(String p_filename) throws IOException{
+        BufferedReader reader = new BufferedReader(new FileReader(p_filename));
+        StringBuilder content = new StringBuilder(); 
+        String line;
+            while ((line = reader.readLine())) {
+                
+                line = line.replace("old text", "new text");
+                content.append(line).append("\n");
+            }
+
+            reader.close();      
+
+    }
     
     
 

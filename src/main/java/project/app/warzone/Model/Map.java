@@ -76,7 +76,7 @@ public class Map {
     // }
 
     public String getMapDirectory(){
-        return System.getProperty("user.dir")+"/warzone/src/main/java/project/app/warzone/Utilities/Maps";
+        return System.getProperty("user.dir")+"/src/main/java/project/app/warzone/Utilities/Maps";
         //return "/warzone/src/main/java/project/app/warzone/Utilities/Maps";
        // /Users/aishwaryashinde/Desktop/warzone-project/warzone/src/main/java/project/app/warzone/Utilities/Maps
     }
@@ -92,6 +92,7 @@ public class Map {
 
     public boolean fileExists(String p_filename){
 
+        System.out.println(getMapDirectory());
         File l_mapDirectory = new File(getMapDirectory());
         System.out.println("getmapdirect"+l_mapDirectory);
         
@@ -107,14 +108,14 @@ public class Map {
         
     }
 
-    public void createNewMapFile(String mapFile)
+    public void createNewMapFile(String p_mapFile)
     {
         //String test=map.getMapDirectory()+"/"+mapFile+".map";
-        File newFile = new File(getMapDirectory()+"/"+mapFile+".map");
+        File newFile = new File(getMapDirectory()+"/"+p_mapFile+".map");
          try {
             // Create the new file
             boolean fileCreated = newFile.createNewFile();
-            set_USER_SELECTED_FILE(mapFile);
+            set_USER_SELECTED_FILE(p_mapFile);
             if (fileCreated) {
                 
                 System.out.println("New file created at: ");
