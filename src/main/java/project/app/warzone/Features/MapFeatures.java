@@ -18,14 +18,12 @@ public class MapFeatures {
     public Map readMap(String filename){
 
         String l_line="";
-        System.out.println("in map.java");
         List<Continent> continentsList = new ArrayList<>();
         List<Node> nodesList = new ArrayList<>();
         Map gameMap = new Map();
         try{
 
             BufferedReader reader = new BufferedReader(new FileReader(filename));
-            System.out.println("-- Map --");
             while ( l_line !=null ) { 
                 
                 l_line=reader.readLine();
@@ -85,22 +83,22 @@ public class MapFeatures {
 
                     }
 
-                    nodesList = gameMap.getNodes();
+                    // nodesList = gameMap.getNodes();
                     
-                    for(Node c : nodesList){
-                    System.out.print(c.getData().getTerritoryName()+":");
-                    String borderString ="";
-                            List<Node> listOfBorders = c.getBorders();
-                            for(Node border : listOfBorders ){
+                    // for(Node c : nodesList){
+                    // System.out.print(c.getData().getTerritoryName()+":");
+                    // String borderString ="";
+                    //         List<Node> listOfBorders = c.getBorders();
+                    //         for(Node border : listOfBorders ){
                                 
-                                borderString+=border.getData().getTerritoryName()+"->";
+                    //             borderString+=border.getData().getTerritoryName()+"->";
                                 
-                            } 
-                            borderString=borderString.substring(0,borderString.length()-2);
-                            System.out.println(borderString);                       
+                    //         } 
+                    //         borderString=borderString.substring(0,borderString.length()-2);
+                    //         System.out.println(borderString);                       
 
                             
-                    }
+                    // }
 
                 }
 
@@ -111,6 +109,7 @@ public class MapFeatures {
             }   
        
             reader.close();
+            printMap(gameMap);
             return gameMap;
 
         }
@@ -127,4 +126,33 @@ public class MapFeatures {
        
     }
     
+
+    public void printMap(Map gameMap){
+
+        System.out.println("------ Map ------");
+        System.out.println();
+        String continent ="";
+        List<Node> nodeList = gameMap.getNodes();
+        for(Node c : nodeList){
+            
+            if(c.getData().getContinent().getContinentName() != continent ){
+                System.out.println("Continent:"+c.getData().getContinent().getContinentName());
+                continent = c.getData().getContinent().getContinentName();
+                System.out.println("=======================================================================");
+            }
+            System.out.print(c.getData().getTerritoryName()+" : ");
+            String borderString ="";
+            List<Node> listOfBorders = c.getBorders();
+            for(Node border : listOfBorders ){
+                
+                borderString+=border.getData().getTerritoryName()+" -> ";
+                
+            } 
+            borderString=borderString.substring(0,borderString.length()-4);
+            System.out.println(borderString);    
+            System.out.println();                   
+
+                    
+            }
+    }
 }
