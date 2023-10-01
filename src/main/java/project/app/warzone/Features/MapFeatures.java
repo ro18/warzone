@@ -4,11 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -147,15 +144,19 @@ public class MapFeatures {
             }
             System.out.print(c.getData().getTerritoryName()+" : ");
             String borderString ="";
-            List<Node> listOfBorders = c.getBorders();
-            for(Node border : listOfBorders ){
+            if(c.getBorders().size()> 0 &&  c.getBorders() != null){
+                List<Node> listOfBorders = c.getBorders();
+
+                for(Node border : listOfBorders ){
                 
                 borderString+=border.getData().getTerritoryName()+" -> ";
                 
             } 
-            borderString=borderString.substring(0,borderString.length()-4);
-            System.out.println(borderString);    
-            System.out.println();                   
+                borderString=borderString.substring(0,borderString.length()-4);
+                System.out.println(borderString);    
+                System.out.println();  
+            }
+                             
 
                     
             }
@@ -179,59 +180,40 @@ public class MapFeatures {
 
 
 
-    public void validateByNodes(List<Node> p_allNodes, HashMap<Node,Boolean> l_visitedList){
+    public HashMap<Node,Boolean> validateByNodes(List<Node> p_allNodes, HashMap<Node,Boolean> l_visitedList){
 
-  
-        //List<Node> l_allNodes = p_gameMap.getNodes();
-
-
-        for( Node l_currentNode : p_allNodes){ // validating continent by continent           
-            l_visitedList.put(l_currentNode,false);
+        for( Node l_currentNode : p_allNodes){ 
+            if(!l_visitedList.keySet().contains(l_currentNode)){
+                l_visitedList.put(l_currentNode,false);
+            }
+          
 
         }
 
-        //l_visitedList.get(l_visitedList)
-        // System.out.println("Visited List:");
-
-        // for(Node n : l_visitedList.keySet()){
-
-        //     System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
-
-        // }
-
-        //System.out.println("FirstNode:"+l_visitedList.entrySet().iterator().next().getKey().getData().getTerritoryName());
-
-       // Node firstNode = l_visitedList.keys()
        Node n = l_visitedList.entrySet().iterator().next().getKey();
-       System.out.println("CurrentNode:"+n.getData().getTerritoryName());
        depthFirstSearch(l_visitedList.entrySet().iterator().next().getKey(),l_visitedList);
+
+       return l_visitedList;
 
     }
 
-    public void validateEntireGraph(GameEngine gameEngine){
+    public Boolean validateEntireGraph(GameEngine gameEngine){
 
 
-        System.out.println(" Running check on file:");
+        System.out.println();
+        System.out.println("------------------------------");
+
+        System.out.println("Validating map...");
         HashMap<Node,Boolean> l_visitedList = new HashMap<Node,Boolean>();
         List<Continent> l_listOfContinent = gameEngine.gameMap.getListOfContinents();
         List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
-        List<Node> l_notConnectedCountries= new ArrayList<>();
-
 
         for(Continent con : l_listOfContinent){
 
-            validateSubGraph(con, l_listOfNodes,l_visitedList);
-            //System.out.println("All countries of continent:"+con.getContinentName());
-            for(Node n : l_visitedList.keySet()){
-
-                System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
-                if(l_visitedList.get(n)== false){
-                    l_notConnectedCountries.add(n);
-                    System.out.println(con.getContinentName()+" is not connected");
-                    break;
-                }
-            }
-
+            Boolean l_result = validateSubGraph(con, l_listOfNodes,l_visitedList);
+            if(!l_result){
+                return false;
+            }            
 
         }
                         
@@ -244,14 +226,25 @@ public class MapFeatures {
 
         }
 
+        return true;
+
         
 
     }
 
-    public void validateSubGraph(Continent con, List<Node> l_listOfNodes,HashMap<Node,Boolean> l_visitedList){
+    public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,HashMap<Node,Boolean> l_visitedList){
 
         List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
-        validateByNodes(l_nodesOfContinent,l_visitedList);
+        l_visitedList =validateByNodes(l_nodesOfContinent,l_visitedList);
+        for( Node n : l_nodesOfContinent){
+            if(l_visitedList.containsKey(n) && !l_visitedList.get(n)){
+                System.out.println(con.getContinentName()+" is not connected");
+                System.out.println(n.getData().getTerritoryName()+" cannot be reached");
+                return false;
+            }
+        }
+
+        return true;
 
 
     }
@@ -260,18 +253,10 @@ public class MapFeatures {
 
         l_visitedList.put(currentCountry,true);
 
-        //  for(Node n : l_visitedList.keySet()){
-
-        //     System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
-
-        // }
-
         List<Node> l_listOfBorderNodes = currentCountry.getBorders();
 
         for( Node l_currentNode : l_listOfBorderNodes){ 
-            
-            // validating continent by continent 
-           
+                       
             if(!l_visitedList.keySet().contains(l_currentNode)){
               l_visitedList.put(l_currentNode,false);
 

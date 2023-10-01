@@ -41,11 +41,17 @@ public class MapEditorCommands {
     }
 
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
-    public void showmap(){
+    public String showmap(){
         String p_mapLocation=gameEngine.gameMap.getMapDirectory()+"\\"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
-        //System.out.println("map location:"+p_mapLocation);
+
         gameEngine.gameMap = mapFeatures.readMap(p_mapLocation);
-        mapFeatures.validateEntireGraph(gameEngine);
+        Boolean l_result = mapFeatures.validateEntireGraph(gameEngine);
+        if(!l_result){
+            return("PLease try with some other map");
+        }
+        else{
+            return("You can now proceed to add gameplayers");
+        }
 
     }
 
