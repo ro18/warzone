@@ -264,3 +264,62 @@
 1696199154693:showmap
 1696199243021:loadmap europe1
 1696199244497:showmap
+1696200989008:loadmap europe
+1696200994334:showmap
+1696201023137:gameplayer -add barbie ken
+1696201029250:assigncountries
+1696201035466:showstats
+1696201470368:loadmap europe
+1696201472937:showmap
+1696201480290:gameplayer -add barbie ken
+1696201511746:loadmap europe
+1696201513869:showmap
+1696201525982:gameplayer -add barbie -add ken
+1696201591131:loadmap europe
+1696201593057:showmap
+1696201611163:gameplayer -add barbie -add ken
+1696201677559:loadmap europe
+1696201678900:showmap
+1696201697101:gameplayer -add barbie -add ken -add george
+1696201769281:loadmap europe
+1696201770863:showmap
+1696201772574:gameplayer -add barbie -add ken
+1696201879131:loadmap europe
+1696201880566:showmap
+1696201884743:gameplayer -add barbie ken
+1696201912851:gameplayer -add barbie -add ken -add gary
+1696202009016:loadmap europe
+1696202011089:showmap
+1696202015635:gameplayer -add barbie -add ken
+1696202124605:loadmap europe
+1696202126144:showmap
+1696202127813:gameplayer -add barbie ken
+1696202389759:loadmap europe
+1696202392760:showmap
+1696202404689:gameplayer -add barbie -add ken -add gary
+1696202438263:loadmap europe
+1696202439980:showmap
+1696202491463:gameplayer -add bar -add beer -add clay
+1696202577489:loadmap europe
+1696202579086:showmap
+1696202589878:gameplayer -add bar -add ken -add beer
+1696202635208:loadmap europe
+1696202636502:showmap
+1696202650278:gameplayer -add t -add h -add k -add k
+1696202753577:showmap
+1696202757976:gameplayer -add bar -add ken -add beer
+1696202778199:loadmap europe
+1696202780083:showmap
+1696202782967:gameplayer -add barbie -add ken -add gary
+1696202887558:loadmap europe
+1696202889319:showmap
+1696202891313:gameplayer -add barbie -add ken
+1696202933098:loadmap europe
+1696202935175:showmap
+1696202936799:gameplayer -add barbie -add ken
+1696203184084:loadmap europe
+1696203185330:showmap
+1696203187646:gameplayer -add barbie -add ken
+1696203207940:gameplayer -remove ken -remove barbie
+1696203228518:gameplayer -add barbie -add ken -add gary -add aish -add priya
+1696203236715:gameplayer -remove ken -remove barbie

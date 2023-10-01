@@ -49,25 +49,25 @@ public class PlayerFeatures {
         }
     }
 
-    public void addPlayers(String[] p_playerNames, GameEngine gameEngine){
+    public void addPlayers(String p_playerName, GameEngine gameEngine){
 
-        int l_playerOrder =1;
-        for(String l_playerObjects : p_playerNames){
-        Player player= new Player(l_playerOrder++, l_playerObjects);
+        
+        //for(String l_playerObjects : p_playerNames){
+        Player player= new Player(0,p_playerName);
         gameEngine.d_playersList.add(player);
 
-        }
+        //}
 
     }
 
-    public void removePlayers(String[] p_playerNames, GameEngine gameEngine){
+    public void removePlayers(String p_playerName, GameEngine gameEngine){
 
         List<Player> playerList = gameEngine.getPlayers();
-        for(String l_player: p_playerNames){
-            Optional<Player> l_playerToRemove= playerList.stream().filter(c->c.getL_playername().equals(l_player)).findFirst();
+        //for(String l_player: p_playerNames){
+            Optional<Player> l_playerToRemove= playerList.stream().filter(c->c.getL_playername().equals(p_playerName)).findFirst();
             playerList.remove(l_playerToRemove.get());             
 
-        }
+        //}
 
     }
 
