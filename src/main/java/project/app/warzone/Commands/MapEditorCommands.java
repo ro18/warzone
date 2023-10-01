@@ -11,6 +11,9 @@ import org.springframework.shell.standard.ShellOption;
 import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Model.Continent;
 import project.app.warzone.Model.Map;
+import project.app.warzone.Features.PlayerFeatures;
+import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Utilities.Commands;
 
 @ShellComponent
 public class MapEditorCommands {
@@ -18,23 +21,24 @@ public class MapEditorCommands {
    
     
     private final MapFeatures mapFeatures;
-    public Map map;
-    public String prevUserCommand="";
+    public GameEngine gameEngine;
+    public PlayerCommands playerCommands;
+    public PlayerFeatures playerFeatures;
 
-
-    public MapEditorCommands(MapFeatures mapFeatures, Map map){
+    public MapEditorCommands(MapFeatures mapFeatures, GameEngine gameEngine, PlayerFeatures playerFeatures){
         this.mapFeatures = mapFeatures;
-        this.map = map;
+        this.gameEngine = gameEngine;
+        playerCommands = new PlayerCommands(gameEngine,playerFeatures);
 
     }
 
 
     @ShellMethod(key= "loadmap", value="Player can create or open an existing map")
     public String loadMap(@ShellOption String p_filename){
-        
-        if(map.fileExists(p_filename)){
+        gameEngine.prevUserCommand=Commands.LOADMAP;
+        if(gameEngine.gameMap.fileExists(p_filename)){
             System.out.println("One file found.");
-            map.set_USER_SELECTED_FILE(p_filename);
+            gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
             return "Choose one of the below commands to proceed:\n 1. showmap 2.editmap";
         }
         else{
@@ -44,9 +48,10 @@ public class MapEditorCommands {
 
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public void showmap(){
-        String p_mapLocation=map.getMapDirectory()+"/"+map.get_USER_SELECTED_FILE()+".map";
+        String p_mapLocation=map.getMapDirectory()+"/"+map.get_USER_SELECTED_FILE()+".map"; //mac
+        //String p_mapLocation=gameEngine.gameMap.getMapDirectory()+"\\"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //windows
         //System.out.println("map location:"+p_mapLocation);
-        map = mapFeatures.readMap(p_mapLocation);
+        gameEngine.gameMap = mapFeatures.readMap(p_mapLocation);
 
     }
     
