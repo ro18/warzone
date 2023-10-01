@@ -2,17 +2,25 @@ package project.app.warzone.Utilities;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
 
 import project.app.warzone.Model.Continent;
 
+@Component
 public class MapResouces {
-    Dictionary<Integer, String> listofContinents= new Hashtable<Integer,String>();
-    Dictionary<Integer, String> listofTerritories= new Hashtable();
+    Map<Integer, String> listofContinents= new HashMap<Integer,String>();
+    Map<Integer, String> listofCountries= new HashMap<Integer, String>();
 
     public MapResouces(){
+
+        setAllContinents();
+        setAllCountries();
        
 
     }
@@ -28,25 +36,57 @@ public class MapResouces {
     }
 
 
-    public Dictionary<Integer,String> getAllContinents(){
-     return listofContinents;
-
-    }
-
+    
     public void setAllCountries(){
 
-        listofContinents.put(1, "North_Europe");
-        listofContinents.put(2, "East_Europe");
-        listofContinents.put(3, "South_Europe");
-        listofContinents.put(4, "West_Europe");
-
+        listofCountries.put(1, "England");
+        listofCountries.put(2, "Scotland");
+        listofCountries.put(3, "N_Ireland");
+        listofCountries.put(4, "Rep_Ireland");
+        listofCountries.put(5, "Wales");
+        listofCountries.put(6, "Belgium");
+        listofCountries.put(7, "Netherlands");
+        listofCountries.put(8, "Denmark");
+        listofCountries.put(9, "Germany");
+        listofCountries.put(10, "Poland");
+        listofCountries.put(11, "Czech_Rep");
+        listofCountries.put(12, "Slovakia");
+        listofCountries.put(13, "Hungary");
+        listofCountries.put(14, "Austria");
+        listofCountries.put(15, "Switzerland");
+        listofCountries.put(16, "Italy");
+        listofCountries.put(17, "Sicily");
+        listofCountries.put(18, "Sardinia");
+        listofCountries.put(19, "Corsica");
+        listofCountries.put(20, "Majorca");
+        listofCountries.put(21, "France");
+        listofCountries.put(22, "Spain");
+        listofCountries.put(23, "Portugal");
+        listofCountries.put(24, "Luxembourg");
     }
 
-
-    public Dictionary<Integer,String> getAllCountries(){
+    public Map<Integer, String>getAllContinents(){
      return listofContinents;
 
     }
 
+
+    public Map<Integer, String>getAllCountries(){
+     return listofCountries;
+
+    }
+
+    /**
+     * @param p_detailsOfMap
+     */
+    public void printMapDetails(Map<Integer, String>  p_detailsOfMap){
+
+        for(Integer key : p_detailsOfMap.keySet()){
+            System.out.println(key+":"+p_detailsOfMap.get(key));
+
+        }
+      
+
+    }
 
 }

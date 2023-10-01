@@ -118,7 +118,7 @@ public class Map {
             set_USER_SELECTED_FILE(p_mapFile);
             if (fileCreated) {
                 
-                System.out.println("New file created at: ");
+                System.out.println("New file created successfully: ");
             } else {
                 System.err.println("File already exists at: Please try new name");
             }
