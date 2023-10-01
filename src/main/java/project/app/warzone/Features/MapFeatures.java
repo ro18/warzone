@@ -4,11 +4,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
 import project.app.warzone.Model.Continent;
+import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Node;;
 
@@ -47,7 +52,7 @@ public class MapFeatures {
 
                     l_line=reader.readLine();
 
-                    while(!l_line.equals("")){
+                    while(!l_line.equals("") ){
 
                         String[] countryDetails = l_line.split(" ");
                         gameMap.createAndInsertTerritory(countryDetails[1],continentsList.get(Integer.parseInt(countryDetails[2])-1) );
@@ -67,7 +72,7 @@ public class MapFeatures {
 
                     l_line=reader.readLine();
 
-                    while( l_line != null){
+                    while(  l_line != null && !l_line.equals("")){
                         
                         List<Node> bordersToConnect = new ArrayList<>();
                         String[] borderDetails = l_line.split(" ");
@@ -156,37 +161,50 @@ public class MapFeatures {
             }
     }
 
-    public Map writeToMap( Map p_gameMap, String p_filename){
+    // public Map writeToMap( Map p_gameMap, String p_filename){
 
-        BufferedReader l_reader = new BufferedReader(new FileReader(filename));
-        String l_continents = "[continents]";
-        String l_countries = "[countries]";
-        String l_borders="[borders]";
+    //     BufferedReader l_reader = new BufferedReader(new FileReader(filename));
+    //     String l_continents = "[continents]";
+    //     String l_countries = "[countries]";
+    //     String l_borders="[borders]";
 
-        if(l_reader.readLine() == ""){
-            System.out.println("Writing to an empty map file");
-            Files.writeString(filename, l_continents);
-
-
-        }
-
-    }
+    //     if(l_reader.readLine() == ""){
+    //         System.out.println("Writing to an empty map file");
+    //         Files.writeString(filename, l_continents);
 
 
+    //     }
 
-    public void validateByNodes(List<Nodes> p_allNodes, Map<Node,Integer> l_visitedList){
+    // }
+
+
+
+    public void validateByNodes(List<Node> p_allNodes, HashMap<Node,Boolean> l_visitedList){
 
   
         //List<Node> l_allNodes = p_gameMap.getNodes();
 
 
-        for( Node l_currentNode : l_allNodes){ // validating continent by continent           
-            l_visitedList.add(l_currentNode,false);
+        for( Node l_currentNode : p_allNodes){ // validating continent by continent           
+            l_visitedList.put(l_currentNode,false);
 
         }
-        Map.Entry<String,String> entry = map.entrySet().iterator().next();
-= 
-        depthFirstSearch(entry.getKey(),l_visitedList);
+
+        //l_visitedList.get(l_visitedList)
+        // System.out.println("Visited List:");
+
+        // for(Node n : l_visitedList.keySet()){
+
+        //     System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
+
+        // }
+
+        //System.out.println("FirstNode:"+l_visitedList.entrySet().iterator().next().getKey().getData().getTerritoryName());
+
+       // Node firstNode = l_visitedList.keys()
+       Node n = l_visitedList.entrySet().iterator().next().getKey();
+       System.out.println("CurrentNode:"+n.getData().getTerritoryName());
+       depthFirstSearch(l_visitedList.entrySet().iterator().next().getKey(),l_visitedList);
 
     }
 
@@ -194,38 +212,80 @@ public class MapFeatures {
 
 
         System.out.println(" Running check on file:");
-        Map<Node,boolean> l_visitedList = new HashMap<Node,boolean>();
+        HashMap<Node,Boolean> l_visitedList = new HashMap<Node,Boolean>();
         List<Continent> l_listOfContinent = gameEngine.gameMap.getListOfContinents();
         List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
-
-        List<Node> l_nodesOfContinent = new ArrayList<>();
+        List<Node> l_notConnectedCountries= new ArrayList<>();
 
 
         for(Continent con : l_listOfContinent){
 
-            validateSubGraph(con, l_listOfNodes,l_visitedList);          
-            
+            validateSubGraph(con, l_listOfNodes,l_visitedList);
+            //System.out.println("All countries of continent:"+con.getContinentName());
+            for(Node n : l_visitedList.keySet()){
+
+                System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
+                if(l_visitedList.get(n)== false){
+                    l_notConnectedCountries.add(n);
+                    System.out.println(con.getContinentName()+" is not connected");
+                    break;
+                }
+            }
+
+
+        }
+                        
+        
+
+        System.out.println("Final visited list:");
+         for(Node n : l_visitedList.keySet()){
+
+            System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
+
         }
 
-    }
-
-    public void validateSubGraph(Continent con, List<Node> l_listOfNodes,Map<Node,Integer> l_visitedList){
-
-        List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.continent.equals(con));
-        validateMap(l_nodesOfContinent,l_visitedList)
-
+        
 
     }
 
-    private Map<Node,Integer> depthFirstSearch(Node currentCountry, Map<Node,Integer> l_visitedList){
+    public void validateSubGraph(Continent con, List<Node> l_listOfNodes,HashMap<Node,Boolean> l_visitedList){
 
-        l_visitedList.put(l_visitedList.get(currentCountry),true);
-        List<Node> l_listOfBorderNodes = l_visitedList.getBorders();
+        List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
+        validateByNodes(l_nodesOfContinent,l_visitedList);
+
+
+    }
+
+    private HashMap<Node,Boolean> depthFirstSearch(Node currentCountry, HashMap<Node,Boolean> l_visitedList){
+
+        l_visitedList.put(currentCountry,true);
+
+        //  for(Node n : l_visitedList.keySet()){
+
+        //     System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
+
+        // }
+
+        List<Node> l_listOfBorderNodes = currentCountry.getBorders();
+
+        for( Node l_currentNode : l_listOfBorderNodes){ 
+            
+            // validating continent by continent 
+           
+            if(!l_visitedList.keySet().contains(l_currentNode)){
+              l_visitedList.put(l_currentNode,false);
+
+            }        
+
+        }
+
 
         for(Node node : l_listOfBorderNodes){
             if(l_visitedList.get(node) != true){
                 depthFirstSearch(node,l_visitedList);
             }
         }
+
+        return l_visitedList;
     }
 }

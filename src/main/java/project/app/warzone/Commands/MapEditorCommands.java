@@ -45,18 +45,19 @@ public class MapEditorCommands {
         String p_mapLocation=gameEngine.gameMap.getMapDirectory()+"\\"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
         //System.out.println("map location:"+p_mapLocation);
         gameEngine.gameMap = mapFeatures.readMap(p_mapLocation);
+        mapFeatures.validateEntireGraph(gameEngine);
 
     }
 
-    @ShellMethod(key= "editcontinent", value="This is used to add or update continents")
-    public String editcontinent(){
-        return "You can edit continents here";
+    // @ShellMethod(key= "editcontinent", value="This is used to add or update continents")
+    // public String editcontinent(){
+    //     return "You can edit continents here";
         
-        String p_mapLocation=gameEngine.gameMap.getMapDirectory()+"\\test"+".map";
+    //     String p_mapLocation=gameEngine.gameMap.getMapDirectory()+"\\test"+".map";
 
-        mapFeatures.writeToMap(gameMap,p_mapLocation)
+    //     mapFeatures.writeToMap(gameMap,p_mapLocation)
 
-    }
+    // }
 
     @ShellMethod(key= "editcountry", value="This is used to add or update countries")
      public String editcountry(){
