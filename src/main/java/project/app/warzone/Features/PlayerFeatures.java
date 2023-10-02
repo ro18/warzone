@@ -1,7 +1,9 @@
 package project.app.warzone.Features;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -17,6 +19,8 @@ public class PlayerFeatures {
     public void showAllAssignments(List<Player> allPlayers){
 
            for( Player p : allPlayers){
+        
+           System.out.println("Player Id:"+p.d_playerid);
 
            System.out.println("Countries of "+p.d_playername+":");
            List<Territory> listOfTerritories = p.getListOfTerritories();
@@ -36,13 +40,36 @@ public class PlayerFeatures {
         for( Player p : p_gameEngine.getPlayers()){ // logic to have players -1 country
 
             
-            int randomCountry =  l_random.nextInt(p_gameEngine.gameMap.getNodes().size()+1);
+            int randomCountry =  l_random.nextInt(p_gameEngine.gameMap.getNodes().size());
 
+            // Map<Integer,Boolean> playerIds = new HashMap<Integer,Boolean>();
+
+            // for(int l_i=1;l_i<=p_gameEngine.getPlayers().size();l_i++){
+            //     playerIds.put(l_i, false);
+            // }
+
+            int randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
+
+            // for(int i=0 ; i< p_gameEngine.getPlayers().size() ;i++){
+            //     while(playerIds.get(randomId) == true){
+            //         randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
+
+            //     }
+            //     p.setL_playerid(randomId);
+            //     playerIds.put(randomId, true);
+
+            // }
 
             while(p_gameEngine.gameMap.getNodes().get(randomCountry).getData().getOwnerId() != 0){
-                l_random.nextInt(p_gameEngine.gameMap.getNodes().size()+1);
+                randomCountry  = l_random.nextInt(p_gameEngine.gameMap.getNodes().size()+1);
 
             }
+
+            
+
+
+            
+             
         
             p.setTerritories(p_gameEngine.gameMap.getNodes().get(randomCountry).getData());
 
@@ -51,9 +78,11 @@ public class PlayerFeatures {
 
     public void addPlayers(String p_playerName, GameEngine gameEngine){
 
+        int l_size= gameEngine.getPlayers().size();
+
         
         //for(String l_playerObjects : p_playerNames){
-        Player player= new Player(0,p_playerName);
+        Player player= new Player(l_size+1,p_playerName);
         gameEngine.d_playersList.add(player);
 
         //}
@@ -93,7 +122,7 @@ public class PlayerFeatures {
     public void showStats(GameEngine gameengine){
         List<Player> listOfPlayers = gameengine.getPlayers();
         for(Player p : listOfPlayers){
-            System.out.println("Player Name:"+p.d_playername);
+            System.out.println("Player Name:"+p.d_playername+"-PlayerId:"+p.d_playerid);
             System.out.println("Total Armies available per round: "+p.getReinforcementArmies());
             System.out.println("Countries Owned - Armies");
             for(Territory t : p.getListOfTerritories()){

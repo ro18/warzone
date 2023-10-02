@@ -323,3 +323,32 @@
 1696203207940:gameplayer -remove ken -remove barbie
 1696203228518:gameplayer -add barbie -add ken -add gary -add aish -add priya
 1696203236715:gameplayer -remove ken -remove barbie
+1696203452257:loadmap europe
+1696203453472:showmap
+1696203455769:gameplayer -add barbie -add ken
+1696203475787:assigncountries
+1696203496858:gameplayer -add mihit -add aish -add rochelle
+1696203521462:assigncountries
+1696205720152:loadmap europe
+1696205722072:showmap
+1696205740412:ganeplayer -add barbie -add ken -add gary
+1696205749988:gameplayer -add barbie -add ken -add gary
+1696205766847:assigncountries
+1696205815962:loadmap europe
+1696205819027:showmap
+1696205823567:gameplayer -add barbie -add ken -add gary -add aish -add priya
+1696205841603:assigncountries
+1696208473678:loadmap europe
+1696208476092:showmap
+1696208478438:gameplayer -add mihit -add aish -add rochelle
+1696208487247:assigncountries
+1696212390121:loadmap europe
+1696212396054:showmap
+1696212441920:loadmap Rochelle
+1696212444918:showmap
+1696212469542:loadmap europe
+1696212471327:showmap
+1696212491673:gameplayer -add barbie -add ken -add numan
+1696212509773:gameplayer -remove ken
+1696212527248:assigncountries
+1696212570047:showstats
