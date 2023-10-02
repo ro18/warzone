@@ -23,12 +23,22 @@ public class PlayerCommands {
 
 
     @ShellMethod(key= "gameplayer", prefix = "-", value="Player can create or remove a player")
-    public String gamePlayerAdd(@ShellOption(value="a",defaultValue=ShellOption.NULL, arity = 2) String p_playerNameOne,@ShellOption(value="r", defaultValue=ShellOption.NULL, arity=2) String p_playerNameTwo){
+    public String gamePlayerAdd(@ShellOption(value="a",defaultValue=ShellOption.NULL, arity = 10 ) String p_playerNameOne,@ShellOption(value="r", defaultValue=ShellOption.NULL, arity=10) String p_playerNameTwo){
+
 
         if(gameEngine.prevUserCommand == Commands.LOADMAP || gameEngine.prevUserCommand == Commands.ADDPLAYER || gameEngine.prevUserCommand == Commands.REMOVEPLAYER){
                 if(p_playerNameOne != null && p_playerNameOne != ""){
                     String l_players[] = p_playerNameOne.split(","); 
-                    playerFeatures.addPlayers(l_players,gameEngine);
+                    int l_i=0;
+                    while(l_i<l_players.length){
+
+                        if(l_players[l_i].toString().equals("-add") == false){
+                        
+                            playerFeatures.addPlayers(l_players[l_i],gameEngine);
+                            
+                        }
+                        l_i++;
+                    }
                     
                     playerFeatures.printAllPlayers(gameEngine);
                     gameEngine.prevUserCommand=Commands.ADDPLAYER;
@@ -38,7 +48,16 @@ public class PlayerCommands {
                 else{
 
                     String l_players[] = p_playerNameTwo.split(","); 
-                    playerFeatures.removePlayers(l_players, gameEngine);
+                    int l_i=0;
+                    while(l_i < l_players.length){
+                        if(l_players[l_i].toString().equals("-remove") == false){
+
+                            playerFeatures.removePlayers(l_players[l_i], gameEngine);
+
+
+                        }
+                        l_i++;
+                    }
                     playerFeatures.printAllPlayers(gameEngine);
                     gameEngine.prevUserCommand=Commands.REMOVEPLAYER;
                     return "Players removed successfully";
