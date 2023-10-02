@@ -4,7 +4,8 @@ public enum Commands {
     LOADMAP,
     SHOWMAP,
     ADDPLAYER,
-    REMOVEPLAYER
+    REMOVEPLAYER,
+    EDITMAP
    
     
 }

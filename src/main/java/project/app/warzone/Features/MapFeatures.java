@@ -1,8 +1,10 @@
 package project.app.warzone.Features;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -127,6 +129,25 @@ public class MapFeatures {
         }
        
     }
+
+    public void createMap(){
+        
+    }
+
+    // public void saveChangesToFile(String p_filename) throws IOException{
+    //     BufferedReader reader = new BufferedReader(new FileReader(p_filename));
+    //     StringBuilder content = new StringBuilder(); 
+    //     String line;
+    //         while ((line = reader.readLine())) {
+                
+    //             line = line.replace("old text", "new text");
+    //             content.append(line).append("\n");
+    //         }
+
+    //         reader.close();      
+
+    // }
+    
     
 
     public void printMap(Map gameMap){
@@ -162,6 +183,12 @@ public class MapFeatures {
             }
     }
 
+    /**
+     * @param p_gameMap
+     * @param p_filename
+     * @return
+     */
+    //public Map writeToMap( Map p_gameMap, String p_filename){
     // public Map writeToMap( Map p_gameMap, String p_filename){
 
     //     BufferedReader l_reader = new BufferedReader(new FileReader(filename));
@@ -176,7 +203,7 @@ public class MapFeatures {
 
     //     }
 
-    // }
+    //}
 
 
 
