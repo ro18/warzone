@@ -3,15 +3,8 @@ package project.app.warzone.Features;
 
 import static org.junit.Assert.assertNotNull;
 
-import org.junit.*;
-import org.junit.Before.*;
-import org.junit.Test.*;
-import org.junit.Assert.*;
-import junit.framework.TestCase;
-import project.app.warzone.Model.GameEngine;
-
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import project.app.warzone.Model.GameEngine;
 

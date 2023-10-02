@@ -1,18 +1,14 @@
 package project.app.warzone.Commands;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
+
 import project.app.warzone.Features.MapFeatures;
-import project.app.warzone.Model.Continent;
 import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Utilities.Commands;

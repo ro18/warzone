@@ -5,7 +5,6 @@ public enum Commands {
     SHOWMAP,
     ADDPLAYER,
     REMOVEPLAYER,
-    EDITMAP
-   
-    
+    EDITMAP,
+    ASSIGNCOUNTRIES
 }
