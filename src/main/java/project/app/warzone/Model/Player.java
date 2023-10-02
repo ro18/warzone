@@ -2,34 +2,49 @@ package project.app.warzone.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Player 
 {
 	
-		public int l_playerid;
-		public String l_playername;
+		public int d_playerid;
+		public String d_playername;
 		public int d_reinforcementPool;
-        public List<Territory> listOfCountriesOwned;
+		
+        public List<Territory> d_listOfCountriesOwned;
+		public Stack<Order> d_listOfOrders;
+	
 
-        public Player(int l_playerid ,String l_playername,List<Territory> listOfCountriesOwned) {
-            this.l_playerid = l_playerid;
-            this.l_playername = l_playername;
-            this.listOfCountriesOwned = new ArrayList<>();
-            this.d_reinforcementPool=0;
+
+        public Player(int p_playerid ,String p_playername) {
+            this.d_playerid = p_playerid;
+            this.d_playername = p_playername;
+            this.d_listOfCountriesOwned = new ArrayList<>();
+			this.d_reinforcementPool=3;
+
         }
 
 		
 		public int getL_playerid() {
-			return l_playerid;
+			return d_playerid;
 		}
-		public void setL_playerid(int l_playerid) {
-			this.l_playerid = l_playerid;
+		public void setL_playerid(int p_playerid) {
+			d_playerid = p_playerid;
 		}
 		public String getL_playername() {
-			return l_playername;
+			return d_playername;
+		}
+		public void initReinforcementArmies(int noOfArmies){
+			d_reinforcementPool= noOfArmies;
+		}
+		public void addReinforcementArmies(int noOfArmies){
+			d_reinforcementPool+= noOfArmies;
+		}
+		public int getReinforcementArmies(){
+			return d_reinforcementPool;
 		}
 		public void setL_playername(String l_playername) {
-			this.l_playername = l_playername;
+			d_playername = l_playername;
 		}
 
 		public void setReinforcementMap(int noOfArmies){
@@ -41,14 +56,28 @@ public class Player
 		}
 
 		public List<Territory> getlistOfCountriesOwned() {
-			return listOfCountriesOwned;
+			return d_listOfCountriesOwned;
 		}
 
-		void issue_order() {
-			
+		public void setTerritories(Territory territory){
+			d_listOfCountriesOwned.add(territory);
+		}
+
+		public List<Territory> getListOfTerritories(){
+			return d_listOfCountriesOwned;
+		}
+
+		public void issue_order(Order order) {
+			d_listOfOrders.push(order);
+		}
+
+		public void clear_orderList(){
+			d_listOfOrders.clear();
 		}
 		
-		void next_order() {
+		public Order next_order() {
+			return d_listOfOrders.pop();
+			
 			
 		}
 		
