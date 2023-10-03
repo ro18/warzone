@@ -1,37 +1,31 @@
 package project.app.warzone.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 public class Order {
-    String d_orderType;
-    int d_numberOfArmies;
-    Territory d_Territory;
 
-    public String execute(Player p_Player, Order p_order) {
-        List<Territory> listOfCountriesOwned = new ArrayList<>();
-        if (p_order.d_orderType == "DEPLOY") {
-            // check if the player owns the territory
-            // if(p_Player.getL_playerid() != p_Territory.getOwnerId())
-            // {
-            // return "Player does not own the territory";
-            // }
+    private String d_orderType = "DEPLOY";
+    private int d_numberOfArmies;
+    private Territory d_Territory;
 
-            listOfCountriesOwned = p_Player.getlistOfCountriesOwned();
-            Optional<Territory> Territory = listOfCountriesOwned.stream()
-                    .filter(c -> c.getTerritoryName().equals(p_order.d_Territory.getTerritoryName())).findFirst();
+    public void setL_numberOfArmies(int p_numArmies) {
+        this.d_numberOfArmies = p_numArmies;
+    }
 
-            // check if the player has enough armies to deploy
-            if (Territory != null && p_Player.getReinforcementMap() >= p_order.d_numberOfArmies) {
-                // Increment the territory army number
-                // Decrease the player reinforcement pool by the number of armies
-                p_Player.setReinforcementMap(p_Player.getReinforcementMap() - p_order.d_numberOfArmies);
-                Territory.get().setNumberOfArmies(Territory.get().getNumberOfArmies() + p_order.d_numberOfArmies);
-                return "Deployed armies successfully";
-            } else {
-                return "Not enough armies to deploy";
-            }
+    public void setL_territory(Territory p_territory) {
+        this.d_Territory = p_territory;
+    }
+
+    public int getL_numberOfArmies() {
+        return this.d_numberOfArmies;
+    }
+
+    public Territory getL_territory() {
+        return this.d_Territory;
+    }
+
+    public String execute() {
+        if (this.d_orderType == "DEPLOY") {
+            this.d_Territory.setNumberOfArmies(this.d_Territory.getNumberOfArmies() + this.d_numberOfArmies);
+            return "Deployed armies successfully";
 
         }
         return "Invalid order";

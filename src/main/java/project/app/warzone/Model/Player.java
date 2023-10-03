@@ -1,8 +1,9 @@
 package project.app.warzone.Model;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
 public class Player 
 {
@@ -12,7 +13,7 @@ public class Player
 		public int d_reinforcementPool;
 		
         public List<Territory> d_listOfCountriesOwned;
-		public Stack<Order> d_listOfOrders;
+		public Queue<Order> d_listOfOrders = new ArrayDeque<> ();
 	
 
 
@@ -68,7 +69,8 @@ public class Player
 		}
 
 		public void issue_order(Order order) {
-			d_listOfOrders.push(order);
+			d_listOfOrders.add(order);
+			this.setReinforcementMap(this.getReinforcementArmies() - order.getL_numberOfArmies());
 		}
 
 		public void clear_orderList(){
@@ -76,9 +78,9 @@ public class Player
 		}
 		
 		public Order next_order() {
-			return d_listOfOrders.pop();
-			
-			
+			if(d_listOfOrders.size()>0)
+				return d_listOfOrders.remove();
+			return null;
 		}
 		
 
