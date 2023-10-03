@@ -75,8 +75,15 @@ public class Map {
     // }
 
     public String getMapDirectory(){
+<<<<<<< Updated upstream
         return "src\\main\\java\\project\\app\\warzone\\Utilities\\Maps";
 
+=======
+        return System.getProperty("user.dir")+"\\src\\main\\java\\project\\app\\warzone\\Utilities\\Maps"; //--MAC
+        //return "/src/main/java/project/app/warzone/Utilities/Maps";
+
+        //return "/warzone/src/main/java/project/app/warzone/Utilities/Maps";
+>>>>>>> Stashed changes
     }
 
     public String get_USER_SELECTED_FILE() {

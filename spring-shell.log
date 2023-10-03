@@ -32,3 +32,385 @@
 1695756901434:loadmap europe
 1695757749400:showmap europe
 1695759123625:showmap
+<<<<<<< Updated upstream
+=======
+1695877204628:loadmap europe
+1695879443437:loadMap
+1695879450214:loadMap europe
+1695879466532:loadmap europe
+1695879586483:showmap
+1695883436615:gameplayer -add rohit
+1695883611942:gameplayer -add r
+1695883739559:gameplayer -add p
+1695883905095:gameplayer -add player
+1695884337604:ssh-add --k test1
+1695884376551:gameplayer -add
+1695884398012:gameplayer -a
+1695884477583:ssh-add k
+1695884523055:ssh-add --k test1
+1695884569418:gameplayer -a bee
+1695884596100:loadmap
+1695884602310:loadmap europe
+1695884606890:showmap
+1695884614227:gameplayer -a bee
+1695884679707:loadmap europe
+1695884682181:showmap
+1695884691096:gameplayer -a bee
+1695884934532:gameplayer -add test
+1695884974705:loadmap
+1695884979856:loadmap europe
+1695884982187:showmap
+1695884992784:gameplayer -a bee
+1695885004865:gameplayer -remove bee
+1695885071993:gameplayer -r bee
+1695885135529:loadmap
+1695885141148:loadmap europe
+1695885143493:showmap
+1695885152586:gameplayer -a bee
+1695885158557:gameplayer -r bee
+1695885314316:loadmap europe
+1695885318702:showmap
+1695885323245:gameplayer -add test
+1695885370672:help
+1695885383073:help gameplayer
+1695885515693:loadmap europe
+1695885518660:showmap
+1695885523036:gameplayer -r bee
+1695885534228:help gameplayer
+1695885570099:loadmap europe
+1695885573401:showmap
+1695885575589:gameplayer -r bee
+1695885581628:help gameplayer
+1695885591297:gameplayer -add hell
+1695885982238:help ssh
+1695885991148:help my-ssh
+1695886038127:gameplayer -add hell
+1695886046024:help gameplayer
+1695886090398:help loadmap
+1695886129754:help gameplayer
+1695886325876:help loadmap
+1695886329168:help gameplayer
+1695912346715:gameplayer -a bee
+1695912367765:gameplayer -add bee
+1695912382403:help
+1695912395321:help gameplayer
+1695912544362:gameplayer -add hello
+1695912630852:gameplayer -add bee
+1695912664859:help gameplayer
+1695912672202:gameplayer -add bee
+1695912697259:help my-ssh
+1695912794054:gameplayer -add bee
+1695912817497:help gameplayer
+1695912857543:gameplayer -add bee
+1695912871824:help gameplayer
+1695912965195:gameplayer -add bee
+1695913001527:help gameplayer
+1695913010198:gameplayer
+1695913173647:gameplayer -remove mhir
+1695913332416:gameplayer -add mihir rochelle
+1695913352073:gameplayer -add mihir aish --remove mihir
+1695913432464:gameplayer -add mihir aish -remove mihir
+1695913448255:gameplayer -remove mihir
+1695938582015:gameplayer -add bee
+1695938643184:loadmap europe
+1695938648505:showmap
+1695938656298:gameplayer -add bee
+1695946243416:loadmap europe
+1695946245839:showmap
+1695946264622:gameplayer -add bee boo koo
+1695946279239:gameplayer -add bee boo
+1695946315147:help gameplayer
+1695946668309:gameplayer -add bee boo
+1695946719518:loadmap europe
+1695946721760:showmap
+1695946729119:gameplayer -add bee boo
+1695946750234:gameplayer -remove bee
+1695947080288:loadmap
+1695947085399:loadmap filename
+1695947090621:loadmap europe
+1695947093410:showmap
+1695947102261:gameplayer -add aish mihir
+1695947126878:gameplayer -remove bee
+1695948472893:loadmap europe
+1695948493742:showmap
+1695948517212:gameplayer -add aish mihir
+1695948549929:gameplayer -remove mihir
+1695954043358:loadmap europe
+1695954047144:showmap
+1695954059481:gameplayer -add harshita mihir
+1695954074421:assigncountries
+1696001985929:loadmap europe
+1696001990412:showmap
+1696002007412:gameplayers -add nola pink
+1696002045170:gameplayer -add nola pink
+1696002072983:assigncountries
+1696006270100:loadmap europe
+1696006277325:showmap
+1696006290290:gameplayer -add mihir harshita
+1696006303697:assigncountries
+1696008922949:showstats
+1696009741326:loadmap
+1696009744866:loadmap europe
+1696009747649:showmap
+1696009756770:gameplayer -add my boo
+1696009770912:assigncountries
+1696009837160:loadmap europe
+1696009840596:showmap
+1696009857612:gamaplayer -add beebo peepo
+1696009865632:gameplayer -add beebo peepo
+1696009897283:assigncountries
+1696009957006:showstats
+1696010033274:loadmap europe
+1696010035928:showmap
+1696010048145:gameplayer -add p1 p2
+1696010055098:assigncountries
+1696010063959:showstats
+1696010254296:loadmap europe
+1696010258092:showmap
+1696010265940:gameplayer -add bee boo
+1696010277500:assigncountries
+1696010343487:showstats
+1696010483009:loadmap europe
+1696010488058:showmap
+1696010523822:gameplayer -add p1 p2
+1696010545967:assigncountries
+1696010551252:showstats
+1696138152221:loadmap europe
+1696138154662:showmap
+1696138987613:loadmap europe
+1696138990960:showmap
+1696139443070:loadmap europe
+1696139445985:showmap
+1696139641115:loadmap europe
+1696139645028:showmap
+1696180502912:loadmap Simpsons
+1696180505849:showmap
+1696180833735:loadmap Simpsons
+1696180835769:showmap
+1696181245234:loadmap Simposons
+1696181251342:loadmap Simpsons
+1696181253363:showmap
+1696182129886:loadmap Simpsons
+1696182132036:showmap
+1696182731150:loadmap Simpsons
+1696182733528:showmap
+1696183665627:loadmap Rochelle
+1696183667926:showmap
+1696183745099:loadmap Rochelle
+1696183750183:showmap
+1696183872062:loadmap Rochelle
+1696183874050:showmap
+1696183934792:loadmap Rochelle
+1696183936632:showmap
+1696184342589:loadmap Simpsons
+1696184344222:showmap
+1696184444822:loadmap Simpsons
+1696184446313:showmap
+1696184563399:loadmap Simpsons
+1696184566060:showmap
+1696184658969:loadmap Simpsons
+1696184660417:showmap
+1696184694630:loadmap Simpsons
+1696184697606:showmap
+1696184724651:loadmap Simpsons
+1696184727925:showmap
+1696185014590:loadmap Simpsons
+1696185018770:showmap
+1696185122111:loadmap Simpsons
+1696185123956:showmap
+1696185152212:loadmap Rochelle
+1696185155257:showmap
+1696193693491:loadmap Rochelle
+1696193699676:showmap
+1696194007596:loadmap Rochelle
+1696194015615:showmap
+1696195808327:loadmap Rochelle
+1696195811252:showmap
+1696195943914:loadmap Simpsons
+1696195946984:showmap
+1696196003912:loadmap europe
+1696196006539:showmap
+1696196315076:loadmap europe
+1696196316918:showmap
+1696196480349:loadmap Rochelle
+1696196482690:showmap
+1696197299115:loadmap europe1
+1696197302057:showmap
+1696197349789:loadmap europe1
+1696197351279:showmap
+1696197385282:loadmap europe1
+1696197387108:showmap
+1696197409383:loadmap europe1
+1696197410598:showmap
+1696197886587:loadmap europe1
+1696197888319:showmap
+1696197914242:loadmap europe1
+1696197916691:showmap
+1696198051269:loadmap europe1
+1696198052651:showmap
+1696198074231:loadmap europe1
+1696198082289:showmap
+1696198106562:loadmap europe1
+1696198108025:showmap
+1696198178954:loadmap europe1
+1696198180827:showmap
+1696198432691:loadmap europe1
+1696198434116:showmap
+1696198599935:loadmap europe1
+1696198602972:showmap
+1696198724231:loadmap europe1
+1696198725740:showmap
+1696199054174:loadmap europe1
+1696199055684:showmap
+1696199152915:loadmap europe1
+1696199154693:showmap
+1696199243021:loadmap europe1
+1696199244497:showmap
+1696200989008:loadmap europe
+1696200994334:showmap
+1696201023137:gameplayer -add barbie ken
+1696201029250:assigncountries
+1696201035466:showstats
+1696201470368:loadmap europe
+1696201472937:showmap
+1696201480290:gameplayer -add barbie ken
+1696201511746:loadmap europe
+1696201513869:showmap
+1696201525982:gameplayer -add barbie -add ken
+1696201591131:loadmap europe
+1696201593057:showmap
+1696201611163:gameplayer -add barbie -add ken
+1696201677559:loadmap europe
+1696201678900:showmap
+1696201697101:gameplayer -add barbie -add ken -add george
+1696201769281:loadmap europe
+1696201770863:showmap
+1696201772574:gameplayer -add barbie -add ken
+1696201879131:loadmap europe
+1696201880566:showmap
+1696201884743:gameplayer -add barbie ken
+1696201912851:gameplayer -add barbie -add ken -add gary
+1696202009016:loadmap europe
+1696202011089:showmap
+1696202015635:gameplayer -add barbie -add ken
+1696202124605:loadmap europe
+1696202126144:showmap
+1696202127813:gameplayer -add barbie ken
+1696202389759:loadmap europe
+1696202392760:showmap
+1696202404689:gameplayer -add barbie -add ken -add gary
+1696202438263:loadmap europe
+1696202439980:showmap
+1696202491463:gameplayer -add bar -add beer -add clay
+1696202577489:loadmap europe
+1696202579086:showmap
+1696202589878:gameplayer -add bar -add ken -add beer
+1696202635208:loadmap europe
+1696202636502:showmap
+1696202650278:gameplayer -add t -add h -add k -add k
+1696202753577:showmap
+1696202757976:gameplayer -add bar -add ken -add beer
+1696202778199:loadmap europe
+1696202780083:showmap
+1696202782967:gameplayer -add barbie -add ken -add gary
+1696202887558:loadmap europe
+1696202889319:showmap
+1696202891313:gameplayer -add barbie -add ken
+1696202933098:loadmap europe
+1696202935175:showmap
+1696202936799:gameplayer -add barbie -add ken
+1696203184084:loadmap europe
+1696203185330:showmap
+1696203187646:gameplayer -add barbie -add ken
+1696203207940:gameplayer -remove ken -remove barbie
+1696203228518:gameplayer -add barbie -add ken -add gary -add aish -add priya
+1696203236715:gameplayer -remove ken -remove barbie
+1696203452257:loadmap europe
+1696203453472:showmap
+1696203455769:gameplayer -add barbie -add ken
+1696203475787:assigncountries
+1696203496858:gameplayer -add mihit -add aish -add rochelle
+1696203521462:assigncountries
+1696205720152:loadmap europe
+1696205722072:showmap
+1696205740412:ganeplayer -add barbie -add ken -add gary
+1696205749988:gameplayer -add barbie -add ken -add gary
+1696205766847:assigncountries
+1696205815962:loadmap europe
+1696205819027:showmap
+1696205823567:gameplayer -add barbie -add ken -add gary -add aish -add priya
+1696205841603:assigncountries
+1696208473678:loadmap europe
+1696208476092:showmap
+1696208478438:gameplayer -add mihit -add aish -add rochelle
+1696208487247:assigncountries
+1696212390121:loadmap europe
+1696212396054:showmap
+1696212441920:loadmap Rochelle
+1696212444918:showmap
+1696212469542:loadmap europe
+1696212471327:showmap
+1696212491673:gameplayer -add barbie -add ken -add numan
+1696212509773:gameplayer -remove ken
+1696212527248:assigncountries
+1696212570047:showstats
+1695935641394:editmap europe
+1695935648878:loadmap europe
+1695935667815:editmap europe
+1695935753566:loadmap europe
+1696002615585:loadMap europe
+1696002632868:loadmap europe
+1696002766541:editmap europe2
+1696002888332:loadmap europe
+1696003276890:editmap europe
+1696003295814:editcontinent -add 1 Italy
+1696003469196:editmap europe
+1696003528076:editcontinent -add 2 Italy
+1696003540532:editmap europe
+1696003561369:editcontinent -add 2 Italy
+1696003606127:editmap europe
+1696003630744:editcontinent -add 2 Italy
+1696003726694:editcontinent -d
+1696003737368:editcontinent -d ree
+1696003761284:editcontinent -add 2 Italy
+1696003795143:editmap europe
+1696003804003:editcontinent -add 2 Italy
+1696003895228:editmap europe
+1696003906357:editcontinent -add 2 Italy
+1696132443590:editmap europe
+1696132548056:editmap newmap
+1696216168273:loadmap europe
+1696216170025:showmap
+1696216187503:gameplayer -add mihir -add aish -add numan
+1696216233634:assigncountries
+1696216293414:showstats
+1696309531552:loadmap
+1696309535797:loadmap europe
+1696309776485:help
+1696309781075:loadmap europe
+1696309931748:help
+1696309934811:loadmap europe
+1696310005694:1
+1696310009295:showmap
+1696350972892:help
+1696350977949:loadmap europe
+1696350984667:showmap
+1696354752906:help
+1696354777620:loadmap Simpsons
+1696354781319:showmap
+1696354802977:loadmap Rochelle
+1696354807061:showmap
+1696358891531:help
+1696358916221:/.mvn
+1696358922436:mvn
+1696358936510:.\\mvn
+1696358940230:\\.mvn
+1696358945722:./mvn
+1696358952125:mvn
+1696359035695:mvnw
+1696359039463:./mvnw
+1696359046134:/.mvnw
+1696359051015:./mvnw
+1696359244309:install:install
+1696359249712:install : install
+>>>>>>> Stashed changes
