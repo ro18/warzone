@@ -207,7 +207,7 @@ public class MapFeatures {
 
 
 
-    public HashMap<Node,Boolean> validateByNodes(List<Node> p_allNodes, HashMap<Node,Boolean> l_visitedList){
+    public java.util.Map<Node,Boolean> validateByNodes(List<Node> p_allNodes, java.util.Map<Node,Boolean> l_visitedList){
 
         for( Node l_currentNode : p_allNodes){ 
             if(!l_visitedList.keySet().contains(l_currentNode)){
@@ -231,12 +231,13 @@ public class MapFeatures {
         System.out.println("------------------------------");
 
         System.out.println("Validating map...");
-        HashMap<Node,Boolean> l_visitedList = new HashMap<Node,Boolean>();
+        java.util.Map<Node,Boolean> l_visitedList = new HashMap<Node,Boolean>();
+
         List<Continent> l_listOfContinent = gameEngine.gameMap.getListOfContinents();
         List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
 
         for(Continent con : l_listOfContinent){
-
+            
             Boolean l_result = validateSubGraph(con, l_listOfNodes,l_visitedList);
             if(!l_result){
                 return false;
@@ -247,7 +248,7 @@ public class MapFeatures {
         
 
         System.out.println("Final visited list:");
-         for(Node n : l_visitedList.keySet()){
+        for(Node n : l_visitedList.keySet()){
 
             System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
 
@@ -259,7 +260,7 @@ public class MapFeatures {
 
     }
 
-    public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,HashMap<Node,Boolean> l_visitedList){
+    public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,java.util.Map<Node,Boolean> l_visitedList){
 
         List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
         l_visitedList =validateByNodes(l_nodesOfContinent,l_visitedList);
@@ -276,7 +277,7 @@ public class MapFeatures {
 
     }
 
-    private HashMap<Node,Boolean> depthFirstSearch(Node currentCountry, HashMap<Node,Boolean> l_visitedList){
+    private java.util.Map<Node,Boolean> depthFirstSearch(Node currentCountry, java.util.Map<Node,Boolean> l_visitedList){
 
         l_visitedList.put(currentCountry,true);
 
