@@ -82,7 +82,7 @@ public class PlayerFeaturesTest {
         playerFeatures.assignCountries(gameEngine);
 
         //try deploying larger army than possible should fail.
-     //   playerFeatures.deployArmies(gameEngine, countryid, amry);
+        //playerFeatures.deployArmies(gameEngine, countryid, amry);
       
 
     }
