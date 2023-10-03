@@ -41,6 +41,7 @@ jobs:
       if: success() || failure()
       with:
         name: Run tests with maven
+        path: reports/jest-*.xml 
         run: mvn test -Dtest=WarzoneApplicationTest
 
 #./mvnw test -Dtest=WarzoneApplicationTest
