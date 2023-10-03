@@ -9,6 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>project.app</groupId>
+	
 	<artifactId>warzone</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>warzone</name>
@@ -36,6 +37,11 @@
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
