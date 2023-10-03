@@ -39,12 +39,9 @@ jobs:
       run: mvn test -Dtest=WarzoneApplicationTest
 
     - name: Test Report
-      uses: dorny/test-reporter@v1
+      uses: mikepenz/action-junit-report@v4
       if: success() || failure()
-      with:
-        name: Test report generate
-        path: reports/jest-junit.xml
-        reporter: jest-junit
+
 
 #./mvnw test -Dtest=WarzoneApplicationTest
 
