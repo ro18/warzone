@@ -34,10 +34,14 @@ jobs:
           cache: 'maven'
           native-image-job-reports: 'true'
     - name: Run 'native-build
-      run: mvn native:compile -Pnative -DskipTests
+      run: mvn native:compile -Pnative -DskipTests=true
 
-    - name: Run tests with maven
-      run: mvn test -Dtest=WarzoneApplicationTest
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: success() || failure()
+      with:
+        name: Run tests with maven
+        run: mvn test -Dtest=WarzoneApplicationTest
 
 #./mvnw test -Dtest=WarzoneApplicationTest
 
