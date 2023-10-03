@@ -3,9 +3,10 @@ package project.app.warzone.Features;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Player;
+
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,84 +19,142 @@ public class PlayerFeaturesTest {
     public PlayerFeatures playerFeatures = new PlayerFeatures();;
     public GameEngine gameEngine;
     public Map gameMap;
+    public MapFeatures mapFeatures;
 
     @BeforeEach
     public void setUp(){
-        this.gameMap = new Map();
-        this.gameEngine = new GameEngine(gameMap);
 
-         
+        this.gameEngine = new GameEngine(gameMap);
+        this.gameMap = new Map();
+        this.mapFeatures = new MapFeatures();
+
+        String p_mapLocation = "C:\\Users\\pawar_7h7ejj1\\Desktop\\warzone-project\\warzone\\src\\main\\java\\project\\app\\warzone\\Utilities\\Maps\\europe.map";
+        gameEngine.gameMap = mapFeatures.readMap(p_mapLocation);
+        
         playerFeatures.addPlayers("prashant", gameEngine);
         playerFeatures.addPlayers("rochelle", gameEngine);
         playerFeatures.addPlayers("aishwarya", gameEngine);
         playerFeatures.addPlayers("anash", gameEngine);
         
-
     }
 
-    //1. successfully adding players
     @Test
     public void TestaddPlayers(){
         
-        //demoAddPlayers();
+        List<Player> testPlayerList =  new ArrayList<>();
+        testPlayerList.add(new Player(1, "prashant"));
+        testPlayerList.add(new Player(2, "rochelle"));
+        testPlayerList.add(new Player(3, "aishwarya"));
+        testPlayerList.add(new Player(4, "anash"));
 
-        String[] testPlayerNames = {"prashant","rochelle","aishwarya","anash"};
+        List<String> expectedPlayers = new ArrayList<>();
 
-        ///assertEquals(testPlayerNames, gameEngine.getPlayers());
-        assertEquals("test", "test");
+        for (Player player : testPlayerList) {
+            expectedPlayers.add(player.d_playername);
+        }
+
+        List<String> actualPlayers = new ArrayList<>();
+
+        for (Player player : gameEngine.d_playersList) {
+            actualPlayers.add(player.d_playername);
+        }
+
+        assertEquals(expectedPlayers, actualPlayers);
+    
     }
 
-    //2. successfully removing players
     @Test
-    public void TestremovePlayers(GameEngine gameEngine, Player player){
+    public void TestremovePlayers(){
         
-        //demoAddPlayers();
         playerFeatures.removePlayers("prashant", gameEngine);
 
-        String[] testPlayerNames = {"rochelle","aishwarya","anash"};
+        List<Player> testPlayerList =  new ArrayList<>();
+        testPlayerList.add(new Player(1, "rochelle"));
+        testPlayerList.add(new Player(2, "aishwarya"));
+        testPlayerList.add(new Player(3, "anash"));
 
-        assertEquals(testPlayerNames, gameEngine.getPlayers());
+        List<String> expectedPlayers = new ArrayList<>();
+
+        for (Player player : testPlayerList) {
+            expectedPlayers.add(player.d_playername);
+        }
+
+        List<String> actualPlayers = new ArrayList<>();
+
+        for (Player player : gameEngine.d_playersList) {
+            actualPlayers.add(player.d_playername);
+        }
+
     }
 
-    //3. check if all players are assigned countries and no player is missing
     @Test
-    public void TestassignCountries(GameEngine gameEngine, Player player){
+    public void TestassignCountries(){
         
-       // demoAddPlayers();
-
         playerFeatures.assignCountries(gameEngine);
 
         for( Player p : gameEngine.d_playersList)
         {
             assertNotNull(p.d_listOfCountriesOwned);
         }
+
+        assertTrue(gameEngine.d_playersList.stream().allMatch(player -> !player.d_listOfCountriesOwned.isEmpty()));
+
     }
 
-    //4. check if player is assigned reinforcements and no player is remaining to assign reinforcementpool
     @Test
-    public void TestinitialReinforcement(GameEngine gameEngine, Player player){
+    public void TestinitialReinforcement(){
         
-        //demoAddPlayers();
         playerFeatures.assignCountries(gameEngine);
 
         for( Player p : gameEngine.d_playersList)
         {
             assertNotNull(p.d_reinforcementPool);
+            assertEquals(3, p.d_reinforcementPool);
         } 
     }
 
-    //5. player cannot deploy more armies that there is in their reinforcement pool. 
     @Test
-    public void TestplayerDeploy(GameEngine gameEngine, Player player){
+    public void TestplayerDeploy(){
         
-        //demoAddPlayers();
-        playerFeatures.assignCountries(gameEngine);
+        for(int i = 0; i < 4 ; i++)  {         
+            Player player = gameEngine.d_playersList.get(i);
+            player.setTerritories(gameEngine.gameMap.getNodes().get(i).getData());
 
-        //try deploying larger army than possible should fail.
-        //playerFeatures.deployArmies(gameEngine, countryid, amry);
-      
+        }
+        
+        int countryid = 2;
+        int deployArmy = 3;
+
+        for(int i = 0 ; i < 3; i++){
+            playerFeatures.deployArmies(gameEngine, countryid + i, deployArmy);
+        }
+
+        String result = playerFeatures.deployArmies(gameEngine, countryid-1, deployArmy);
+
+        assertEquals("Orders successfully executed", result);      
 
     }
 
-   
+
+    @Test
+    public void TestplayerDeployGreaterthanReinforcement(){
+        
+        for(int i = 0; i < 4 ; i++)  {         
+            Player player = gameEngine.d_playersList.get(i);
+            player.setTerritories(gameEngine.gameMap.getNodes().get(i).getData());
+
+        }
+
+        int countryid = 2;
+        int deployArmy = 5;
+
+        for(int i = 0 ; i < 3; i++){
+            playerFeatures.deployArmies(gameEngine, countryid + i, deployArmy);
+        }
+
+        String result = playerFeatures.deployArmies(gameEngine, countryid-1, deployArmy);
+
+        assertEquals("Not enough armies to be deployed. Available armies: 3", result);     
+
+    }
 }
