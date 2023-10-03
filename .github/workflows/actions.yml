@@ -35,6 +35,13 @@ jobs:
           native-image-job-reports: 'true'
     - name: Run 'native-build
       run: mvn native:compile -Pnative -DskipTests
+
+    - name: Run tests with maven
+      run: mvn test -Dtest=WarzoneApplicationTest
+
+#./mvnw test -Dtest=WarzoneApplicationTest
+
+#/mvwn test -Dtest=PlayerFeaturesTest#TestaddPlayers
      
       
      
