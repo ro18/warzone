@@ -1,108 +1,160 @@
-package Models;
+package test.easycodeforall.changeit;
 import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
+import org.apache.log4j.Logger;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+public class MapFeaturesTest {
 
-import Exceptions.InvalidMap;
-import Services.MapService;
+   private Logger log = Logger.getLogger(this.getClass());
+   @BeforeAll
+   static void initAll() {}
+   @BeforeEach
+   void init() {}
 
-/**
- * 
- * This class is used to test functionality of Map class functions.
- * 
- */
-public class MapTest {
+   @Test
+   @DisplayName("read Map")
+   public void readMap() {
+      try {
+         log.info("Starting execution of readMap");
+         Map expectedValue = null;
+         String filename = "";
 
-    /**
-     * Map object.
-     */
-    Map d_map;
-    /**
-     * Map service.
-     */
-    MapService d_ms;
-    /**
-     * Current state of the game.
-     */
-    GameState d_gameState;
+         MapFeatures mapfeatures = new MapFeatures();
+         Map actualValue = mapfeatures.readMap(filename);
+         log.info("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         System.out.println("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         Assertions.assertEquals(expectedValue, actualValue);
+      } catch (Exception exception) {
+         log.error("Exception in execution of execute1GetAllLogFromFirstMovF-" + exception, exception);
+         exception.printStackTrace();
+         Assertions.assertFalse(false);
+      }
+   }
 
-    /**
-     * Checking Map Model Operations
-     */
-    @Before
-    public void beforeValidateTest(){
-        d_map=new Map();
-        d_gameState=new GameState();
-        d_ms= new MapService();
-    }
+   @Test
+   @DisplayName("create Map")
+   public void createMap() {
+      try {
+         log.info("Starting execution of createMap");
 
-    /**
-     * Checking {@link InvalidMap} for no continent in Map
-     * @throws InvalidMap Exception
-     */
-    @Test (expected = InvalidMap.class)
-    public void testValidateNoContinent() {
-        assertEquals(d_map.Validate(), false);
-    }
+         MapFeatures mapfeatures = new MapFeatures();
+         mapfeatures.createMap();
+         Assertions.assertTrue(true);
+      } catch (Exception exception) {
+         log.error("Exception in execution ofcreateMap-" + exception, exception);
+         exception.printStackTrace();
+         Assertions.assertFalse(false);
+      }
+   }
 
-    /**
-     * Tests a valid and invalid Map for Validate function
-     *
-     * @throws InvalidMap Exception
-     */
-    @Test (expected = InvalidMap.class)
-    public void testValidate()  {
-        d_map= d_ms.loadMap(d_gameState, "canada.map");
+   @Test
+   @DisplayName("print Map")
+   public void printMap() {
+      try {
+         log.info("Starting execution of printMap");
+         Map gameMap = null;
 
-        assertEquals(d_map.Validate(), true);
-        d_map= d_ms.loadMap(d_gameState, "swiss.map");
-        d_map.Validate();
-    }
+         MapFeatures mapfeatures = new MapFeatures();
+         mapfeatures.printMap(gameMap);
+         Assertions.assertTrue(true);
+      } catch (Exception exception) {
+         log.error("Exception in execution ofprintMap-" + exception, exception);
+         exception.printStackTrace();
+         Assertions.assertFalse(false);
+      }
+   }
 
-    /**
-     * Checking {@link InvalidMap} for no country in Map
-     *
-     * @throws InvalidMap Exception
-     */
-    @Test 
-    public void testValidateNoCountry() {
-        Continent l_continent = new Continent();
-        List <Continent> l_continents = new ArrayList<Continent>();
+   @Test
+   @DisplayName("validate By Nodes")
+   public void validateByNodes() {
+      try {
+         log.info("Starting execution of validateByNodes");
+         HashMap < Node, Boolean > expectedValue = null;
+         List < Node > p_allNodes = null;
+         HashMap < Node, Boolean > l_visitedList = null;
 
-        l_continents.add(l_continent);
-        d_map.setD_continents(l_continents);
-        d_map.Validate();
-    }
+         MapFeatures mapfeatures = new MapFeatures();
+         HashMap < Node, Boolean > actualValue = mapfeatures.validateByNodes(p_allNodes, l_visitedList);
+         log.info("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         System.out.println("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         Assertions.assertEquals(expectedValue, actualValue);
+      } catch (Exception exception) {
+         log.error("Exception in execution of execute1GetAllLogFromFirstMovF-" + exception, exception);
+         exception.printStackTrace();
+         Assertions.assertFalse(false);
+      }
+   }
 
-    /**
-     * Checks Continent connectivity of an unconnected continent
-     *
-     * @throws InvalidMap Exception
-     */
-    @Test 
-    public void testContinentConnectivity() throws  InvalidMap{
-          d_map= d_ms.loadMap(d_gameState, "continentConnectivity.map");
-          d_map.Validate();
-    }
+   @Test
+   @DisplayName("validate Entire Graph")
+   public void validateEntireGraph() {
+      try {
+         log.info("Starting execution of validateEntireGraph");
+         Boolean expectedValue = false;
+         GameEngine gameEngine = null;
 
-    /**
-     * Checks Country Connectivity for not connected countries
-     *
-     * @throws InvalidMap Exception
-     */
-    @Test
-    public void testCountryConnectivity() {
-        d_map.addContinent("Asia", 10);
-        d_map.addCountry("India", "Asia");
-        d_map.addCountry("China", "Asia");
-        d_map.addCountry("Maldives", "Asia");
-        d_map.addCountryNeighbour("India", "China");
-        d_map.addCountryNeighbour("China", "India");
-        d_map.addCountry("India", "Maldives");
-        d_map.checkCountryConnectivity();
-    }
+         MapFeatures mapfeatures = new MapFeatures();
+         Boolean actualValue = mapfeatures.validateEntireGraph(gameEngine);
+         log.info("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         System.out.println("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         Assertions.assertEquals(expectedValue, actualValue);
+      } catch (Exception exception) {
+         log.error("Exception in execution of execute1GetAllLogFromFirstMovF-" + exception, exception);
+         exception.printStackTrace();
+         Assertions.assertFalse(false);
+      }
+   }
+
+   @Test
+   @DisplayName("validate Sub Graph")
+   public void validateSubGraph() {
+      try {
+         log.info("Starting execution of validateSubGraph");
+         boolean expectedValue = false;
+         Continent con = null;
+         List < Node > l_listOfNodes = null;
+         HashMap < Node, Boolean > l_visitedList = null;
+
+         MapFeatures mapfeatures = new MapFeatures();
+         boolean actualValue = mapfeatures.validateSubGraph(con, l_listOfNodes, l_visitedList);
+         log.info("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         System.out.println("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         Assertions.assertEquals(expectedValue, actualValue);
+      } catch (Exception exception) {
+         log.error("Exception in execution of execute1GetAllLogFromFirstMovF-" + exception, exception);
+         exception.printStackTrace();
+         Assertions.assertFalse(false);
+      }
+   }
+
+   @Test
+   @DisplayName("depth First Search")
+   public void depthFirstSearch() {
+      try {
+         log.info("Starting execution of depthFirstSearch");
+         HashMap < Node, Boolean > expectedValue = null;
+         Node currentCountry = null;
+         HashMap < Node, Boolean > l_visitedList = null;
+
+         MapFeatures mapfeatures = new MapFeatures();
+         HashMap < Node, Boolean > actualValue = mapfeatures.depthFirstSearch(currentCountry, l_visitedList);
+         log.info("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         System.out.println("Expected Value=" + expectedValue + " . Actual Value=" + actualValue);
+         Assertions.assertEquals(expectedValue, actualValue);
+      } catch (Exception exception) {
+         log.error("Exception in execution of execute1GetAllLogFromFirstMovF-" + exception, exception);
+         exception.printStackTrace();
+         Assertions.assertFalse(false);
+      }
+   }
+   @AfterEach
+   void tearDown() {}
+   @AfterAll
+   static void tearDownAll() {}
 }
