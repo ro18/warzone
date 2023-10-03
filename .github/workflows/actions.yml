@@ -43,7 +43,7 @@ jobs:
       if: success() || failure()
       with:
         name: Test report generate
-        path: reports/jest-*.xml
+        path: reports/jest-junit.xml
         reporter: jest-junit
 
 #./mvnw test -Dtest=WarzoneApplicationTest
