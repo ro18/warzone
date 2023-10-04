@@ -15,6 +15,9 @@ import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.MapResouces;
 
+/**
+ * This class stores all the map-related commands allowed in gameplay
+ */
 @ShellComponent
 public class MapEditorCommands {
 

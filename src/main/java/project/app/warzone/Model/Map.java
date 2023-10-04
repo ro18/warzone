@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Utilities.MyFilenameFilter;
 
+/**
+ * This class contains all the continents and countries needed for 
+ */
 @Component
 public class Map {
 
@@ -23,73 +26,90 @@ public class Map {
         listOfContinents = new ArrayList<>();
     }
 
+
+    
+    /** 
+     * @return List<Node>
+     */
     public List<Node> getNodes() {
         return nodes; // returns all territories in the map
     }
 
+
+    
+    /** 
+     * @param continentName
+     * @param continentBonus
+     */
     public void createContinent(String continentName, Integer continentBonus){
         Continent continent = new Continent(continentName,  continentBonus);
         listOfContinents.add(continent);
  
     }
 
-    public void createAndInsertTerritory(String territoryName, Continent continent){
-        Territory territory = new Territory(territoryName,continent);
-        nodes.add(new Node(territory));
+
+    
+    /** 
+     * @param countryName
+     * @param continent
+     */
+    public void createAndInsertCountry(String countryName, Continent continent){
+        Country country = new Country(countryName,continent);
+        nodes.add(new Node(country));
     }
+
+    
+    /** 
+     * @return List<Continent>
+     */
     public List<Continent> getListOfContinents() {
         return listOfContinents;
     }
 
-    // public void insertATerritory(Territory data) {
-    //     nodes.add(new Node(data));
-    // }
 
-    // public void insertAndConnectTwoTerritories(Territory dataA, Territory dataB) {
-    //     insertATerritory(dataA);
-    //     insertATerritory(dataB);
-    //     connectTwoNodes(nodes.get(nodes.size() - 1), nodes.get(nodes.size() - 2));
-    // }
-
-    // public void connectTwoNodes(Node A, Node B) {
-    //     String edgeName = A.getData().getTerritoryName() + B.getData().getTerritoryName();
-    //     A.addEdge(edgeName);
-    //     B.addEdge(edgeName);
-    // }
-
-    public void addEdgesOfTerritory(Node mainTerritory , List<Node> addBorders)
+    
+    /** 
+     * @param mainCountry
+     * @param addBorders
+     */
+    public void addEdgesOfCountry(Node mainCountry , List<Node> addBorders)
     {
-        mainTerritory.addBorderTerritories(addBorders);
+        mainCountry.addBorderTerritories(addBorders);
     }
 
-    // public boolean areConnected(Node A, Node B) {
-    //     String possibleEdge1 = A.getData().getTerritoryName() + B.getData().getTerritoryName();
-    //     String possibleEdge2 = B.getData().getTerritoryName() + A.getData().getTerritoryName();
-
-    //     for (String edge : A.getE()) {
-    //         if (edge.equals(possibleEdge1) || edge.equals(possibleEdge2)) {
-    //             return true;
-    //         }
-    //     }
-
-    //     return false;
-    // }
-
+    
+    
+    /** 
+     * @return String
+     */
     public String getMapDirectory(){
         return System.getProperty("user.dir")+"/src/main/java/project/app/warzone/Utilities/Maps";
-        //return "/warzone/src/main/java/project/app/warzone/Utilities/Maps";
-       // /Users/aishwaryashinde/Desktop/warzone-project/warzone/src/main/java/project/app/warzone/Utilities/Maps
     }
 
+
+    
+    /** 
+     * @return String
+     */
     public String get_USER_SELECTED_FILE() {
         return USER_SELECTED_FILE;
       }
     
-      // Setter
-      public void set_USER_SELECTED_FILE(String newFile) {
-        this.USER_SELECTED_FILE = newFile;
-      }
+    
+    
+    /** 
+     * @param newFile
+     */
+    public void set_USER_SELECTED_FILE(String newFile) {
+    this.USER_SELECTED_FILE = newFile;
+    }
 
+
+    
+    /** 
+     * @param p_filename
+     * @return boolean
+     */
     public boolean fileExists(String p_filename){
 
         System.out.println(getMapDirectory());
@@ -108,9 +128,13 @@ public class Map {
         
     }
 
+
+    
+    /** 
+     * @param p_mapFile
+     */
     public void createNewMapFile(String p_mapFile)
     {
-        //String test=map.getMapDirectory()+"/"+mapFile+".map";
         File newFile = new File(getMapDirectory()+"/"+p_mapFile+".map");
          try {
             // Create the new file

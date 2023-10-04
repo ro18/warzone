@@ -1,29 +1,32 @@
 package project.app.warzone.Model;
 
-public class Territory {
+/**
+ * This class is a prototype of country
+ */
+public class Country {
 
-    private String territoryName;
+    private String CountryName;
     private int ownerId;
     private int numberOfArmies;
     private Continent continent;
 
 
-    public Territory() {}
+    public Country() {}
 
-    public Territory(String territoryName, Continent continent, int ownerId, int numberOfArmies) {
-        this.territoryName = territoryName;
+    public Country(String CountryName, Continent continent, int ownerId, int numberOfArmies) {
+        this.CountryName = CountryName;
         this.ownerId = ownerId;
         this.numberOfArmies = numberOfArmies;
         this.continent = continent;
     }
 
-    public Territory(String territoryName, Continent continent) {
-        this.territoryName = territoryName;
+    public Country(String CountryName, Continent continent) {
+        this.CountryName = CountryName;
         this.continent = continent;
     }
 
-    public String getTerritoryName() {
-        return territoryName;
+    public String getCountryName() {
+        return CountryName;
     }
 
     public int getOwnerId() {
@@ -38,8 +41,8 @@ public class Territory {
         return continent;
     }
 
-    public void setTerritoryName(String newTerritoryName) {
-        territoryName = newTerritoryName;
+    public void setCountryName(String newCountryName) {
+        CountryName = newCountryName;
     }
 
     public void setOwnerId(int newOwnerId) {

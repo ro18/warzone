@@ -3,6 +3,9 @@ package project.app.warzone.Utilities;
 import java.io.File;
 import java.io.FilenameFilter;
 
+/**
+ * This class is used to filter filenames 
+ */
 public class MyFilenameFilter implements FilenameFilter {
 
     String d_initials;

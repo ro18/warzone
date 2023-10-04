@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Player;
-import project.app.warzone.Model.Territory;
+import project.app.warzone.Model.Country;
 
 @Component
 public class PlayerFeatures {
@@ -25,10 +25,10 @@ public class PlayerFeatures {
            System.out.println("Player Id:"+p.d_playerid);
 
            System.out.println("Countries of "+p.d_playername+":");
-           List<Territory> listOfTerritories = p.getListOfTerritories();
+           List<Country> listOfTerritories = p.getListOfTerritories();
 
-           for(Territory t : listOfTerritories){
-              System.out.println(t.getTerritoryName());
+           for(Country t : listOfTerritories){
+              System.out.println(t.getCountryName());
 
            }
         }
@@ -126,8 +126,8 @@ public class PlayerFeatures {
             System.out.println("Player Name:"+p.d_playername+"-PlayerId:"+p.d_playerid);
             System.out.println("Total Armies available per round: "+p.getReinforcementArmies());
             System.out.println("Countries Owned - Armies");
-            for(Territory t : p.getListOfTerritories()){
-                System.out.println(t.getTerritoryName()+" - "+t.getNumberOfArmies());
+            for(Country t : p.getListOfTerritories()){
+                System.out.println(t.getCountryName()+" - "+t.getNumberOfArmies());
             }
             System.out.println("-------------------------------");
         }

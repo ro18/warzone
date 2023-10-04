@@ -2,41 +2,60 @@ package project.app.warzone.Model;
 
 import java.util.List;
 
+/**
+ * This class is the prototype simulating each country
+ */
 public class Node {
 
-    private Territory data;
-    //private List<String> Edges; // trying with keeping Edges as Nodes only
-    private List<Node> borderNodes;
-    // public Node() {}
+    private Country data;
 
-    public Node(Territory data) {
+    private List<Node> borderNodes;
+
+    public Node(Country data) {
         this.data = data;
     }
 
-    public Territory getData() {
+
+    
+    /** 
+     * @return Country
+     */
+    public Country getData() {
         return data;
     }
 
-    public Territory getDataPtr() {
+
+    
+    /** 
+     * @return Country
+     */
+    public Country getDataPtr() {
         return data;
     }
 
-    // public List<String> getE() { // testing something commented out
-    //     return Edges;
-    // }
 
+    
+    /** 
+     * @return List<Node>
+     */
     public List<Node> getBorders() { 
         return borderNodes;
     }
 
-    public void setData(Territory data) {
+
+    
+    /** 
+     * @param data
+     */
+    public void setData(Country data) {
         this.data = data;
     }
 
-    // public void addEdge(String edge) { // testing
-    //     Edges.add(edge);
-    // }
 
+    
+    /** 
+     * @param borderCountries
+     */
     public void addBorderTerritories(List<Node> borderCountries){
         borderNodes=borderCountries;
     }

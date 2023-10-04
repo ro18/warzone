@@ -4,6 +4,9 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+/**
+ * This class stores all the order-related commands allowed in gameplay
+ */
 @ShellComponent
 public class OrderCommands {
 

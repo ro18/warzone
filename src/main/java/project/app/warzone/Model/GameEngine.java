@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Utilities.Commands;
 
+/**
+ * This class is used to contains all the details needed for game play
+ */
 @Component
 public class GameEngine {
 

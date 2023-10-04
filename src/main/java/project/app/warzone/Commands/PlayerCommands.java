@@ -8,7 +8,9 @@ import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Utilities.Commands;
 
-
+/**
+ * This class stores all the player-related commands allowed in gameplay
+ */
 @ShellComponent
 public class PlayerCommands {
 

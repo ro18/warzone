@@ -57,7 +57,7 @@ public class MapFeatures {
                     while(!l_line.equals("") ){
 
                         String[] countryDetails = l_line.split(" ");
-                        gameMap.createAndInsertTerritory(countryDetails[1],continentsList.get(Integer.parseInt(countryDetails[2])-1) );
+                        gameMap.createAndInsertCountry(countryDetails[1],continentsList.get(Integer.parseInt(countryDetails[2])-1) );
                         l_line= reader.readLine();
 
 
@@ -84,7 +84,7 @@ public class MapFeatures {
                             Node node=nodesList.get(Integer.parseInt(borderDetails[i])-1);
                             bordersToConnect.add(node);
                         }
-                        gameMap.addEdgesOfTerritory(currentTerritory, bordersToConnect);
+                        gameMap.addEdgesOfCountry(currentTerritory, bordersToConnect);
                         l_line=reader.readLine();
                         
 
@@ -128,14 +128,14 @@ public class MapFeatures {
                 continent = c.getData().getContinent().getContinentName();
                 System.out.println("=======================================================================");
             }
-            System.out.print(c.getData().getTerritoryName()+" : ");
+            System.out.print(c.getData().getCountryName()+" : ");
             String borderString ="";
             if(c.getBorders().size()> 0 &&  c.getBorders() != null){
                 List<Node> listOfBorders = c.getBorders();
 
                 for(Node border : listOfBorders ){
                 
-                borderString+=border.getData().getTerritoryName()+" -> ";
+                borderString+=border.getData().getCountryName()+" -> ";
                 
             } 
                 borderString=borderString.substring(0,borderString.length()-4);
@@ -204,7 +204,7 @@ public class MapFeatures {
         System.out.println("Final visited list:");
         for(Node n : l_visitedList.keySet()){
 
-            System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
+            System.out.println(n.getData().getCountryName()+":"+l_visitedList.get(n));
 
         }
 
@@ -232,7 +232,7 @@ public class MapFeatures {
         for( Node n : l_nodesOfContinent){
             if(l_visitedList.containsKey(n) && !l_visitedList.get(n)){
                 System.out.println(con.getContinentName()+" is not connected");
-                System.out.println(n.getData().getTerritoryName()+" cannot be reached");
+                System.out.println(n.getData().getCountryName()+" cannot be reached");
                 return false;
             }
         }
