@@ -325,7 +325,6 @@ public class MapFeatures {
  public void writeCountriesToFile(java.util.Map<String, String> listofCountries,GameEngine gameEngine)throws IOException{
    String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
         
-        //java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
         java.util.Map<Integer, String> listOfCountriesResource = mapResouces.getAllCountries();
                     List<String> l_lineToWrite =new ArrayList<String>();
 
@@ -339,7 +338,7 @@ public class MapFeatures {
             //        l_line=l_reader.readLine();
             //     }
             // }
-            boolean l_foundCountries =false;
+            //boolean l_foundCountries =false;
             while(l_line!=null && !l_line.toString().equals("[countries]") ){
                System.out.println(l_line);
                System.out.println(l_line!="[countries]");
@@ -375,8 +374,6 @@ public class MapFeatures {
        for(String countryId : listofCountries.keySet()){
                 
                 l_lineToWrite.add(countryId+" "+listOfCountriesResource.get(Integer.parseInt(countryId))+" "+listofCountries.get(countryId));
-                //+" "+listOfContinentsResource.get(continentId));
-                //System.out.println(listOfContinentsResource.get(Integer.parseInt(continentId))+" "+listofContinents.get(continentId));
                 System.out.println((listofCountries.get(countryId)+" "+listOfCountriesResource.get(Integer.parseInt(countryId))+" "+listofCountries.get(countryId)));
 
             }
@@ -395,6 +392,67 @@ public class MapFeatures {
         }         
                 
    }
+
+ public void writeCountriesNeighborToFile(java.util.Map<String, String> listofCountries,GameEngine gameEngine)throws IOException{
+
+    String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
+
+//java.util.Map<Integer, String> listOfCountriesResource = mapResouces.getAllCountries();
+                    List<String> l_lineToWrite =new ArrayList<String>();
+
+        try(BufferedReader l_reader = new BufferedReader(new FileReader(l_mapLocation));){
+
+            
+            String l_line = l_reader.readLine();
+            while(l_line!=null && !l_line.toString().equals("[borders]") ){
+               System.out.println(l_line);
+               System.out.println(l_line!="[borders]");
+                l_line=l_reader.readLine();
+
+            }
+            if(l_line==null){
+                l_lineToWrite.add(" ");
+                l_lineToWrite.add("[borders]");
+
+                
+                }
+
+            else{
+                l_line=l_reader.readLine();
+                while(l_line != "" && l_line != null){
+                   l_line=l_reader.readLine();
+                 }
+            }
+            l_reader.close(); 
+
+            }
+                           
+        catch(IOException e){
+    e.printStackTrace();
+
+
+       }
+
+       try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
+       for(String countryId : listofCountries.keySet()){
+                
+                l_lineToWrite.add(countryId+" "+listofCountries.get(countryId));
+                System.out.println(countryId+" "+listofCountries.get(countryId));
+            }
+       for(String line : l_lineToWrite){
+                writer.append(line);
+                writer.newLine();
+                writer.flush();
+                }
+            writer.close();
+
+            }
+        catch(IOException e){
+      e.printStackTrace();
+
+        }         
+
+}
 
 public void removeCountriesFromFile(List<String> listofCountries,GameEngine gameEngine)throws IOException{
 
@@ -426,6 +484,7 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
 
                     for(String line : l_lineToWrite){
                             writer.append(line);
+
                             writer.newLine();
                             writer.flush();
                     }

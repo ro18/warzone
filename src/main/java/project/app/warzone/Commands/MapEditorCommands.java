@@ -79,6 +79,7 @@ if(gameEngine.prevUserCommand == Commands.EDITMAP || gameEngine.prevUserCommand 
             Dictionary<Integer,String> continentDict = new Hashtable<Integer,String>();
 
             if(p_editcmd != null && p_editcmd != ""){
+                gameEngine.prevUserCommand=Commands.ADDCONTINENT;
                String[] editCmd= p_editcmd.split(",");
                System.out.println("length of string:"+editCmd.length);
                System.out.println("Inside edit continent");
@@ -158,11 +159,10 @@ if(gameEngine.prevUserCommand == Commands.EDITMAP || gameEngine.prevUserCommand 
         //Dictionary<Integer,String> countryDict = new Hashtable<Integer,String>();
 
         if(gameEngine.prevUserCommand==Commands.ADDCONTINENT|| gameEngine.prevUserCommand==Commands.REMOVECONTINENT || gameEngine.prevUserCommand==Commands.ADDCOUNTRY || gameEngine.prevUserCommand==Commands.REMOVECOUNTRY){  
-     
 
             if(p_editcmd != null && p_editcmd !=""){
-
-               Map<String, String> listofCountries= new HashMap<String,String>();
+            Map<String, String> listofCountries= new HashMap<String,String>();
+            gameEngine.prevUserCommand=Commands.ADDCOUNTRY;
 
                String[] editCmd= p_editcmd.split(",");
                System.out.println("length of string:"+editCmd.length);
@@ -235,27 +235,51 @@ if(gameEngine.prevUserCommand == Commands.EDITMAP || gameEngine.prevUserCommand 
         }
         }
         else{
-            return "You cannnot add players at this stage.Please enter loadmap command first";
+            return "You cannnot add country";
 
         }
 
 
     }
 
-    @ShellMethod(key= "editneighbor", value="This is used to add or update neighbor")
+    @ShellMethod(key= "editneighbor",prefix = "-", value="This is used to add or update neighbor")
     public String editNeighbor(@ShellOption(value="a",defaultValue=ShellOption.NULL)String p_editcmd, @ShellOption(value="r",defaultValue=ShellOption.NULL) String p_editremovecmd) throws IOException{
        if(gameEngine.prevUserCommand==Commands.ADDCOUNTRY || gameEngine.prevUserCommand==Commands.REMOVECOUNTRY || gameEngine.prevUserCommand==Commands.ADDNEIGHBOUR || gameEngine.prevUserCommand==Commands.REMOVENEIGHBOUR){ 
-        if(p_editcmd != null && p_editcmd !=""){
+        //if(p_editcmd != null && p_editcmd !=""){
+         Map<String, String> listofCountries= new HashMap<String,String>();
+           String[] editCmd= p_editcmd.split(",");
+               System.out.println("length of string:"+editCmd.length);
+               System.out.println("Inside edit Country");
+               int l_i=0;
 
+              String commandToCheck= "-add";
+              while(l_i< editCmd.length){
 
+               System.out.println(editCmd[l_i]+":"+commandToCheck);
+               if(editCmd[l_i].toString().equals(commandToCheck)){
+                l_i++;
+                continue;
+                
+               }
+               else{
+                listofCountries.put(editCmd[l_i], editCmd[l_i+1]);
+                l_i+=2;
+
+                System.out.println("listofCountries" +listofCountries);
+               }
+             
+               }
+               try{
+               mapFeatures.writeCountriesNeighborToFile(listofCountries,gameEngine);
+
+            }
+            catch(IOException e){
+            e.printStackTrace();
+            
+            }
+            return "Country borders addded succesfully";
         }
-
-
-   
-
-
-
-       }
+       // }
 
         return "You can edit neighbor here";
 
