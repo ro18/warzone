@@ -28,7 +28,7 @@ public class PlayerFeaturesTest {
         this.gameMap = new Map();
         this.mapFeatures = new MapFeatures();
 
-        String p_mapLocation = "C:\\Users\\pawar_7h7ejj1\\Desktop\\warzone-project\\warzone\\src\\main\\java\\project\\app\\warzone\\Utilities\\Maps\\europe.map";
+        String p_mapLocation = gameEngine.gameMap.getMapDirectory()+"\\europe.map";
         gameEngine.gameMap = mapFeatures.readMap(p_mapLocation);
         
         playerFeatures.addPlayers("prashant", gameEngine);
