@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Utilities.Commands;
 
+/**
+ * This class represents the main instance of the Warzone game.
+ */
 @Component
 public class GameEngine {
 
@@ -27,21 +30,25 @@ public class GameEngine {
         return gameMap; // returns all territories in the map
     }
 
+    /**
+     * This method is used to execute orders all at once.
+     * It does this by calling the next_order() method of each player and executing it in a loop until all orders are processed.
+     */
     public void execute_orders() {
         List<Player> l_players = this.getPlayers();
 
         while (true) {
-            int l_ordersProcessed = 0;
+            int l_playersOrdersProcessed = 0;
 
             for (int i = 0; i < l_players.size(); i++) {
                 Order order = l_players.get(i).next_order();
                 if (order != null) {
-                    l_ordersProcessed++;
+                    l_playersOrdersProcessed++;
                     order.execute();
                 }
             }
 
-            if (l_ordersProcessed == 0) {
+            if (l_playersOrdersProcessed == 0) {
                 break;
             }
         }

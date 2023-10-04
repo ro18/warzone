@@ -1,8 +1,17 @@
 package project.app.warzone.Model;
 
+/**
+ * This class is used to prototye the orders for a player in the game. 
+ */
 public class Order {
 
+    /**
+     * The number of armies to deploy.
+     */
     private String d_orderType = "DEPLOY";
+    /**
+     * The number of armies and territory to deploy the armies to.
+     */
     private int d_numberOfArmies;
     private Territory d_Territory;
 
@@ -22,6 +31,10 @@ public class Order {
         return this.d_Territory;
     }
 
+    /**
+     * This method executes the order and deploys the armies on the target country.
+     * @return A string containing whether the order was successfully executed or not.
+     */
     public String execute() {
         if (this.d_orderType == "DEPLOY") {
             this.d_Territory.setNumberOfArmies(this.d_Territory.getNumberOfArmies() + this.d_numberOfArmies);

@@ -78,12 +78,13 @@ public class PlayerCommands {
 
     @ShellMethod(key= "assigncountries", value="This is used to assign countries to players randomly")
     public String assigncountries(){
-        Player player = gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId);
+        Player player = gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId -1);
         playerFeatures.assignCountries(gameEngine);
         System.out.println("Assigned Countries to the players are:");
         playerFeatures.showAllAssignments(gameEngine.getPlayers());
         //playerFeatures.initializeArmies(gameEngine.getPlayers());
-        return "Assignment of countries is completed. Enter showStats command to see you armies. Now its turn of player: "+player.getL_playername()+" to deploy armies";
+        gameEngine.prevUserCommand = Commands.ASSIGNCOUNTRIES;
+        return "Assignment of countries is completed. \nNow its turn of player: "+player.getL_playername()+" to deploy armies";
 
     }
 

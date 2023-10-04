@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * This class represents a player in the Warzone game.
+ */
 public class Player 
 {
 	
@@ -16,7 +19,11 @@ public class Player
 		public Queue<Order> d_listOfOrders = new ArrayDeque<> ();
 	
 
-
+	/**
+     * Creates a new player with the given ID.
+     * @param p_playerid The ID of the player.
+	 * @param p_playername The name of the player.
+     */
         public Player(int p_playerid ,String p_playername) {
             this.d_playerid = p_playerid;
             this.d_playername = p_playername;
@@ -67,15 +74,20 @@ public class Player
 		public List<Territory> getListOfTerritories(){
 			return d_listOfCountriesOwned;
 		}
+		
+		/**
+		 * This method adds the order to the list of orders of the player
+		 */
 
 		public void issue_order(Order order) {
 			d_listOfOrders.add(order);
 			this.setReinforcementMap(this.getReinforcementArmies() - order.getL_numberOfArmies());
 		}
 
-		public void clear_orderList(){
-			d_listOfOrders.clear();
-		}
+		/**
+		 * This method pops and returns the first order from the list of orders
+		 * @return The latest Order Object
+		 */
 		
 		public Order next_order() {
 			if(d_listOfOrders.size()>0)

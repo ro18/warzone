@@ -12,6 +12,9 @@ import project.app.warzone.Model.Order;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Territory;
 
+/**
+ * This class is used to perform player related operations.
+ */
 @Component
 public class PlayerFeatures {
 
@@ -114,14 +117,30 @@ public class PlayerFeatures {
 
     }
 
+    /**
+     * This method is used to deploy armies on a country
+     * @param p_gameEngine Instance of the game engine
+     * @param p_countryID ID of the country to deploy armies on
+     * @param p_armies Number of armies to deploy
+     * @return A string containing status of the game.
+     */
+
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
         List<Player> l_players = p_gameEngine.getPlayers();
-        Player player = p_gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId);
+        Player player = p_gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId - 1);
         Territory country = p_gameEngine.gameMap.getNodes().get(p_countryID - 1).getData();
+
+        /**
+         * Check if the player has enough armies in the reinforcement pool to deploy
+         */
 
         if (player.getReinforcementArmies() < p_armies) {
             return "Not enough armies to be deployed. Available armies: " + player.getReinforcementArmies();
         }
+
+        /**
+         * Check if the country is owned by the player
+         */
 
         Optional<Territory> territory = player.d_listOfCountriesOwned.stream()
                 .filter(c -> c.getTerritoryName().equals(country.getTerritoryName())).findFirst();
@@ -134,6 +153,11 @@ public class PlayerFeatures {
         order.setL_numberOfArmies(p_armies);
         order.setL_territory(country);
         player.issue_order(order);
+
+        /**
+         * Main Game loop in round robin fashion which checks the reinforcement pool of the player and if it is 0, then
+         * ask the next player to deploy armies. If all players have deployed all their armies, then execute the orders
+         */
 
         Boolean l_flag = false;
         int i = PlayerCommands.d_currentPlayerId + 1;
@@ -153,7 +177,7 @@ public class PlayerFeatures {
 
         if (l_flag) {
             PlayerCommands.d_currentPlayerId = i;
-            return "Turn of " + l_players.get(i).getL_playername() + "to deploy army";
+            return "Turn of " + l_players.get(i).getL_playername() + " to deploy army";
         } else {
             p_gameEngine.execute_orders();
             return "Orders successfully executed";

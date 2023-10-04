@@ -14,6 +14,9 @@ import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.MapResouces;
 
+/**
+ * This class is used to edit the map using shell commands.
+ */
 @ShellComponent
 public class MapEditorCommands {
 
