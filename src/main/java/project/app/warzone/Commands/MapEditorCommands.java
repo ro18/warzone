@@ -1,18 +1,15 @@
 package project.app.warzone.Commands;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.List;
+
 import java.util.Map;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import project.app.warzone.Features.MapFeatures;
-import project.app.warzone.Model.Continent;
 import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Utilities.Commands;
@@ -37,6 +34,11 @@ public class MapEditorCommands {
     }
 
 
+    
+    /** 
+     * @param p_filename
+     * @return String
+     */
     @ShellMethod(key= "loadmap", value="Player can create or open an existing map")
     public String loadMap(@ShellOption String p_filename){
         gameEngine.prevUserCommand=Commands.LOADMAP;
@@ -50,6 +52,11 @@ public class MapEditorCommands {
         }
     }
 
+
+    
+    /** 
+     * @return String
+     */
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public String showmap(){
         String p_mapLocation=gameEngine.gameMap.getMapDirectory()+"\\"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
@@ -144,6 +151,7 @@ public class MapEditorCommands {
         // }
        
     }
+
     @ShellMethod(key= "editcountry", prefix = "-", value="This is used to add continents")
     public String editcountry(@ShellOption(value="a",defaultValue=ShellOption.NULL)String p_editcmd, @ShellOption(value="r",defaultValue=ShellOption.NULL) String p_editremovecmd){
      if(gameEngine.prevUserCommand==Commands.EDITMAP){  
@@ -192,6 +200,8 @@ public class MapEditorCommands {
 
     }
 
+    
+   
     // @ShellMethod(key= "editcontinent", value="This is used to add or update continents")
     // public String editcontinent(){
     //     return "You can edit continents here";
@@ -202,17 +212,27 @@ public class MapEditorCommands {
 
     // }
 
+     /** 
+     * @return String
+     */
     @ShellMethod(key= "editcountry", value="This is used to add or update countries")
      public String editcountry(){
         return "You can edit countries here";
 
     }
+
+    /** 
+     * @return String
+     */
     @ShellMethod(key= "editneighbor", value="This is used to add or update neighbor")
      public String editneighbor(){
         return "You can edit neighbor here";
 
     }
 
+    /** 
+     * @return String
+     */
     @ShellMethod(key= "editmap", value="This is used to add or create map")
      public String editmap(@ShellOption String p_filename){
         
@@ -223,14 +243,11 @@ public class MapEditorCommands {
             return("Please use gameplayer -add command to add players in the game");
         }
         else{
-            gameEngine.prevUserCommand=Commands.EDITMAP;
-            //System.out.println("File not found.");
-            
+            gameEngine.prevUserCommand=Commands.EDITMAP;            
             gameEngine.gameMap.createNewMapFile(p_filename);
-           // System.out.println("New File created successfully..");
-           System.out.println("\n");
+            System.out.println("\n");
             System.out.println("Choose one of the below commands to proceed:\n 1.editcontinent 2.editcountry 3.editneighbor");
-             System.out.println("\n");
+            System.out.println("\n");
             System.out.println("Continet list:::: Select the continents you need to add");
             System.out.println("----------------------------------------------------------");
             mapResources.printMapDetails(mapResources.getAllContinents());
@@ -241,7 +258,7 @@ public class MapEditorCommands {
             mapResources.printMapDetails(mapResources.getAllCountries());
 
             System.out.println("\n");
-           return "Please select the add or remove command";
+             return "Please select the add or remove command";
             
 
 

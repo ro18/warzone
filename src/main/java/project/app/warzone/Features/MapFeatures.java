@@ -1,10 +1,8 @@
 package project.app.warzone.Features;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +17,11 @@ import project.app.warzone.Model.Node;;
 @Component
 public class MapFeatures {
 
+    
+    /** 
+     * @param filename
+     * @return Map
+     */
     public Map readMap(String filename){
 
         String l_line="";
@@ -86,29 +89,7 @@ public class MapFeatures {
                         
 
                     }
-
-                    // nodesList = gameMap.getNodes();
-                    
-                    // for(Node c : nodesList){
-                    // System.out.print(c.getData().getTerritoryName()+":");
-                    // String borderString ="";
-                    //         List<Node> listOfBorders = c.getBorders();
-                    //         for(Node border : listOfBorders ){
-                                
-                    //             borderString+=border.getData().getTerritoryName()+"->";
-                                
-                    //         } 
-                    //         borderString=borderString.substring(0,borderString.length()-2);
-                    //         System.out.println(borderString);                       
-
-                            
-                    // }
-
                 }
-
-                
-
-
 
             }   
        
@@ -130,26 +111,10 @@ public class MapFeatures {
        
     }
 
-    public void createMap(){
-        
-    }
-
-    // public void saveChangesToFile(String p_filename) throws IOException{
-    //     BufferedReader reader = new BufferedReader(new FileReader(p_filename));
-    //     StringBuilder content = new StringBuilder(); 
-    //     String line;
-    //         while ((line = reader.readLine())) {
-                
-    //             line = line.replace("old text", "new text");
-    //             content.append(line).append("\n");
-    //         }
-
-    //         reader.close();      
-
-    // }
     
-    
-
+    /** 
+     * @param gameMap
+     */
     public void printMap(Map gameMap){
 
         System.out.println("------ Map ------");
@@ -183,30 +148,13 @@ public class MapFeatures {
             }
     }
 
-    /**
-     * @param p_gameMap
-     * @param p_filename
-     * @return
+
+    
+    /** 
+     * @param p_allNodes
+     * @param l_visitedList
+     * @return Map<Node, Boolean>
      */
-    //public Map writeToMap( Map p_gameMap, String p_filename){
-    // public Map writeToMap( Map p_gameMap, String p_filename){
-
-    //     BufferedReader l_reader = new BufferedReader(new FileReader(filename));
-    //     String l_continents = "[continents]";
-    //     String l_countries = "[countries]";
-    //     String l_borders="[borders]";
-
-    //     if(l_reader.readLine() == ""){
-    //         System.out.println("Writing to an empty map file");
-    //         Files.writeString(filename, l_continents);
-
-
-    //     }
-
-    //}
-
-
-
     public java.util.Map<Node,Boolean> validateByNodes(List<Node> p_allNodes, java.util.Map<Node,Boolean> l_visitedList){
 
         for( Node l_currentNode : p_allNodes){ 
@@ -224,6 +172,12 @@ public class MapFeatures {
 
     }
 
+
+    
+    /** 
+     * @param gameEngine
+     * @return Boolean
+     */
     public Boolean validateEntireGraph(GameEngine gameEngine){
 
 
@@ -260,6 +214,14 @@ public class MapFeatures {
 
     }
 
+
+    
+    /** 
+     * @param con
+     * @param l_listOfNodes
+     * @param l_visitedList
+     * @return boolean
+     */
     public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,java.util.Map<Node,Boolean> l_visitedList){
 
         List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
@@ -280,6 +242,13 @@ public class MapFeatures {
 
     }
 
+
+    
+    /** 
+     * @param currentCountry
+     * @param l_visitedList
+     * @return Map<Node, Boolean>
+     */
     private java.util.Map<Node,Boolean> depthFirstSearch(Node currentCountry, java.util.Map<Node,Boolean> l_visitedList){
 
         l_visitedList.put(currentCountry,true);

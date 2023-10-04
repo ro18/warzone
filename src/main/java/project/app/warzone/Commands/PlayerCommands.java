@@ -22,6 +22,16 @@ public class PlayerCommands {
     }
 
 
+    
+    /** 
+     * @param @ShellOption
+     * @param defaultValue=ShellOption.NULL
+     * @param p_playerNameOne
+     * @param @ShellOption(value="r"
+     * @param defaultValue=ShellOption.NULL
+     * @param p_playerNameTwo
+     * @return String
+     */
     @ShellMethod(key= "gameplayer", prefix = "-", value="Player can create or remove a player")
     public String gamePlayerAdd(@ShellOption(value="a",defaultValue=ShellOption.NULL, arity = 10 ) String p_playerNameOne,@ShellOption(value="r", defaultValue=ShellOption.NULL, arity=10) String p_playerNameTwo){
 
@@ -74,6 +84,10 @@ public class PlayerCommands {
         
     
 
+    
+    /** 
+     * @return String
+     */
     @ShellMethod(key= "assigncountries", value="This is used to assign countries to players randomly")
     public String assigncountries(){
         
@@ -85,6 +99,11 @@ public class PlayerCommands {
 
     }
 
+
+    
+    /** 
+     * @return String
+     */
     @ShellMethod(key= "showstats", value="Displays players armies and other details")
     public String showStats(){
         System.out.println("========================================");

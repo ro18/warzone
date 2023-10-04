@@ -1,9 +1,6 @@
 package project.app.warzone.Features;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -16,6 +13,11 @@ import project.app.warzone.Model.Territory;
 @Component
 public class PlayerFeatures {
 
+
+    
+    /** 
+     * @param allPlayers
+     */
     public void showAllAssignments(List<Player> allPlayers){
 
            for( Player p : allPlayers){
@@ -33,6 +35,11 @@ public class PlayerFeatures {
         
     }
 
+
+    
+    /** 
+     * @param p_gameEngine
+     */
     public void assignCountries(GameEngine p_gameEngine){
 
         Random l_random = new Random();
@@ -42,64 +49,64 @@ public class PlayerFeatures {
             
             int randomCountry =  l_random.nextInt(p_gameEngine.gameMap.getNodes().size());
 
-            // Map<Integer,Boolean> playerIds = new HashMap<Integer,Boolean>();
-
-            // for(int l_i=1;l_i<=p_gameEngine.getPlayers().size();l_i++){
-            //     playerIds.put(l_i, false);
-            // }
-
             int randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
-
-            // for(int i=0 ; i< p_gameEngine.getPlayers().size() ;i++){
-            //     while(playerIds.get(randomId) == true){
-            //         randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
-
-            //     }
-            //     p.setL_playerid(randomId);
-            //     playerIds.put(randomId, true);
-
-            // }
 
             while(p_gameEngine.gameMap.getNodes().get(randomCountry).getData().getOwnerId() != 0){
                 randomCountry  = l_random.nextInt(p_gameEngine.gameMap.getNodes().size()+1);
 
-            }
-
-            
-
-
-            
-             
+            }             
         
             p.setTerritories(p_gameEngine.gameMap.getNodes().get(randomCountry).getData());
 
         }
     }
 
+
+
+    
+    /** 
+     * @param p_playerName
+     * @param gameEngine
+     */
     public void addPlayers(String p_playerName, GameEngine gameEngine){
 
-        int l_size= gameEngine.getPlayers().size();
-
-        
-        //for(String l_playerObjects : p_playerNames){
-        Player player= new Player(l_size+1,p_playerName);
+        int l_playerCount = gameEngine.getPlayers().size();
+        Player player= new Player(l_playerCount++,p_playerName);
         gameEngine.d_playersList.add(player);
-
-        //}
 
     }
 
+    public void setPlayerIds(GameEngine gameEngine){
+        
+        int i=1;
+        for(Player l_player : gameEngine.getPlayers()){
+            
+            l_player.setL_playerid(i);
+        }
+
+
+    }
+
+    
+    /** 
+     * @param p_playerName
+     * @param gameEngine
+     */
     public void removePlayers(String p_playerName, GameEngine gameEngine){
 
         List<Player> playerList = gameEngine.getPlayers();
-        //for(String l_player: p_playerNames){
-            Optional<Player> l_playerToRemove= playerList.stream().filter(c->c.getL_playername().equals(p_playerName)).findFirst();
-            playerList.remove(l_playerToRemove.get());             
+        Optional<Player> l_playerToRemove= playerList.stream().filter(c->c.getL_playername().equals(p_playerName)).findFirst();
+        playerList.remove(l_playerToRemove.get());
+        setPlayerIds(gameEngine);        
 
-        //}
 
     }
 
+
+    
+    /** 
+     * @param gameEngine
+     */
     public void printAllPlayers(GameEngine gameEngine){
         System.out.println("Final players of the game are:");
         List<Player> players = gameEngine.getPlayers();
@@ -108,17 +115,11 @@ public class PlayerFeatures {
             }
     }
 
-    // public void initializeArmies(GameEngine gameEngine){
-
-    //     List<Player> gamePlayers = new ArrayList<>();
-    //     int noOfPlayers = gamePlayers.size();
-
-    //     for(Player p : gamePlayers){
-    //         p.initReinforcementArmies(3)
-    //     }
-
-    // }
-
+    
+    
+    /** 
+     * @param gameengine
+     */
     public void showStats(GameEngine gameengine){
         List<Player> listOfPlayers = gameengine.getPlayers();
         for(Player p : listOfPlayers){
