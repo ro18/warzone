@@ -1,21 +1,30 @@
 package project.app.warzone.Features;
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import project.app.warzone.Model.Continent;
+import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
-import project.app.warzone.Model.Node;;
+import project.app.warzone.Model.Node;
+import project.app.warzone.Utilities.MapResouces;;
 
 @Component
 public class MapFeatures {
+
+    public MapResouces mapResouces;
+
+    public MapFeatures(MapResouces mapResouces){
+        this.mapResouces = mapResouces;
+
+    }
 
     public Map readMap(String filename){
 
@@ -256,4 +265,202 @@ public class MapFeatures {
     //         }
     //     }
     // }
+
+    /**
+     * @param listofContinents
+     * @param gameEngine
+     * @throws IOException
+     */
+    public void writeContinentsToFile(java.util.Map<String, String> listofContinents,GameEngine gameEngine) throws IOException{
+
+        for(String s : listofContinents.keySet()){
+            System.out.println(s);
+        }
+        System.out.println();
+        String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
+        java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
+
+         try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
+
+            BufferedReader l_reader = new BufferedReader(new FileReader(l_mapLocation));
+            //System.out.println(l_reader.readLine());
+            //System.out.println(l_reader.readLine());
+            List<String> l_lineToWrite =new ArrayList<String>();
+            String l_line = l_reader.readLine();
+            if(l_line == null){
+                
+                System.out.println("l_mapLocation" +l_mapLocation);
+                l_lineToWrite.add("[continents]");
+            }
+            else if(l_line == "[continents]"){
+                l_line=l_reader.readLine();
+                while(l_line != " "){
+                   l_line=l_reader.readLine();
+                           
+              }
+                  
+       }
+        l_reader.close(); 
+       for(String continentId : listofContinents.keySet()){
+                
+                l_lineToWrite.add(listOfContinentsResource.get(Integer.parseInt(continentId))+" "+listofContinents.get(continentId));
+                //System.out.println(listOfContinentsResource.get(Integer.parseInt(continentId))+" "+listofContinents.get(continentId));
+                //l_lineToWrite.add(continentId;
+            }
+
+       for(String line : l_lineToWrite){
+                writer.append(line);
+                writer.newLine();
+                writer.flush();
+                }
+            writer.close();
+
+            
+                
+   }catch(IOException e){
+    e.printStackTrace();
+   }
+  }
+
+ public void writeCountriesToFile(java.util.Map<String, String> listofCountries,GameEngine gameEngine)throws IOException{
+   String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
+        
+        //java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
+        java.util.Map<Integer, String> listOfCountriesResource = mapResouces.getAllCountries();
+                    List<String> l_lineToWrite =new ArrayList<String>();
+
+        try(BufferedReader l_reader = new BufferedReader(new FileReader(l_mapLocation));){
+
+            
+            String l_line = l_reader.readLine();
+            // if(l_line == "[continents]"){
+            //     l_line=l_reader.readLine();
+            //     while(l_line != " "){
+            //        l_line=l_reader.readLine();
+            //     }
+            // }
+            boolean l_foundCountries =false;
+            while(l_line!=null && !l_line.toString().equals("[countries]") ){
+               System.out.println(l_line);
+               System.out.println(l_line!="[countries]");
+                l_line=l_reader.readLine();
+
+            }
+            if(l_line==null){
+                l_lineToWrite.add(" ");
+                l_lineToWrite.add("[countries]");
+
+                
+                }
+
+            else{
+                l_line=l_reader.readLine();
+                while(l_line != "" && l_line != null){
+                   l_line=l_reader.readLine();
+                 }
+            }
+            l_reader.close(); 
+
+            }
+           
+
+                  
+        catch(IOException e){
+    e.printStackTrace();
+
+
+       }
+
+       try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
+       for(String countryId : listofCountries.keySet()){
+                
+                l_lineToWrite.add(countryId+" "+listOfCountriesResource.get(Integer.parseInt(countryId))+" "+listofCountries.get(countryId));
+                //+" "+listOfContinentsResource.get(continentId));
+                //System.out.println(listOfContinentsResource.get(Integer.parseInt(continentId))+" "+listofContinents.get(continentId));
+                System.out.println((listofCountries.get(countryId)+" "+listOfCountriesResource.get(Integer.parseInt(countryId))+" "+listofCountries.get(countryId)));
+
+            }
+
+       for(String line : l_lineToWrite){
+                writer.append(line);
+                writer.newLine();
+                writer.flush();
+                }
+            writer.close();
+
+            }
+        catch(IOException e){
+      e.printStackTrace();
+
+        }         
+                
+   }
+
+public void removeCountriesFromFile(List<String> listofCountries,GameEngine gameEngine)throws IOException{
+
+    String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
+    java.util.Map<Integer, String> listOfCountriesResource = mapResouces.getAllCountries();
+    List<String> l_lineToWrite =new ArrayList<String>();
+
+    try(BufferedReader l_reader = new BufferedReader(new FileReader(l_mapLocation));){
+
+            
+            String l_line = l_reader.readLine();
+            while(l_line!=null && !l_line.toString().equals("[countries]") ){
+               System.out.println(l_line);
+               System.out.println(l_line!="[countries]");
+                l_line=l_reader.readLine();
+
+            }
+            
+            l_line=l_reader.readLine();
+            for( String countryId : listofCountries){
+
+                while(l_line.toString().contains(countryId)){
+                    l_line=l_reader.readLine();
+
+                }
+                
+                try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
+                        
+
+                    for(String line : l_lineToWrite){
+                            writer.append(line);
+                            writer.newLine();
+                            writer.flush();
+                    }
+                    writer.close();
+
+            }
+                catch(IOException e){
+                e.printStackTrace();
+
+                }    
+
+        
+            
+            l_reader.close(); 
+
+            }
+
+        }
+           
+
+                  
+        catch(IOException e){
+        e.printStackTrace();
+
+
+       }
+
+          
+                
+
 }
+
+public void writeNeighborToFile(java.util.Map<String, String> listofCountries,GameEngine gameEngine)throws IOException{
+
+ 
+ }
+}
+

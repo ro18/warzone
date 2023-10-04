@@ -5,7 +5,15 @@ public enum Commands {
     SHOWMAP,
     ADDPLAYER,
     REMOVEPLAYER,
-    EDITMAP
+    EDITMAP,
+    ADDCONTINENT,
+    REMOVECONTINENT,
+    ADDCOUNTRY,
+    REMOVECOUNTRY,
+    ADDNEIGHBOUR,
+    REMOVENEIGHBOUR
+
+
    
     
 }
