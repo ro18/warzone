@@ -20,6 +20,12 @@ public class PlayerCommands {
     public String prevUserCommand; 
     public static int d_currentPlayerId = 1;
 
+      /**
+     * Constructor for Playercommands
+     * 
+     * @param gameEngine            storing gameEngine
+     * @param playerFeatures        storing playerFeatures
+     */
     public PlayerCommands(GameEngine gameEngine,PlayerFeatures playerFeatures){
         this.gameEngine = gameEngine;
         this.playerFeatures= playerFeatures;
@@ -27,14 +33,13 @@ public class PlayerCommands {
 
 
     
-    /** 
-     * @param @ShellOption
-     * @param defaultValue=ShellOption.NULL
-     * @param p_playerNameOne
-     * @param @ShellOption(value="r"
-     * @param defaultValue=ShellOption.NULL
-     * @param p_playerNameTwo
-     * @return String
+    
+    /**
+     * command for add player
+     * 
+     * @param p_playerNameOne          storing player 1 name
+     * @param p_playerNameTwo          storing player 2 name
+     * @return
      */
     @ShellMethod(key= "gameplayer", prefix = "-", value="Player can create or remove a player")
     public String gamePlayerAdd(@ShellOption(value="a",defaultValue=ShellOption.NULL, arity = 10 ) String p_playerNameOne,@ShellOption(value="r", defaultValue=ShellOption.NULL, arity=10) String p_playerNameTwo){

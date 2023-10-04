@@ -14,6 +14,9 @@ public class MapResouces {
     Map<Integer, String> listofContinents= new HashMap<Integer,String>();
     Map<Integer, String> listofCountries= new HashMap<Integer, String>();
 
+    /**
+     * Constructor for MapResources
+     */
     public MapResouces(){
 
         setAllContinents();
@@ -23,6 +26,9 @@ public class MapResouces {
     }
 
 
+    /**
+     * method to set all continents
+     */
     public void setAllContinents(){
 
         listofContinents.put(1, "North_Europe");
@@ -34,6 +40,9 @@ public class MapResouces {
 
 
     
+    /**
+     * method to set all countries
+     */
     public void setAllCountries(){
 
         listofCountries.put(1, "England");
@@ -62,19 +71,25 @@ public class MapResouces {
         listofCountries.put(24, "Luxembourg");
     }
 
+    /**
+     * @return      returns list of continents
+     */
     public Map<Integer, String>getAllContinents(){
      return listofContinents;
 
     }
 
 
+    /**
+     * @return      returns list of country
+     */
     public Map<Integer, String>getAllCountries(){
      return listofCountries;
 
     }
 
     /**
-     * @param p_detailsOfMap
+     * @param p_detailsOfMap        storing details of map
      */
     public void printMapDetails(Map<Integer, String>  p_detailsOfMap){
 

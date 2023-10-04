@@ -29,6 +29,14 @@ public class MapEditorCommands {
     public PlayerFeatures playerFeatures;
     private final MapResouces mapResources;
 
+    /**
+     * Constructor for MapEditorCommands
+     * 
+     * @param mapFeatures
+     * @param gameEngine
+     * @param playerFeatures
+     * @param mapResources
+     */
     public MapEditorCommands(MapFeatures mapFeatures, GameEngine gameEngine, PlayerFeatures playerFeatures, MapResouces mapResources){
         this.mapFeatures = mapFeatures;
         this.gameEngine = gameEngine;
@@ -39,8 +47,10 @@ public class MapEditorCommands {
 
     
     /** 
-     * @param p_filename
-     * @return String
+     * command for loading map for gameplay
+     * 
+     * @param p_filename        filename of the mao
+     * @return String           returns message if the map is loaded
      */
     @ShellMethod(key= "loadmap", value="Player can create or open an existing map")
     public String loadMap(@ShellOption String p_filename){
@@ -58,7 +68,9 @@ public class MapEditorCommands {
 
     
     /** 
-     * @return String
+     * Display the game map
+     * 
+     * @return String           returns message about the map validation
      */
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public String showmap(){
@@ -76,11 +88,13 @@ public class MapEditorCommands {
     }
 
     
-     /**
-     * @param p_editcmd
-     * @param p_editremovecmd
-     * @return
-     */
+    /**
+     * command for editing continent
+     * 
+     * @param p_editremovecmd       for remove command
+     * @param p_editcmd             for edit command
+     * @return                      returns the message about status of command
+    */
     @ShellMethod(key= "editcontinent", prefix = "-", value="This is used to add or update continents")
     public String editcontinent(@ShellOption(value="a",defaultValue=ShellOption.NULL)String p_editcmd, @ShellOption(value="r",defaultValue=ShellOption.NULL) String p_editremovecmd){
         if(gameEngine.prevUserCommand==Commands.EDITMAP){  
@@ -155,6 +169,13 @@ public class MapEditorCommands {
        
     }
 
+    /**
+     * command for editing country
+     * 
+     * @param p_editcmd                 for edit country command
+     * @param p_editremovecmd           for remove country command   
+     * @return                          returns the message about status of command
+     */
     @ShellMethod(key= "editcountry", prefix = "-", value="This is used to add continents")
     public String editcountry(@ShellOption(value="a",defaultValue=ShellOption.NULL)String p_editcmd, @ShellOption(value="r",defaultValue=ShellOption.NULL) String p_editremovecmd){
      if(gameEngine.prevUserCommand==Commands.EDITMAP){  

@@ -10,7 +10,11 @@ public class MyFilenameFilter implements FilenameFilter {
 
     String d_initials;
     
-    // constructor to initialize object
+    /**
+     * constructor to initialize object
+     * 
+     * @param p_initials            storing filename
+     */
     public MyFilenameFilter(String p_initials)
     {
         System.out.println("current"+System.getProperty("user.dir"));

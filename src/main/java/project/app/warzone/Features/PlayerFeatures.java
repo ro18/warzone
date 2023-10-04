@@ -13,7 +13,7 @@ import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Country;
 
 /**
- * This class is used to perform player related operations.
+ * This class stores all the player-related functions in gameplay
  */
 @Component
 public class PlayerFeatures {
@@ -21,7 +21,7 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param allPlayers
+     * @param allPlayers       list of all players 
      */
     public void showAllAssignments(List<Player> allPlayers){
 
@@ -43,7 +43,7 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param p_gameEngine
+     * @param p_gameEngine      storing gameEngine
      */
     public void assignCountries(GameEngine p_gameEngine){
 
@@ -70,8 +70,8 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param p_playerName
-     * @param gameEngine
+     * @param p_playerName          storing playername
+     * @param gameEngine            storing gameEngine
      */
     public void addPlayers(String p_playerName, GameEngine gameEngine){
 
@@ -81,6 +81,9 @@ public class PlayerFeatures {
 
     }
 
+    /**
+     * @param gameEngine               storing gameEngine
+     */
     public void setPlayerIds(GameEngine gameEngine){
         
         int i=1;
@@ -96,8 +99,8 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param p_playerName
-     * @param gameEngine
+     * @param p_playerName              storing playername
+     * @param gameEngine                storing gameEngine
      */
     public void removePlayers(String p_playerName, GameEngine gameEngine){
 
@@ -112,7 +115,7 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param gameEngine
+     * @param gameEngine            storing gameEngine
      */
     public void printAllPlayers(GameEngine gameEngine){
         System.out.println("Final players of the game are:");
@@ -125,7 +128,7 @@ public class PlayerFeatures {
     
     
     /** 
-     * @param gameengine
+     * @param gameengine            storing gameEngine
      */
     public void showStats(GameEngine gameengine){
         List<Player> listOfPlayers = gameengine.getPlayers();
@@ -152,7 +155,7 @@ public class PlayerFeatures {
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
         List<Player> l_players = p_gameEngine.getPlayers();
         Player player = p_gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId);
-        Territory country = p_gameEngine.gameMap.getNodes().get(p_countryID - 1).getData();
+        Country country = p_gameEngine.gameMap.getNodes().get(p_countryID - 1).getData();
 
         /**
          * Check if the player has enough armies in the reinforcement pool to deploy
@@ -166,8 +169,8 @@ public class PlayerFeatures {
          * Check if the country is owned by the player
          */
 
-        Optional<Territory> territory = player.d_listOfCountriesOwned.stream()
-                .filter(c -> c.getTerritoryName().equals(country.getTerritoryName())).findFirst();
+        Optional<Country> territory = player.d_listOfCountriesOwned.stream()
+                .filter(c -> c.getCountryName().equals(country.getCountryName())).findFirst();
 
         if (!territory.isPresent()) {
             return "Country is not owned by the player";

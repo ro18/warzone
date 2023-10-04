@@ -16,7 +16,7 @@ public class Order {
     
     /** 
      * This method is used to set armies for the particular order
-     * @param p_numArmies
+     * @param p_numArmies           storing numberofArmies to set
      */
     public void setL_numberOfArmies(int p_numArmies) {
         this.d_numberOfArmies = p_numArmies;
@@ -26,7 +26,7 @@ public class Order {
     
     /** 
      * This method is user to set Country for the particular order
-     * @param p_territory
+     * @param p_territory           storing territory to set
      */
     public void setL_territory(Country p_territory) {
         this.d_Country = p_territory;

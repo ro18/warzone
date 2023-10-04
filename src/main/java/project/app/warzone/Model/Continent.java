@@ -7,10 +7,12 @@ public class Continent {
     private String continentName;
     private Integer bonus;
 
+    //Intializing continentName 
     public Continent(String continentName) {
         this.continentName = continentName;
     }
 
+    //Intializing continentName and bonus
     public Continent(String continentName, Integer bonus) {
         this.continentName = continentName;
         this.bonus = bonus;
@@ -21,7 +23,7 @@ public class Continent {
      * @return String
      */
     public String getContinentName() {
-        return continentName;
+        return continentName;              //returns Continent name
     }
 
 
@@ -30,14 +32,14 @@ public class Continent {
      * @return int
      */
     public int getBonus() {
-        return bonus;
+        return bonus;                      //returns Bonus value
     }
 
      /** 
      * @param newBonus
      */
     public void setBonus(int newBonus) {
-        bonus = newBonus;
+        bonus = newBonus;                 //used for setting new Bonus value
     }
     
     
@@ -45,7 +47,7 @@ public class Continent {
      * @param newContinentName
      */
     public void setContinentName(String newContinentName) {
-        continentName = newContinentName;
+        continentName = newContinentName;           //used for setting new Continent name
     }
 
 
