@@ -71,85 +71,81 @@ public class MapEditorCommands {
      * @return
      */
     @ShellMethod(key= "editcontinent", prefix = "-", value="This is used to add or update continents")
-    public String editcontinent(@ShellOption(value="a",defaultValue=ShellOption.NULL)String p_editcmd, @ShellOption(value="r",defaultValue=ShellOption.NULL) String p_editremovecmd){
-    Map<String, String> listofContinents= new HashMap<String,String>();
+    public String editcontinent(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
+            @ShellOption(value = "r", defaultValue = ShellOption.NULL) String p_editremovecmd) {
+        gameEngine.prevUserCommand = Commands.ADDCONTINENT;
+        Map<String, String> listofContinents = new HashMap<String, String>();
 
-if(gameEngine.prevUserCommand == Commands.EDITMAP || gameEngine.prevUserCommand == Commands.ADDCONTINENT || gameEngine.prevUserCommand == Commands.REMOVECONTINENT){
-            //String l_addCmd = "-add";
-            Dictionary<Integer,String> continentDict = new Hashtable<Integer,String>();
+        if (gameEngine.prevUserCommand == Commands.EDITMAP || gameEngine.prevUserCommand == Commands.ADDCONTINENT
+                || gameEngine.prevUserCommand == Commands.REMOVECONTINENT) {
+            // String l_addCmd = "-add";
+            Dictionary<Integer, String> continentDict = new Hashtable<Integer, String>();
 
-            if(p_editcmd != null && p_editcmd != ""){
-               String[] editCmd= p_editcmd.split(",");
-               System.out.println("length of string:"+editCmd.length);
-               System.out.println("Inside edit continent");
-               int l_i=0;
+            if (p_editcmd != null && p_editcmd != "") {
+                String[] editCmd = p_editcmd.split(",");
+                System.out.println("length of string:" + editCmd.length);
+                System.out.println("Inside edit continent");
+                int l_i = 0;
 
-              String commandToCheck= "-add";
-              while(l_i< editCmd.length){
+                String commandToCheck = "-add";
+                while (l_i < editCmd.length) {
 
-               System.out.println(editCmd[l_i]+":"+commandToCheck);
-               if(editCmd[l_i].toString().equals(commandToCheck)){
-                l_i++;
-                continue;
-                
-               }
-               else{
-                listofContinents.put(editCmd[l_i], editCmd[l_i+1]);
-                l_i+=2;
-                System.out.println("variable"+l_i);
-                System.out.println("listofContinents" +listofContinents);
-               }
+                    System.out.println(editCmd[l_i] + ":" + commandToCheck);
+                    if (editCmd[l_i].toString().equals(commandToCheck)) {
+                        l_i++;
+                        continue;
 
+                    } else {
+                        listofContinents.put(editCmd[l_i], editCmd[l_i + 1]);
+                        l_i += 2;
+                        System.out.println("variable" + l_i);
+                        System.out.println("listofContinents" + listofContinents);
+                    }
 
-              
-               }
+                }
 
-            try{
-            mapFeatures.writeContinentsToFile(listofContinents,gameEngine);
+                try {
+                    mapFeatures.writeContinentsToFile(listofContinents, gameEngine);
 
-            }
-            catch(IOException e){
-            e.printStackTrace();
-            
-            }
- 
-                
-            //     if(gameEngine.gameMap.getListOfContinents() != null){
-            //         List<Continent> continentList =gameEngine.gameMap.getListOfContinents();
-                
-            //         try{
+                } catch (IOException e) {
+                    e.printStackTrace();
 
-            //             Continent continentName = continentList.get(Integer.parseInt(editCmd[0]));
-            //             System.out.println("ContinentName:::" +continentName);
-            //             String newcContinentName = editCmd[1] ;
-            //             System.out.println("newcContinentName" +newcContinentName);
-            //             continentList.add(Integer.parseInt(editCmd[1]),new Continent(newcContinentName));
+                }
 
-            //             //MapFeatures.saveChangesToFile();
-                        
-                    
-            //         } 
-            //         catch(IndexOutOfBoundsException exception){
-            //             return("incorrect index id");
-            //         }
-            //         return "Continent edited successfully";
-            
-            //     }
+                // if(gameEngine.gameMap.getListOfContinents() != null){
+                // List<Continent> continentList =gameEngine.gameMap.getListOfContinents();
+
+                // try{
+
+                // Continent continentName = continentList.get(Integer.parseInt(editCmd[0]));
+                // System.out.println("ContinentName:::" +continentName);
+                // String newcContinentName = editCmd[1] ;
+                // System.out.println("newcContinentName" +newcContinentName);
+                // continentList.add(Integer.parseInt(editCmd[1]),new
+                // Continent(newcContinentName));
+
+                // //MapFeatures.saveChangesToFile();
+
+                // }
+                // catch(IndexOutOfBoundsException exception){
+                // return("incorrect index id");
+                // }
+                // return "Continent edited successfully";
+
+                // }
                 // else{
 
-                //     //creating map logic
-                    
-                //     return "";
+                // //creating map logic
+
+                // return "";
                 // }
-               
-            }
-            else{
-                return("Invalid command. Please enter editmap command to edit the continent");
+
+            } else {
+                return ("Invalid command. Please enter editmap command to edit the continent");
             }
         }
-         return " ";
-          
-       
+        return " ";
+
     }
     
     @ShellMethod(key= "editcountry", prefix = "-", value="This is used to add continents")
@@ -200,15 +196,15 @@ if(gameEngine.prevUserCommand == Commands.EDITMAP || gameEngine.prevUserCommand 
 
             List<String> listofCountries = new ArrayList<>();
             String[] l_editremovecmd= p_editremovecmd.split(",");
-            System.out.println("length of string:"+l_editremovecmd.length);
-            System.out.println("Inside edit Country");
+            // System.out.println("length of string:"+l_editremovecmd.length);
+            // System.out.println("Inside edit Country");
             int l_i=0;
 
             String commandToCheck= "-remove";
 
              while(l_i< l_editremovecmd.length){
 
-               System.out.println(l_editremovecmd[l_i]+":"+commandToCheck);
+            //    System.out.println(l_editremovecmd[l_i]+":"+commandToCheck);
                if(l_editremovecmd[l_i].toString().equals(commandToCheck)){
                 
                 continue;
@@ -218,7 +214,7 @@ if(gameEngine.prevUserCommand == Commands.EDITMAP || gameEngine.prevUserCommand 
                 listofCountries.add(l_editremovecmd[l_i]);
                 
 
-                System.out.println("listofCountries" +listofCountries);
+                // System.out.println("listofCountries" +listofCountries);
                }
                l_i++;
              

@@ -198,3 +198,117 @@
 1696003906357:editcontinent -add 2 Italy
 1696132443590:editmap europe
 1696132548056:editmap newmap
+1696396171443:editmap anashTemp
+1696396181077:editcontinent 1 4
+1696396187357:editcontinent -add 1 4
+1696396191722:editcontinent -add 2 5
+1696396209919:editcountry -add 1 1
+1696396490789:loadmap anashTemp
+1696396494409:editmap
+1696396504178:editmap anashTemp
+1696396543834:editmap temp
+1696396573373:editcontinent -add 1 4
+1696396577490:editcontinent -add 2 5
+1696396592652:editcountry -add 1 1
+1696396600931:editcountry -add 2 1
+1696396609990:editcountry -add 12 2
+1696396644958:editneighbor -add 1 2
+1696396824320:editcountry -remove 12
+1696397440177:editmap temp.map
+1696397502984:editcountry -remove 12
+1696397525493:editcountry -add 4 2
+1696397655563:editcontinent -add 1 4
+1696397678259:editcountry -add 4 2
+1696397701320:editcountry -remove 2
+1696397705399:editcountry -remove 4
+1696398304032:loadmap anashTemp.map
+1696398308642:loadmap anashTemp
+1696398313055:showmap
+1696398317896:editmap
+1696398322481:editmap anashTemp
+1696398329902:stacktrace
+1696400991893:showmap
+1696401037607:editmap temp123
+1696401061475:editcontinent -add 1 4
+1696401079948:editcontinent -add 2 3
+1696401153676:editcontinent -remove 1
+1696401381972:editcountry -add 1 1
+1696401408061:editcountry -remove 1
+1696401418828:stacktrace
+1696401508709:editmap qe
+1696401520176:editcontinent -add 1 4
+1696401527146:editcountry -remove 2
+1696401537557:editcountry -add 1 1
+1696401566103:editcountry -remove 1
+1696401740543:editmap ana
+1696401745427:editcontinent -add 1 4
+1696401749432:editcountry -add 1 1
+1696401760784:editcountry -remove 1
+1696401825369:editmap temp1234
+1696401830001:editcontinent -add 1 4
+1696401832892:editcountry -add 1 1
+1696401845267:editcountry -remove 1
+1696401963669:editmap anas
+1696401968235:editcontinent -add 1 4
+1696401970807:editcountry -add 1 1
+1696401974067:editcountry -remove 1
+1696402056336:editmap qedddd
+1696402060103:editcontinent -add 1 4
+1696402062954:editcountry -add 1 1
+1696402066113:editcountry -remove 1
+1696402092220:editmap anadddddd
+1696402095346:editcontinent -add 1 4
+1696402097926:editcountry -add 1 1
+1696402100821:editcountry -remove 1
+1696402208291:editmap temp1234344
+1696402213332:editcontinent -add 1 4
+1696402215436:editcountry -add 1 1
+1696402220350:editcountry -remove 1
+1696403147784:editmap qeddddsa
+1696403150962:editcontinent -add 1 4
+1696403153714:editcountry -add 1 1
+1696403175470:editcountry -add 2 1
+1696403181627:editcountry -remove 1
+1696403366448:editmap ansa
+1696403370621:editcontinent -add 1 4
+1696403373439:editcountry -add 1 1
+1696403387856:editcountry -remove 1
+1696403565631:editmap anadddddd
+1696403570022:editcontinent -add 1 4
+1696403572830:editcountry -add 1 1
+1696403579081:editcountry -remove 1
+1696403709615:editmap temp1234
+1696403713440:editcontinent -add 1 4
+1696403715675:editcountry -add 1 1
+1696403721590:editcountry -remove 1
+1696403788962:editmap q
+1696403792171:editcontinent -add 1 4
+1696403794459:editcountry -add 1 1
+1696403798548:editcountry -remove 1
+1696403841469:editcountry -add 2 1
+1696403855773:editcountry -remove 1
+1696403886140:editcountry -add 3 1
+1696403894789:editcountry -remove 2
+1696404159217:editmap qfd
+1696404166048:editcontinent -add 1 4
+1696404168971:editcountry -add 1 1
+1696404175462:editcountry -add 1 2
+1696404178970:editcountry -add 1 3
+1696404204441:editcountry -add 2 3
+1696404212340:editcountry -add 3 3
+1696404219901:editcountry -remove 1
+1696404390033:editmap qc
+1696404394973:editcontinent -add 1 4
+1696404400555:editcountry -add 1 1
+1696404408231:editcontinent -add 2 1
+1696404432135:editcountry -remove 1
+1696404495338:editmap anashhhh
+1696404507647:editcontinent -add 1 4
+1696404523965:editcountry -add 1 1
+1696404530971:editcountry -add 2 1
+1696404542886:editcountry -remove 1
+1696404653562:editmap qas
+1696404661429:editcontinent -add 1 4
+1696404668240:editcountry -add 1 1
+1696404680252:editcountry -add 2 1
+1696404687493:editcountry -remove 1
