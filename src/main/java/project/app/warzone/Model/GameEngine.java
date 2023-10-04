@@ -13,21 +13,38 @@ import project.app.warzone.Utilities.Commands;
 @Component
 public class GameEngine {
 
-    public List<Player> d_playersList;
-    public Map gameMap;
-    public Commands prevUserCommand;
 
-    public GameEngine(Map gameMap) {
-        this.gameMap = new Map();
+    public List<Player> d_playersList;              //storing player list  
+    public Map gameMap;                             //storing gameMap
+    public Commands prevUserCommand;                //storing user's previous command
+
+
+    /**
+     * Initializing gameMap and d_playersList
+     * 
+     * @param gameMap           gameMap instance
+     */
+    public GameEngine(Map gameMap ){
+        this.gameMap = new Map(); // this is required
         this.d_playersList = new ArrayList<>();
-    }
+    } 
 
+    /**
+     * used for returning player list
+     * 
+     * @return              returns player list
+     */
     public List<Player> getPlayers() {
-        return d_playersList; // returns all territories in the map
+        return d_playersList;
     }
 
+    /**
+     * used for returning game map
+     * 
+     * @return      returns gameMap
+     */
     public Map getGameMap() {
-        return gameMap; // returns all territories in the map
+        return gameMap;
     }
 
     /**
