@@ -78,7 +78,7 @@ public class PlayerCommands {
 
     @ShellMethod(key= "assigncountries", value="This is used to assign countries to players randomly")
     public String assigncountries(){
-        Player player = gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId -1);
+        Player player = gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId);
         playerFeatures.assignCountries(gameEngine);
         System.out.println("Assigned Countries to the players are:");
         playerFeatures.showAllAssignments(gameEngine.getPlayers());

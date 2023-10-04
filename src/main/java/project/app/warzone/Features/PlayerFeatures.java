@@ -127,7 +127,7 @@ public class PlayerFeatures {
 
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
         List<Player> l_players = p_gameEngine.getPlayers();
-        Player player = p_gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId - 1);
+        Player player = p_gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId);
         Territory country = p_gameEngine.gameMap.getNodes().get(p_countryID - 1).getData();
 
         /**
