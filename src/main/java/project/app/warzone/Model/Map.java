@@ -18,9 +18,12 @@ public class Map {
     private List<Node> nodes;
     private List<Continent> listOfContinents;
 
-    public String USER_SELECTED_FILE="europe";
+    public String USER_SELECTED_FILE="europe";      //used for storing userselected file
 
 
+    /**
+     * Constructor for Map
+     */
     public Map() {
         nodes = new ArrayList<>();
         listOfContinents = new ArrayList<>();
@@ -28,7 +31,9 @@ public class Map {
 
 
     
-    /** 
+    /**
+     * method used for returning all territories 
+     * 
      * @return List<Node>
      */
     public List<Node> getNodes() {
@@ -37,7 +42,9 @@ public class Map {
 
 
     
-    /** 
+    /**
+     * method used for creating continent
+     * 
      * @param continentName
      * @param continentBonus
      */
@@ -50,6 +57,8 @@ public class Map {
 
     
     /** 
+     * method used for creating and inserting country
+     * 
      * @param countryName
      * @param continent
      */
@@ -59,7 +68,9 @@ public class Map {
     }
 
     
-    /** 
+    /**
+     *  method used for returning list of continents
+     * 
      * @return List<Continent>
      */
     public List<Continent> getListOfContinents() {
@@ -68,7 +79,9 @@ public class Map {
 
 
     
-    /** 
+    /**
+     *  method used for adding borders
+     * 
      * @param mainCountry
      * @param addBorders
      */
@@ -80,6 +93,8 @@ public class Map {
     
     
     /** 
+     *  method used for returning mapFile location
+     * 
      * @return String
      */
     public String getMapDirectory(){
@@ -89,6 +104,8 @@ public class Map {
 
     
     /** 
+     * returns user selected file
+     * 
      * @return String
      */
     public String get_USER_SELECTED_FILE() {
@@ -97,7 +114,9 @@ public class Map {
     
     
     
-    /** 
+    /**
+     * used for setting user selected file 
+     * 
      * @param newFile
      */
     public void set_USER_SELECTED_FILE(String newFile) {
@@ -107,6 +126,8 @@ public class Map {
 
     
     /** 
+     * method used to check if file exists
+     * 
      * @param p_filename
      * @return boolean
      */

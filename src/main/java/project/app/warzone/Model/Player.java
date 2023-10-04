@@ -13,12 +13,17 @@ public class Player
 		public int d_playerid; //Player id of the player to decide the round robin order to deploy
 		public String d_playername; //Name of the player assigned by the  user
 		public int d_reinforcementPool; //Total number of players available to deploy in each round
-		
-        public List<Country> d_listOfCountriesOwned; //List of countries owned by the player 
+		public List<Country> d_listOfCountriesOwned; //List of countries owned by the player 
 		public Stack<Order> d_listOfOrders; //stores orders issued by the player 
 	
 
 
+        /**
+		 * Constructor for Player
+		 * 
+         * @param p_playerid			storing playerId
+         * @param p_playername			storing playername
+         */
         public Player(int p_playerid ,String p_playername) {
             this.d_playerid = p_playerid;
             this.d_playername = p_playername;
@@ -38,7 +43,7 @@ public class Player
 
 		
 		/** 
-		 * @param p_playerid
+		 * @param p_playerid		storing playerid to set
 		 */
 		public void setL_playerid(int p_playerid) {
 			d_playerid = p_playerid;
@@ -54,7 +59,7 @@ public class Player
 
 		
 		/** 
-		 * @param noOfArmies
+		 * @param noOfArmies		storing numberofArmies to set reinforcement
 		 */
 		public void initReinforcementArmies(int noOfArmies){
 			d_reinforcementPool= noOfArmies;
@@ -63,7 +68,7 @@ public class Player
 
 		
 		/** 
-		 * @param noOfArmies
+		 * @param noOfArmies		storing numberofArmies to add reinforcement	
 		 */
 		public void addReinforcementArmies(int noOfArmies){
 			d_reinforcementPool+= noOfArmies;
@@ -81,7 +86,7 @@ public class Player
 
 		
 		/** 
-		 * @param l_playername
+		 * @param l_playername			storing playername to set
 		 */
 		public void setL_playername(String l_playername) {
 			d_playername = l_playername;
@@ -90,7 +95,7 @@ public class Player
 
 		
 		/** 
-		 * @param country
+		 * @param country				storing country to add into player territories
 		 */
 		public void setTerritories(Country country){
 			d_listOfCountriesOwned.add(country);
@@ -99,7 +104,7 @@ public class Player
 
 		
 		/** 
-		 * @return List<Territory>
+		 * @return List<Territory>		returns players' list of territory
 		 */
 		public List<Country> getListOfTerritories(){
 			return d_listOfCountriesOwned;
@@ -109,13 +114,16 @@ public class Player
 
 		
 		/** 
-		 * @param order
+		 * @param order			storing order to add
 		 */
 		public void issue_order(Order order) {
 			d_listOfOrders.push(order);
 		}
 
 
+		/**
+		 *  method used to clear order list
+		 */
 		public void clear_orderList(){
 			d_listOfOrders.clear();
 		}

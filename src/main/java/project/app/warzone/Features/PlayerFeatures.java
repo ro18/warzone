@@ -10,13 +10,16 @@ import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Country;
 
+/**
+ * This class stores all the player-related functions in gameplay
+ */
 @Component
 public class PlayerFeatures {
 
 
     
     /** 
-     * @param allPlayers
+     * @param allPlayers       list of all players 
      */
     public void showAllAssignments(List<Player> allPlayers){
 
@@ -38,7 +41,7 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param p_gameEngine
+     * @param p_gameEngine      storing gameEngine
      */
     public void assignCountries(GameEngine p_gameEngine){
 
@@ -65,8 +68,8 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param p_playerName
-     * @param gameEngine
+     * @param p_playerName          storing playername
+     * @param gameEngine            storing gameEngine
      */
     public void addPlayers(String p_playerName, GameEngine gameEngine){
 
@@ -76,6 +79,9 @@ public class PlayerFeatures {
 
     }
 
+    /**
+     * @param gameEngine               storing gameEngine
+     */
     public void setPlayerIds(GameEngine gameEngine){
         
         int i=1;
@@ -89,8 +95,8 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param p_playerName
-     * @param gameEngine
+     * @param p_playerName              storing playername
+     * @param gameEngine                storing gameEngine
      */
     public void removePlayers(String p_playerName, GameEngine gameEngine){
 
@@ -105,7 +111,7 @@ public class PlayerFeatures {
 
     
     /** 
-     * @param gameEngine
+     * @param gameEngine            storing gameEngine
      */
     public void printAllPlayers(GameEngine gameEngine){
         System.out.println("Final players of the game are:");
@@ -118,7 +124,7 @@ public class PlayerFeatures {
     
     
     /** 
-     * @param gameengine
+     * @param gameengine            storing gameEngine
      */
     public void showStats(GameEngine gameengine){
         List<Player> listOfPlayers = gameengine.getPlayers();

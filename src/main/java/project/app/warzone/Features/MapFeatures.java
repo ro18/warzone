@@ -14,13 +14,18 @@ import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Node;;
 
+/**
+ * This class stores all the map-related functions in gameplay
+ */
 @Component
 public class MapFeatures {
 
     
     /** 
-     * @param filename
-     * @return Map
+     * used for reading map
+     * 
+     * @param filename      used for storing file name
+     * @return Map          returns gamemap
      */
     public Map readMap(String filename){
 
@@ -113,7 +118,9 @@ public class MapFeatures {
 
     
     /** 
-     * @param gameMap
+     *used for displaying map 
+     *
+     * @param gameMap       used for storing game map
      */
     public void printMap(Map gameMap){
 
@@ -150,10 +157,12 @@ public class MapFeatures {
 
 
     
-    /** 
-     * @param p_allNodes
-     * @param l_visitedList
-     * @return Map<Node, Boolean>
+    /**
+     * used for validation 
+     * 
+     * @param p_allNodes                storing list of all nodes
+     * @param l_visitedList             storing list of visited nodes
+     * @return Map<Node, Boolean>       storing map
      */
     public java.util.Map<Node,Boolean> validateByNodes(List<Node> p_allNodes, java.util.Map<Node,Boolean> l_visitedList){
 
@@ -174,9 +183,11 @@ public class MapFeatures {
 
 
     
-    /** 
-     * @param gameEngine
-     * @return Boolean
+    /**
+     * used for validating entire graph 
+     * 
+     * @param gameEngine           storing gameEngine
+     * @return Boolean             returns the status of validating
      */
     public Boolean validateEntireGraph(GameEngine gameEngine){
 
@@ -217,10 +228,12 @@ public class MapFeatures {
 
     
     /** 
-     * @param con
-     * @param l_listOfNodes
-     * @param l_visitedList
-     * @return boolean
+     * used for validating sub-graph
+     * 
+     * @param con                       storing continent
+     * @param l_listOfNodes             storing list of nodes
+     * @param l_visitedList             storing list of visited nodes
+     * @return boolean                  returns the status of validating
      */
     public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,java.util.Map<Node,Boolean> l_visitedList){
 
@@ -245,9 +258,11 @@ public class MapFeatures {
 
     
     /** 
-     * @param currentCountry
-     * @param l_visitedList
-     * @return Map<Node, Boolean>
+     * used for implementing DFS
+     * 
+     * @param currentCountry        storing current country
+     * @param l_visitedList         storing list of visited list
+     * @return Map<Node, Boolean>   returns status    
      */
     private java.util.Map<Node,Boolean> depthFirstSearch(Node currentCountry, java.util.Map<Node,Boolean> l_visitedList){
 

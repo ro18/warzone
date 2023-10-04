@@ -11,8 +11,16 @@ public class Country {
     private Continent continent;
 
 
-    public Country() {}
+    public Country() {}         //default constructor
 
+    /**
+     * Constructor for initializing countryname, continent, ownerid, numberofarmies
+     * 
+     * @param CountryName
+     * @param continent
+     * @param ownerId
+     * @param numberOfArmies
+     */
     public Country(String CountryName, Continent continent, int ownerId, int numberOfArmies) {
         this.CountryName = CountryName;
         this.ownerId = ownerId;
@@ -20,41 +28,47 @@ public class Country {
         this.continent = continent;
     }
 
+    /**
+     * Constructor for initializing countryname
+     * 
+     * @param CountryName
+     * @param continent
+     */
     public Country(String CountryName, Continent continent) {
         this.CountryName = CountryName;
         this.continent = continent;
     }
 
     public String getCountryName() {
-        return CountryName;
+        return CountryName;             //returns Countryname
     }
 
     public int getOwnerId() {
-        return ownerId;
+        return ownerId;                 //returns ownerId
     }
 
     public int getNumberOfArmies() {
-        return numberOfArmies;
+        return numberOfArmies;          //returns numberofArmies
     }
 
     public Continent getContinent() {
-        return continent;
+        return continent;               //returns continent
     }
 
     public void setCountryName(String newCountryName) {
-        CountryName = newCountryName;
+        CountryName = newCountryName;       //used for setting newCountryname
     }
 
     public void setOwnerId(int newOwnerId) {
-        ownerId = newOwnerId;
+        ownerId = newOwnerId;               //used for setting newOwnerId
     }
 
     public void setNumberOfArmies(int newNumberOfArmies) {
-        numberOfArmies = newNumberOfArmies;
+        numberOfArmies = newNumberOfArmies;         //used for setting newNumberofArmies
     }
 
     public void setContinent(Continent newContinent) {
-        continent = newContinent;
+        continent = newContinent;                   //used for setting newContinent
     }
     
 }
