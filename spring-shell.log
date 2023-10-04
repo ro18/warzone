@@ -377,22 +377,411 @@
 1696003906357:editcontinent -add 2 Italy
 1696132443590:editmap europe
 1696132548056:editmap newmap
+<<<<<<< HEAD
 1696216168273:loadmap europe
 1696216170025:showmap
 1696216187503:gameplayer -add mihir -add aish -add numan
 1696216233634:assigncountries
 1696216293414:showstats
-1696370441116:loadmap Rochelle
-1696370443393:showmap
-1696370613664:loadmap Rochelle
-1696370616497:showmap
-1696370880469:loadmap Rochelle
-1696370882746:showmap
-1696370990626:loadmap Rochelle
-1696370997251:showmap
-1696375275364:loadmap Rochelle
-1696375278321:showmap
-1696375697385:loadmap Rochelle
-1696375699569:showmap
-1696376796675:loadmap Rochelle
-1696376798103:showmap
+1696280758416:deploy 2 2
+1696394410027:loadmap europe
+1696394413631:showmap
+1696394428495:gameplayer anash
+1696394435675:gameplayer numan
+1696394442592:assigncountries
+1696394461710:deploy 2 3
+1696394634517:deploy 6 3
+1696394701688:loadmap europe
+1696394704075:showmap
+1696394710028:gameplayer anash
+1696394713968:gameplayer numan
+1696394726288:assigncountries
+1696394748915:deploy 23 3
+1696394870578:loadmap europe
+1696394873759:showmap
+1696394879636:gameplayer anash
+1696394886329:gameplayer numan
+1696394892964:assigncountries
+1696394913969:deploy 18 3
+1696394928853:deploy 17 3
+1696394932083:deploy 15 3
+1696394935948:showstats
+=======
+1696133559202:loadmap testing
+1696133623875:editmap testing
+1696133675704:editcontinent -add 1 Asia
+1696133760006:editcontinent -add 1 5
+1696133813568:editcontinent -add 1 5 -add 1 7
+1696133845597:editcontinent -add 3 4 9 7 1 2
+1696133875298:gameplayer -add akash amir
+1696133889048:loadmap europe
+1696133891646:showmap
+1696133909042:gameplayer -add player 1 player2
+1696133952078:gameplayer -add player1 player2
+1696134172999:gameplayer -add player1 -add player2
+1696134949355:editmap testmap
+1696135197471:editmap newmap7
+1696136434375:editmap testing1
+1696136732798:editmap testing2
+1696137330947:editmap testing3
+1696137579484:editmap testing5
+1696137754568:editmap testing6
+1696181846199:editmap testing7
+1696181903850:editmap testing8
+1696181983426:editmap testingnew
+1696182224449:editmap testingnew1
+1696182259323:editmap testingnew2
+1696182293088:editmap testingnew3
+1696182381366:editmap testingnew4
+1696182416101:editmap testingnew5
+1696182479950:editcontinent -add 1 5
+1696186180851:editmap testingnew9
+1696186184538:editcontinent -add 1 5
+1696186244147:editmap testingnew11
+1696186257629:editcontinent -add 1 4
+1696186285202:editcontinent -add 3 4 -add 2 6
+1696186453789:editmap test23
+1696186469320:editcontinent -add 2 6
+1696186555584:editcontinent -add 2 6 -add 3 5
+1696186728875:editmap test23
+1696186731788:editmap test231
+1696186738707:editcontinent -add 2 6 -add 3 5
+1696186831867:editmap test2313
+1696186834045:editcontinent -add 2 6 -add 3 5
+1696186872374:editmap test23131
+1696186875188:editcontinent -add 2 6 -add 3 5
+1696187066584:editmap fin
+1696187080545:editcontinent -add 1 6 -add 3 5
+1696187305371:editmap fin1
+1696187307217:editcontinent -add 1 6 -add 3 5
+1696187396094:editmap fin2
+1696187398951:editcontinent -add 1 6 -add 3 5
+1696187654190:editmap fin3
+1696187655952:editcontinent -add 1 6 -add 3 5
+1696187730554:editmap fin4
+1696187732463:editcontinent -add 1 6 -add 3 5
+1696187837384:editmap fin5
+1696187839537:editcontinent -add 1 6 -add 3 5
+1696187950828:editmap fin6
+1696187952736:editcontinent -add 1 6 -add 3 5
+1696188531509:editmap fin7
+1696188533993:editcontinent -add 1 6 -add 3 5
+1696188558674:editmap fin7
+1696188562929:editmap fin8
+1696188565928:editcontinent -add 1 6 -add 3 5
+1696188758771:editmap fin9
+1696188760979:editcontinent -add 1 6 -add 3 5
+1696188964543:editmap fin10
+1696188966801:editcontinent -add 1 6 -add 3 5
+1696189014993:editmap fin11
+1696189017085:editcontinent -add 1 6 -add 3 5
+1696189119957:editmap fin12
+1696189122166:editcontinent -add 1 6 -add 3 5
+1696189206809:editmap fin13
+1696189209678:editcontinent -add 1 6 -add 3 5
+1696189258512:editmap fin14
+1696189260551:editcontinent -add 1 6 -add 3 5
+1696189308018:editmap fin15
+1696189310419:editcontinent -add 1 6 -add 3 5
+1696189377578:editmap fin16
+1696189379706:editcontinent -add 1 6 -add 3 5
+1696189535817:editmap fin16
+1696189540177:editmap fin17
+1696189545399:editcontinent -add 1 6 -add 3 5
+1696189747298:editmap fin18
+1696189749068:editcontinent -add 1 6 -add 3 5
+1696190062338:editmap fin19
+1696190064356:editcontinent -add 1 6 -add 3 5
+1696190132230:editmap fin20
+1696190134641:editcontinent -add 1 6 -add 3 5
+1696190195571:editmap fin21
+1696190197512:editcontinent -add 1 6 -add 3 5
+1696190830452:editmap fin1
+1696190833079:editcontinent -add 1 6 -add 3 5
+1696190931808:editmap fin2
+1696190933568:editcontinent -add 1 6 -add 3 5
+1696191077031:editmap fin3
+1696191079085:editcontinent -add 1 6 -add 3 5
+1696193844791:editmap fin7
+1696193865079:editcountry -add 1 6
+1696193953851:editmap fin9
+1696193969169:editcountry -add 2 6 -add 4 8
+1696296954142:editmap test77
+1696297007105:editmap test78
+1696297156711:editmap fin7
+1696297195326:editmap fin5
+1696297238219:loadmap europe
+1696297262286:editmap newmap
+1696297291843:editmap newmap1
+1696297337838:editmap newmap7
+1696297436307:editmap newmap8
+1696297501275:editcontinent -add 1 5
+1696297571352:editmap newmap1126
+1696297743129:editmap testro
+1696297784701:editcontinent -add 1 5
+1696297880348:editcontinent -add 1 6
+1696297958184:editmap testro1
+1696297968789:editcontinent -add 1 6
+1696298147123:editcontinent -add 2 6
+1696298231920:editcontinent -add 3 6
+1696298391935:editmap ashtest
+1696298423947:editcontinent -add 3 4
+1696298501595:editcontinent -add 4 5
+1696298677700:editmap ashtest1
+1696298688819:editcontinent -add 4 6
+1696298877193:editmap ashtest3
+1696298891969:editcontinent -add 4 4
+1696298982194:editmap ashtest3
+1696299009221:editmap ash77898
+1696299020725:editcontinent -add 4 3
+1696299333598:editmap ashtest788
+1696299359597:editmap -add 4 2
+1696299369735:editcontinent -add 4 2
+1696299422808:editcontinent -add 3 4
+1696299552881:editmap ashtest222
+1696299596441:editcontinent -add 4 6
+1696299633893:editcontinent -add 3 4
+1696300156583:editmap ash
+1696300171812:editcontinent -add 4 5
+1696300215820:editcontinent -add 4 4
+1696300275993:editmap ash6
+1696300284044:editcontinent -add 4 4
+1696300311011:editcontinent -add 4 6
+1696302449466:editmap ash7
+1696302459113:editcontinent -add 4 6
+1696302492435:editcontinent -add 4 4
+1696302605279:editmap ash8
+1696302713039:editcontinent -add 4 4
+1696302775902:editmap ash8
+1696302902079:editcontinent -add 4 4
+1696302914970:editmap ash8
+1696302927982:editmap ash10
+1696302948656:editcontinent -add 4 5
+1696303065777:editmap ash11
+1696303105117:editcontinent -add 4 3
+1696303154324:editcontinent -add 4 5
+1696303308368:editcontinent -add 4 6
+1696304242861:editmap ash12
+1696304257502:editcontinent -add 4 5
+1696305334504:editmap ash13
+1696305344828:editcontinent -add 4 3
+1696305514865:editmap ash12
+1696305528033:editmap jin3
+1696305538733:editcontinent -add 2 4
+1696306301222:editmap fff
+1696306311667:editcontinent -add 1 4
+1696306414513:editmap fffdd
+1696306426955:editcontinent -add 3 6
+1696306585455:editcontinent -add 3 5
+1696306656588:editmap testtesttest
+1696306686385:editcontinent -add 3 5
+1696306718560:editcontinent -add 2 5
+1696306743866:editcontinent -add 4 5
+1696306763944:editcontinent -add 1 6
+1696306936025:editmap newmapfile
+1696306946140:editcontinent -add 1 5
+1696306966818:editcontinent -add 3 6
+1696307126325:editcontinent -add 2 5
+1696307367744:editmap newmapfile77
+1696307397553:editcontinent -add 3 6 -add 2 5
+1696307490514:editcontinent -add 1 5
+1696307543534:editcontinent -add 4 5
+1696310231611:editmap newmapfile12
+1696310243124:editcontinent -add 1 5
+1696310255516:editcontinent -add 2 5
+1696310275974:editcontinent -add 1 5
+1696310449675:editmap newm
+1696310464562:editcontinent -add 2 5
+1696310475376:editcontinent -add 1 5
+1696311537112:editmap new55
+1696311549022:editcontinent -add 1 5
+1696356285573:editmap aasshh
+1696356558661:editmap aasshh77
+1696356571676:editcontinent -add 1 5
+1696356610889:editcontinent -add 2 4
+1696356673060:editcontinent -add 4 5
+1696356991286:editmap mihir1
+1696357025222:editcontinent -add 1 5
+1696357148695:editcontinent -add 2 4
+1696357831018:editmap shinde77
+1696357843265:editcontinent -add 3 5
+1696357857678:editcontinent -add 2 6
+1696357934830:editcountry -add 1 1
+1696362047788:editmap newmap1
+1696362055879:editcontinent -add 2 6
+1696362073708:editcontinent -add 1 5
+1696362098156:editcountry -add 1 2
+1696362249960:editmap newmap2
+1696362305566:editmap newmap3
+1696362315294:editcontinent -add 1 5
+1696362339613:editcontinent -add 2 6
+1696362356157:editcountry -add 1 3
+1696362962571:editmap newmap3
+1696362978922:editmap newmap4
+1696363008666:editcontinent -add 1 5 -add 2 5 -add 3 4
+1696363046111:editcontinent -add 4 5
+1696363073486:editcountry -add 1 1
+1696363245482:editcountry -add 1 1 -add 2 1 -add 3 1
+1696363288000:editcountry -add 4 2
+1696363410913:editmap newmap5
+1696363422688:editcountry -add 1 1
+1696363445127:editcountry -add 1 1 -add 2 1 -add 3 1
+1696364211654:editmap newmap7
+1696364238393:editcontinent -add 1 5
+1696364253999:editcontinent -add 2 6
+1696364281385:editcontinent -add 3 4
+1696364295301:editcountry -add 1 1
+1696364324179:editcountry -add 1 1 -add 2 1 -add 3 1
+1696364959580:editmap newmap88
+1696364982714:editcontinent -add 1 5
+1696364997046:editcontinent -add 2 6
+1696365044262:editcontinent -add 3 4
+1696365072262:editcountry -add 1 1
+1696365134607:editcountry -add 2 1
+1696365270259:editmap ashnew3
+1696365279603:editcontinent -add 1 5
+1696365294346:editcontinent -add 2 6
+1696365305047:editcontinent -add 3 4
+1696365342547:editcountry -add 1 1
+1696366080286:editcountry -add 2 1
+1696366715028:editmap ashnew77
+1696366727238:editcontinent -add 1 5
+1696366754803:editcontinent -add 2 6
+1696366766833:editcontinent -add 3 4
+1696366777521:editcontinent -add 4 4
+1696366788637:editcountry -add 1 1
+1696367031463:editmap ashnew123345
+1696367738308:editcontinent -add 1 5
+1696367763654:editcontinent -add 2 6
+1696367779061:editcontinent -add 3 4
+1696367802347:editcontinent -add 4 4
+1696367840523:editcountry -add 1 1
+1696367865244:editcountry -add 1 1 -add 2 1 -add 3 1
+1696367990803:editmap newmap101
+1696368001771:editcontinent -add 1 5
+1696368016851:editcontinent -add 2 6
+1696368032205:editcontinent -add 3 4
+1696368048879:editcontinent -add 4 4
+1696368086913:editcountry -add 1 1
+1696368102615:editcountry -add 1 1 -add 2 1 -add 3 1
+1696391417338:editmap newmap1
+1696391426635:editcontinent -add 1 5
+1696391448680:editcontinent -add 2 6
+1696391491051:editcountry -add 1 1
+1696391911963:editmap newmap12
+1696391919099:editcontinent -add 1 5
+1696391942704:editcountry -add 1 1
+1696391967315:editcountry -add 1 1 -add 2 1 -add 3 1
+1696392003561:editcontinent -add 2 6
+1696393869507:editmap newmap775
+1696393877868:editcontinent -add 1 5
+1696393895090:editcontinent -add 2 4
+1696393918443:editcountry -add 1 1
+1696393942600:editcountry -add 1 2 -add 2 1 -add 3 1
+1696393998186:editneighbor -add 1 8
+1696394048313:editmap newmap765
+1696394058698:editcontinent -add 1 6
+1696394078480:editcountry -add 4 6 -add 2 1 -add 3 1
+1696394141390:editneighbor -add 1 8
+1696394195623:editneighbor -add 1 21
+1696394256320:editneighbor -add 1 6 -add 1 7 -add 1 5
+1696397280905:editmap ashnew7
+1696397291244:editcontinent -add 1 4
+1696397346959:editcontinent -add 2 5
+1696397361215:editneighbor -add 1 8
+1696397383701:editcountry -add 4 6 -add 2 1 -add 3 1
+1696397405586:editneighbor -add 1 7
+1696397525551:editmap ash
+1696397546710:editcontinent -add 1 4
+1696397570911:editcontinent -add 2 5 -add 3 6
+1696397590452:editcountry -add 4 6 -add 2 1 -add 3 1
+1696397604617:editneighbor -add 1 7
+1696397790186:editmap newmapash666
+1696397816781:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696397831060:editcountry -add 4 6 -add 2 1 -add 3 1
+1696397855970:editneighbor -add 1 7
+1696398016414:editmap ashhtrdf
+1696398025829:editcountry -add 4 6 -add 2 1 -add 3 1
+1696398032958:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696398051855:editcountry -add 4 6 -add 2 1 -add 3 1
+1696398071128:editneighbor -add 1 7
+1696398119785:editneighbor -add 1 8
+1696398287576:editneighbor -add 1 24
+1696398603773:editmap india
+1696398613035:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696398630243:editcountry -add 4 6 -add 2 1 -add 3 1
+1696398650332:editneighbor -add 1 8
+1696398753678:editneighbor -add 1 21
+1696398966353:editneighbor -add 1 20
+1696399031947:editneighbor -add 1 18
+1696399282467:editneighbor -add 1 9
+1696399376733:editneighbor -add 1 10
+1696400004301:editmap roash
+1696400018600:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696400033687:editcountry -add 4 6 -add 2 1 -add 3 1
+1696400044983:editneighbor -add 1 9
+1696400063640:editneighbor -add 1 5
+1696424994545:editmap mihir
+1696425005860:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696425022710:editcountry -add 4 6 -add 2 1 -add 3 1
+1696425134028:editneighbor -remove 2
+1696425168267:editcountry -remove 2
+1696425190160:editcountry -remove 2 -remove 3
+1696425234569:editmap ash
+1696425252624:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696425300326:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696425337601:editcountry -remove 2
+1696425343347:editcountry -remove 3
+1696425348402:editcountry -remove 4
+1696426090223:editmap new1
+1696426101040:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696426123754:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696426141755:editcountry -remove 3
+1696426598996:editcountry -remove 1 -remove 2
+1696426881208:editmap new2
+1696426896297:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696426952876:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696426982824:editcountry -remove 1 -remove 6
+1696427354768:editmap new5
+1696427370187:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696427387165:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696427413111:editcontinent -remove 1
+1696427697911:editmap new7
+1696427712382:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696427727995:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696427755120:editcontinent -remove 1
+1696427916529:editmap new88
+1696427922677:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696427940266:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696427953681:editcontinent -remove 1
+1696428224789:editmap new123
+1696428235584:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696428254974:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696428264976:editcontinent -remove 1
+1696430970268:editmap roch
+1696430983936:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696431006097:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696431016551:editcontinent -remove 1
+1696431208355:editmap roch
+1696431260971:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696431279920:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696431289367:editcontinent -remove 1
+1696432517401:editmap roch1
+1696432526342:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696432531694:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696432624012:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696432653410:editcontinent -remove 1
+1696432977749:editmap roch4
+1696433348474:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696433558017:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696433567611:editcontinent -remove 1
+1696435004205:editmap roch5
+1696435017749:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696435034966:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696435043590:editcontinent -remove 1
+1696435278793:editcontinent -remove 2 -remove 3
+1696436196496:editmap roch6
+1696436206805:editcontinent -add 1 5 -add 2 4 -add 3 6
+1696436233876:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
+1696436278452:editneighbor -add 1 8
+>>>>>>> ef690850e4a0b2c5f107caf89ffa0e2c6ac73789

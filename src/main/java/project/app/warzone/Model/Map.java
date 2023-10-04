@@ -9,87 +9,128 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Utilities.MyFilenameFilter;
 
+/**
+ * This class contains all the continents and countries needed for 
+ */
 @Component
 public class Map {
 
     private List<Node> nodes;
     private List<Continent> listOfContinents;
 
-    public String USER_SELECTED_FILE="europe";
+    public String USER_SELECTED_FILE="europe";      //used for storing userselected file
 
 
+    /**
+     * Constructor for Map
+     */
     public Map() {
         nodes = new ArrayList<>();
         listOfContinents = new ArrayList<>();
     }
 
+
+    
+    /**
+     * method used for returning all territories 
+     * 
+     * @return    returns all territories in the map
+     */
     public List<Node> getNodes() {
-        return nodes; // returns all territories in the map
+        return nodes;
     }
 
+
+    
+    /**
+     * method used for creating continent
+     * 
+     * @param continentName         continent name to create
+     * @param continentBonus        storing bonus value
+     */
     public void createContinent(String continentName, Integer continentBonus){
         Continent continent = new Continent(continentName,  continentBonus);
         listOfContinents.add(continent);
  
     }
 
-    public void createAndInsertTerritory(String territoryName, Continent continent){
-        Territory territory = new Territory(territoryName,continent);
-        nodes.add(new Node(territory));
+
+    
+    /** 
+     * method used for creating and inserting country
+     * 
+     * @param countryName           country name to create
+     * @param continent             storing continent name
+     */
+    public void createAndInsertCountry(String countryName, Continent continent){
+        Country country = new Country(countryName,continent);
+        nodes.add(new Node(country));
     }
+
+    
+    /**
+     *  method used for returning list of continents
+     * 
+     * @return               returns list of continents
+     */
     public List<Continent> getListOfContinents() {
         return listOfContinents;
     }
 
-    // public void insertATerritory(Territory data) {
-    //     nodes.add(new Node(data));
-    // }
 
-    // public void insertAndConnectTwoTerritories(Territory dataA, Territory dataB) {
-    //     insertATerritory(dataA);
-    //     insertATerritory(dataB);
-    //     connectTwoNodes(nodes.get(nodes.size() - 1), nodes.get(nodes.size() - 2));
-    // }
-
-    // public void connectTwoNodes(Node A, Node B) {
-    //     String edgeName = A.getData().getTerritoryName() + B.getData().getTerritoryName();
-    //     A.addEdge(edgeName);
-    //     B.addEdge(edgeName);
-    // }
-
-    public void addEdgesOfTerritory(Node mainTerritory , List<Node> addBorders)
+    
+    /**
+     *  method used for adding borders
+     * 
+     * @param mainCountry       storing main country
+     * @param addBorders        storing borders to be added
+     */
+    public void addEdgesOfCountry(Node mainCountry , List<Node> addBorders)
     {
-        mainTerritory.addBorderTerritories(addBorders);
+        mainCountry.addBorderTerritories(addBorders);
     }
 
-    // public boolean areConnected(Node A, Node B) {
-    //     String possibleEdge1 = A.getData().getTerritoryName() + B.getData().getTerritoryName();
-    //     String possibleEdge2 = B.getData().getTerritoryName() + A.getData().getTerritoryName();
-
-    //     for (String edge : A.getE()) {
-    //         if (edge.equals(possibleEdge1) || edge.equals(possibleEdge2)) {
-    //             return true;
-    //         }
-    //     }
-
-    //     return false;
-    // }
-
+    
+    
+    /** 
+     *  method used for returning mapFile location
+     * 
+     * @return String       returns mapFile location
+     */
     public String getMapDirectory(){
         return System.getProperty("user.dir")+"/src/main/java/project/app/warzone/Utilities/Maps";
-        //return "/warzone/src/main/java/project/app/warzone/Utilities/Maps";
-       // /Users/aishwaryashinde/Desktop/warzone-project/warzone/src/main/java/project/app/warzone/Utilities/Maps
     }
 
+
+    
+    /** 
+     * returns user selected file
+     * 
+     * @return String          returns user selected file
+     */
     public String get_USER_SELECTED_FILE() {
         return USER_SELECTED_FILE;
       }
     
-      // Setter
-      public void set_USER_SELECTED_FILE(String newFile) {
-        this.USER_SELECTED_FILE = newFile;
-      }
+    
+    
+    /**
+     * method for setting user selected file 
+     * 
+     * @param newFile       used for setting user selected file
+     */
+    public void set_USER_SELECTED_FILE(String newFile) {
+    this.USER_SELECTED_FILE = newFile;
+    }
 
+
+    
+    /** 
+     * method used to check if file exists
+     * 
+     * @param p_filename        storing filename to check 
+     * @return boolean          returns result
+     */
     public boolean fileExists(String p_filename){
 
         System.out.println(getMapDirectory());
@@ -108,9 +149,13 @@ public class Map {
         
     }
 
+
+    
+    /** 
+     * @param p_mapFile     storing mapFile name
+     */
     public void createNewMapFile(String p_mapFile)
     {
-        //String test=map.getMapDirectory()+"/"+mapFile+".map";
         File newFile = new File(getMapDirectory()+"/"+p_mapFile+".map");
          try {
             // Create the new file
