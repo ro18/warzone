@@ -4,27 +4,27 @@ package project.app.warzone.Model;
  */
 public class Continent {
 
-    private String continentName;
-    private Integer bonus;
+    private String d_continentName;
+    private Integer d_bonus;
 
     /**
      * Intializing continentName 
      * 
-     * @param continentName         continent name
+     * @param p_continentName         continent name
      */
-    public Continent(String continentName) {
-        this.continentName = continentName;
+    public Continent(String p_continentName) {
+        this.d_continentName = p_continentName;
     }
 
     /**
      * Intializing continentName and bonus
      * 
-     * @param continentName         continent name
-     * @param bonus                 bonus value
+     * @param p_continentName         continent name
+     * @param p_bonus                 bonus value
      */
-    public Continent(String continentName, Integer bonus) {
-        this.continentName = continentName;
-        this.bonus = bonus;
+    public Continent(String p_continentName, Integer p_bonus) {
+        this.d_continentName = p_continentName;
+        this.d_bonus = p_bonus;
     }
 
     
@@ -32,7 +32,7 @@ public class Continent {
      * @return String              returns Continent name 
      */
     public String getContinentName() {
-        return continentName;            
+        return d_continentName;            
     }
 
 
@@ -41,22 +41,22 @@ public class Continent {
      * @return int                returns Bonus value
      */
     public int getBonus() {
-        return bonus;                      
+        return d_bonus;                      
     }
 
      /** 
-     * @param newBonus            storing new Bonus value to be set
+     * @param p_newBonus            storing new Bonus value to be set
      */
-    public void setBonus(int newBonus) {
-        bonus = newBonus;
+    public void setBonus(int p_newBonus) {
+        d_bonus = p_newBonus;
     }
     
     
     /** 
-     * @param newContinentName          storing new continent name to be set
+     * @param p_newContinentName          storing new continent name to be set
      */
-    public void setContinentName(String newContinentName) {
-        continentName = newContinentName;
+    public void setContinentName(String p_newContinentName) {
+        d_continentName = p_newContinentName;
     }
 
 
