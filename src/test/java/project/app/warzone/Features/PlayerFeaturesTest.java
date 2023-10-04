@@ -3,6 +3,7 @@ package project.app.warzone.Features;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Player;
+import project.app.warzone.Utilities.MapResources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +21,15 @@ public class PlayerFeaturesTest {
     public GameEngine gameEngine;
     public Map gameMap;
     public MapFeatures mapFeatures;
+    public MapResources mapResources;
 
     @BeforeEach
     public void setUp(){
 
         this.gameEngine = new GameEngine(gameMap);
         this.gameMap = new Map();
-        this.mapFeatures = new MapFeatures();
+        this.mapResources = new MapResources();
+        this.mapFeatures = new MapFeatures(mapResources);
 
         String p_mapLocation = gameEngine.gameMap.getMapDirectory()+"\\europe.map";
         gameEngine.gameMap = mapFeatures.readMap(p_mapLocation);

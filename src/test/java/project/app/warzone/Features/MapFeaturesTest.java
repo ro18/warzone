@@ -1,32 +1,25 @@
 package project.app.warzone.Features;
-import static org.junit.Assert.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.stringtemplate.v4.compiler.STParser.mapExpr_return;
-import project.app.warzone.Features.MapFeatures;
 
 
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
+import project.app.warzone.Utilities.MapResources;
 
 
 public class MapFeaturesTest {
 
     public MapFeatures mapFeatures;
+    public MapResources mapResouces;
 
     @BeforeEach
     public void setUp(){
-        this.mapFeatures = new MapFeatures();
+        this.mapResouces = new MapResources();
+        this.mapFeatures = new MapFeatures( mapResouces);
     }
     
     @Test

@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
  * This class stores the current database for user to create custom maps
  */
 @Component
-public class MapResouces {
+public class MapResources {
     Map<Integer, String> listofContinents= new HashMap<Integer,String>();
     Map<Integer, String> listofCountries= new HashMap<Integer, String>();
 
     /**
      * Constructor for MapResources
      */
-    public MapResouces(){
+    public MapResources(){
 
         setAllContinents();
         setAllCountries();
