@@ -6,6 +6,7 @@ import org.springframework.shell.standard.ShellOption;
 
 import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.Player;
 import project.app.warzone.Utilities.Commands;
 
 /**
@@ -17,6 +18,7 @@ public class PlayerCommands {
     public GameEngine gameEngine;
     public PlayerFeatures playerFeatures;
     public String prevUserCommand; 
+    public static int d_currentPlayerId = 1;
 
     public PlayerCommands(GameEngine gameEngine,PlayerFeatures playerFeatures){
         this.gameEngine = gameEngine;
@@ -92,12 +94,13 @@ public class PlayerCommands {
      */
     @ShellMethod(key= "assigncountries", value="This is used to assign countries to players randomly")
     public String assigncountries(){
-        
+        Player player = gameEngine.getPlayers().get(PlayerCommands.d_currentPlayerId);
         playerFeatures.assignCountries(gameEngine);
         System.out.println("Assigned Countries to the players are:");
         playerFeatures.showAllAssignments(gameEngine.getPlayers());
         //playerFeatures.initializeArmies(gameEngine.getPlayers());
-        return "Assignment of countries is completed. Enter showStats command to see you armies.";
+        gameEngine.prevUserCommand = Commands.ASSIGNCOUNTRIES;
+        return "Assignment of countries is completed. \nNow its turn of player: "+player.getL_playername()+" to deploy armies";
 
     }
 
@@ -116,6 +119,11 @@ public class PlayerCommands {
 
     }
 
-
-
+    @ShellMethod(key = "deploy", value = "This is used to deploy armies")
+    public String deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
+        if(gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
+            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
+        }
+        return playerFeatures.deployArmies(gameEngine, p_countryID, p_armies);
+    }
 }

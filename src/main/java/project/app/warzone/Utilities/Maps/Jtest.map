@@ -1,0 +1,17 @@
+[continents]
+Pink 5 
+Blue 3
+
+[countries]
+1 Rock 1 
+2 Roll 1 
+3 Greek 2
+4 Lamp 2 
+5 Shade 2 
+
+[borders]
+1 2
+2 1 3
+3 2
+4 5
+5 4

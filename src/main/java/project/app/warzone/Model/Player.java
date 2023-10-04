@@ -1,11 +1,12 @@
 package project.app.warzone.Model;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
 /**
- * This class is used to store the territories for the map
+ * This class represents a player in the Warzone game.
  */
 public class Player 
 {
@@ -14,11 +15,15 @@ public class Player
 		public String d_playername; //Name of the player assigned by the  user
 		public int d_reinforcementPool; //Total number of players available to deploy in each round
 		
-        public List<Country> d_listOfCountriesOwned; //List of countries owned by the player 
-		public Stack<Order> d_listOfOrders; //stores orders issued by the player 
+        public List<Country> d_listOfCountriesOwned;
+		public Queue<Order> d_listOfOrders = new ArrayDeque<> ();
 	
 
-
+	/**
+     * Creates a new player with the given ID.
+     * @param p_playerid The ID of the player.
+	 * @param p_playername The name of the player.
+     */
         public Player(int p_playerid ,String p_playername) {
             this.d_playerid = p_playerid;
             this.d_playername = p_playername;
@@ -86,6 +91,18 @@ public class Player
 		public void setL_playername(String l_playername) {
 			d_playername = l_playername;
 		}
+	
+		public void setReinforcementMap(int noOfArmies){
+            this.d_reinforcementPool= noOfArmies;
+        }
+
+		public int getReinforcementMap(){
+			return d_reinforcementPool;
+		}
+
+		public List<Country> getlistOfCountriesOwned() {
+			return d_listOfCountriesOwned;
+		}
 
 
 		
@@ -104,30 +121,29 @@ public class Player
 		public List<Country> getListOfTerritories(){
 			return d_listOfCountriesOwned;
 		}
-
-
-
 		
-		/** 
-		 * @param order
+		/**
+		 * This method adds the order to the list of orders of the player
 		 */
+
 		public void issue_order(Order order) {
-			d_listOfOrders.push(order);
+			d_listOfOrders.add(order);
+			this.setReinforcementMap(this.getReinforcementArmies() - order.getL_numberOfArmies());
 		}
 
-
-		public void clear_orderList(){
-			d_listOfOrders.clear();
-		}
+		/**
+		 * This method pops and returns the first order from the list of orders
+		 * @return The latest Order Object
+		 */
 		
 		
 		/** 
 		 * @return Order
 		 */
 		public Order next_order() {
-			return d_listOfOrders.pop();
-			
-			
+			if(d_listOfOrders.size()>0)
+				return d_listOfOrders.remove();
+			return null;
 		}
 		
 
