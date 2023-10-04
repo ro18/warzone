@@ -2,10 +2,10 @@ package project.app.warzone.Model;
 
 public class Territory {
 
-    private String territoryName;
-    private int ownerId;
-    private int numberOfArmies;
-    private Continent continent;
+    String territoryName;
+    int ownerId;
+    int numberOfArmies;
+    Continent continent;
 
 
     public Territory() {}

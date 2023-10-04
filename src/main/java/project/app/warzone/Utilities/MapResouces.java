@@ -1,16 +1,9 @@
 package project.app.warzone.Utilities;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
-
-import project.app.warzone.Model.Continent;
 
 @Component
 public class MapResouces {
