@@ -346,7 +346,7 @@ public class MapFeatures {
 
             }
             if(l_line==null){
-                l_lineToWrite.add(" ");
+                l_lineToWrite.add("\n");
                 l_lineToWrite.add("[countries]");
 
                 
@@ -393,64 +393,120 @@ public class MapFeatures {
                 
    }
 
+ public List<String> copyContentsOfFile(List<String> p_fileCopy, String p_filePath){
+
+
+    try(BufferedReader l_reader = new BufferedReader(new FileReader(p_filePath))){
+        p_fileCopy.add(l_reader.readLine());
+
+    }
+    catch(IOException e){
+        e.printStackTrace();
+
+        }   
+
+        return p_fileCopy;
+
+ }
+
  public void writeCountriesNeighborToFile(java.util.Map<String, String> listofCountries,GameEngine gameEngine)throws IOException{
 
     String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
 
+    List<String> fileCopy= new ArrayList<>();
+    fileCopy = copyContentsOfFile(fileCopy, l_mapLocation);
+
 //java.util.Map<Integer, String> listOfCountriesResource = mapResouces.getAllCountries();
                     List<String> l_lineToWrite =new ArrayList<String>();
 
-        try(BufferedReader l_reader = new BufferedReader(new FileReader(l_mapLocation));){
+        //try(BufferedReader l_reader = new BufferedReader(new FileReader(l_mapLocation))){
+        for(String s : fileCopy){
 
             
-            String l_line = l_reader.readLine();
-            while(l_line!=null && !l_line.toString().equals("[borders]") ){
-               System.out.println(l_line);
-               System.out.println(l_line!="[borders]");
-                l_line=l_reader.readLine();
+            //String l_line = l_reader.readLine();
+            if(s==null && s.toString().equals("[borders]") ){
+               //System.out.println(l_line);
+              // System.out.println(l_line!="[borders]");
+                //s=l_reader.readLine();
+                continue;
+                
 
             }
-            if(l_line==null){
-                l_lineToWrite.add(" ");
-                l_lineToWrite.add("[borders]");
+            else{
+            if(s==null){
+                String l_newLine;
+                //l_lineToWrite.add(" ");
+               // l_lineToWrite.add("[borders]");
+                // try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
+
+                //         l_newLine="[borders]";
+                //         writer.append(l_newLine);
+                //         writer.newLine();
+                //         writer.flush();
+                //         writer.close();
+                //     }
+                //     catch(IOException e){
+                //     e.printStackTrace();
+
+                //     }   
+
+                fileCopy.add("[borders]");
 
                 
-                }
+            }
 
             else{
-                l_line=l_reader.readLine();
-                while(l_line != "" && l_line != null){
-                   l_line=l_reader.readLine();
-                 }
-            }
-            l_reader.close(); 
+            for(String countryId: listofCountries.keySet()){
+                String l_newLine;
 
-            }
-                           
-        catch(IOException e){
-    e.printStackTrace();
-
-
-       }
-
-       try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
-       for(String countryId : listofCountries.keySet()){
+                while(s.contains(countryId)){
+                //l_line=l_reader.readLine();
                 
-                l_lineToWrite.add(countryId+" "+listofCountries.get(countryId));
-                System.out.println(countryId+" "+listofCountries.get(countryId));
-            }
-       for(String line : l_lineToWrite){
-                writer.append(line);
-                writer.newLine();
-                writer.flush();
                 }
-            writer.close();
+                if(l_line != null  && l_line.contains(countryId)){
+                    try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
 
+                      //  String l_oldLine =l_newLine;
+                        l_newLine=l_line+" "+listofCountries.get(countryId);
+                        writer.write(l_newLine);
+                        //writer.newLine();
+
+                        writer.flush();
+                        writer.close();
+                    }
+                    catch(IOException e){
+                    e.printStackTrace();
+
+                    }   
+                }
+                else{
+                    try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
+
+                        l_newLine = countryId+" "+listofCountries.get(countryId);
+                        writer.append(l_newLine);
+                        writer.newLine();
+                        writer.flush();
+                        writer.close();
+                    }
+                    catch(IOException e){
+                    e.printStackTrace();
+
+                    } 
+
+                }
             }
-        catch(IOException e){
-      e.printStackTrace();
+        }
+        }
 
-        }         
+        }
+                           
+        // catch(IOException e){
+        // e.printStackTrace();
+
+
+        // }
+
+            
 
 }
 

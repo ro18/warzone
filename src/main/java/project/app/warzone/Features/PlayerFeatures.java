@@ -1,6 +1,4 @@
 package project.app.warzone.Features;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -60,6 +58,10 @@ public class PlayerFeatures {
 
     }
 
+    /**
+     * @param p_playerNames
+     * @param gameEngine
+     */
     public void removePlayers(String[] p_playerNames, GameEngine gameEngine){
 
         List<Player> playerList = gameEngine.getPlayers();
