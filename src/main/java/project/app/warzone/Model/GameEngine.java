@@ -17,7 +17,7 @@ public class GameEngine {
 
 
     public GameEngine(Map gameMap ){
-        this.gameMap = new Map(); // this is required
+        this.gameMap = gameMap;
         this.d_playersList = new ArrayList<>();
     } 
     public List<Player> getPlayers() {
