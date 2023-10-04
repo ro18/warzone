@@ -34,7 +34,7 @@ public class Map {
     /**
      * method used for returning all territories 
      * 
-     * @return List<Node>   returns all territories in the map
+     * @return    returns all territories in the map
      */
     public List<Node> getNodes() {
         return nodes;
@@ -71,7 +71,7 @@ public class Map {
     /**
      *  method used for returning list of continents
      * 
-     * @return List<Continent>      returns list of continents
+     * @return               returns list of continents
      */
     public List<Continent> getListOfContinents() {
         return listOfContinents;

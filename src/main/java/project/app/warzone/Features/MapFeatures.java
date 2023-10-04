@@ -175,7 +175,7 @@ public class MapFeatures {
      * 
      * @param p_allNodes                storing list of all nodes
      * @param l_visitedList             storing list of visited nodes
-     * @return Map<Node, Boolean>       storing map
+     * @return                          storing map
      */
     public java.util.Map<Node,Boolean> validateByNodes(List<Node> p_allNodes, java.util.Map<Node,Boolean> l_visitedList){
 

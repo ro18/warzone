@@ -115,7 +115,7 @@ public class Player
 
 		
 		/** 
-		 * @return List<Territory>		returns players' list of territory
+		 * @return List<Country>		returns players' list of territory
 		 */
 		public List<Country> getListOfTerritories(){
 			return d_listOfCountriesOwned;

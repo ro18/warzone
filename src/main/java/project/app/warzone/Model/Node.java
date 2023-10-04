@@ -41,7 +41,7 @@ public class Node {
 
     
     /** 
-     * @return List<Node>           returns bordernodes
+     * @return                 returns bordernodes
      */
     public List<Node> getBorders() { 
         return borderNodes;
