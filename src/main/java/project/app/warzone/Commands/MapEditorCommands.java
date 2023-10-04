@@ -57,7 +57,7 @@ public class MapEditorCommands {
         gameEngine.gameMap = mapFeatures.readMap(p_mapLocation);
         Boolean l_result = mapFeatures.validateEntireGraph(gameEngine);
         if(!l_result){
-            return("PLease try with some other map");
+            return("This map is not valid.Please try with some other map");
         }
         else{
             return("You can now proceed to add gameplayers");

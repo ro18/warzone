@@ -263,6 +263,9 @@ public class MapFeatures {
     public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,java.util.Map<Node,Boolean> l_visitedList){
 
         List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
+        if(l_nodesOfContinent.size() == 0){
+            return false;
+        }
         l_visitedList =validateByNodes(l_nodesOfContinent,l_visitedList);
         for( Node n : l_nodesOfContinent){
             if(l_visitedList.containsKey(n) && !l_visitedList.get(n)){
