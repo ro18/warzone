@@ -207,14 +207,13 @@ public class MapFeatures {
 
 
 
-    public java.util.Map<Node,Boolean> validateByNodes(List<Node> p_allNodes, java.util.Map<Node,Boolean> l_visitedList){
+    public HashMap<Node,Boolean> validateByNodes(List<Node> p_allNodes, HashMap<Node,Boolean> l_visitedList){
 
         for( Node l_currentNode : p_allNodes){ 
             if(!l_visitedList.keySet().contains(l_currentNode)){
                 l_visitedList.put(l_currentNode,false);
             }
           
-
         }
 
        Node n = l_visitedList.entrySet().iterator().next().getKey();
@@ -224,47 +223,31 @@ public class MapFeatures {
 
     }
 
-    public Boolean validateEntireGraph(GameEngine gameEngine){
-
-
-        System.out.println();
-        System.out.println("------------------------------");
-
-        System.out.println("Validating map...");
-        java.util.Map<Node,Boolean> l_visitedList = new HashMap<Node,Boolean>();
-
-        List<Continent> l_listOfContinent = gameEngine.gameMap.getListOfContinents();
+    public Boolean validateEntireGraph (GameEngine gameEngine) {
+        HashMap<Node, Boolean> l_visitedList = new HashMap<Node, Boolean>();
         List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
 
-        for(Continent con : l_listOfContinent){
-            
-            Boolean l_result = validateSubGraph(con, l_listOfNodes,l_visitedList);
-            if(!l_result){
-                return false;
-            }            
+        if (l_listOfNodes.size() == 0) return true;
 
-        }
-                        
-        
-
-        System.out.println("Final visited list:");
-        for(Node n : l_visitedList.keySet()){
-
-            System.out.println(n.getData().getTerritoryName()+":"+l_visitedList.get(n));
-
+        for (Node country: l_listOfNodes) {
+            l_visitedList.put(country, false);
         }
 
+        this.depthFirstSearch(l_listOfNodes.get(0), l_visitedList);
+
+        for (Boolean isVisited: l_visitedList.values()) {
+            if (!isVisited) return false;
+        }
         return true;
-
-        
-
     }
 
-    public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,java.util.Map<Node,Boolean> l_visitedList){
+    
+
+    public boolean validateSubGraph (Continent con, List<Node> l_listOfNodes, HashMap<Node,Boolean> l_visitedList){
 
         List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
-        l_visitedList =validateByNodes(l_nodesOfContinent,l_visitedList);
-        for( Node n : l_nodesOfContinent){
+        l_visitedList = validateByNodes(l_nodesOfContinent,l_visitedList);
+        for (Node n : l_nodesOfContinent) {
             if(l_visitedList.containsKey(n) && !l_visitedList.get(n)){
                 System.out.println(con.getContinentName()+" is not connected");
                 System.out.println(n.getData().getTerritoryName()+" cannot be reached");
@@ -274,31 +257,36 @@ public class MapFeatures {
 
         return true;
 
-
     }
 
-    private java.util.Map<Node,Boolean> depthFirstSearch(Node currentCountry, java.util.Map<Node,Boolean> l_visitedList){
+    public boolean validateContinent(GameEngine gameEngine, Continent continent) {
+        HashMap<Node, Boolean> l_visitedList = new HashMap<Node, Boolean>();
+        List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
 
-        l_visitedList.put(currentCountry,true);
+        List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(continent)).toList();
+
+        for (Node country: l_nodesOfContinent) {
+            l_visitedList.put(country, false);
+        }
+
+        this.depthFirstSearch(l_nodesOfContinent.get(0), l_visitedList);
+
+        for (Node country: l_nodesOfContinent) {
+            if (!l_visitedList.get(country)) return false;
+        }
+        return true;
+    }
+
+    private void depthFirstSearch(Node currentCountry, HashMap<Node, Boolean> l_visitedList) {
+
+        if (l_visitedList.getOrDefault(currentCountry, true)) return;
+
+        l_visitedList.put(currentCountry, true);
 
         List<Node> l_listOfBorderNodes = currentCountry.getBorders();
 
         for( Node l_currentNode : l_listOfBorderNodes){ 
-                       
-            if(!l_visitedList.keySet().contains(l_currentNode)){
-              l_visitedList.put(l_currentNode,false);
-
-            }        
-
+            depthFirstSearch (l_currentNode, l_visitedList);
         }
-
-
-        for(Node node : l_listOfBorderNodes){
-            if(l_visitedList.get(node) != true){
-                depthFirstSearch(node,l_visitedList);
-            }
-        }
-
-        return l_visitedList;
     }
 }
