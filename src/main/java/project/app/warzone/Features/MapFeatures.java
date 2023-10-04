@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -276,23 +277,16 @@ public class MapFeatures {
      */
     public void writeContinentsToFile(java.util.Map<String, String> listofContinents,GameEngine gameEngine) throws IOException{
 
-        for(String s : listofContinents.keySet()){
-            System.out.println(s);
-        }
-        System.out.println();
         String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
         java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
 
          try(BufferedWriter writer = new BufferedWriter(new FileWriter(l_mapLocation, true))){
 
             BufferedReader l_reader = new BufferedReader(new FileReader(l_mapLocation));
-            //System.out.println(l_reader.readLine());
-            //System.out.println(l_reader.readLine());
             List<String> l_lineToWrite =new ArrayList<String>();
             String l_line = l_reader.readLine();
             if(l_line == null){
                 
-                System.out.println("l_mapLocation" +l_mapLocation);
                 l_lineToWrite.add("[continents]");
             }
             else if(l_line == "[continents]"){
@@ -307,8 +301,7 @@ public class MapFeatures {
        for(String continentId : listofContinents.keySet()){
                 
                 l_lineToWrite.add(listOfContinentsResource.get(Integer.parseInt(continentId))+" "+listofContinents.get(continentId));
-                //System.out.println(listOfContinentsResource.get(Integer.parseInt(continentId))+" "+listofContinents.get(continentId));
-                //l_lineToWrite.add(continentId;
+;
             }
 
        for(String line : l_lineToWrite){
@@ -316,6 +309,7 @@ public class MapFeatures {
                 writer.newLine();
                 writer.flush();
                 }
+            writer.write(System.getProperty("line.separator"));
             writer.close();
 
             
@@ -335,16 +329,9 @@ public class MapFeatures {
 
             
             String l_line = l_reader.readLine();
-            // if(l_line == "[continents]"){
-            //     l_line=l_reader.readLine();
-            //     while(l_line != " "){
-            //        l_line=l_reader.readLine();
-            //     }
-            // }
-            //boolean l_foundCountries =false;
+
             while(l_line!=null && !l_line.toString().equals("[countries]") ){
-               System.out.println(l_line);
-               System.out.println(l_line!="[countries]");
+
                 l_line=l_reader.readLine();
 
             }
@@ -386,6 +373,7 @@ public class MapFeatures {
                 writer.newLine();
                 writer.flush();
                 }
+            writer.write(System.getProperty("line.separator"));
             writer.close();
 
             }
@@ -396,32 +384,11 @@ public class MapFeatures {
                 
    }
 
- public List<String> copyContentsOfFile(List<String> p_fileCopy, String p_filePath){
 
-
-    try(BufferedReader l_reader = new BufferedReader(new FileReader(p_filePath))){
-        p_fileCopy.add(l_reader.readLine());
-
-    }
-    catch(IOException e){
-        e.printStackTrace();
-
-        }   
-
-        return p_fileCopy;
-
- }
 
  public void writeCountriesNeighborToFile(java.util.Map<String, String> listofNeighBours,GameEngine gameEngine)throws IOException{
 
     String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
-
-    List<String> fileCopy= new ArrayList<>();
-    //fileCopy = copyContentsOfFile(fileCopy, l_mapLocation);
-
-    List<String> l_lineToWrite =new ArrayList<String>();
-
-    // System.out.println(l_mapLocation);
 
     File inputFile = new File(l_mapLocation);
     File tempFile = new File(gameEngine.gameMap.getMapDirectory()+"/tempMap.map");
@@ -431,51 +398,46 @@ public class MapFeatures {
 
     String currentLine;
     //List<String> countriesToremoved = listofNeighBours;
-    System.out.println(listofNeighBours);
     do{
         currentLine = reader.readLine();
-        if(currentLine == null) break;
+        if(currentLine == null){
+            writer.write("[borders]" + System.getProperty("line.separator"));
+
+            break;
+        } 
         writer.write(currentLine + System.getProperty("line.separator"));
     }
     while(!currentLine.toString().equals("[borders]"));
 
-    if(currentLine == null){
-        writer.write("[borders]" + System.getProperty("line.separator"));
-        currentLine = currentLine +" "+listofNeighBours.get(0);
-        writer.write(currentLine + System.getProperty("line.separator"));
+    while(currentLine != null){
+
+        System.out.println(currentLine.toString().split(" ")[0]);
+        if(listofNeighBours.keySet().contains(currentLine.split(" ")[0]))
+        {
+            currentLine = currentLine +" "+listofNeighBours.get((currentLine.split(" ")[0]));
+            listofNeighBours.remove(currentLine.split(" ")[0]);
+
+
+            writer.write(currentLine + System.getProperty("line.separator"));
+
+
+        }
+        currentLine= reader.readLine();
+    } 
+
+    for(String l_i : listofNeighBours.keySet()){
+        currentLine = l_i+" "+listofNeighBours.get(l_i);
+
+        writer.write(currentLine+System.getProperty("line.separator"));
 
 
     }
-    
+    writer.write(System.getProperty("line.separator"));
 
-        while((currentLine = reader.readLine()) != null) {
-        //System.out.println(currentLine);
-        
-        for(String countryID : listofNeighBours.keySet()){
-
-            System.out.println(currentLine.contains(countryID));
-            if(currentLine.contains(countryID)){
-                currentLine = currentLine +" "+listofNeighBours.get((countryID));
-
-            }
-            writer.write(currentLine + System.getProperty("line.separator"));
-
-        }
-
-    
-
-        }
-    
-        
-   
     writer.close(); 
     reader.close(); 
     inputFile.delete();
     tempFile.renameTo(inputFile);
-
-
-
-
             
 
 }
@@ -567,6 +529,61 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
             
 }
 
+
+public void removeborderFromFile(java.util.Map<String, String> listofNeighBours,GameEngine gameEngine)throws IOException{
+    
+    String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
+
+    File inputFile = new File(l_mapLocation);
+    File tempFile = new File(gameEngine.gameMap.getMapDirectory()+"/tempMap.map");
+
+    BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+    BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+    String currentLine;
+
+    do{
+    currentLine = reader.readLine();
+    if(currentLine == null) break;
+    writer.write(currentLine + System.getProperty("line.separator"));
+    }
+    while(!currentLine.toString().equals("[borders]"));
+
+
+     while(currentLine != null){
+
+        String finalString="";
+
+        if(listofNeighBours.keySet().contains(currentLine.split(" ")[0]))
+        {
+            String[] mainString = currentLine.split(" ");
+            String l_ToRemove = listofNeighBours.get(mainString[0]);
+            for(int i=1 ; i < mainString.length ;i++){
+                if(l_ToRemove.contains(mainString[i].toString())){
+                    mainString[i]="";
+                }
+            }
+            for(String s : mainString){
+                finalString=finalString+" "+s;
+            }
+            currentLine=finalString.trim();
+           
+
+
+
+        }
+        writer.write(currentLine + System.getProperty("line.separator"));
+
+        currentLine= reader.readLine();
+    }
+    
+    writer.close(); 
+    reader.close(); 
+    inputFile.delete();
+    tempFile.renameTo(inputFile);     
+
+
+}
 
 
 }
