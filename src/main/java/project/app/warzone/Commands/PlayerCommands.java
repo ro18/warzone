@@ -39,7 +39,7 @@ public class PlayerCommands {
      * 
      * @param p_playerNameOne          storing player 1 name
      * @param p_playerNameTwo          storing player 2 name
-     * @return
+     * @return                         returns status of adding player
      */
     @ShellMethod(key= "gameplayer", prefix = "-", value="Player can create or remove a player")
     public String gamePlayerAdd(@ShellOption(value="a",defaultValue=ShellOption.NULL, arity = 10 ) String p_playerNameOne,@ShellOption(value="r", defaultValue=ShellOption.NULL, arity=10) String p_playerNameTwo){
@@ -95,7 +95,7 @@ public class PlayerCommands {
 
     
     /** 
-     * @return String
+     * @return String           returns status of assigncountries
      */
     @ShellMethod(key= "assigncountries", value="This is used to assign countries to players randomly")
     public String assigncountries(){
@@ -112,7 +112,7 @@ public class PlayerCommands {
 
     
     /** 
-     * @return String
+     * @return String       returns status of showstats
      */
     @ShellMethod(key= "showstats", value="Displays players armies and other details")
     public String showStats(){
@@ -124,6 +124,11 @@ public class PlayerCommands {
 
     }
 
+    /**
+     * @param p_countryID               storing country ID
+     * @param p_armies                  storing number of armies to deploy
+     * @return                          returns status of deploying army
+     */
     @ShellMethod(key = "deploy", value = "This is used to deploy armies")
     public String deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
         if(gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){

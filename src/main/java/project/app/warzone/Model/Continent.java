@@ -7,12 +7,21 @@ public class Continent {
     private String continentName;
     private Integer bonus;
 
-    //Intializing continentName 
+    /**
+     * Intializing continentName 
+     * 
+     * @param continentName         continent name
+     */
     public Continent(String continentName) {
         this.continentName = continentName;
     }
 
-    //Intializing continentName and bonus
+    /**
+     * Intializing continentName and bonus
+     * 
+     * @param continentName         continent name
+     * @param bonus                 bonus value
+     */
     public Continent(String continentName, Integer bonus) {
         this.continentName = continentName;
         this.bonus = bonus;
@@ -20,34 +29,34 @@ public class Continent {
 
     
     /** 
-     * @return String
+     * @return String              returns Continent name 
      */
     public String getContinentName() {
-        return continentName;              //returns Continent name
+        return continentName;            
     }
 
 
     
     /** 
-     * @return int
+     * @return int                returns Bonus value
      */
     public int getBonus() {
-        return bonus;                      //returns Bonus value
+        return bonus;                      
     }
 
      /** 
-     * @param newBonus
+     * @param newBonus            storing new Bonus value to be set
      */
     public void setBonus(int newBonus) {
-        bonus = newBonus;                 //used for setting new Bonus value
+        bonus = newBonus;
     }
     
     
     /** 
-     * @param newContinentName
+     * @param newContinentName          storing new continent name to be set
      */
     public void setContinentName(String newContinentName) {
-        continentName = newContinentName;           //used for setting new Continent name
+        continentName = newContinentName;
     }
 
 

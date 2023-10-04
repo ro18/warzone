@@ -34,10 +34,10 @@ public class Map {
     /**
      * method used for returning all territories 
      * 
-     * @return List<Node>
+     * @return List<Node>   returns all territories in the map
      */
     public List<Node> getNodes() {
-        return nodes; // returns all territories in the map
+        return nodes;
     }
 
 
@@ -45,8 +45,8 @@ public class Map {
     /**
      * method used for creating continent
      * 
-     * @param continentName
-     * @param continentBonus
+     * @param continentName         continent name to create
+     * @param continentBonus        storing bonus value
      */
     public void createContinent(String continentName, Integer continentBonus){
         Continent continent = new Continent(continentName,  continentBonus);
@@ -59,8 +59,8 @@ public class Map {
     /** 
      * method used for creating and inserting country
      * 
-     * @param countryName
-     * @param continent
+     * @param countryName           country name to create
+     * @param continent             storing continent name
      */
     public void createAndInsertCountry(String countryName, Continent continent){
         Country country = new Country(countryName,continent);
@@ -71,7 +71,7 @@ public class Map {
     /**
      *  method used for returning list of continents
      * 
-     * @return List<Continent>
+     * @return List<Continent>      returns list of continents
      */
     public List<Continent> getListOfContinents() {
         return listOfContinents;
@@ -82,8 +82,8 @@ public class Map {
     /**
      *  method used for adding borders
      * 
-     * @param mainCountry
-     * @param addBorders
+     * @param mainCountry       storing main country
+     * @param addBorders        storing borders to be added
      */
     public void addEdgesOfCountry(Node mainCountry , List<Node> addBorders)
     {
@@ -95,7 +95,7 @@ public class Map {
     /** 
      *  method used for returning mapFile location
      * 
-     * @return String
+     * @return String       returns mapFile location
      */
     public String getMapDirectory(){
         return System.getProperty("user.dir")+"/src/main/java/project/app/warzone/Utilities/Maps";
@@ -106,7 +106,7 @@ public class Map {
     /** 
      * returns user selected file
      * 
-     * @return String
+     * @return String          returns user selected file
      */
     public String get_USER_SELECTED_FILE() {
         return USER_SELECTED_FILE;
@@ -115,9 +115,9 @@ public class Map {
     
     
     /**
-     * used for setting user selected file 
+     * method for setting user selected file 
      * 
-     * @param newFile
+     * @param newFile       used for setting user selected file
      */
     public void set_USER_SELECTED_FILE(String newFile) {
     this.USER_SELECTED_FILE = newFile;
@@ -128,8 +128,8 @@ public class Map {
     /** 
      * method used to check if file exists
      * 
-     * @param p_filename
-     * @return boolean
+     * @param p_filename        storing filename to check 
+     * @return boolean          returns result
      */
     public boolean fileExists(String p_filename){
 
@@ -152,7 +152,7 @@ public class Map {
 
     
     /** 
-     * @param p_mapFile
+     * @param p_mapFile     storing mapFile name
      */
     public void createNewMapFile(String p_mapFile)
     {

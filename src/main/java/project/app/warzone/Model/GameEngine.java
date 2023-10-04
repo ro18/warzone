@@ -22,7 +22,7 @@ public class GameEngine {
     /**
      * Initializing gameMap and d_playersList
      * 
-     * @param gameMap
+     * @param gameMap           gameMap instance
      */
     public GameEngine(Map gameMap ){
         this.gameMap = new Map(); // this is required
@@ -32,19 +32,19 @@ public class GameEngine {
     /**
      * used for returning player list
      * 
-     * @return
+     * @return              returns player list
      */
     public List<Player> getPlayers() {
-        return d_playersList; // returns player list
+        return d_playersList;
     }
 
     /**
      * used for returning game map
      * 
-     * @return
+     * @return      returns gameMap
      */
     public Map getGameMap() {
-        return gameMap; // returns game map
+        return gameMap;
     }
 
     /**

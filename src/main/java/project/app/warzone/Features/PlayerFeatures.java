@@ -82,8 +82,8 @@ public class PlayerFeatures {
     }
 
      /**
-     * @param p_playerNames
-     * @param gameEngine
+     * @param p_playerNames             storing player names to set
+     * @param gameEngine                gameEngine object
      */
     public void setPlayerIds(GameEngine gameEngine){
         

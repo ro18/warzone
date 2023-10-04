@@ -2,9 +2,7 @@ package project.app.warzone.Commands;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -33,10 +31,10 @@ public class MapEditorCommands {
     /**
      * Constructor for MapEditorCommands
      * 
-     * @param mapFeatures
-     * @param gameEngine
-     * @param playerFeatures
-     * @param mapResources
+     * @param mapFeatures           MapFeatures object
+     * @param gameEngine            GameEngine object
+     * @param playerFeatures        PlayerFeatures object
+     * @param mapResources          MapResources object
      */
     public MapEditorCommands(MapFeatures mapFeatures, GameEngine gameEngine, PlayerFeatures playerFeatures, MapResources mapResources){
         this.mapFeatures = mapFeatures;
@@ -180,6 +178,13 @@ public class MapEditorCommands {
         }
 
     }
+
+    /**
+     * @param p_editcmd                edit country command
+     * @param p_editremovecmd          remove country command
+     * @return                         returns the status of editing country
+     * @throws IOException             throwing statement incase of any Exception 
+     */
     @ShellMethod(key = "editcountry", prefix = "-", value = "This is used to add continents")
     public String editcountry(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL) String p_editremovecmd) throws IOException {
@@ -260,6 +265,12 @@ public class MapEditorCommands {
 
     }
 
+    /**
+     * @param p_editcmd                     edit country command
+     * @param p_editremovecmd               remove country command
+     * @return                              returns the status of editing neighbor country
+     * @throws IOException                  throwing statement incase of any Exception 
+     */
     @ShellMethod(key = "editneighbor", prefix = "-", value = "This is used to add or update neighbor")
     public String editNeighbor(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_editremovecmd)
@@ -343,6 +354,10 @@ public class MapEditorCommands {
     }
 
 
+    /**
+     * @param p_filename           storing user selected file
+     * @return                     returns status of editing map
+     */
     @ShellMethod(key = "editmap", value = "This is used to add or create map")
     public String editmap(@ShellOption String p_filename) {
         if (gameEngine.gameMap.fileExists(p_filename)) {
