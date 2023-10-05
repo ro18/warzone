@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.GameEngine;
@@ -22,10 +21,6 @@ class WarzoneApplicationTest {
     public PlayerFeatures playerFeatures = new PlayerFeatures();;
     public GameEngine gameEngine;
     public Map gameMap;
-
-    // public PlayerFeaturesTest(GameEngine gameEngine){
-    //     this.gameEngine = gameEngine;
-    // }
 
     @BeforeEach
     public void setUp(){

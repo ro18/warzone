@@ -8,48 +8,59 @@ public enum Commands {
      *command to load map
      */
     LOADMAP,   
+    
       /**
-     *command to load map
+     *command to show map
      */                 
     SHOWMAP,  
+
       /**
-     *command to load map
+     *command to add player
      */                  
     ADDPLAYER,   
+
       /**
-     *command to load map
+     *command to remove player
      */               
     REMOVEPLAYER,  
+
       /**
-     *command to load map
+     *command to edit map
      */            
     EDITMAP,     
+
       /**
-     *command to load map
+     *command to assign countries
      */                
     ASSIGNCOUNTRIES, 
+
       /**
-     *command to load map
+     *command to add continent
      */           
     ADDCONTINENT,
+
       /**
-     *command to load map
+     *command to remove continent
      */
     REMOVECONTINENT,
+
       /**
-     *command to load map
+     *command to add country
      */
     ADDCOUNTRY,
+
       /**
-     *command to load map
+     *command to remove country
      */
     REMOVECOUNTRY,
+
       /**
-     *command to load map
+     *command to add neighbor country
      */
     ADDNEIGHBOUR,
+
       /**
-     *command to load map
+     *command to remove neighbor country
      */
     REMOVENEIGHBOUR
 

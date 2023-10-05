@@ -19,12 +19,11 @@ public class Player
 		public Queue<Order> d_listOfOrders = new ArrayDeque<> (); //stores orders issued by the player 
 	
 		/**
-     * Creates a new player with the given ID.
-     * @param p_playerid The ID of the player.
-	 * @param p_playername The name of the player.
-     */
-
-        public Player(int p_playerid ,String p_playername) {
+    	 * Creates a new player with the given ID.
+    	 * @param p_playerid The ID of the player.
+	 	* @param p_playername The name of the player.
+     	*/
+		public Player(int p_playerid ,String p_playername) {
             this.d_playerid = p_playerid;
             this.d_playername = p_playername;
             this.d_listOfCountriesOwned = new ArrayList<>();
@@ -116,7 +115,7 @@ public class Player
 
 		
 		/** 
-		 * @return List<Territory>		returns players' list of territory
+		 * @return             			returns players' list of territory
 		 */
 		public List<Country> getListOfTerritories(){
 			return d_listOfCountriesOwned;

@@ -5,77 +5,104 @@ package project.app.warzone.Model;
  */
 public class Country {
 
-    private String CountryName;
-    private int ownerId;
-    private int numberOfArmies;
-    private Continent continent;
-    private int countryId;
+    private String d_countryName;
+    private int d_ownerId;
+    private int d_numberOfArmies;
+    private Continent d_continent ;
+    private int d_countryId;
 
 
-    public Country() {}         //default constructor
+    /**
+     * Constructor for Country
+     */
+    public Country() {}    
 
     /**
      * Constructor for initializing countryname, continent, ownerid, numberofarmies
      * 
-     * @param CountryName
-     * @param continent
-     * @param ownerId
-     * @param numberOfArmies
+     * @param p_countryName           storing country name
+     * @param p_continent             storing continent 
+     * @param p_ownerId               storing owner id
+     * @param p_numberOfArmies        storing number of armies
      */
-    public Country(String CountryName, Continent continent, int countryId,int ownerId, int numberOfArmies) {
-        this.CountryName = CountryName;
-        this.ownerId = ownerId;
-        this.numberOfArmies = numberOfArmies;
-        this.continent = continent;
-        this.countryId = countryId;
+    public Country(int p_countryId,String p_countryName, Continent p_continent, int p_ownerId, int p_numberOfArmies) {
+        this.d_countryName = p_countryName;
+        this.d_ownerId = p_ownerId;
+        this.d_numberOfArmies = p_numberOfArmies;
+        this.d_continent = p_continent;
+        this.d_countryId=p_countryId;
     }
 
     /**
      * Constructor for initializing countryname
      * 
-     * @param CountryName
-     * @param continent
+     * @param p_countryName           storing country name
+     * @param p_continent             storing continent
      */
-    public Country(int countryId,String CountryName, Continent continent) {
-        this.CountryName = CountryName;
-        this.continent = continent;
-        this.countryId=countryId;
+    public Country(int p_countryId,String p_countryName, Continent p_continent) {
+        this.d_countryName = p_countryName;
+        this.d_continent = p_continent;
+        this.d_countryId=p_countryId;
     }
 
+    /**
+     * @return                  returns Countryname
+     */
     public String getCountryName() {
-        return CountryName;             //returns Countryname
+        return d_countryName;
     }
 
+    /**
+     * @return                  returns ownerId
+     */
     public int getOwnerId() {
-        return ownerId;                 //returns ownerId
+        return d_ownerId;
     }
 
+    /**
+     * @return                  returns numberofArmies
+     */
     public int getNumberOfArmies() {
-        return numberOfArmies;          //returns numberofArmies
+        return d_numberOfArmies;          
     }
 
     public int getCountryId(){
-        return countryId;
+        return d_countryId;
     }
 
+    /**
+     * @return                  returns continent
+     */
     public Continent getContinent() {
-        return continent;               //returns continent
+        return d_continent;               
     }
 
-    public void setCountryName(String newCountryName) {
-        CountryName = newCountryName;       //used for setting newCountryname
+    /**
+     * @param p_newCountryName         used for setting newCountryname
+     */
+    public void setCountryName(String p_newCountryName) {
+        d_countryName = p_newCountryName;      
     }
 
-    public void setOwnerId(int newOwnerId) {
-        ownerId = newOwnerId;               //used for setting newOwnerId
+    /**
+     * @param p_newOwnerId              used for setting newOwnerId
+     */
+    public void setOwnerId(int p_newOwnerId) {
+        d_ownerId = p_newOwnerId;             
     }
 
-    public void setNumberOfArmies(int newNumberOfArmies) {
-        numberOfArmies = newNumberOfArmies;         //used for setting newNumberofArmies
+    /**
+     * @param p_newNumberOfArmies       used for setting newNumberofArmies
+     */
+    public void setNumberOfArmies(int p_newNumberOfArmies) {
+        d_numberOfArmies = p_newNumberOfArmies;         
     }
 
-    public void setContinent(Continent newContinent) {
-        continent = newContinent;                   //used for setting newContinent
+    /**
+     * @param p_newContinent            used for setting newContinent
+     */
+    public void setContinent(Continent p_newContinent) {
+        d_continent = p_newContinent;                   
     }
     
 }
