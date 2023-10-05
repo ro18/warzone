@@ -8,7 +8,8 @@ public class Country {
     private String d_countryName;
     private int d_ownerId;
     private int d_numberOfArmies;
-    private Continent d_continent;
+    private Continent d_continent ;
+    private int d_countryId;
 
 
     /**
@@ -24,11 +25,12 @@ public class Country {
      * @param p_ownerId               storing owner id
      * @param p_numberOfArmies        storing number of armies
      */
-    public Country(String p_countryName, Continent p_continent, int p_ownerId, int p_numberOfArmies) {
+    public Country(int p_countryId,String p_countryName, Continent p_continent, int p_ownerId, int p_numberOfArmies) {
         this.d_countryName = p_countryName;
         this.d_ownerId = p_ownerId;
         this.d_numberOfArmies = p_numberOfArmies;
         this.d_continent = p_continent;
+        this.d_countryId=p_countryId;
     }
 
     /**
@@ -37,9 +39,10 @@ public class Country {
      * @param p_countryName           storing country name
      * @param p_continent             storing continent
      */
-    public Country(String p_countryName, Continent p_continent) {
+    public Country(int p_countryId,String p_countryName, Continent p_continent) {
         this.d_countryName = p_countryName;
         this.d_continent = p_continent;
+        this.d_countryId=p_countryId;
     }
 
     /**
@@ -61,6 +64,10 @@ public class Country {
      */
     public int getNumberOfArmies() {
         return d_numberOfArmies;          
+    }
+
+    public int getCountryId(){
+        return d_countryId;
     }
 
     /**
