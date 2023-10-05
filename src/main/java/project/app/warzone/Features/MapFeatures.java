@@ -336,7 +336,7 @@ public class MapFeatures {
                 writer.newLine();
                 writer.flush();
                 }
-            writer.write(System.getProperty("line.separator"));
+            //writer.write(System.getProperty("line.separator"));
             writer.close();
 
             
@@ -368,7 +368,8 @@ public void writeCountriesToFile(java.util.Map<String, String> listofCountries,G
 
             }
             if(l_line==null){
-                l_lineToWrite.add("\n");
+                    l_lineToWrite.add( System.getProperty("line.separator"));
+
                 l_lineToWrite.add("[countries]");
 
                 
@@ -405,7 +406,7 @@ public void writeCountriesToFile(java.util.Map<String, String> listofCountries,G
                 writer.newLine();
                 writer.flush();
                 }
-            writer.write(System.getProperty("line.separator"));
+            //writer.write(System.getProperty("line.separator"));
             writer.close();
 
             }
@@ -438,6 +439,7 @@ public void writeCountriesNeighborToFile(java.util.Map<String, String> listofNei
     do{
         currentLine = reader.readLine();
         if(currentLine == null){
+            writer.write( System.getProperty("line.separator"));
             writer.write("[borders]" + System.getProperty("line.separator"));
 
             break;
@@ -469,7 +471,6 @@ public void writeCountriesNeighborToFile(java.util.Map<String, String> listofNei
 
 
     }
-    writer.write(System.getProperty("line.separator"));
 
     writer.close(); 
     reader.close(); 

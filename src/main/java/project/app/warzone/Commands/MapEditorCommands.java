@@ -103,7 +103,9 @@ public class MapEditorCommands {
         if (d_gameEngine.prevUserCommand == Commands.EDITMAP || d_gameEngine.prevUserCommand == Commands.ADDCONTINENT
                 || d_gameEngine.prevUserCommand == Commands.REMOVECONTINENT
                 || d_gameEngine.prevUserCommand == Commands.ADDCOUNTRY
-                || d_gameEngine.prevUserCommand == Commands.REMOVECOUNTRY) {
+                || d_gameEngine.prevUserCommand == Commands.REMOVECOUNTRY
+                || d_gameEngine.prevUserCommand == Commands.ADDNEIGHBOUR
+                || d_gameEngine.prevUserCommand == Commands.REMOVENEIGHBOUR) {
 
             if (p_editcmd != null && p_editcmd != "") {
                 d_gameEngine.prevUserCommand = Commands.ADDCONTINENT;
