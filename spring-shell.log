@@ -785,3 +785,24 @@
 1696436233876:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
 1696436278452:editneighbor -add 1 8
 >>>>>>> ef690850e4a0b2c5f107caf89ffa0e2c6ac73789
+1696462750448:loadmap europe
+1696462809676:showmap
+1696462815941:gameplayer -add anash
+1696462848843:assigncountries
+1696463352998:loadmap europe
+1696463355459:showmap
+1696463360027:gameplayer -add anash
+1696463367797:anash
+1696463372386:assigncountries
+1696463419051:loadmap europe
+1696463421680:showmap
+1696463424641:gameplayer -add anash
+1696463430006:assigncountries
+1696463565193:loadmap europe
+1696463567385:showmap
+1696463573934:gameplayer -add anash
+1696463576924:assigncountries
+1696464880316:loadmap europe
+1696464883095:showmap
+1696464886118:gameplayer -add anash
+1696464889296:assigncountries
