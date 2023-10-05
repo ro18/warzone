@@ -7,8 +7,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -175,7 +177,7 @@ public class MapFeatures {
      * 
      * @param p_allNodes                storing list of all nodes
      * @param l_visitedList             storing list of visited nodes
-     * @return                          storing map
+     * @return Map<Node, Boolean>       storing map
      */
     public java.util.Map<Node,Boolean> validateByNodes(List<Node> p_allNodes, java.util.Map<Node,Boolean> l_visitedList){
 
@@ -209,7 +211,7 @@ public class MapFeatures {
         System.out.println("------------------------------");
 
         System.out.println("Validating map...");
-        java.util.Map<Node,Boolean> l_visitedList = new HashMap<Node,Boolean>();
+        java.util.Map<Node,Boolean> l_visitedList = new LinkedHashMap<Node,Boolean>();
 
         List<Continent> l_listOfContinent = gameEngine.gameMap.getListOfContinents();
         List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
@@ -223,6 +225,8 @@ public class MapFeatures {
 
         }
                         
+        
+
         System.out.println("Final visited list:");
         for(Node n : l_visitedList.keySet()){
 
@@ -231,6 +235,9 @@ public class MapFeatures {
         }
 
         return true;
+
+        
+
     }
 
 
@@ -298,9 +305,9 @@ public class MapFeatures {
     }
 
      /**
-     * @param listofContinents              list of continents
-     * @param gameEngine                    gameEngine object
-     * @throws IOException                  throwing statement incase of any Exception 
+     * @param listofContinents
+     * @param gameEngine
+     * @throws IOException
      */
     public void writeContinentsToFile(java.util.Map<String, String> listofContinents,GameEngine gameEngine) throws IOException{
 
@@ -346,12 +353,7 @@ public class MapFeatures {
    }
   }
 
- /**
- * @param listofCountries           list of countries
- * @param gameEngine                gameEngine object
- * @throws IOException              throwing statement incase of any Exception 
- */
-public void writeCountriesToFile(java.util.Map<String, String> listofCountries,GameEngine gameEngine)throws IOException{
+ public void writeCountriesToFile(java.util.Map<String, String> listofCountries,GameEngine gameEngine)throws IOException{
    String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
         
         java.util.Map<Integer, String> listOfCountriesResource = mapResouces.getAllCountries();
@@ -418,12 +420,7 @@ public void writeCountriesToFile(java.util.Map<String, String> listofCountries,G
 
 
 
- /**
- * @param listofNeighBours              list of neighbor countries
- * @param gameEngine                    gameEngine object
- * @throws IOException                  throwing statement incase of any Exception 
- */
-public void writeCountriesNeighborToFile(java.util.Map<String, String> listofNeighBours,GameEngine gameEngine)throws IOException{
+ public void writeCountriesNeighborToFile(java.util.Map<String, String> listofNeighBours,GameEngine gameEngine)throws IOException{
 
     String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
 
@@ -479,11 +476,6 @@ public void writeCountriesNeighborToFile(java.util.Map<String, String> listofNei
 
 }
 
-/**
- * @param listofCountries               list of countries to be removed
- * @param gameEngine                    gameEngine object
- * @throws IOException                  throwing statement incase of any Exception 
- */
 public void removeCountriesFromFile(List<String> listofCountries,GameEngine gameEngine)throws IOException{
 
     // Read file in which we have to remove countries
@@ -527,12 +519,7 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
    }
 
 
-   /**
- * @param listofContinent           list of continent to be removed
- * @param gameEngine                gameEngine object
- * @throws IOException              throwing statement incase of any Exception 
- */
-public void removeContinentFromFile(List<String> listofContinent,GameEngine gameEngine)throws IOException{
+   public void removeContinentFromFile(List<String> listofContinent,GameEngine gameEngine)throws IOException{
 
     java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
     System.out.println(listofContinent.get(0));
@@ -577,11 +564,6 @@ public void removeContinentFromFile(List<String> listofContinent,GameEngine game
 }
 
 
-/**
- * @param listofNeighBours          list of neighbor countries
- * @param gameEngine                gameEngine object
- * @throws IOException              throwing statement incase of any Exception 
- */
 public void removeborderFromFile(java.util.Map<String, String> listofNeighBours,GameEngine gameEngine)throws IOException{
     
     String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
