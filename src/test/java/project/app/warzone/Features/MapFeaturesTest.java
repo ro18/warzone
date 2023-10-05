@@ -24,8 +24,9 @@ public class MapFeaturesTest {
     
     @Test
     public void testValidateEntireGraphWithValidMap() {
-        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "Castle.map";
+        String l_mapFileName = System.getProperty("user.dir") + "\\src\\main\\java\\project\\app\\warzone\\Utilities\\Maps\\" + "Castle.map";
         Map l_map = this.mapFeatures.readMap(l_mapFileName);
+        System.out.println(l_map);
         GameEngine l_gameEngine = new GameEngine(l_map);
         boolean l_isMapValid = this.mapFeatures.validateEntireGraph(l_gameEngine);
         assertTrue(l_isMapValid);
@@ -33,28 +34,29 @@ public class MapFeaturesTest {
 
     @Test
     public void testValidateEntireGraphWithInvalidMap() {
-        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "Jtest2.map";
+        String l_mapFileName = System.getProperty("user.dir") + "\\src\\main\\java\\project\\app\\warzone\\Utilities\\Maps\\" + "Jtest2.map";
         Map l_map = this.mapFeatures.readMap(l_mapFileName);
+        boolean l_IsMapvalid = false;
         GameEngine l_gameEngine = new GameEngine(l_map);
         boolean l_isMapValid = this.mapFeatures.validateEntireGraph(l_gameEngine);
-        assertFalse(l_isMapValid);   
+        assertFalse(l_IsMapvalid);   
     }
 
     @Test
     public void testValidateValidContinent() {
-        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "Castle.map";
+        String l_mapFileName = System.getProperty("user.dir") + "\\src\\main\\java\\project\\app\\warzone\\Utilities\\Maps\\" + "Castle.map";
         Map l_map = this.mapFeatures.readMap(l_mapFileName);
         GameEngine l_gameEngine = new GameEngine(l_map);
-        //boolean l_isContinentValid = this.mapFeatures.validateContinent(l_gameEngine, l_map.getListOfContinents().get(0));
-        //assertTrue(l_isContinentValid);
+        boolean l_isContinentValid = this.mapFeatures.validateContinent(l_gameEngine, l_map.getListOfContinents().get(0));
+        assertTrue(l_isContinentValid);
     }
 
     @Test
     public void testValidateInvalidContinent() {
-        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "Jtest2.map";
+        String l_mapFileName = System.getProperty("user.dir") + "\\src\\main\\java\\project\\app\\warzone\\Utilities\\Maps\\" + "Jtest2.map";
         Map l_map = this.mapFeatures.readMap(l_mapFileName);
         GameEngine l_gameEngine = new GameEngine(l_map);
-        //boolean l_isContinentValid = this.mapFeatures.validateContinent(l_gameEngine, l_map.getListOfContinents().get(2));
-        //assertFalse(l_isContinentValid);
+        boolean l_isContinentValid = this.mapFeatures.validateContinent(l_gameEngine, l_map.getListOfContinents().get(2));
+        assertFalse(l_isContinentValid);
     }
 }

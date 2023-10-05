@@ -202,6 +202,8 @@ public class MapFeatures {
      * @param gameEngine           storing gameEngine
      * @return Boolean             returns the status of validating
      */
+
+    /* 
     public Boolean validateEntireGraph(GameEngine gameEngine){
 
 
@@ -243,6 +245,7 @@ public class MapFeatures {
      * @param l_visitedList             storing list of visited nodes
      * @return boolean                  returns the status of validating
      */
+    /* 
     public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,java.util.Map<Node,Boolean> l_visitedList){
 
         List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
@@ -262,7 +265,63 @@ public class MapFeatures {
 
 
     }
+    */
 
+    public Boolean validateEntireGraph (GameEngine gameEngine) {
+        HashMap<Node, Boolean> l_visitedList = new HashMap<Node, Boolean>();
+        List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
+
+        if (l_listOfNodes.size() == 0) return true;
+
+        for (Node country: l_listOfNodes) {
+            l_visitedList.put(country, false);
+        }
+
+        this.depthFirstSearch(l_listOfNodes.get(0), l_visitedList);
+
+        for (Boolean isVisited: l_visitedList.values()) {
+            if (!isVisited) return false;
+        }
+        return true;
+    }
+
+    
+
+    public boolean validateSubGraph (Continent con, List<Node> l_listOfNodes, java.util.Map<Node,Boolean>  l_visitedList){
+
+        List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
+        l_visitedList = validateByNodes(l_nodesOfContinent,l_visitedList);
+        for (Node n : l_nodesOfContinent) {
+            if(l_visitedList.containsKey(n) && !l_visitedList.get(n)){
+                System.out.println(con.getContinentName()+" is not connected");
+                System.out.println(n.getData().getCountryName()+" cannot be reached");
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    public boolean validateContinent(GameEngine gameEngine, Continent continent) {
+        HashMap<Node, Boolean> l_visitedList = new HashMap<Node, Boolean>();
+        System.out.println(continent);
+         System.out.println(gameEngine);
+
+        List<Node> l_listOfNodes = gameEngine.gameMap.getNodes();
+        System.out.println(l_listOfNodes);
+        List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(continent)).toList();
+        for (Node country: l_nodesOfContinent) {
+            l_visitedList.put(country, false);
+        }
+
+        this.depthFirstSearch(l_nodesOfContinent.get(0), l_visitedList);
+
+        for (Node country: l_nodesOfContinent) {
+            if (!l_visitedList.get(country)) return false;
+        }
+        return true;
+    }
 
     
     /** 
