@@ -7,7 +7,7 @@
 #### FLOW
 
 - Game starts from GameEngine class initializing game-map and players
-- Use help command in the shell to see available commands for the game
+- Use (help) command in the shell to see available commands for the game
   
 
 
