@@ -62,8 +62,8 @@ public class Map {
      * @param countryName
      * @param continent
      */
-    public void createAndInsertCountry(String countryName, Continent continent){
-        Country country = new Country(countryName,continent);
+    public void createAndInsertCountry( int countryId,String countryName,Continent continent){
+        Country country = new Country(countryId,countryName,continent);
         nodes.add(new Node(country));
     }
 

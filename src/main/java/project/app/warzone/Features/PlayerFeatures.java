@@ -129,16 +129,16 @@ public class PlayerFeatures {
     
     
     /** 
-     * @param gameengine            storing gameEngine
+     * @param gameengine storing gameEngine
      */
     public void showStats(GameEngine gameengine){
         List<Player> listOfPlayers = gameengine.getPlayers();
         for (Player p : listOfPlayers) {
             System.out.println("Player Name:" + p.d_playername + "-PlayerId:" + p.d_playerid);
             System.out.println("Total Armies available per round: " + p.getReinforcementArmies());
-            System.out.println("Countries Owned - Armies");
+            System.out.println("CountryID - Countries Owned - Armies");
             for(Country t : p.getListOfTerritories()){
-                System.out.println(t.getCountryName()+" - "+t.getNumberOfArmies());
+                System.out.println(t.getCountryId()+" - "+t.getCountryName()+" - "+t.getNumberOfArmies());
             }
             System.out.println("-------------------------------");
         }

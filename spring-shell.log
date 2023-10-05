@@ -785,3 +785,23 @@
 1696436233876:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
 1696436278452:editneighbor -add 1 8
 >>>>>>> ef690850e4a0b2c5f107caf89ffa0e2c6ac73789
+1696463383659:loadmap europe
+1696463385580:showmap
+1696463397877:gameplayer -add bee -add boo
+1696463413678:showstats
+1696463451004:assigncountries
+1696463457161:showstats
+1696463688428:loadmap europe
+1696463695241:showmap
+1696463918883:loadmap europe
+1696463921447:showmap
+1696463984147:loadmap europe
+1696463987612:showmap
+1696464008193:gameplayer -add bee -add boo
+1696464013405:assigncountries
+1696464017975:showstats
+1696464093632:loadmap europe
+1696464189512:showmap
+1696464197101:gameplayer -add bee -add boo
+1696464201778:assigncountries
+1696464219723:showstats

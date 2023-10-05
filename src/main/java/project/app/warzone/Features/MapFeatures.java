@@ -77,7 +77,7 @@ public class MapFeatures {
                     while(!l_line.equals("") ){
 
                         String[] countryDetails = l_line.split(" ");
-                        gameMap.createAndInsertCountry(countryDetails[1],continentsList.get(Integer.parseInt(countryDetails[2])-1) );
+                        gameMap.createAndInsertCountry(Integer.parseInt(countryDetails[0]),countryDetails[1],continentsList.get(Integer.parseInt(countryDetails[2])-1) );
                         l_line= reader.readLine();
 
 

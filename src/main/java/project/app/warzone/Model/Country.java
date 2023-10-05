@@ -9,6 +9,7 @@ public class Country {
     private int ownerId;
     private int numberOfArmies;
     private Continent continent;
+    private int countryId;
 
 
     public Country() {}         //default constructor
@@ -21,11 +22,12 @@ public class Country {
      * @param ownerId
      * @param numberOfArmies
      */
-    public Country(String CountryName, Continent continent, int ownerId, int numberOfArmies) {
+    public Country(String CountryName, Continent continent, int countryId,int ownerId, int numberOfArmies) {
         this.CountryName = CountryName;
         this.ownerId = ownerId;
         this.numberOfArmies = numberOfArmies;
         this.continent = continent;
+        this.countryId = countryId;
     }
 
     /**
@@ -34,9 +36,10 @@ public class Country {
      * @param CountryName
      * @param continent
      */
-    public Country(String CountryName, Continent continent) {
+    public Country(int countryId,String CountryName, Continent continent) {
         this.CountryName = CountryName;
         this.continent = continent;
+        this.countryId=countryId;
     }
 
     public String getCountryName() {
@@ -49,6 +52,10 @@ public class Country {
 
     public int getNumberOfArmies() {
         return numberOfArmies;          //returns numberofArmies
+    }
+
+    public int getCountryId(){
+        return countryId;
     }
 
     public Continent getContinent() {
