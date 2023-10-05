@@ -41,6 +41,14 @@ jobs:
     - name: Test Report
       uses: mikepenz/action-junit-report@v4
       if: success() || failure()
+    - name: Deploy JavaDoc
+      uses: MathieuSoysal/Javadoc-publisher.yml@v2.4.0
+      with:
+          javadoc-branch: dev
+          java-version: 17
+          target-folder: javadoc # url will be https://<username>.github.io/<repo>/javadoc, This can be left as nothing to generate javadocs in the root folder.
+          project: maven 
+          # subdirectories: moduleA moduleB #for subdirectories support, needs to be run with custom command
 
 
 #./mvnw test -Dtest=WarzoneApplicationTest
