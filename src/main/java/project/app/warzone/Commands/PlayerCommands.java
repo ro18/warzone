@@ -99,6 +99,10 @@ public class PlayerCommands {
      */
     @ShellMethod(key= "assigncountries", value="This is used to assign countries to players randomly")
     public String assigncountries(){
+
+        if(d_gameEngine.getPlayers().size() < 2){
+            return "You need atleast 2 players to play the game. Please add more players";
+        }
         Player player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
         d_playerFeatures.assignCountries(d_gameEngine);
         System.out.println("Assigned Countries to the players are:");

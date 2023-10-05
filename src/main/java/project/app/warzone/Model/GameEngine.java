@@ -25,7 +25,7 @@ public class GameEngine {
      * @param gameMap           gameMap instance
      */
     public GameEngine(Map gameMap ){
-        this.gameMap = new Map(); // this is required
+        this.gameMap = gameMap; // this is required
         this.d_playersList = new ArrayList<>();
     } 
 
