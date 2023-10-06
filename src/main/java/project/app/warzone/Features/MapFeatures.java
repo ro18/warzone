@@ -152,7 +152,7 @@ public class MapFeatures {
             }
             System.out.print(c.getData().getCountryName()+" : ");
             String borderString ="";
-            if(c.getBorders().size()> 0 &&  c.getBorders() != null){
+            if(c.getBorders() != null &&  c.getBorders().size()> 0  ){
                 List<Node> listOfBorders = c.getBorders();
 
                 for(Node border : listOfBorders ){
@@ -224,15 +224,6 @@ public class MapFeatures {
             }            
 
         }
-                        
-        
-
-        System.out.println("Final visited list:");
-        for(Node n : l_visitedList.keySet()){
-
-            System.out.println(n.getData().getCountryName()+":"+l_visitedList.get(n));
-
-        }
 
         return true;
 
@@ -285,21 +276,26 @@ public class MapFeatures {
 
         List<Node> l_listOfBorderNodes = currentCountry.getBorders();
 
-        for( Node l_currentNode : l_listOfBorderNodes){ 
-                       
-            if(!l_visitedList.keySet().contains(l_currentNode)){
-              l_visitedList.put(l_currentNode,false);
+        if(l_listOfBorderNodes != null && l_listOfBorderNodes.size() > 0){
 
-            }        
+            for( Node l_currentNode : l_listOfBorderNodes){ 
+                
+                if(!l_visitedList.keySet().contains(l_currentNode)){
+                l_visitedList.put(l_currentNode,false);
 
-        }
+                }        
 
-
-        for(Node node : l_listOfBorderNodes){
-            if(l_visitedList.get(node) != true){
-                depthFirstSearch(node,l_visitedList);
             }
+
+
+            for(Node node : l_listOfBorderNodes){
+                if(l_visitedList.get(node) != true){
+                    depthFirstSearch(node,l_visitedList);
+                }
+            }
+
         }
+       
 
         return l_visitedList;
     }
@@ -447,18 +443,26 @@ public class MapFeatures {
 
     while(currentLine != null){
 
-        System.out.println(currentLine.toString().split(" ")[0]);
+        //System.out.println(currentLine.toString().split(" ")[0]);
         if(listofNeighBours.keySet().contains(currentLine.split(" ")[0]))
         {
             currentLine = currentLine +" "+listofNeighBours.get((currentLine.split(" ")[0]));
             listofNeighBours.remove(currentLine.split(" ")[0]);
 
 
-            writer.write(currentLine + System.getProperty("line.separator"));
+            //writer.write(currentLine + System.getProperty("line.separator"));
+            
 
 
         }
+
+        if(!currentLine.toString().equals("[borders]")){
+            writer.write(currentLine + System.getProperty("line.separator"));
+
+        }
+
         currentLine= reader.readLine();
+
     } 
 
     for(String l_i : listofNeighBours.keySet()){
