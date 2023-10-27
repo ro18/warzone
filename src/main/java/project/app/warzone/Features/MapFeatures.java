@@ -7,17 +7,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
 import project.app.warzone.Model.Continent;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Node;
 import project.app.warzone.Utilities.MapResources;;
@@ -26,9 +27,10 @@ import project.app.warzone.Utilities.MapResources;;
  * This class stores all the map-related functions in gameplay
  */
 @Component
-public class MapFeatures {
+public class MapFeatures implements Observer{
 
     public MapResources mapResouces;
+    private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
     public MapFeatures(MapResources mapResouces){
         this.mapResouces = mapResouces;
@@ -43,6 +45,9 @@ public class MapFeatures {
      * @return Map          returns gamemap
      */
     public Map readMap(String filename){
+
+        l_logEntryBuffer.addObserver(this);
+        l_logEntryBuffer.notifyClass();
 
         String l_line="";
         List<Continent> continentsList = new ArrayList<>();
@@ -619,6 +624,11 @@ public void removeborderFromFile(java.util.Map<String, String> listofNeighBours,
 
 
 }
+
+    public void update(Observable o, Object arg) {
+            System.out.println( "Inside update method of MapEditorCommands");
+        }
+
 
 
 }

@@ -72,7 +72,7 @@ public class MapEditorCommands {
      */
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public String showmap(){
-        String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"\\"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
+        String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"/"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
 
         d_gameEngine.gameMap = d_mapFeatures.readMap(p_mapLocation);
         Boolean l_result = d_mapFeatures.validateEntireGraph(d_gameEngine);
