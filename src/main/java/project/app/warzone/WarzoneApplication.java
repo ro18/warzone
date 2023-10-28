@@ -25,7 +25,7 @@ public class WarzoneApplication {
 		File l_file = new File(l_currentDirectory);
 			try {
 				BufferedWriter l_writer = new BufferedWriter(new FileWriter(l_file, !(l_file.exists() && !l_file.isDirectory())));
-				l_writer.write("Game Commnece\n");
+				l_writer.write("Game Commnece\n\n");
 				l_writer.close();
 			} catch (Exception e) {
 				System.out.println("Error Reading file");
