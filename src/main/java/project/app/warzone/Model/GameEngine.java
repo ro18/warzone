@@ -13,7 +13,8 @@ import project.app.warzone.Utilities.Commands;
 @Component
 public class GameEngine {
 
-
+    private Phase gamePhase;
+    
     public List<Player> d_playersList;              //storing player list  
     public Map gameMap;                             //storing gameMap
     public Commands prevUserCommand;                //storing user's previous command
@@ -28,6 +29,25 @@ public class GameEngine {
         this.gameMap = gameMap; // this is required
         this.d_playersList = new ArrayList<>();
     } 
+
+    /**
+     * used for setting gamePhase
+     * 
+     * @return              returns gamePhase
+     */
+    public void setPhase(Phase p_phase) {
+        this.gamePhase = p_phase;
+        }
+    
+    /**
+     * used for getting gamePhase
+     * 
+     * @return              returns gamePhase
+     */ 
+    public void getPhase(Phase p_phase) {
+        this.gamePhase = p_phase;
+        }
+
 
     /**
      * used for returning player list
@@ -71,5 +91,29 @@ public class GameEngine {
         }
 
     }
+
+    public void start(){
+        //include this function inside the main caller function that starts the application execution
+        // Set the initial state, call all state methods in order
+        
+        setPhase(new Preload(this));
+        setPhase(new Postload(this));
+
+        //setPhase(new Play(this));
+        //setPhase(new Playsetup(this));
+        //setPhase(new Reinforcement(this));
+        //setPhase(new Attack(this));
+        //setPhase(new Fortification(this));
+
+        // Can trigger State-dependent behavior by using
+        // The methods defined in the State (Phase) object, e.g.
+        gamePhase.loadMap();
+
+        // Player states
+        gamePhase.attack();
+        gamePhase.fortify();
+        gamePhase.reinforce();
+        gamePhase.next();
+    };
 
 }

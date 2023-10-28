@@ -27,6 +27,8 @@ public class MapEditorCommands {
     public PlayerCommands d_playerCommands;
     public PlayerFeatures d_playerFeatures;
     private final MapResources d_mapResources;
+    public MapFeatures dMapFeatures;
+    public project.app.warzone.Model.Map dMap;
 
     /**
      * Constructor for MapEditorCommands
@@ -89,6 +91,11 @@ public class MapEditorCommands {
 
     }
 
+    public project.app.warzone.Model.Map returnMap(){
+        String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"\\"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
+        dMap = dMapFeatures.readMap(p_mapLocation);
+        return dMap;
+    }
 
     
     /**
