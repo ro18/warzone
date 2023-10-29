@@ -3,6 +3,8 @@ package project.app.warzone;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import project.app.warzone.Model.GameEngine;
+
 /**
  * main class for the warzone application
  */
@@ -18,6 +20,12 @@ public class WarzoneApplication {
 		SpringApplication.run(WarzoneApplication.class, args);
 		//System.out.println("test");
 		// testing aish
+		// start void
+		GameEngine l_GameEngine = new GameEngine();
+		System.out.println("test GE");
+		l_GameEngine.start();
+		
+		
 	}
 
 }

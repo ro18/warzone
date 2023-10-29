@@ -1,37 +1,43 @@
 package project.app.warzone.Model;
 
 import project.app.warzone.Commands.MapEditorCommands;
+import project.app.warzone.Model.Map;
 
 public class Postload extends Edit {
 
     public MapEditorCommands dMapEditorCommands;
-    Postload Mypostloader = new Postload(); 
+    Map dMap = new Map();
     GameEngine ge = new GameEngine(dMapEditorCommands.returnMap());// map object is required to be passed here
-    
-    public Postload() {
-        System.out.println("Inside Postload COnstructor");
-    }
-    
-    public Postload(GameEngine p_ge) {
-        System.out.println("Inside Postload");
-        ge = p_ge;
+    String p_filename = dMap.get_USER_SELECTED_FILE();
 
+	Postload(GameEngine p_ge) {
+        super(p_ge);
     }
-    
-    public void loadMap() {
-        System.out.println("map has been loaded");
-    }
-    
-    public void editCountry() {
-        System.out.println("country has been edited");
-    }
-    
-    public void saveMap() {
-        System.out.println("map has been saved");
-        //ge.setPhase(new Playsetup(ge));
-    }
-    
-    public void next() {
-        System.out.println("must save map");
-    }
+	
+	public void showMap() {
+		System.out.println("G **************************************************************** Postload Shomap");
+
+        dMapEditorCommands.showmap();
+        System.out.println("Map is Dsiplayed");
+	}
+
+	public void loadMap() {
+        dMapEditorCommands.loadMap(p_filename);
+        System.out.println("Map is loaded");
+	}
+
+	public void editCountry() {
+        //Please call this function
+        //dMapEditorCommands.editcountry("-a India", "-r India");
+		System.out.println("country has been edited");
+	}
+
+	public void saveMap() {
+		//Call savemap func after creation of it
+		ge.setPhase(new PlaySetup(ge));
+	}
+
+	public void next() {
+		System.out.println("must save map");
+	}
 }
