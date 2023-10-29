@@ -31,7 +31,7 @@ public class PlayerFeaturesTest {
         this.d_mapResources = new MapResources();
         this.d_mapFeatures = new MapFeatures(d_mapResources);
 
-        String p_mapLocation = d_gameEngine.gameMap.getMapDirectory()+"\\europe.map";
+        String p_mapLocation = d_gameEngine.gameMap.getMapDirectory()+"//europe.map";
         d_gameEngine.gameMap = d_mapFeatures.readMap(p_mapLocation);
         
         d_playerFeatures.addPlayers("prashant", d_gameEngine);

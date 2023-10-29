@@ -72,16 +72,20 @@ public class MapEditorCommands {
      */
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public String showmap(){
-        String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"\\"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
-
-        d_gameEngine.gameMap = d_mapFeatures.readMap(p_mapLocation);
-        Boolean l_result = d_mapFeatures.validateEntireGraph(d_gameEngine);
-        if(!l_result){
-            return("This map is not valid.Please try with some other map");
+        if(d_gameEngine.prevUserCommand == Commands.LOADMAP){
+            String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"//"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
+            Boolean l_result=false;
+            d_gameEngine.gameMap = d_mapFeatures.readMap(p_mapLocation);
+            l_result = d_mapFeatures.validateEntireGraph(d_gameEngine);
+            if(!l_result){
+                return("This map is not valid.Please try with some other map");
+            }
+            else{
+                return("You can now proceed to add gameplayers");
+            }
         }
-        else{
-            return("You can now proceed to add gameplayers");
-        }
+        return "Please enter loadmap command first";
+       
 
     }
 
@@ -95,8 +99,8 @@ public class MapEditorCommands {
      * @return                      returns the message about status of command
     */
      @ShellMethod(key = "editcontinent", prefix = "-", value = "This is used to add or update continents")
-    public String editcontinent(@ShellOption(value = "a", defaultValue = ShellOption.NULL,arity=10) String p_editcmd,
-            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity=10) String p_editremovecmd) {
+    public String editcontinent(@ShellOption(value = "a", defaultValue = ShellOption.NULL,arity=20) String p_editcmd,
+            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity=20) String p_editremovecmd) {
         Map<String, String> listofContinents = new HashMap<String, String>();
         java.util.Map<Integer, String> listOfContinentsResource = d_mapResources.getAllContinents();
 
@@ -116,7 +120,7 @@ public class MapEditorCommands {
                 String l_commandToCheck = "-add";
                 while (l_i < l_editCmd.length) {
 
-                    System.out.println(l_editCmd[l_i] + ":" + l_commandToCheck);
+                    //System.out.println(l_editCmd[l_i] + ":" + l_commandToCheck);
                     if (l_editCmd[l_i].toString().equals(l_commandToCheck)) {
                         l_i++;
                         continue;
@@ -149,7 +153,7 @@ public class MapEditorCommands {
 
                 while (l_i < l_editremovecmd.length) {
 
-                    System.out.println(l_editremovecmd[l_i] + ":" + commandToCheck);
+                    //System.out.println(l_editremovecmd[l_i] + ":" + commandToCheck);
                     if (l_editremovecmd[l_i].toString().equals(commandToCheck)) {
 
                         l_i++;
@@ -158,7 +162,7 @@ public class MapEditorCommands {
                     } else {
                         l_listOfContinentsToRemove
                                 .add(listOfContinentsResource.get(Integer.parseInt(l_editremovecmd[l_i])));
-                        System.out.println("listofContinents" + l_listOfContinentsToRemove);
+                        //System.out.println("listofContinents" + l_listOfContinentsToRemove);
                         l_i++;
                     }
 
@@ -188,8 +192,8 @@ public class MapEditorCommands {
      * @throws IOException             throwing statement incase of any Exception 
      */
     @ShellMethod(key = "editcountry", prefix = "-", value = "This is used to add continents")
-    public String editcountry(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
-            @ShellOption(value = "r", defaultValue = ShellOption.NULL) String p_editremovecmd) throws IOException {
+    public String editcountry(@ShellOption(value = "a", defaultValue = ShellOption.NULL,arity=20) String p_editcmd,
+            @ShellOption(value = "r", defaultValue = ShellOption.NULL,arity=20) String p_editremovecmd) throws IOException {
 
 
         if (d_gameEngine.prevUserCommand == Commands.ADDCONTINENT
@@ -237,7 +241,7 @@ public class MapEditorCommands {
 
                 while (l_i < l_editremovecmd.length) {
 
-                    System.out.println(l_editremovecmd[l_i] + ":" + commandToCheck);
+                    //System.out.println(l_editremovecmd[l_i] + ":" + commandToCheck);
                     if (l_editremovecmd[l_i].toString().equals(commandToCheck)) {
 
                         l_i++;
@@ -246,7 +250,7 @@ public class MapEditorCommands {
                     } else {
                         l_listofCountries.add(l_editremovecmd[l_i]);
 
-                        System.out.println("listofCountries" + l_listofCountries);
+                        //System.out.println("listofCountries" + l_listofCountries);
                         l_i++;
                     }
 
@@ -261,7 +265,7 @@ public class MapEditorCommands {
                 return "Countries removed succesfully";
             }
         } else {
-            return "You cannnot add country";
+            return "You cannnot add country at this stage";
 
         }
 
@@ -274,8 +278,8 @@ public class MapEditorCommands {
      * @throws IOException                  throwing statement incase of any Exception 
      */
     @ShellMethod(key = "editneighbor", prefix = "-", value = "This is used to add or update neighbor")
-    public String editNeighbor(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
-            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_editremovecmd)
+    public String editNeighbor(@ShellOption(value = "a", defaultValue = ShellOption.NULL,arity=20) String p_editcmd,
+            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 20) String p_editremovecmd)
             throws IOException {
         if (d_gameEngine.prevUserCommand == Commands.ADDCOUNTRY || d_gameEngine.prevUserCommand == Commands.REMOVECOUNTRY
                 || d_gameEngine.prevUserCommand == Commands.ADDNEIGHBOUR
@@ -369,11 +373,9 @@ public class MapEditorCommands {
             return ("Please use gameplayer -add command to add players in the game");
         } else {
             d_gameEngine.prevUserCommand = Commands.EDITMAP;
-            // System.out.println("File not found.");
             d_gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
 
             d_gameEngine.gameMap.createNewMapFile(p_filename);
-            // System.out.println("New File created successfully..");
             System.out.println("\n");
             System.out.println(
                     "Choose one of the below commands to proceed:\n 1.editcontinent 2.editcountry 3.editneighbor");
