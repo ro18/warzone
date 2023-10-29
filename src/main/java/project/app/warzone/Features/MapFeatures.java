@@ -21,6 +21,7 @@ import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Node;
+import project.app.warzone.Utilities.LogObject;
 import project.app.warzone.Utilities.MapResources;;
 
 /**
@@ -45,9 +46,8 @@ public class MapFeatures implements Observer{
      * @return Map          returns gamemap
      */
     public Map readMap(String filename){
-
+        LogObject l_logObject = new LogObject();
         l_logEntryBuffer.addObserver(this);
-        l_logEntryBuffer.notifyClass();
 
         String l_line="";
         List<Continent> continentsList = new ArrayList<>();
@@ -119,6 +119,9 @@ public class MapFeatures implements Observer{
             }   
        
             reader.close();
+            l_logObject.setStatus(true);
+            l_logObject.setD_message("User loaded map " + filename.split("/")[filename.split("/").length-1].split(".map")[0]);
+            l_logEntryBuffer.notifyClasses(l_logObject);
             printMap(gameMap);
             return gameMap;
 
@@ -626,8 +629,19 @@ public void removeborderFromFile(java.util.Map<String, String> listofNeighBours,
 }
 
     public void update(Observable o, Object arg) {
-            System.out.println( "Inside update method of MapEditorCommands");
+        if(arg instanceof LogObject){
+            LogObject l_logObject = (LogObject) arg;
+            try {
+                BufferedWriter l_writer = new BufferedWriter(new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.append(LogObject.d_logLevel + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                System.out.println( "Inside update method of MapEditorCommands");
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
         }
+    }
 
 
 
