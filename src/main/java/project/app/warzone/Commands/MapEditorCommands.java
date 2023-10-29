@@ -55,15 +55,20 @@ public class MapEditorCommands {
      */
     @ShellMethod(key= "loadmap", value="Player can create or open an existing map")
     public String loadMap(@ShellOption String p_filename){
+        
         d_gameEngine.prevUserCommand=Commands.LOADMAP;
         if(d_gameEngine.gameMap.fileExists(p_filename)){
             System.out.println("One file found.");
             d_gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
+            //System.out.println(d_gameEngine.gameMap.get_USER_SELECTED_FILE());
+            //d_gameEngine.start(d_gameEngine.gameMap.get_USER_SELECTED_FILE());
+            System.out.println("Game started successfully..");
             return "Choose one of the below commands to proceed:\n 1. showmap 2.editmap";
         } else {
             return "Map not found.";
         }
     }
+
 
 
     
@@ -74,7 +79,7 @@ public class MapEditorCommands {
      */
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public String showmap(){
-        String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"\\"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
+        String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"/"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
 
         d_gameEngine.gameMap = d_mapFeatures.readMap(p_mapLocation);
         Boolean l_result = d_mapFeatures.validateEntireGraph(d_gameEngine);
@@ -88,7 +93,7 @@ public class MapEditorCommands {
     }
 
     public project.app.warzone.Model.Map returnMap(){
-        String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"\\"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
+        String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"/"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
         dMap = dMapFeatures.readMap(p_mapLocation);
         return dMap;
     }

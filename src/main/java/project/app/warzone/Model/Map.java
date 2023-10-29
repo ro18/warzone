@@ -94,7 +94,7 @@ public class Map {
      * 
      * @return String returns user selected file
      */
-    public String get_USER_SELECTED_FILE() {
+    public String get_USER_SELECTED_FILE() {       
         return USER_SELECTED_FILE;
     }
 
