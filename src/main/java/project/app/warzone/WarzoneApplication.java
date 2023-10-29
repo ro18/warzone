@@ -25,7 +25,9 @@ public class WarzoneApplication {
 		System.setProperty("logFileLocation", l_currentDirectory);
 		File l_file = new File(l_currentDirectory);
 			try {
-				// If file exists then rewrite the file for a new game, else append to it as it is a new file created by new File().
+				/**
+				 * If file exists then rewrite the file for a new game, else append to it as it is a new file created by new File().
+				 */
 				BufferedWriter l_writer = new BufferedWriter(new FileWriter(l_file, !(l_file.exists() && !l_file.isDirectory())));
 				l_writer.write("Game Commnece\n\n");
 				l_writer.close();

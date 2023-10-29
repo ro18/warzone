@@ -12,6 +12,7 @@ import lombok.Setter;
 public class LogObject {
     public String d_message ="";
     public String d_timestamp = new SimpleDateFormat("hh:mm:ss").format(new java.util.Date());
+    public String d_command;
     public static int d_logLevel = 0;
     private enum d_listOfStatusCode{
         SUCCESS,
@@ -23,9 +24,10 @@ public class LogObject {
      * This method is used to set the status of the log object (whether true or false)
      * @param p_status to be set
      */
-    public void setStatus(boolean p_status) {
+    public void setStatus(boolean p_status, String p_message) {
         d_logLevel++;
         d_statusCode = p_status ? d_listOfStatusCode.SUCCESS.toString() : d_listOfStatusCode.FAILURE.toString();
+        d_message = p_message;
     }
 
 }

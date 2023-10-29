@@ -47,6 +47,7 @@ public class MapFeatures implements Observer{
      */
     public Map readMap(String filename){
         LogObject l_logObject = new LogObject();
+        l_logObject.setD_command("showmap");
         l_logEntryBuffer.addObserver(this);
 
         String l_line="";
@@ -119,19 +120,22 @@ public class MapFeatures implements Observer{
             }   
        
             reader.close();
-            l_logObject.setStatus(true);
-            l_logObject.setD_message("User loaded map " + filename.split("/")[filename.split("/").length-1].split(".map")[0]);
+            l_logObject.setStatus(true, "User loaded map " + filename.split("/")[filename.split("/").length-1].split(".map")[0]);
             l_logEntryBuffer.notifyClasses(l_logObject);
             printMap(gameMap);
             return gameMap;
 
         }
         catch(FileNotFoundException e){
+            l_logObject.setStatus(false, "Error: File not found");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             e.printStackTrace();
             return gameMap;
 
         }
         catch (IOException e) {
+            l_logObject.setStatus(false, "IO Exception");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             e.printStackTrace();
             return gameMap;
 
@@ -628,12 +632,18 @@ public void removeborderFromFile(java.util.Map<String, String> listofNeighBours,
 
 }
 
+    /**
+     * This method is used to update the log file
+     * @param o is the observable object
+     * @param arg is the object to be updated
+     */
     public void update(Observable o, Object arg) {
         if(arg instanceof LogObject){
             LogObject l_logObject = (LogObject) arg;
             try {
                 BufferedWriter l_writer = new BufferedWriter(new FileWriter(System.getProperty("logFileLocation"), true));
-                l_writer.append(LogObject.d_logLevel + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
                 System.out.println( "Inside update method of MapEditorCommands");
                 l_writer.newLine();
                 l_writer.close();
