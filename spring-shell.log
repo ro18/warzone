@@ -785,3 +785,33 @@
 1696436233876:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
 1696436278452:editneighbor -add 1 8
 >>>>>>> ef690850e4a0b2c5f107caf89ffa0e2c6ac73789
+1698559473809:loadmap Simpsons
+1698559478899:editmap
+1698559505384:editmap Simpsons
+1698559567564:editcountry 2 1
+1698559742168:loadmap Simpsons
+1698559752857:editmap abcd
+1698598490979:loadmap europe
+1698598495858:editmap europe
+1698598526625:loadmap 1234
+1698598582438:loadmap abcd
+1698598599978:editmap
+1698598605419:editmap abcd
+1698599221006:loadmap europe
+1698599225465:showmap
+1698599237463:gameplayers -add anash
+1698599249154:gameplayer -add anash
+1698599504127:loadmap europe
+1698599507202:showmap
+1698599513536:gameplayer -add anash
+1698599522588:gameplayer -add numan
+1698599529238:gameplayer -remove anash
+1698599702956:loadmap europe
+1698599705595:showmap
+1698599712786:gameplayer -add anash
+1698599717572:gameplayer -add numan
+1698599722950:gameplayer -remove anash
+1698599921033:loadmap europe
+1698599924978:showmap
+1698599956656:gameplayer -add anash numan
+1698599970577:assigncountries

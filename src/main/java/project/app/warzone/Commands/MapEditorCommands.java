@@ -109,6 +109,12 @@ public class MapEditorCommands implements Observer {
     @ShellMethod(key = "editcontinent", prefix = "-", value = "This is used to add or update continents")
     public String editcontinent(@ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 10) String p_editcmd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_editremovecmd) {
+
+
+        LogObject l_logObject = new LogObject();
+        l_logEntryBuffer.addObserver(this);
+        l_logObject.setD_command("editcontinent " + p_editcmd + " " + p_editremovecmd);
+
         Map<String, String> listofContinents = new HashMap<String, String>();
         java.util.Map<Integer, String> listOfContinentsResource = d_mapResources.getAllContinents();
 
@@ -148,6 +154,8 @@ public class MapEditorCommands implements Observer {
                     e.printStackTrace();
 
                 }
+                l_logObject.setStatus(true, "Continents addded succesfully");
+                l_logEntryBuffer.notifyClasses(l_logObject);
                 return "Continents addded succesfully";
             } else {
 
@@ -182,11 +190,13 @@ public class MapEditorCommands implements Observer {
                     e.printStackTrace();
 
                 }
+                l_logObject.setStatus(true, "Continent removed succesfully");
+                l_logEntryBuffer.notifyClasses(l_logObject);
                 return "Continent removed succesfully";
             }
-        }
-
-        else {
+        }else {
+            l_logObject.setStatus(false, "Can't add continent");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             return "You cannnot add continent.";
 
         }
@@ -202,6 +212,11 @@ public class MapEditorCommands implements Observer {
     @ShellMethod(key = "editcountry", prefix = "-", value = "This is used to add continents")
     public String editcountry(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL) String p_editremovecmd) throws IOException {
+
+                
+        LogObject l_logObject = new LogObject();
+        l_logEntryBuffer.addObserver(this);
+        l_logObject.setD_command("editcountry " + p_editcmd + " " + p_editremovecmd);
 
         if (d_gameEngine.prevUserCommand == Commands.ADDCONTINENT
                 || d_gameEngine.prevUserCommand == Commands.REMOVECONTINENT
@@ -236,6 +251,8 @@ public class MapEditorCommands implements Observer {
                     e.printStackTrace();
 
                 }
+                l_logObject.setStatus(true, "Countries addded succesfully");
+                l_logEntryBuffer.notifyClasses(l_logObject);
                 return "Countries addded succesfully";
             } else {
 
@@ -269,9 +286,13 @@ public class MapEditorCommands implements Observer {
                     e.printStackTrace();
 
                 }
+                l_logObject.setStatus(true, "Countries removed succesfully");
+                l_logEntryBuffer.notifyClasses(l_logObject);
                 return "Countries removed succesfully";
             }
         } else {
+            l_logObject.setStatus(false, "Can't add country");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             return "You cannnot add country";
 
         }
@@ -288,6 +309,9 @@ public class MapEditorCommands implements Observer {
     public String editNeighbor(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_editremovecmd)
             throws IOException {
+        LogObject l_logObject = new LogObject();
+        l_logEntryBuffer.addObserver(this);
+        l_logObject.setD_command("editneighbor " + p_editcmd + " " + p_editremovecmd);
         if (d_gameEngine.prevUserCommand == Commands.ADDCOUNTRY
                 || d_gameEngine.prevUserCommand == Commands.REMOVECOUNTRY
                 || d_gameEngine.prevUserCommand == Commands.ADDNEIGHBOUR
@@ -322,6 +346,8 @@ public class MapEditorCommands implements Observer {
                     e.printStackTrace();
 
                 }
+                l_logObject.setStatus(true, "Country borders addded succesfully");
+                l_logEntryBuffer.notifyClasses(l_logObject);
                 return "Country borders addded succesfully";
             } else {
 
@@ -357,12 +383,15 @@ public class MapEditorCommands implements Observer {
                     e.printStackTrace();
 
                 }
+                l_logObject.setStatus(true, "Borders removed succesfully");
+                l_logEntryBuffer.notifyClasses(l_logObject);
                 return "Borders removed succesfully";
             }
 
         }
         // }
-
+        l_logObject.setStatus(false, "Can't edit neighbor");
+        l_logEntryBuffer.notifyClasses(l_logObject);
         return "You cannot use edit neighbor command now.";
 
     }
@@ -373,10 +402,18 @@ public class MapEditorCommands implements Observer {
      */
     @ShellMethod(key = "editmap", value = "This is used to add or create map")
     public String editmap(@ShellOption String p_filename) {
+
+        LogObject l_logObject = new LogObject();
+        l_logEntryBuffer.addObserver(this);
+        l_logObject.setD_command("editmap " + p_filename);
         if (d_gameEngine.gameMap.fileExists(p_filename)) {
             System.out.println("One file found.");
             d_gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
             showmap(); // add check to see if file is proper
+
+            System.out.println("\n");
+            l_logObject.setStatus(true, "Map loaded for editing succesfully");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             return ("Please use gameplayer -add command to add players in the game");
         } else {
             d_gameEngine.prevUserCommand = Commands.EDITMAP;
@@ -399,6 +436,8 @@ public class MapEditorCommands implements Observer {
             d_mapResources.printMapDetails(d_mapResources.getAllCountries());
 
             System.out.println("\n");
+            l_logObject.setStatus(true, "Map created succesfully");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             return "Please select the add or remove command";
 
         }

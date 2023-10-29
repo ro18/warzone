@@ -120,7 +120,7 @@ public class MapFeatures implements Observer{
             }   
        
             reader.close();
-            l_logObject.setStatus(true, "User loaded map " + filename.split("/")[filename.split("/").length-1].split(".map")[0]);
+            l_logObject.setStatus(true, "User printed map " + filename.split("/")[filename.split("/").length-1].split(".map")[0]);
             l_logEntryBuffer.notifyClasses(l_logObject);
             printMap(gameMap);
             return gameMap;
