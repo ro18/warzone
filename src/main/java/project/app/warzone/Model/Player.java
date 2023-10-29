@@ -15,7 +15,7 @@ public class Player {
 	public int d_reinforcementPool; // Total number of players available to deploy in each round
 
 	public List<Country> d_listOfCountriesOwned; // List of countries owned by the player
-	public Queue<Order> d_listOfOrders = new ArrayDeque<>(); // stores orders issued by the player
+	public Queue<OrderMethods> d_listOfOrders = new ArrayDeque<>(); // stores orders issued by the player
 
 	/**
 	 * Creates a new player with the given ID.
@@ -96,7 +96,9 @@ public class Player {
 	 * @param country storing country to add into player territories
 	 */
 	public void setTerritories(Country country) {
+
 		d_listOfCountriesOwned.add(country);
+		country.setOwnerId(getL_playerid());
 	}
 
 	/**
@@ -110,7 +112,7 @@ public class Player {
 	 * @param order storing order to add
 	 */
 
-	public void issue_order(Order order) {
+	public void issue_order(OrderMethods order) {
 		d_listOfOrders.add(order);
 		this.setReinforcementMap(this.getReinforcementArmies() - order.getL_numberOfArmies());
 	}
@@ -125,7 +127,7 @@ public class Player {
 	/**
 	 * @return Order
 	 */
-	public Order next_order() {
+	public OrderMethods next_order() {
 		if (d_listOfOrders.size() > 0)
 			return d_listOfOrders.remove();
 		return null;

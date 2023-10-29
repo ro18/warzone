@@ -58,7 +58,11 @@ public class GameEngine {
             int l_playersOrdersProcessed = 0;
 
             for (int i = 0; i < l_players.size(); i++) {
-                Order order = l_players.get(i).next_order();
+                // OrderMethods order = l_players.get(i).next_order();
+
+
+                l_players.get(i).next_order();
+                
                 if (order != null) {
                     l_playersOrdersProcessed++;
                     order.execute();

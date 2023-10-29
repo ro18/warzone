@@ -45,6 +45,7 @@ public class Country {
         this.d_countryName = p_countryName;
         this.d_continent = p_continent;
         this.d_countryId=p_countryId;
+        this.d_ownerId=0;
     }
 
     /**

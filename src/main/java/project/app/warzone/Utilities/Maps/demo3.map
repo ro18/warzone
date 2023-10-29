@@ -1,0 +1,13 @@
+[continents]
+North_Europe 2
+East_Europe 5
+
+
+[countries]
+1 England 1
+3 N_Ireland 2
+4 Rep_Ireland 2
+
+[borders]
+1  4
+3 1
