@@ -17,8 +17,8 @@ public class OrderCommands {
      * @param p_armies              storing numberofArmies
      * @return                      returns the status
      */
-    @ShellMethod(key = "deploy", value = "This is used to deploy armies")
-    public String deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
-        return "You can deploy armies here";
-    }
+    // @ShellMethod(key = "deploy", value = "This is used to deploy armies")
+    // public String deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
+    //     return "You can deploy armies here";
+    // }
 }
