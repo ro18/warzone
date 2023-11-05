@@ -19,7 +19,7 @@ public class Preload extends Edit {
         System.out.println("G **************************************************************** preload loadmap");
         // dMapEditorCommands.loadMap(p_filename);
         System.out.println("Map is loaded");
-        // ge.setPhase(new Postload(ge));
+        ge.setPhase(new Postload(ge));
     }
 
     public void editCountry() {
