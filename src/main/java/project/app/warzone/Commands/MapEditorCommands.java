@@ -57,6 +57,7 @@ public class MapEditorCommands {
     public String loadMap(@ShellOption String p_filename){
         
         d_gameEngine.prevUserCommand=Commands.LOADMAP;
+        d_gameEngine.start();
         if(d_gameEngine.gameMap.fileExists(p_filename)){
             System.out.println("One file found.");
             d_gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
