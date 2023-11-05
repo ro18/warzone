@@ -4,6 +4,7 @@ public abstract class Edit extends Phase{
     Edit(GameEngine p_ge) {
 		super(p_ge);
 	}
+	abstract public void loadMap();
 
 	public void setPlayers() {
 		printInvalidCommandMessage(); 
