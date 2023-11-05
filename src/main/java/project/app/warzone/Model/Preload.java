@@ -22,9 +22,11 @@ public class Preload extends Edit {
         ge.setPhase(new Postload(ge));
     }
 
-    public void editCountry() {
-		printInvalidCommandMessage(); 
-	}
+    public String editCountry(String p_editcmd,String p_editremovecmd) {
+        printInvalidCommandMessage(); 
+        return null;
+    }
+	
 
 	public void saveMap() {
 		printInvalidCommandMessage(); 

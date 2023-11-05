@@ -22,7 +22,7 @@ public abstract class Phase {
 	abstract public void showMap();
 
 	// Edit map commands
-	abstract public void editCountry();
+	abstract public String editCountry(String p_editcmd,String p_editremovecmd);
 	abstract public void saveMap();
 
 	// Play commands

@@ -205,83 +205,9 @@ public class MapEditorCommands {
      * @throws IOException             throwing statement incase of any Exception 
      */
     @ShellMethod(key = "editcountry", prefix = "-", value = "This is used to add continents")
-    public String editcountry(@ShellOption(value = "a", defaultValue = ShellOption.NULL,arity=20) String p_editcmd,
-            @ShellOption(value = "r", defaultValue = ShellOption.NULL,arity=20) String p_editremovecmd) throws IOException {
-
-
-        if (d_gameEngine.prevUserCommand == Commands.ADDCONTINENT
-                || d_gameEngine.prevUserCommand == Commands.REMOVECONTINENT
-                || d_gameEngine.prevUserCommand == Commands.ADDCOUNTRY
-                || d_gameEngine.prevUserCommand == Commands.REMOVECOUNTRY) {
-
-            if (p_editcmd != null && p_editcmd != "") {
-                Map<String, String> listofCountries = new HashMap<String, String>();
-                d_gameEngine.prevUserCommand = Commands.ADDCOUNTRY;
-
-                String[] editCmd = p_editcmd.split(",");
-                int l_i = 0;
-
-                String commandToCheck = "-add";
-                while (l_i < editCmd.length) {
-
-                    if (editCmd[l_i].toString().equals(commandToCheck)) {
-                        l_i++;
-                        continue;
-
-                    } else {
-                        listofCountries.put(editCmd[l_i], editCmd[l_i + 1]);
-                        l_i += 2;
-
-                    }
-
-                }
-                try {
-                    d_mapFeatures.writeCountriesToFile(listofCountries, d_gameEngine);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-                return "Countries addded succesfully";
-            } else {
-
-                List<String> l_listofCountries = new ArrayList<>();
-                String[] l_editremovecmd = p_editremovecmd.split(",");
-
-                int l_i = 0;
-
-                String commandToCheck = "-remove";
-
-                while (l_i < l_editremovecmd.length) {
-
-                    //System.out.println(l_editremovecmd[l_i] + ":" + commandToCheck);
-                    if (l_editremovecmd[l_i].toString().equals(commandToCheck)) {
-
-                        l_i++;
-                        continue;
-
-                    } else {
-                        l_listofCountries.add(l_editremovecmd[l_i]);
-
-                        //System.out.println("listofCountries" + l_listofCountries);
-                        l_i++;
-                    }
-
-                }
-                try {
-                    d_mapFeatures.removeCountriesFromFile(l_listofCountries, d_gameEngine);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-                return "Countries removed succesfully";
-            }
-        } else {
-            return "You cannnot add country at this stage";
-
-        }
-
+    public String editcountry(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
+            @ShellOption(value = "r", defaultValue = ShellOption.NULL) String p_editremovecmd) throws IOException {
+                return d_gameEngine.getGamePhase().editCountry(p_editcmd, p_editremovecmd);
     }
 
     /**
