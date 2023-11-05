@@ -2,11 +2,11 @@ package project.app.warzone.Model;
 
 public class OrderMethods {
 
-    private String d_orderType = ""; // The number of armies to deploy.
+    protected String d_orderType = ""; // The number of armies to deploy.
 
-    private int d_numberOfArmies; // The number of armies and territory to deploy the armies to.
+    protected int d_numberOfArmies; // The number of armies and territory to deploy the armies to.
 
-    private Country d_Country; // The territory associated with the particular order
+    protected int d_CountryId; // The territory associated with the particular order
 
     /**
      * This method is used to set armies for the particular order
@@ -22,8 +22,8 @@ public class OrderMethods {
      * 
      * @param p_territory storing territory to set
      */
-    public void setL_territory(Country p_territory) {
-        this.d_Country = p_territory;
+    public void setL_territory(int p_territory) {
+        this.d_CountryId = p_territory;
     }
 
     /**
@@ -40,8 +40,8 @@ public class OrderMethods {
      * 
      * @return Territory
      */
-    public Country getL_Country() {
-        return this.d_Country;
+    public int getL_Country() {
+        return this.d_CountryId;
     }
     
 }

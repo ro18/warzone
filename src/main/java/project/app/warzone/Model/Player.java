@@ -15,7 +15,7 @@ public class Player {
 	public int d_reinforcementPool; // Total number of players available to deploy in each round
 
 	public List<Country> d_listOfCountriesOwned; // List of countries owned by the player
-	public Queue<OrderMethods> d_listOfOrders = new ArrayDeque<>(); // stores orders issued by the player
+	public Queue<OrderInterface> d_listOfOrders = new ArrayDeque<>(); // stores orders issued by the player
 
 	/**
 	 * Creates a new player with the given ID.
@@ -112,9 +112,57 @@ public class Player {
 	 * @param order storing order to add
 	 */
 
-	public void issue_order(OrderMethods order) {
-		d_listOfOrders.add(order);
-		this.setReinforcementMap(this.getReinforcementArmies() - order.getL_numberOfArmies());
+	public void issue_order(int orderType,java.util.Map<String,Integer> order_details) {
+
+		switch (orderType) {
+			case 0:
+				System.out.println("Order List:"+d_listOfOrders);
+				System.out.print(order_details.get("Armies"));
+
+				d_listOfOrders.add(new ConcreteDeploy(order_details.get("Armies"),order_details.get("CountryId")));
+				// ConcreteDeploy l_order = ;
+
+				// l_order.setL_numberOfArmies(p_armies);
+				// l_order.setL_territory(l_country);
+				break;
+			case 1:
+			    System.out.println("Inside Switch 1");
+				System.out.print(order_details.get("Armies"));
+				d_listOfOrders.add(new ConcreteAdvance(order_details.get("Armies"),order_details.get("CountryId")));
+
+			break;
+           case 2:
+			    System.out.println("Inside Switch 2");
+				System.out.print(order_details.get("Armies"));
+				d_listOfOrders.add(new ConcreteAirlift());
+
+			break;
+			case 3:
+			    System.out.println("Inside Switch 3");
+				System.out.print(order_details.get("Armies"));
+				d_listOfOrders.add(new ConcreteBlockade());
+
+			break;
+			case 4:
+			    System.out.println("Inside Switch 4");
+				System.out.print(order_details.get("Armies"));
+				d_listOfOrders.add(new ConcreteBomb());
+
+			break;
+			case 5:
+			    System.out.println("Inside Switch 5");
+				System.out.print(order_details.get("Armies"));
+				d_listOfOrders.add(new ConcreteNegotiate());
+
+			break;
+
+		
+			default:
+				break;
+		}
+
+		// this.setReinforcementMap(this.getReinforcementArmies() - order.getL_numberOfArmies());
+	
 	}
 
 	/**
@@ -127,7 +175,7 @@ public class Player {
 	/**
 	 * @return Order
 	 */
-	public OrderMethods next_order() {
+	public OrderInterface next_order() {
 		if (d_listOfOrders.size() > 0)
 			return d_listOfOrders.remove();
 		return null;

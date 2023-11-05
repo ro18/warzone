@@ -1,5 +1,6 @@
 package project.app.warzone.Features;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -181,15 +182,23 @@ public class PlayerFeatures {
             return "Country is not owned by the player";
         }
 
-        ConcreteDeploy order = new ConcreteDeploy();
-        order.setL_numberOfArmies(p_armies);
-        order.setL_territory(l_country);
-        l_player.issue_order(order);
+        // Order l_deployOrder = new OrderMethods();
+        // l_deployOrder.setL_numberOfArmies(p_armies);
+        // l_deployOrder.setL_territory(l_country);
+
+        java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
+
+        l_orderDetails.put("Armies", p_armies);
+        l_orderDetails.put("CountryId", p_countryID);
+
+       //IssueOrder        
+        l_player.issue_order(0,l_orderDetails);
 
         /**
          * Main Game loop in round robin fashion which checks the reinforcement pool of the player and if it is 0, then
          * ask the next player to deploy armies. If all players have deployed all their armies, then execute the orders
          */
+        p_gameEngine.execute_orders();
 
         Boolean l_flag = false;
         int l_i = PlayerCommands.d_CurrentPlayerId+1;
