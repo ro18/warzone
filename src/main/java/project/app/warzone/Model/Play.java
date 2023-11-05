@@ -38,8 +38,10 @@ public abstract class Play extends Phase {
 		System.out.println("Map is Dsiplayed");
 	}
 
-	public void editCountry() {
+	public String editCountry(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 
+		return null;
+		
 	}
 
 	public void saveMap() {

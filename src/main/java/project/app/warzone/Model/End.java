@@ -14,10 +14,11 @@ public class End extends Phase {
 		printInvalidCommandMessage(); 
 	}
 
-	public void editCountry() {
+	public String editCountry(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 
+		return null;
+		
 	}
-
 	public void saveMap() {
 		printInvalidCommandMessage(); 
 	}
