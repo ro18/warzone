@@ -785,3 +785,5 @@
 1696436233876:editcountry -add 4 6 -add 2 1 -add 3 1 -add 1 5
 1696436278452:editneighbor -add 1 8
 >>>>>>> ef690850e4a0b2c5f107caf89ffa0e2c6ac73789
+1699159337462:loadmap europe
+1699163797504:loadmap europe
