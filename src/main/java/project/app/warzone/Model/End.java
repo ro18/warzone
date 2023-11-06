@@ -6,12 +6,14 @@ public class End extends Phase {
 		super(p_ge);
 	}
 
-	public void loadMap() {
+	public String loadMap(String p_filename) {
 		printInvalidCommandMessage(); 
+		return null;
 	}
 
-	public void showMap() {
+	public String showMap() {
 		printInvalidCommandMessage(); 
+		return null;
 	}
 
 	public String editCountry(String p_editcmd,String p_editremovecmd) {

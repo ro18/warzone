@@ -25,6 +25,7 @@ public class GameEngine {
      * @param gameMap           gameMap instance
      */
     public GameEngine(Map gameMap ){
+        this.gamePhase = new Preload(this);
         this.gameMap = gameMap; // this is required
         this.d_playersList = new ArrayList<>();
     }
@@ -95,7 +96,7 @@ public class GameEngine {
         System.out.println("G **************************************************************** Inside Start");
         Preload d_Preload = new Preload(this);
         setPhase(d_Preload);
-        d_Preload.loadMap();
+        // d_Preload.loadMap();
         // setPhase(new Postload(this));
 
         //setPhase(new Play(this));

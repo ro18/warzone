@@ -7,8 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,11 +26,23 @@ import project.app.warzone.Utilities.MapResources;;
 @Component
 public class MapFeatures {
 
-    public MapResources mapResouces;
+    public static MapResources mapResouces;
+    private static MapFeatures d_singleInstance = null; 
 
     public MapFeatures(MapResources mapResouces){
-        this.mapResouces = mapResouces;
+        MapFeatures.mapResouces = mapResouces;
 
+    }
+    /**
+     * used for getting instance
+     * @return MapFeatures
+     */
+    public static synchronized MapFeatures getInstance() 
+    { 
+        if (d_singleInstance == null) 
+            d_singleInstance = new MapFeatures(mapResouces); 
+  
+        return d_singleInstance; 
     }
 
     
@@ -189,7 +199,7 @@ public class MapFeatures {
 
         }
 
-       Node n = l_visitedList.entrySet().iterator().next().getKey();
+    //    Node n = l_visitedList.entrySet().iterator().next().getKey();
        depthFirstSearch(l_visitedList.entrySet().iterator().next().getKey(),l_visitedList);
 
        return l_visitedList;
@@ -526,7 +536,7 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
 
    public void removeContinentFromFile(List<String> listofContinent,GameEngine gameEngine)throws IOException{
 
-    java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
+    // java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
     System.out.println(listofContinent.get(0));
     
 

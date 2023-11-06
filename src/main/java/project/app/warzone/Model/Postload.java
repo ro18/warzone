@@ -10,21 +10,28 @@ import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Utilities.Commands;
 
 public class Postload extends Edit {
-	MapFeatures d_mapFeatures ;
+	MapFeatures d_mapFeatures = MapFeatures.getInstance() ;
 	Postload(GameEngine p_ge) {
         super(p_ge);
     }
-	
-	public void showMap() {
-		System.out.println("G **************************************************************** Postload Shomap");
 
-        // dMapEditorCommands.showmap();
-        System.out.println("Map is Dsiplayed");
+    public String loadMap(String p_filename) {
+		printInvalidCommandMessage(); 
+		return null;
 	}
-
-	public void loadMap() {
-        // dMapEditorCommands.loadMap(p_filename);
-        System.out.println("Map is loaded");
+	
+	public String showMap() {
+        System.out.println("show map");
+        String p_mapLocation=ge.gameMap.getMapDirectory()+"//"+ge.gameMap.get_USER_SELECTED_FILE()+".map";
+        Boolean l_result=false;
+        ge.gameMap = d_mapFeatures.readMap(p_mapLocation);
+        l_result = d_mapFeatures.validateEntireGraph(ge);
+        if(!l_result){
+            return("This map is not valid.Please try with some other map");
+        }
+        else{
+            return("You can now proceed to add gameplayers");
+        }
 	}
 
 	public String editCountry(String p_editcmd,String p_editremovecmd) {

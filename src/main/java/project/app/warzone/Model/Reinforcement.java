@@ -9,6 +9,11 @@ public class Reinforcement extends MainPlay {
 		super(p_ge);
 	}
 
+	public String loadMap(String p_filename) {
+		printInvalidCommandMessage(); 
+		return null;
+	}
+
 	public void reinforce() {
 		System.out.println("reinforcement done");
 		ge.setPhase(new Attack(ge));

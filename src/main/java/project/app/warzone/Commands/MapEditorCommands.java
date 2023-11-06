@@ -22,7 +22,7 @@ import project.app.warzone.Utilities.MapResources;
 @ShellComponent
 public class MapEditorCommands {
 
-    private final MapFeatures d_mapFeatures;
+    private final MapFeatures d_mapFeatures = MapFeatures.getInstance();
     public GameEngine d_gameEngine;
     public PlayerCommands d_playerCommands;
     public PlayerFeatures d_playerFeatures;
@@ -39,7 +39,7 @@ public class MapEditorCommands {
      * @param p_mapResources          MapResources object
      */
     public MapEditorCommands(MapFeatures p_mapFeatures, GameEngine p_gameEngine, PlayerFeatures p_playerFeatures, MapResources p_mapResources){
-        this.d_mapFeatures = p_mapFeatures;
+        // this.d_mapFeatures = p_mapFeatures;
         this.d_gameEngine = p_gameEngine;
         d_playerCommands = new PlayerCommands(p_gameEngine, p_playerFeatures);
         this.d_mapResources = p_mapResources;
@@ -55,23 +55,10 @@ public class MapEditorCommands {
      */
     @ShellMethod(key= "loadmap", value="Player can create or open an existing map")
     public String loadMap(@ShellOption String p_filename){
-        
         d_gameEngine.prevUserCommand=Commands.LOADMAP;
-        d_gameEngine.start();
-        if(d_gameEngine.gameMap.fileExists(p_filename)){
-            System.out.println("One file found.");
-            d_gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
-            //System.out.println(d_gameEngine.gameMap.get_USER_SELECTED_FILE());
-            //d_gameEngine.start(d_gameEngine.gameMap.get_USER_SELECTED_FILE());
-            System.out.println("Game started successfully..");
-            return "Choose one of the below commands to proceed:\n 1. showmap 2.editmap";
-        } else {
-            return "Map not found.";
-        }
+        String l_result = d_gameEngine.getGamePhase().loadMap(p_filename);
+        return l_result;        
     }
-
-
-
     
     /** 
      * Display the game map
@@ -80,20 +67,8 @@ public class MapEditorCommands {
      */
     @ShellMethod(key= "showmap", value="Used to display map continents with terriotories and boundaries")
     public String showmap(){
-        if(d_gameEngine.prevUserCommand == Commands.LOADMAP){
-            String p_mapLocation=d_gameEngine.gameMap.getMapDirectory()+"//"+d_gameEngine.gameMap.get_USER_SELECTED_FILE()+".map";
-            Boolean l_result=false;
-            d_gameEngine.gameMap = d_mapFeatures.readMap(p_mapLocation);
-            l_result = d_mapFeatures.validateEntireGraph(d_gameEngine);
-            if(!l_result){
-                return("This map is not valid.Please try with some other map");
-            }
-            else{
-                return("You can now proceed to add gameplayers");
-            }
-        }
-        return "Please enter loadmap command first";
-       
+       String d_reString = d_gameEngine.getGamePhase().showMap();
+        return d_reString;
 
     }
 

@@ -18,8 +18,8 @@ public abstract class Phase {
 	}
 
 	// common commands
-	abstract public void loadMap();
-	abstract public void showMap();
+	abstract public String loadMap(String p_filename);
+	abstract public String showMap();
 
 	// Edit map commands
 	abstract public String editCountry(String p_editcmd,String p_editremovecmd);

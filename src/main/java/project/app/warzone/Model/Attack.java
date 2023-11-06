@@ -10,6 +10,10 @@ public class Attack extends MainPlay {
 	Attack(GameEngine p_ge) {
 		super(p_ge);
 	}
+	public String loadMap(String p_filename) {
+		printInvalidCommandMessage(); 
+		return null;
+	}
 
 	/**
 	 *  Call this method to go the the next state in the sequence. 

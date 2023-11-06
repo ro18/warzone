@@ -5,6 +5,11 @@ public class Fortify extends MainPlay {
 	Fortify(GameEngine p_ge) {
 		super(p_ge);
 	}
+
+	public String loadMap(String p_filename) {
+		printInvalidCommandMessage(); 
+		return null;
+	}
 	public void reinforce() {
 		printInvalidCommandMessage(); 
 	}

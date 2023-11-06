@@ -7,19 +7,20 @@ import project.app.warzone.Commands.MapEditorCommands;
 public class Preload extends Edit {
     
     public MapEditorCommands dMapEditorCommands;
-    // Map dMap = new Map();
-    // GameEngine ge = new GameEngine(dMapEditorCommands.returnMap());// map object is required to be passed here
-    // String p_filename = dMap.get_USER_SELECTED_FILE();
 
     Preload(GameEngine p_ge) {
 		super(p_ge);
 	} 
     
-    public void loadMap() {
-        System.out.println("G **************************************************************** preload loadmap");
-        // dMapEditorCommands.loadMap(p_filename);
-        System.out.println("Map is loaded");
-        ge.setPhase(new Postload(ge));
+    public String loadMap(String p_filename) {
+        if(ge.gameMap.fileExists(p_filename)){
+            System.out.println("One file found.");
+            ge.gameMap.set_USER_SELECTED_FILE(p_filename);
+            ge.setPhase(new Postload(ge));
+            return "Choose one of the below commands to proceed:\n 1. showmap 2.editmap";
+        } else {
+            return "Map not found.";
+        }
     }
 
     public String editCountry(String p_editcmd,String p_editremovecmd) {

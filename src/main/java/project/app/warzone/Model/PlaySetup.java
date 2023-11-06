@@ -10,9 +10,16 @@ public class PlaySetup extends Play {
 		super(p_ge);
 	}
 
-	public void loadMap() {
-		System.out.println("map has been loaded");
-	}
+	public String loadMap(String p_filename) {
+        if(ge.gameMap.fileExists(p_filename)){
+            System.out.println("One file found.");
+            ge.gameMap.set_USER_SELECTED_FILE(p_filename);
+            ge.setPhase(new Postload(ge));
+            return "Choose one of the below commands to proceed:\n 1. showmap 2.editmap";
+        } else {
+            return "Map not found.";
+        }
+    }
 
 	public void setPlayers() {
 		d_playerFeatures.addPlayers( p_playerName, ge);

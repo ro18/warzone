@@ -4,7 +4,7 @@ public abstract class Edit extends Phase{
     Edit(GameEngine p_ge) {
 		super(p_ge);
 	}
-	abstract public void loadMap();
+	abstract public String loadMap(String p_filename);
 
 	public void setPlayers() {
 		printInvalidCommandMessage(); 
@@ -30,7 +30,8 @@ public abstract class Edit extends Phase{
 		printInvalidCommandMessage(); 
 	}
 	
-	public void showMap() {
+	public String showMap() {
 		printInvalidCommandMessage(); 
+		return null;
 	}
 }

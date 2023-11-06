@@ -54,7 +54,7 @@ public class PlayerFeatures {
             
             int randomCountry =  l_random.nextInt(p_gameEngine.gameMap.getNodes().size());
 
-            int randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
+            // int randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
 
             while (p_gameEngine.gameMap.getNodes().get(randomCountry).getData().getOwnerId() != 0) {
                 randomCountry = l_random.nextInt(p_gameEngine.gameMap.getNodes().size() + 1);

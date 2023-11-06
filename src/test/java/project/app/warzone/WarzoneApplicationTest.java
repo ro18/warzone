@@ -43,7 +43,7 @@ class WarzoneApplicationTest {
         
         //demoAddPlayers();
 
-        String[] testPlayerNames = {"prashant","rochelle","aishwarya","anash"};
+        // String[] testPlayerNames = {"prashant","rochelle","aishwarya","anash"};
 
         ///assertEquals(testPlayerNames, gameEngine.getPlayers());
         assertEquals("test", "test");
@@ -54,7 +54,7 @@ class WarzoneApplicationTest {
         
         //demoAddPlayers();
 
-        String[] testPlayerNames = {"prashant","rochelle","aishwarya","anash"};
+        // String[] testPlayerNames = {"prashant","rochelle","aishwarya","anash"};
 
         ///assertEquals(testPlayerNames, gameEngine.getPlayers());
         assertEquals("test", "test");
