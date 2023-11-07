@@ -11,7 +11,7 @@ import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.MapResources;
 
 public class Postload extends Edit {
-    MapFeatures d_mapFeatures = MapFeatures.getInstance();
+    private MapFeatures d_mapFeatures = MapFeatures.getInstance();
     private MapResources d_mapResources;
 
     Postload(GameEngine p_ge) {

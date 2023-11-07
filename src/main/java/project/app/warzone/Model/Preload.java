@@ -2,12 +2,14 @@ package project.app.warzone.Model;
 
 
 import project.app.warzone.Commands.MapEditorCommands;
+import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.MapResources;
 
 
 public class Preload extends Edit {
-    
+
+    private MapFeatures d_mapFeatures = MapFeatures.getInstance();    
     public MapEditorCommands dMapEditorCommands;
     public MapResources d_mapResources;
 
@@ -15,6 +17,18 @@ public class Preload extends Edit {
 		super(p_ge);
         d_mapResources = new MapResources();
 	} 
+
+    private void validateMap() {
+        String p_mapLocation = ge.gameMap.getMapDirectory() + "//" + ge.gameMap.get_USER_SELECTED_FILE() + ".map";
+        Boolean l_result = false;
+        ge.gameMap = d_mapFeatures.readMap(p_mapLocation);
+        l_result = d_mapFeatures.validateEntireGraph(ge);
+        if (!l_result) {
+            System.out.println("This map is not valid.Please try with some other map");
+        } else {
+            System.out.println("Map is validated. You can now proceed to add gameplayers");
+        }
+    }
     
     public void loadMap(String p_filename) {
         if(ge.gameMap.fileExists(p_filename)){
@@ -31,8 +45,7 @@ public class Preload extends Edit {
         if (ge.gameMap.fileExists(p_fileName)) {
             System.out.println("One file found.");
             ge.gameMap.set_USER_SELECTED_FILE(p_fileName);
-            //TODO: add map validation
-            // showmap(); // add check to see if file is proper
+            validateMap(); // add check to see if file is proper
             System.out.println("Please use gameplayer -add command to add players in the game");
         } else {
             ge.prevUserCommand = Commands.EDITMAP;
