@@ -10,48 +10,61 @@
  */
 package project.app.warzone.Model;
 
-import project.app.warzone.Commands.MapEditorCommands;
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Features.MapFeatures;
+import project.app.warzone.Features.PlayerFeatures;
 
 public abstract class Play extends Phase {
 
-	public MapEditorCommands dMapEditorCommands;
 	public PlayerCommands dPlayerCommands;
 	MapFeatures d_mapFeatures = MapFeatures.getInstance();
-    Map dMap = new Map();
-    GameEngine ge = new GameEngine(dMapEditorCommands.returnMap());// map object is required to be passed here
-    String p_filename = dMap.get_USER_SELECTED_FILE();
-
+	PlayerFeatures d_playerFeatures = new PlayerFeatures();
 	Play(GameEngine p_ge) {
 		super(p_ge); 
 	}
 	
-	public String showMap() {
+	public void showMap() {
+		// TODO: print map instead of inserting it in a map
 		String p_mapLocation=ge.gameMap.getMapDirectory()+"//"+ge.gameMap.get_USER_SELECTED_FILE()+".map";
         Boolean l_result=false;
         ge.gameMap = d_mapFeatures.readMap(p_mapLocation);
         l_result = d_mapFeatures.validateEntireGraph(ge);
         if(!l_result){
 			ge.setPhase(new Preload(ge));
-            return("This map is not valid.Please try with some other map");
+            System.out.println("This map is not valid.Please try with some other map");
         }
         else{
-            return("You can now proceed to add gameplayers");
+			ge.setPhase(new PlaySetup(ge));
+            System.out.println("You can now proceed to add gameplayers");
         }
 	}
 
-	public void showstats() {}
+	public void showstats() {
+        System.out.println("========================================");
+        System.out.println("STATS:");
+        d_playerFeatures.showStats(ge);
+        System.out.println("STATS COMPLETE");
+	}
 
-	public String editCountry(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
-		return null;
-		
+	public void editCountry(String p_editcmd,String p_editremovecmd) {
+		printInvalidCommandMessage(); 		
 	}
 
 	public void saveMap() {
 		printInvalidCommandMessage(); 
 	}
+
+	public void editMap(String p_fileName){
+		printInvalidCommandMessage();
+	}
+
+	public void editContinent(String p_editcmd,String p_editremovecmd) {
+		printInvalidCommandMessage(); 
+	}
+	public void editNeighbor(String p_editcmd,String p_editremovecmd) {
+		printInvalidCommandMessage(); 
+	}
+
 	public void endGame() {
 		ge.setPhase(new End(ge));
 	}

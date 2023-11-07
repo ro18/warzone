@@ -1,37 +1,73 @@
 package project.app.warzone.Model;
+import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Features.PlayerFeatures;
+import project.app.warzone.Utilities.Commands;
 
 public class PlaySetup extends Play {
 	public PlayerFeatures d_playerFeatures;
-	GameEngine ge = new GameEngine(dMapEditorCommands.returnMap());// map object is required to be passed here
-	String p_playerName = "player1";//add player import feature here
 
 	PlaySetup(GameEngine p_ge) {
 		super(p_ge);
+		this.d_playerFeatures = new PlayerFeatures();
 	}
 
-	public String loadMap(String p_filename) {
-        if(ge.gameMap.fileExists(p_filename)){
-            System.out.println("One file found.");
-            ge.gameMap.set_USER_SELECTED_FILE(p_filename);
-            ge.setPhase(new Postload(ge));
-            return "Choose one of the below commands to proceed:\n 1. showmap 2.editmap";
-        } else {
-            return "Map not found.";
-        }
+	public void loadMap(String p_filename) {
+		printInvalidCommandMessage();
     }
 
-	public void setPlayers() {
-		d_playerFeatures.addPlayers( p_playerName, ge);
-		System.out.println("players have been set");
+	public void setPlayers(String p_attribute, String p_playerName) {
+		if (p_attribute != null && p_attribute != "") {
+			String l_players[] = p_attribute.split(",");
+			int l_i = 0;
+			while (l_i < l_players.length) {
+
+				if (l_players[l_i].toString().equals("-add") == false) {
+
+					d_playerFeatures.addPlayers(l_players[l_i], ge);
+
+				}
+				l_i++;
+			}
+
+			d_playerFeatures.printAllPlayers(ge);
+			ge.prevUserCommand = Commands.ADDPLAYER;
+			System.out.println("Players added successfully");
+
+		} else {
+
+			String l_players[] = p_playerName.split(",");
+			int l_i = 0;
+			while (l_i < l_players.length) {
+				if (l_players[l_i].toString().equals("-remove") == false) {
+
+					d_playerFeatures.removePlayers(l_players[l_i], ge);
+
+				}
+				l_i++;
+			}
+			d_playerFeatures.printAllPlayers(ge);
+			ge.prevUserCommand = Commands.REMOVEPLAYER;
+			System.out.println("Players removed successfully");
+
+		}
 	}
 
 	public void assignCountries() {
-		d_playerFeatures.assignCountries(ge);
-		System.out.println("countries have been assigned");
+		if(ge.getPlayers().size() < 2){
+            System.out.println("You need atleast 2 players to play the game. Please add more players");
+        } else {
+			Player player = ge.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
+			d_playerFeatures.assignCountries(ge);
+			System.out.println("Assigned Countries to the players are:");
+			d_playerFeatures.showAllAssignments(ge.getPlayers());
+			ge.prevUserCommand = Commands.ASSIGNCOUNTRIES;
+			System.out.println("Assignment of countries is completed. \nNow its turn of player: "+player.getL_playername()+" to deploy armies");
+			ge.setPhase(new Reinforcement(ge));
+		}
+        
 	}
 
-	public void reinforce() {
+	public void reinforce(int p_countryID, int p_armies) {
 		printInvalidCommandMessage(); 
 	}
 

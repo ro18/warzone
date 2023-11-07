@@ -6,26 +6,25 @@ public class End extends Phase {
 		super(p_ge);
 	}
 
-	public String loadMap(String p_filename) {
+	public void loadMap(String p_filename) {
 		printInvalidCommandMessage(); 
-		return null;
 	}
 
-	public String showMap() {
+	public void showMap() {
 		printInvalidCommandMessage(); 
-		return null;
 	}
 
-	public String editCountry(String p_editcmd,String p_editremovecmd) {
+	public void editCountry(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 
-		return null;
-		
+	}
+	public void editNeighbor(String p_editcmd,String p_editremovecmd) {
+		printInvalidCommandMessage(); 
 	}
 	public void saveMap() {
 		printInvalidCommandMessage(); 
 	}
 
-	public void setPlayers() {
+	public void setPlayers(String p_attribute, String p_playerName) {
 		printInvalidCommandMessage(); 
 	}
 
@@ -33,7 +32,7 @@ public class End extends Phase {
 		printInvalidCommandMessage(); 
 	}
 
-	public void reinforce() {
+	public void reinforce(int p_countryID, int p_armies) {
 		printInvalidCommandMessage(); 
 	}
 
@@ -49,6 +48,15 @@ public class End extends Phase {
 		printInvalidCommandMessage(); 
 	}
 
+	public void showstats() {
+		printInvalidCommandMessage(); 
+	}
+	public void editMap(String p_fileName){
+		printInvalidCommandMessage();
+	}
+	public void editContinent(String p_editcmd,String p_editremovecmd){
+		printInvalidCommandMessage();
+	}
 	public void next() {
 		printInvalidCommandMessage(); 
 	}

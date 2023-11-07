@@ -18,20 +18,25 @@ public abstract class Phase {
 	}
 
 	// common commands
-	abstract public String loadMap(String p_filename);
-	abstract public String showMap();
+	abstract public void loadMap(String p_filename);
+	abstract public void showMap();
 
 	// Edit map commands
-	abstract public String editCountry(String p_editcmd,String p_editremovecmd);
+	abstract public void editCountry(String p_editcmd,String p_editremovecmd);
 	abstract public void saveMap();
+	abstract public void editMap(String p_fileName);
+	abstract public void editContinent(String p_editcmd,String p_editremovecmd);
+	abstract public void editNeighbor(String p_editcmd,String p_editremovecmd);
 
 	// Play commands
+	//common commands
+	abstract public void showstats();
 	// game setup commands
-	abstract public void setPlayers();
+	abstract public void setPlayers(String p_attribute, String p_playerName);
 	abstract public void assignCountries();
 
 	// reinforcement commands
-	abstract public void reinforce();
+	abstract public void reinforce(int p_countryID, int p_armies);
 
 	// attack commands
 	abstract public void attack();

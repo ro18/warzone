@@ -20,7 +20,7 @@ public abstract class MainPlay extends Play {
 		this.printInvalidCommandMessage();
 	}
 
-	public void setPlayers() {
+	public void setPlayers(String p_attribute, String p_playerName) {
 		this.printInvalidCommandMessage();	
 	}
 

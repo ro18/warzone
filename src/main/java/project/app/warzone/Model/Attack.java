@@ -10,9 +10,8 @@ public class Attack extends MainPlay {
 	Attack(GameEngine p_ge) {
 		super(p_ge);
 	}
-	public String loadMap(String p_filename) {
+	public void loadMap(String p_filename) {
 		printInvalidCommandMessage(); 
-		return null;
 	}
 
 	/**
@@ -22,7 +21,7 @@ public class Attack extends MainPlay {
 		ge.setPhase(new Fortify(ge));
 	}
 	
-	public void reinforce() {
+	public void reinforce(int p_countryID, int p_armies) {
 		printInvalidCommandMessage(); 
 	}
 
