@@ -11,31 +11,49 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Utilities.Commands;
-
 /**
  * This class represents the main instance of the Warzone game.
  */
 @Component
 public class GameEngine {
 
+    private Phase gamePhase; // current state of the GameEngine object
 
+	
+    
     @Autowired
     @Lazy
     private LineReader lineReader;
     public List<Player> d_playersList;              //storing player list  
     public Map gameMap;                             //storing gameMap
     public Commands prevUserCommand;                //storing user's previous command
-
-
     /**
      * Initializing gameMap and d_playersList
      * 
      * @param gameMap           gameMap instance
      */
     public GameEngine(Map gameMap ){
+        this.gamePhase = new Preload(this);
         this.gameMap = gameMap; // this is required
         this.d_playersList = new ArrayList<>();
-    } 
+    }
+    
+    /**
+	 * Method that allows the GameEngine object to change its state.  
+	 * @param p_phase new state to be set for the GameEngine object.
+	 */
+	public void setPhase(Phase p_phase) {
+		this.gamePhase = p_phase;
+		System.out.println("new phase: " + p_phase.getClass().getSimpleName());
+	}
+    /**
+     * used for getting game phase
+     * @return
+     */
+    public Phase getGamePhase() {
+        return this.gamePhase;
+    }
+
 
     /**
      * used for returning player list
@@ -208,5 +226,31 @@ public class GameEngine {
         }
 
     }
+
+    public void start(){
+        //include this function inside the main caller function that starts the application execution
+        // Set the initial state, call all state methods in order
+        System.out.println("G **************************************************************** Inside Start");
+        Preload d_Preload = new Preload(this);
+        setPhase(d_Preload);
+        // d_Preload.loadMap();
+        // setPhase(new Postload(this));
+
+        //setPhase(new Play(this));
+        //setPhase(new Playsetup(this));
+        //setPhase(new Reinforcement(this));
+        //setPhase(new Attack(this));
+        //setPhase(new Fortification(this));
+
+        // Can trigger State-dependent behavior by using
+        // The methods defined in the State (Phase) object, e.g.
+        //gamePhase.loadMap(p_filename);
+
+        // Player states
+        //gamePhase.attack();
+        //gamePhase.fortify();
+        //gamePhase.reinforce();
+        //gamePhase.next();
+    };
 
 }
