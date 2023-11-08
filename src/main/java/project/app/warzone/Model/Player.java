@@ -19,6 +19,10 @@ public class Player {
 	public boolean pendingOrder=true;
 
 	public List<Cards> d_cardsInCollection; // List of cards owned by the player
+	public List<Player> d_friendlyAlliesList; // List of cards owned by the player
+
+
+	
 
 	/**
 	 * Creates a new player with the given ID.
@@ -128,6 +132,14 @@ public class Player {
 
 	public void setCardsInCollection(List<Cards> p_cardsInCollection) {
 		this.d_cardsInCollection = p_cardsInCollection;
+	}
+
+	public List<Player> getD_friendlyAlliesList() {
+		return d_friendlyAlliesList;
+	}
+
+	public void setD_friendlyAlliesList(List<Player> d_friendlyAlliesList) {
+		this.d_friendlyAlliesList = d_friendlyAlliesList;
 	}
 
 	void addCardToCollection(Player p_player, Cards p_card) {

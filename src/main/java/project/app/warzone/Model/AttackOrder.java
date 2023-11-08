@@ -143,6 +143,32 @@ public class AttackOrder {
       //Add the territory to attackers list
       player1.setTerritories(target);
 
+      //adding card to players list
+
+                                        Cards l_card ;
+
+                                        int l_randomInt = (int) (Math.random() * 4);
+
+                                        switch (l_randomInt) {
+                                            case 0:
+                                                l_card = new Cards("BOMB");
+                                                break;
+                                            case 1:
+                                                l_card = new Cards("BLOCKADE");
+                                                break;
+                                            case 2:
+                                                l_card = new Cards("AIRLIFT");
+                                                break;
+                                            case 3:
+                                                l_card = new Cards("NEGOTIATE");
+                                                break;
+
+                                            default:
+                                                throw new IllegalArgumentException("Invalid card type");
+                                        }
+
+                                        player1.d_cardsInCollection.add(l_card);
+
       // add bonus armies on conquering territory
 
       player1.addReinforcementArmies(2);
