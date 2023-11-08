@@ -17,6 +17,8 @@ public class Player {
 	public List<Country> d_listOfCountriesOwned; // List of countries owned by the player
 	public Queue<Order> d_listOfOrders = new ArrayDeque<>(); // stores orders issued by the player
 
+	public List<Cards> d_cardsInCollection; // List of cards owned by the player
+
 	/**
 	 * Creates a new player with the given ID.
 	 * 
@@ -55,15 +57,15 @@ public class Player {
 	/**
 	 * @param noOfArmies storing numberofArmies to set reinforcement
 	 */
-	public void initReinforcementArmies(int noOfArmies) {
-		d_reinforcementPool = noOfArmies;
+	public void initReinforcementArmies(int p_noOfArmies) {
+		d_reinforcementPool = p_noOfArmies;
 	}
 
 	/**
 	 * @param noOfArmies storing numberofArmies to add reinforcement
 	 */
-	public void addReinforcementArmies(int noOfArmies) {
-		d_reinforcementPool += noOfArmies;
+	public void addReinforcementArmies(int p_noOfArmies) {
+		d_reinforcementPool += p_noOfArmies;
 	}
 
 	/**
@@ -76,12 +78,12 @@ public class Player {
 	/**
 	 * @param l_playername storing playername to set
 	 */
-	public void setL_playername(String l_playername) {
-		d_playername = l_playername;
+	public void setL_playername(String p_playername) {
+		d_playername = p_playername;
 	}
 
-	public void setReinforcementMap(int noOfArmies) {
-		this.d_reinforcementPool = noOfArmies;
+	public void setReinforcementMap(int p_noOfArmies) {
+		this.d_reinforcementPool = p_noOfArmies;
 	}
 
 	public int getReinforcementMap() {
@@ -95,8 +97,8 @@ public class Player {
 	/**
 	 * @param country storing country to add into player territories
 	 */
-	public void setTerritories(Country country) {
-		d_listOfCountriesOwned.add(country);
+	public void setTerritories(Country p_country) {
+		d_listOfCountriesOwned.add(p_country);
 	}
 
 	/**
@@ -106,13 +108,31 @@ public class Player {
 		return d_listOfCountriesOwned;
 	}
 
+	public List<Cards> getCardsInCollection() {
+		return d_cardsInCollection;
+	}
+
+	public void setCardsInCollection(List<Cards> p_cardsInCollection) {
+		this.d_cardsInCollection = p_cardsInCollection;
+	}
+
+	void addCardToCollection(Player p_player, Cards p_card) {
+		p_player.d_cardsInCollection.add(p_card);
+
+	}
+
+	void removeCardfromCollection(Player p_player, String p_cardType) {
+		p_player.d_cardsInCollection.removeIf(card -> card.getCardType().equalsIgnoreCase(p_cardType));
+
+	}
+
 	/**
 	 * @param order storing order to add
 	 */
 
-	public void issue_order(Order order) {
-		d_listOfOrders.add(order);
-		this.setReinforcementMap(this.getReinforcementArmies() - order.getL_numberOfArmies());
+	public void issue_order(Order p_order) {
+		d_listOfOrders.add(p_order);
+		this.setReinforcementMap(this.getReinforcementArmies() - p_order.getL_numberOfArmies());
 	}
 
 	/**
