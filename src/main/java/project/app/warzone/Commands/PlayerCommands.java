@@ -153,6 +153,6 @@ public class PlayerCommands {
         if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
             return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
         }
-        return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
+        return d_playerFeatures.advanceArmies(d_gameEngine, p_countryID, p_armies);
     }
 }

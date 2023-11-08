@@ -156,6 +156,57 @@ public class PlayerFeatures {
      * @return A string containing status of the game.
      */
 
+    public String advanceArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
+        // List<Player> l_players = p_gameEngine.getPlayers();
+
+        Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
+        Country l_country = p_gameEngine.gameMap.getNodes().get(p_countryID-1).getData();
+
+        /**
+         * Check if the player has enough armies in the reinforcement pool to deploy
+         */
+
+        if (l_player.getReinforcementArmies() < p_armies) {
+            return "Not enough armies to be deployed. Available armies: " + l_player.getReinforcementArmies();
+        }
+
+        /**
+         * Check if the country is owned by the player
+         */
+
+        Optional<Country> l_territory = l_player.d_listOfCountriesOwned.stream()
+                .filter(c -> c.getCountryName().equals(l_country.getCountryName())).findFirst();
+       
+
+        if (!l_territory.isPresent()) {
+            return "Country is not owned by the player";
+        }
+
+        java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
+
+        l_orderDetails.put("Armies", p_armies);
+        l_orderDetails.put("CountryId", p_countryID);
+
+       //IssueOrder        
+        l_player.issue_order(p_gameEngine,0,l_orderDetails);
+
+        l_player.setReinforcementMap(l_player.getReinforcementArmies() - p_armies);
+
+
+
+      
+        p_gameEngine.checkPlayersReinforcements();
+
+
+        return "";
+
+        
+
+
+
+      
+    }
+
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
         // List<Player> l_players = p_gameEngine.getPlayers();
 
@@ -190,6 +241,10 @@ public class PlayerFeatures {
        //IssueOrder        
         l_player.issue_order(p_gameEngine,0,l_orderDetails);
 
+        l_player.setReinforcementMap(l_player.getReinforcementArmies() - p_armies);
+
+
+
       
         p_gameEngine.checkPlayersReinforcements();
 
@@ -202,5 +257,6 @@ public class PlayerFeatures {
 
       
     }
+
 
 }

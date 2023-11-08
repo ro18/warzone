@@ -90,36 +90,7 @@ public class GameEngine {
 
     }
 
-    // public String takePlayerOrders(){
 
-    //     List<Player> l_players = getPlayers();
-
-        
-        
-
-    // }
-
-    // public String startGame() {
-
-	// 	// run the game turns
-
-	// 	// for (int turn = 1; turn <= numTurns; turn++) {
-	// 	// 	boolean an_order = true;
-	// 	// 	do {
-	// 	// 		for (Player p : players) {
-	// 	// 			an_order = p.createOrder(map, players);
-	// 	// 			if (!an_order)
-	// 	// 				break;
-	// 	// 		}
-	// 	// 	} while (an_order);
-	// 	// 	executeAllOrders();
-	// 	// 	printMap();
-	// 	// }
-
-
-        
-
-	// }
 
     /**
      * This method is used to execute orders all at once.
