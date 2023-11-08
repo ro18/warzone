@@ -15,6 +15,7 @@ import project.app.warzone.Commands.PlayerCommands;
 public class AttackOrder {
  
     //Constructor
+
     public AttackOrder()
     {
 
@@ -23,10 +24,14 @@ public class AttackOrder {
   /**
  * This method is used to deploy armies on a country
  */
-  public String Deploy()
+  public String Deploy(int p_armies, Country p_country)
   {
-   System.out.println("Inside Deploy Method");
-   return null;
+    p_country.setNumberOfArmies(p_country.getNumberOfArmies() + p_armies);
+
+
+    
+
+    return "Deployed armies successfully";
   }
 
   // /**
@@ -107,31 +112,87 @@ public class AttackOrder {
   //   }
 
   //Advance
-  public String Advance()
+  public void Advance( Player player1 , Player player2, int p_armiesToAdv, Country source, Country target)
   {
    System.out.println("Inside Advance Method");
-    return null;
+
+    long targetArmiesKilled = Math.round( target.getNumberOfArmies() * 0.7) ;
+
+    long sourceArmiesKilled = Math.round (source.getNumberOfArmies() * 0.6);
+
+    if(( p_armiesToAdv - targetArmiesKilled ) > target.getNumberOfArmies() - sourceArmiesKilled){
+
+
+      //Set armies in target country
+
+      target.setNumberOfArmies((int)(p_armiesToAdv - targetArmiesKilled));
+
+
+      //Set armies in source country
+
+      source.setNumberOfArmies(source.getNumberOfArmies() -  p_armiesToAdv);
+
+
+      //Remove the territory from defenders list
+      if(player2 != null){
+        player2.removeTerritory(target);
+
+      }
+      
+
+      //Add the territory to attackers list
+      player1.setTerritories(target);
+
+      // add bonus armies on conquering territory
+
+      player1.addReinforcementArmies(2);
+
+    }
+    else{
+
+
+          target.setNumberOfArmies((int)(target.getNumberOfArmies() - sourceArmiesKilled));
+
+          if ((source.getNumberOfArmies() - sourceArmiesKilled) >= 0)
+          {
+              source.setNumberOfArmies((int)(source.getNumberOfArmies() - sourceArmiesKilled));
+          }
+          else
+          {
+              source.setNumberOfArmies(0);
+          }
+}
+
   }
 
   //Airlift
-  public String Airlift()
+  public void Airlift(Country p_countryFrom,Country p_countryTo,int p_airliftArmies)
   {
-   System.out.println("Inside Airlift Method");
-    return null;
+    p_countryFrom.setNumberOfArmies(p_countryFrom.getNumberOfArmies() - p_airliftArmies);
+    p_countryTo.setNumberOfArmies(p_countryTo.getNumberOfArmies() + p_airliftArmies);
   }
 
 //Blockade
-  public String Blockade()
+  public void Blockade(Player player,Country target)
   {
-   System.out.println("Inside Blockade Method");
-    return null;
+    target.setNumberOfArmies(target.getNumberOfArmies()*3);
+    target.setOwnerId(0);
+
+    player.removeTerritory(target);
+
+
+
+
+
+
   }
 
   //Bomb
-  public String Bomb()
+  public void Bomb(Country target)
   {
    System.out.println("Inside Bomb Method");
-    return null;
+   target.setNumberOfArmies(target.getNumberOfArmies()/2);
+
   }
 
 

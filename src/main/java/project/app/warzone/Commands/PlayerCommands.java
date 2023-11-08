@@ -104,7 +104,8 @@ public class PlayerCommands {
             return "You need atleast 2 players to play the game. Please add more players";
         }
         Player player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-        d_playerFeatures.assignCountries(d_gameEngine);
+        // d_playerFeatures.assignCountries(d_gameEngine);
+        d_playerFeatures.assignCountriesForDemo(d_gameEngine);
         System.out.println("Assigned Countries to the players are:");
         //d_playerFeatures.showAllAssignments(d_gameEngine.getPlayers());
         //playerFeatures.initializeArmies(gameEngine.getPlayers());
@@ -130,6 +131,18 @@ public class PlayerCommands {
 
     }
 
+      /**
+     * @param p_filename           
+     * @return                     
+     */
+    @ShellMethod(key = "showmapstatus", value = "This is used to add or create map")
+    public String showmapstatus() {
+        d_playerFeatures.showMapStatus(d_gameEngine);
+        return "MAP STATUS DISPLAYED";
+
+
+    }
+
     /**
      * @param p_countryID               storing country ID
      * @param p_armies                  storing number of armies to deploy
@@ -141,5 +154,64 @@ public class PlayerCommands {
             return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
         }
         return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
+    }
+
+    /**
+     * @param p_countryfrom             storing source country
+     * @param p_countryTo               storing target country
+
+     * @param p_armies                  storing number of armies to deploy
+     * @return                          returns status of deploying army
+     */
+    @ShellMethod(key = "advance", value = "This is used to deploy armies")
+    public String advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
+        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
+            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
+        }
+        return d_playerFeatures.advanceArmies(d_CurrentPlayerId,d_gameEngine, p_countryfrom,p_countryTo, p_armies);
+    }
+
+    /**
+     * @param p_countryfrom             storing  target country ID to bomb
+     *
+     * @return                          returns status 
+     */
+    @ShellMethod(key = "bomb", value = "This is used to deploy armies")
+    public String bombCountry(@ShellOption int p_countryId) {
+        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
+            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
+        }
+        // @Prashant please add here check to see if player has bomb card ****
+        return d_playerFeatures.bombCountry(d_gameEngine,p_countryId);
+    }
+
+
+    /**
+     * @param p_countryfrom             storing  target country ID to blockade
+
+     * @return                          returns status 
+     */
+    @ShellMethod(key = "blockade", value = "This is used to deploy armies")
+    public String blockade(@ShellOption int p_countryId) {
+        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
+            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
+        }
+        // @Prashant please add here check to see if player has bomb card ****
+        return d_playerFeatures.blockadeCountry(d_gameEngine,p_countryId);
+    }
+
+
+     /**
+     * @param p_countryfrom             storing  target country ID to blockade
+
+     * @return                          returns status 
+     */
+    @ShellMethod(key = "airlift", value = "")
+    public String airlift(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_airliftArmies) {
+        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
+            return "You cannot airlift armies at this stage. Please follow the sequence of commands in the game.";
+        }
+        // @Prashant please add here check to see if player has bomb card ****
+        return d_playerFeatures.airlift(d_gameEngine,p_countryfrom,p_countryTo, p_airliftArmies);
     }
 }
