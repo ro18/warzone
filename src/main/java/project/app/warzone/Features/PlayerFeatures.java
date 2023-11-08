@@ -180,6 +180,44 @@ public class PlayerFeatures {
 
     }
 
+     /** 
+     * @param p_gameengine            storing gameEngine
+     */
+    public void showMapStatus(GameEngine p_gameengine){
+       
+        System.out.println("------ Current Map Status ------");
+        System.out.println();
+        String continent ="";
+        List<Node> nodeList = p_gameengine.gameMap.getNodes();
+        for(Node c : nodeList){
+            
+            if(c.getData().getContinent().getContinentName() != continent ){
+                System.out.println("Continent:"+c.getData().getContinent().getContinentName());
+                continent = c.getData().getContinent().getContinentName();
+                System.out.println("=======================================================================");
+            }
+            System.out.print(c.getData().getCountryId()+"-"+c.getData().getCountryName()+": ("+c.getData().getNumberOfArmies()+") :");
+            String borderString ="";
+            if(c.getBorders() != null &&  c.getBorders().size()> 0  ){
+                List<Node> listOfBorders = c.getBorders();
+
+                for(Node border : listOfBorders ){
+                
+                borderString+=border.getData().getCountryName()+"("+border.getData().getNumberOfArmies()+") -> ";
+                
+            } 
+                borderString=borderString.substring(0,borderString.length()-4);
+                System.out.println(borderString);    
+                System.out.println();  
+            }
+                             
+
+                    
+            }
+
+    }
+
+
     /**
      * This method is used to advance armies on a country
      * @param currentPlayerId player initiating this command
@@ -371,7 +409,7 @@ public class PlayerFeatures {
         java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
 
         l_orderDetails.put("CountryId", p_countryID);
-        l_orderDetails.put("PlayerId",l_player.getL_playerid());
+        l_orderDetails.put("PlayerId",PlayerCommands.d_CurrentPlayerId);
       
 
        //IssueOrder        
@@ -470,6 +508,66 @@ public class PlayerFeatures {
       
         p_gameEngine.checkPlayersReinforcements();
 
+
+        return "";
+
+        
+
+
+
+      
+    }
+
+
+
+    public String airlift(GameEngine p_gameEngine, int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
+
+        
+        Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
+        Country l_countryFrom = p_gameEngine.gameMap.getNodes().get(p_countryIDFrom-1).getData();
+
+        Country l_countryTo = p_gameEngine.gameMap.getNodes().get(p_countryIDTo-1).getData();
+
+
+        Optional<Country> countryInPlayerFrom = l_player.d_listOfCountriesOwned.stream()
+                .filter(c -> c.getCountryName().equals(l_countryFrom.getCountryName())).findFirst();
+
+        Optional<Country> countryInPlayerTo = l_player.d_listOfCountriesOwned.stream()
+        .filter(c -> c.getCountryName().equals(l_countryTo.getCountryName())).findFirst();
+
+        if (!countryInPlayerFrom.isPresent()) {
+            return "FromCountry is not owned by the player";
+        }
+       
+        if (!countryInPlayerTo.isPresent()) {
+            return "ToCountry is not owned by the player";
+        }
+
+        /**
+         * Check if the player has enough armies in the reinforcement pool to deploy
+         */
+        if(l_countryFrom.getNumberOfArmies() < p_armiesToAirlift){
+            return "Not enough armies to be advance. Available armies in "+l_countryFrom.getCountryName()+":"+l_countryFrom.getNumberOfArmies();
+
+        }
+        
+       
+        java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
+
+        l_orderDetails.put("AirLiftArmies", p_armiesToAirlift);
+        l_orderDetails.put("CountryIdFrom", p_countryIDFrom);
+        l_orderDetails.put("CountryIdTo",p_countryIDTo);
+        l_orderDetails.put("PlayerId",PlayerCommands.d_CurrentPlayerId);
+
+
+       //IssueOrder        
+        l_player.issue_order(p_gameEngine,2,l_orderDetails);
+
+
+
+
+      
+        p_gameEngine.checkPlayersReinforcements();
 
         return "";
 

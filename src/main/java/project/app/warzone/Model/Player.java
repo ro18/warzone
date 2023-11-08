@@ -109,6 +109,7 @@ public class Player {
 	 */
 	public void removeTerritory(Country country) {
 
+		
 		d_listOfCountriesOwned.remove(country);
 	}
 
@@ -134,10 +135,7 @@ public class Player {
 				Country l_country = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryId")-1).getData();
 
 				d_listOfOrders.add(new ConcreteDeploy(order_details.get("Armies"),l_country));
-				// ConcreteDeploy l_order = ;
 
-				// l_order.setL_numberOfArmies(p_armies);
-				// l_order.setL_territory(l_country);
 				break;
 			case 1:
 			    System.out.println("Inside Switch 1");
@@ -149,16 +147,25 @@ public class Player {
 				int l_countryToOwner = l_countryTo.getOwnerId();
 
 				Player player1 = p_gameEngine.getPlayers().get(order_details.get("PlayerId"));
-				Player player2 = p_gameEngine.getPlayers().get(l_countryToOwner-1);
+				Player player2 = null;
 
-
-
+				if(  l_countryToOwner == 0 ){
+					player2 = null;
+				}
+				else{
+					player2 = p_gameEngine.getPlayers().get(l_countryToOwner-1);
+				}
 
 				d_listOfOrders.add(new ConcreteAdvance(player1,player2,order_details.get("AdvanceArmies"),l_countryFrom,l_countryTo));
 
 			break;
            case 2:
-				d_listOfOrders.add(new ConcreteAirlift());
+
+				Country l_countryFromAirlift = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryIdFrom")-1).getData();
+				Country l_countryToAirlift = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryIdTo")-1).getData();
+
+
+				d_listOfOrders.add(new ConcreteAirlift(l_countryFromAirlift,l_countryToAirlift,order_details.get("AirliftArmies")));
 
 			break;
 			case 3:

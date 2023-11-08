@@ -134,7 +134,10 @@ public class AttackOrder {
 
 
       //Remove the territory from defenders list
-      player2.removeTerritory(target);
+      if(player2 != null){
+        player2.removeTerritory(target);
+
+      }
       
 
       //Add the territory to attackers list
@@ -163,9 +166,10 @@ public class AttackOrder {
   }
 
   //Airlift
-  public void Airlift()
+  public void Airlift(Country p_countryFrom,Country p_countryTo,int p_airliftArmies)
   {
-   System.out.println("Inside Airlift Method");
+    p_countryFrom.setNumberOfArmies(p_countryFrom.getNumberOfArmies() - p_airliftArmies);
+    p_countryTo.setNumberOfArmies(p_countryTo.getNumberOfArmies() + p_airliftArmies);
   }
 
 //Blockade

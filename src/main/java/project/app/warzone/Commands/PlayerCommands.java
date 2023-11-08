@@ -131,6 +131,18 @@ public class PlayerCommands {
 
     }
 
+      /**
+     * @param p_filename           
+     * @return                     
+     */
+    @ShellMethod(key = "showmapstatus", value = "This is used to add or create map")
+    public String showmapstatus() {
+        d_playerFeatures.showMapStatus(d_gameEngine);
+        return "MAP STATUS DISPLAYED";
+
+
+    }
+
     /**
      * @param p_countryID               storing country ID
      * @param p_armies                  storing number of armies to deploy
@@ -186,5 +198,20 @@ public class PlayerCommands {
         }
         // @Prashant please add here check to see if player has bomb card ****
         return d_playerFeatures.blockadeCountry(d_gameEngine,p_countryId);
+    }
+
+
+     /**
+     * @param p_countryfrom             storing  target country ID to blockade
+
+     * @return                          returns status 
+     */
+    @ShellMethod(key = "airlift", value = "")
+    public String airlift(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_airliftArmies) {
+        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
+            return "You cannot airlift armies at this stage. Please follow the sequence of commands in the game.";
+        }
+        // @Prashant please add here check to see if player has bomb card ****
+        return d_playerFeatures.airlift(d_gameEngine,p_countryfrom,p_countryTo, p_airliftArmies);
     }
 }
