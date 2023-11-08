@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Model.GameEngine;
-import project.app.warzone.Model.Node;
-import project.app.warzone.Model.Order;
+//import project.app.warzone.Model.Order;
 import project.app.warzone.Model.OrderMethods;
 import project.app.warzone.Model.Player;
+import project.app.warzone.Model.Cards;
 import project.app.warzone.Model.ConcreteDeploy;
 import project.app.warzone.Model.Country;
 
@@ -23,49 +23,44 @@ import project.app.warzone.Model.Country;
 @Component
 public class PlayerFeatures {
 
-
-    
-    /** 
-     * @param p_allPlayers       list of all players 
+    /**
+     * @param p_allPlayers list of all players
      */
-    public void showAllAssignments(List<Player> p_allPlayers){
+    public void showAllAssignments(List<Player> p_allPlayers) {
 
         for (Player l_p : p_allPlayers) {
 
             System.out.println("Player Id:" + l_p.d_playerid);
 
-           System.out.println("Countries of "+l_p.d_playername+":");
-           List<Country> listOfTerritories = l_p.getListOfTerritories();
+            System.out.println("Countries of " + l_p.d_playername + ":");
+            List<Country> listOfTerritories = l_p.getListOfTerritories();
 
-           for(Country l_t : listOfTerritories){
-              System.out.println(l_t.getCountryName());
+            for (Country l_t : listOfTerritories) {
+                System.out.println(l_t.getCountryName());
 
             }
         }
 
     }
 
-
-    
-    /** 
-     * @param p_gameEngine      storing gameEngine
+    /**
+     * @param p_gameEngine storing gameEngine
      */
-    public void assignCountries(GameEngine p_gameEngine){
+    public void assignCountries(GameEngine p_gameEngine) {
 
         Random l_random = new Random();
 
         for( Player l_player : p_gameEngine.getPlayers()){ // logic to have players -1 country
 
-            
             int randomCountry =  l_random.nextInt(p_gameEngine.gameMap.getNodes().size());
 
-            int randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
+            int randomId = l_random.nextInt(p_gameEngine.getPlayers().size() + 1);
 
             while (p_gameEngine.gameMap.getNodes().get(randomCountry).getData().getOwnerId() != 0) {
                 randomCountry = l_random.nextInt(p_gameEngine.gameMap.getNodes().size() + 1);
 
-            }             
-        
+            }
+
             l_player.setTerritories(p_gameEngine.gameMap.getNodes().get(randomCountry).getData());
 
         }
@@ -108,15 +103,15 @@ public class PlayerFeatures {
      * @param p_playerName          storing playername
      * @param p_gameEngine            storing gameEngine
      */
-    public void addPlayers(String p_playerName, GameEngine p_gameEngine){
+    public void addPlayers(String p_playerName, GameEngine p_gameEngine) {
 
-            Player player= new Player(p_gameEngine.getPlayers().size() +1,p_playerName);
+        Player player= new Player(p_gameEngine.getPlayers().size() +1,p_playerName);
         p_gameEngine.d_playersList.add(player);
 
     }
 
-     /**
-     * @param p_gameEngine                gameEngine object
+    /**
+     * @param p_gameEngine gameEngine object
      */
     public void setPlayerIds(GameEngine p_gameEngine){
         
@@ -126,32 +121,26 @@ public class PlayerFeatures {
             l_player.setL_playerid(l_i);
         }
 
-
-
-
     }
 
-    
-    /** 
-     * @param p_playerName              storing playername
-     * @param p_gameEngine                storing gameEngine
+    /**
+     * @param p_playerName storing playername
+     * @param p_gameEngine storing gameEngine
      */
-    public void removePlayers(String p_playerName, GameEngine p_gameEngine){
+    public void removePlayers(String p_playerName, GameEngine p_gameEngine) {
 
         List<Player> l_playerList = p_gameEngine.getPlayers();
-        Optional<Player> l_playerToRemove= l_playerList.stream().filter(c->c.getL_playername().equals(p_playerName)).findFirst();
+        Optional<Player> l_playerToRemove = l_playerList.stream().filter(c -> c.getL_playername().equals(p_playerName))
+                .findFirst();
         l_playerList.remove(l_playerToRemove.get());
-        setPlayerIds(p_gameEngine);        
-
+        setPlayerIds(p_gameEngine);
 
     }
 
-
-    
-    /** 
-     * @param p_gameEngine            storing gameEngine
+    /**
+     * @param p_gameEngine storing gameEngine
      */
-    public void printAllPlayers(GameEngine p_gameEngine){
+    public void printAllPlayers(GameEngine p_gameEngine) {
         System.out.println("Final players of the game are:");
         List<Player> l_players = p_gameEngine.getPlayers();
         for (int i = 1; i <= l_players.size(); i++) {
@@ -159,21 +148,19 @@ public class PlayerFeatures {
         }
     }
 
-    
-    
-    /** 
-     * @param p_gameengine            storing gameEngine
+    /**
+     * @param p_gameengine storing gameEngine
      */
-    public void showStats(GameEngine p_gameengine){
-        List<Player> l_listOfPlayers  = p_gameengine.getPlayers();
+    public void showStats(GameEngine p_gameengine) {
+        List<Player> l_listOfPlayers = p_gameengine.getPlayers();
         for (Player l_p : l_listOfPlayers) {
             System.out.println("Player Name:" + l_p.d_playername + "\nPlayerId:" + l_p.d_playerid);
             System.out.println("Total Armies available per round: " + l_p.getReinforcementArmies());
             System.out.println("CountryID - Countries Owned - Armies");
             List<Country> coun = l_p.getListOfTerritories();
 
-            for(Country t : l_p.getListOfTerritories()){
-                System.out.println(t.getCountryId()+" - "+t.getCountryName()+" - "+t.getNumberOfArmies());
+            for (Country t : l_p.getListOfTerritories()) {
+                System.out.println(t.getCountryId() + " - " + t.getCountryName() + " - " + t.getNumberOfArmies());
             }
             System.out.println("-------------------------------");
         }
@@ -218,7 +205,7 @@ public class PlayerFeatures {
     }
 
 
-    /**
+      /**
      * This method is used to advance armies on a country
      * @param currentPlayerId player initiating this command
 
