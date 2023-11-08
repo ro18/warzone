@@ -15,7 +15,7 @@ public class Player {
 	public int d_reinforcementPool; // Total number of players available to deploy in each round
 
 	public List<Country> d_listOfCountriesOwned; // List of countries owned by the player
-	public Queue<Order> d_listOfOrders = new ArrayDeque<>(); // stores orders issued by the player
+	public Queue<OrderInterface> d_listOfOrders = new ArrayDeque<>(); // stores orders issued by the player
 
 	public List<Cards> d_cardsInCollection; // List of cards owned by the player
 
