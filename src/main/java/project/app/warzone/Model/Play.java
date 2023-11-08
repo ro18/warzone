@@ -24,7 +24,7 @@ public abstract class Play extends Phase {
 	}
 	
 	public void showMap() {
-		// TODO: print map instead of inserting it in a map
+		//print map instead of inserting it in a map
 		String p_mapLocation=ge.gameMap.getMapDirectory()+"//"+ge.gameMap.get_USER_SELECTED_FILE()+".map";
         Boolean l_result=false;
         ge.gameMap = d_mapFeatures.readMap(p_mapLocation);
