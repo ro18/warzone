@@ -112,31 +112,83 @@ public class AttackOrder {
   //   }
 
   //Advance
-  public String Advance()
+  public void Advance( Player player1 , Player player2, int p_armiesToAdv, Country source, Country target)
   {
    System.out.println("Inside Advance Method");
-    return null;
+
+    long targetArmiesKilled = Math.round( target.getNumberOfArmies() * 0.7) ;
+
+    long sourceArmiesKilled = Math.round (source.getNumberOfArmies() * 0.6);
+
+    if(( p_armiesToAdv - targetArmiesKilled ) > target.getNumberOfArmies() - sourceArmiesKilled){
+
+
+      //Set armies in target country
+
+      target.setNumberOfArmies((int)(p_armiesToAdv - targetArmiesKilled));
+
+
+      //Set armies in source country
+
+      source.setNumberOfArmies(source.getNumberOfArmies() -  p_armiesToAdv);
+
+
+      //Remove the territory from defenders list
+      player2.removeTerritory(target);
+      
+
+      //Add the territory to attackers list
+      player1.setTerritories(target);
+
+      // add bonus armies on conquering territory
+
+      player1.addReinforcementArmies(2);
+
+    }
+    else{
+
+
+          target.setNumberOfArmies((int)(target.getNumberOfArmies() - sourceArmiesKilled));
+
+          if ((source.getNumberOfArmies() - sourceArmiesKilled) >= 0)
+          {
+              source.setNumberOfArmies((int)(source.getNumberOfArmies() - sourceArmiesKilled));
+          }
+          else
+          {
+              source.setNumberOfArmies(0);
+          }
+}
+
   }
 
   //Airlift
-  public String Airlift()
+  public void Airlift()
   {
    System.out.println("Inside Airlift Method");
-    return null;
   }
 
 //Blockade
-  public String Blockade()
+  public void Blockade(Player player,Country target)
   {
-   System.out.println("Inside Blockade Method");
-    return null;
+    target.setNumberOfArmies(target.getNumberOfArmies()*3);
+    target.setOwnerId(0);
+
+    player.removeTerritory(target);
+
+
+
+
+
+
   }
 
   //Bomb
-  public String Bomb()
+  public void Bomb(Country target)
   {
    System.out.println("Inside Bomb Method");
-    return null;
+   target.setNumberOfArmies(target.getNumberOfArmies()/2);
+
   }
 
 

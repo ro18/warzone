@@ -1,5 +1,6 @@
 package project.app.warzone.Features;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.Node;
 import project.app.warzone.Model.Order;
 import project.app.warzone.Model.OrderMethods;
 import project.app.warzone.Model.Player;
@@ -65,6 +67,36 @@ public class PlayerFeatures {
             }             
         
             l_player.setTerritories(p_gameEngine.gameMap.getNodes().get(randomCountry).getData());
+
+        }
+    }
+
+    public void assignCountriesForDemo(GameEngine p_gameEngine){
+
+        List<Integer> countryIds = new ArrayList<>(){{add(0); add(7);  add(20);add(9);}};
+
+
+
+
+        Random l_random = new Random();
+        int i = 0;
+
+        for( Player l_player : p_gameEngine.getPlayers()){ // logic to have players -1 country
+
+        
+            
+            // int randomCountry =  l_random.nextInt(p_gameEngine.gameMap.getNodes().size());
+
+            // int randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
+
+            // while (p_gameEngine.gameMap.getNodes().get(randomCountry).getData().getOwnerId() != 0) {
+            //     randomCountry = l_random.nextInt(p_gameEngine.gameMap.getNodes().size() + 1);
+
+            // }             
+        
+            l_player.setTerritories(p_gameEngine.gameMap.getNodes().get(countryIds.get(i)).getData());
+
+            i++;
 
         }
     }
@@ -149,48 +181,94 @@ public class PlayerFeatures {
     }
 
     /**
-     * This method is used to deploy armies on a country
+     * This method is used to advance armies on a country
+     * @param currentPlayerId player initiating this command
+
      * @param p_gameEngine Instance of the game engine
-     * @param p_countryID ID of the country to deploy armies on
-     * @param p_armies Number of armies to deploy
+     * @param p_countryIDFrom ID of the source country
+     * @param p_countryIDTo ID of the target country
+
+     * @param p_armiesToAdv Number of armies to advance
      * @return A string containing status of the game.
      */
 
-    public String advanceArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
+    public String advanceArmies(int currentPlayerId,GameEngine p_gameEngine, int p_countryIDFrom, int p_countryIDTo, int p_armiesToAdv) {
         // List<Player> l_players = p_gameEngine.getPlayers();
 
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-        Country l_country = p_gameEngine.gameMap.getNodes().get(p_countryID-1).getData();
+        Country l_countryFrom = p_gameEngine.gameMap.getNodes().get(p_countryIDFrom-1).getData();
+
+        Country l_countryTo = p_gameEngine.gameMap.getNodes().get(p_countryIDTo-1).getData();
+
+
+        Optional<Country> countryInPlayer = l_player.d_listOfCountriesOwned.stream()
+                .filter(c -> c.getCountryName().equals(l_countryFrom.getCountryName())).findFirst();
+       
+
+
+        if (!countryInPlayer.isPresent()) {
+            return "Country is not owned by the player";
+        }
+
+
+        boolean found = false;
+
+        List<Node> nodeList = p_gameEngine.getGameMap().getNodes();
+
+        for( Node c : nodeList){
+
+            if(c.getData() == l_countryFrom){
+
+                if(c.getBorders() != null &&  c.getBorders().size()> 0  ){
+
+                    List<Node> listOfBorders = c.getBorders();
+
+                    for(Node border : listOfBorders ){
+
+                        if(border.getData() == l_countryTo){
+                            found =  true;
+                            break;
+                        }
+
+
+                    }
+                    
+                    
+                } 
+
+            break;
+            }
+            if(found == true){
+                break;
+            }
+
+        }
+
+        if(found == false){
+            return "Target Country "+l_countryFrom.getCountryName()+" is not connected with "+l_countryTo.getCountryName();
+        }
+
 
         /**
          * Check if the player has enough armies in the reinforcement pool to deploy
          */
+        if(l_countryFrom.getNumberOfArmies() < p_armiesToAdv){
+            return "Not enough armies to be advance. Available armies in "+l_countryFrom.getCountryName()+":"+l_countryFrom.getNumberOfArmies();
 
-        if (l_player.getReinforcementArmies() < p_armies) {
-            return "Not enough armies to be deployed. Available armies: " + l_player.getReinforcementArmies();
         }
-
-        /**
-         * Check if the country is owned by the player
-         */
-
-        Optional<Country> l_territory = l_player.d_listOfCountriesOwned.stream()
-                .filter(c -> c.getCountryName().equals(l_country.getCountryName())).findFirst();
+        
        
-
-        if (!l_territory.isPresent()) {
-            return "Country is not owned by the player";
-        }
-
         java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
 
-        l_orderDetails.put("Armies", p_armies);
-        l_orderDetails.put("CountryId", p_countryID);
+        l_orderDetails.put("AdvanceArmies", p_armiesToAdv);
+        l_orderDetails.put("CountryIdFrom", p_countryIDFrom);
+        l_orderDetails.put("CountryIdTo",p_countryIDTo);
+        l_orderDetails.put("PlayerId",currentPlayerId);
+
 
        //IssueOrder        
-        l_player.issue_order(p_gameEngine,0,l_orderDetails);
+        l_player.issue_order(p_gameEngine,1,l_orderDetails);
 
-        l_player.setReinforcementMap(l_player.getReinforcementArmies() - p_armies);
 
 
 
@@ -218,7 +296,7 @@ public class PlayerFeatures {
          */
 
         if (l_player.getReinforcementArmies() < p_armies) {
-            return "Not enough armies to be deployed. Available armies: " + l_player.getReinforcementArmies();
+            System.out.println("Not enough armies to be deployed. Available armies: " + l_player.getReinforcementArmies());
         }
 
         /**
@@ -230,7 +308,7 @@ public class PlayerFeatures {
        
 
         if (!l_territory.isPresent()) {
-            return "Country is not owned by the player";
+            System.out.println("Country is not owned by the player");
         }
 
         java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
@@ -241,7 +319,151 @@ public class PlayerFeatures {
        //IssueOrder        
         l_player.issue_order(p_gameEngine,0,l_orderDetails);
 
-        l_player.setReinforcementMap(l_player.getReinforcementArmies() - p_armies);
+        if(l_player.getReinforcementArmies() - p_armies > 0 ){
+                    l_player.setReinforcementMap(l_player.getReinforcementArmies() - p_armies);
+
+        }
+        else{
+                    l_player.setReinforcementMap(0);
+
+        }
+
+
+        p_gameEngine.checkPlayersReinforcements();
+
+
+        return "";
+
+    }
+
+
+    /**
+     * This method is used to advance armies on a country
+     * @param currentPlayerId player initiating this command
+
+     * @param p_gameEngine Instance of the game engine
+     * @param p_countryIDFrom ID of the source country
+     * @param p_countryIDTo ID of the target country
+
+     * @param p_armiesToAdv Number of armies to advance
+     * @return A string containing status of the game.
+     */
+
+    public String blockadeCountry(GameEngine p_gameEngine,int p_countryID) {
+
+        Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
+
+        Country l_country = p_gameEngine.gameMap.getNodes().get(p_countryID-1).getData();
+
+
+        Optional<Country> countryInPlayer = l_player.d_listOfCountriesOwned.stream()
+                .filter(c -> c.getCountryName().equals(l_country.getCountryName())).findFirst();
+       
+
+
+        if (!countryInPlayer.isPresent()) {
+
+            return "You do not own the country"+l_country.getCountryName() +"to blockade it";
+
+        }
+
+       
+        java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
+
+        l_orderDetails.put("CountryId", p_countryID);
+        l_orderDetails.put("PlayerId",l_player.getL_playerid());
+      
+
+       //IssueOrder        
+        l_player.issue_order(p_gameEngine,3,l_orderDetails);
+
+
+
+
+      
+        p_gameEngine.checkPlayersReinforcements();
+
+
+        return "";
+
+        
+
+
+
+      
+    }
+
+    public String bombCountry(GameEngine p_gameEngine,int p_countryID) {
+        // List<Player> l_players = p_gameEngine.getPlayers();
+
+         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
+
+        Country l_country = p_gameEngine.gameMap.getNodes().get(p_countryID-1).getData();
+
+
+        Optional<Country> countryInPlayer = l_player.d_listOfCountriesOwned.stream()
+                .filter(c -> c.getCountryName().equals(l_country.getCountryName())).findFirst();
+       
+
+
+        if (!countryInPlayer.isPresent()) {
+
+
+            boolean found = false;
+
+            List<Country> listOfCountriesOwned = l_player.getlistOfCountriesOwned();
+
+            List<Node> nodeList = p_gameEngine.getGameMap().getNodes();
+
+            for ( Node n : nodeList){
+                if(n.getData().getCountryName().equals(l_country.getCountryName()) && found == false){
+
+                    List<Node> listOfBorders = n.getBorders();
+
+                    for( Node lb : listOfBorders){
+
+                       if(listOfCountriesOwned.contains(lb.getData())){
+                        found = true;
+
+                        System.out.println("The territory to bomb is valid");
+                       }
+                       if(found = true){
+                        break;
+                       }
+                      
+                    }
+
+                break;
+
+                }
+
+            }
+
+
+            if(found == false){
+                return "Target Country "+l_country.getCountryName()+" is not a neighbouring country";
+            }
+
+
+
+                
+            }
+
+            else{
+                return "You cannot target your own country";
+            }
+
+
+
+       
+        java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
+
+        l_orderDetails.put("CountryId", p_countryID);
+      
+
+       //IssueOrder        
+        l_player.issue_order(p_gameEngine,4,l_orderDetails);
+
 
 
 

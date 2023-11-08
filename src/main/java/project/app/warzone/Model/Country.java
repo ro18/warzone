@@ -62,6 +62,8 @@ public class Country {
         return d_ownerId;
     }
 
+ 
+
     /**
      * @return                  returns numberofArmies
      */
@@ -97,11 +99,18 @@ public class Country {
         d_ownerId = p_newOwnerId;             
     }
 
-    /**
+    // /**
+    //  * @param p_newNumberOfArmies       used for setting newNumberofArmies
+    //  */
+    // public void addNumberOfArmies(int p_newNumberOfArmies) {
+    //     d_numberOfArmies = d_numberOfArmies + p_newNumberOfArmies;         
+    // }
+
+     /**
      * @param p_newNumberOfArmies       used for setting newNumberofArmies
      */
     public void setNumberOfArmies(int p_newNumberOfArmies) {
-        d_numberOfArmies = d_numberOfArmies + p_newNumberOfArmies;         
+        d_numberOfArmies =  p_newNumberOfArmies;         
     }
 
     /**

@@ -16,6 +16,7 @@ public class Player {
 
 	public List<Country> d_listOfCountriesOwned; // List of countries owned by the player
 	public Queue<OrderInterface> d_listOfOrders = new ArrayDeque<>(); // stores orders issued by the player
+	public boolean pendingOrder=true;
 
 	/**
 	 * Creates a new player with the given ID.
@@ -37,6 +38,8 @@ public class Player {
 	public int getL_playerid() {
 		return d_playerid;
 	}
+
+
 
 	/**
 	 * @param p_playerid storing playerid to set
@@ -102,6 +105,14 @@ public class Player {
 	}
 
 	/**
+	 * @param country remove country from player territories
+	 */
+	public void removeTerritory(Country country) {
+
+		d_listOfCountriesOwned.remove(country);
+	}
+
+	/**
 	 * @return returns players' list of territory
 	 */
 	public List<Country> getListOfTerritories() {
@@ -116,10 +127,10 @@ public class Player {
 
 		switch (orderType) {
 			case 0:
-				System.out.println("Order List:"+d_listOfOrders);
-				System.out.print(order_details.get("Armies"));
+				// System.out.println("Order List:"+d_listOfOrders);
+				// System.out.print(order_details.get("Armies"));
 
-				;
+				
 				Country l_country = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryId")-1).getData();
 
 				d_listOfOrders.add(new ConcreteDeploy(order_details.get("Armies"),l_country));
@@ -130,26 +141,39 @@ public class Player {
 				break;
 			case 1:
 			    System.out.println("Inside Switch 1");
-				System.out.print(order_details.get("Armies"));
-				d_listOfOrders.add(new ConcreteAdvance(order_details.get("Armies"),order_details.get("CountryId")));
+
+				Country l_countryFrom = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryIdFrom")-1).getData();
+				Country l_countryTo = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryIdTo")-1).getData();
+
+
+				int l_countryToOwner = l_countryTo.getOwnerId();
+
+				Player player1 = p_gameEngine.getPlayers().get(order_details.get("PlayerId"));
+				Player player2 = p_gameEngine.getPlayers().get(l_countryToOwner-1);
+
+
+
+
+				d_listOfOrders.add(new ConcreteAdvance(player1,player2,order_details.get("AdvanceArmies"),l_countryFrom,l_countryTo));
 
 			break;
            case 2:
-			    System.out.println("Inside Switch 2");
-				System.out.print(order_details.get("Armies"));
 				d_listOfOrders.add(new ConcreteAirlift());
 
 			break;
 			case 3:
-			    System.out.println("Inside Switch 3");
-				System.out.print(order_details.get("Armies"));
-				d_listOfOrders.add(new ConcreteBlockade());
+			
+				Player playerBlock = p_gameEngine.getPlayers().get(order_details.get("PlayerId"));
+
+				Country l_co = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryId")-1).getData();
+				d_listOfOrders.add(new ConcreteBlockade(playerBlock,l_co));
 
 			break;
 			case 4:
-			    System.out.println("Inside Switch 4");
-				System.out.print(order_details.get("Armies"));
-				d_listOfOrders.add(new ConcreteBomb());
+				Country l_co1 = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryId")-1).getData();
+
+				
+				d_listOfOrders.add(new ConcreteBomb(l_co1));
 
 			break;
 			case 5:
