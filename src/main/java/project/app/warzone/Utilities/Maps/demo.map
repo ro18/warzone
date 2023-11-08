@@ -1,0 +1,27 @@
+[continents]
+East_Europe 4
+South_Europe 4
+West_Europe 5
+North_Europe 5
+
+
+[countries]
+1 England 1
+2 Scotland 1
+3 N_Ireland 2
+4 Rep_Ireland 2
+5 Wales 3
+6 Belgium 3
+7 Netherlands 4
+8 Denmark 4
+
+[borders]
+[borders]
+1 2
+2 1 3 5
+3 2 4
+4  2
+5 6 7
+6 5 8
+7 4 8
+8

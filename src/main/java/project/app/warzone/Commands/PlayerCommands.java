@@ -18,7 +18,7 @@ public class PlayerCommands {
     public GameEngine d_gameEngine;
     public PlayerFeatures d_playerFeatures;
     public String d_prevUserCommand; 
-    public static int d_CurrentPlayerId = 1;
+    public static int d_CurrentPlayerId = 0;
 
       /**
      * Constructor for Playercommands
@@ -106,10 +106,12 @@ public class PlayerCommands {
         Player player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
         d_playerFeatures.assignCountries(d_gameEngine);
         System.out.println("Assigned Countries to the players are:");
-        d_playerFeatures.showAllAssignments(d_gameEngine.getPlayers());
+        //d_playerFeatures.showAllAssignments(d_gameEngine.getPlayers());
         //playerFeatures.initializeArmies(gameEngine.getPlayers());
         d_gameEngine.prevUserCommand = Commands.ASSIGNCOUNTRIES;
-        return "Assignment of countries is completed. \nNow its turn of player: "+player.getL_playername()+" to deploy armies";
+        d_playerFeatures.showStats(d_gameEngine);
+        return "Assignment of countries is completed. \n\nNow its turn of player: "+player.getL_playername()+" to deploy armies";
+
 
     }
 

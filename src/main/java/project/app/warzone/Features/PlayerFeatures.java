@@ -1,5 +1,6 @@
 package project.app.warzone.Features;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -8,9 +9,11 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Model.GameEngine;
-import project.app.warzone.Model.Order;
+//import project.app.warzone.Model.Order;
+import project.app.warzone.Model.OrderMethods;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Cards;
+import project.app.warzone.Model.ConcreteDeploy;
 import project.app.warzone.Model.Country;
 
 /**
@@ -68,8 +71,7 @@ public class PlayerFeatures {
      */
     public void addPlayers(String p_playerName, GameEngine p_gameEngine) {
 
-        int l_playerCount = p_gameEngine.getPlayers().size();
-        Player player = new Player(l_playerCount++, p_playerName);
+        Player player= new Player(p_gameEngine.getPlayers().size() +1,p_playerName);
         p_gameEngine.d_playersList.add(player);
 
     }
@@ -77,11 +79,11 @@ public class PlayerFeatures {
     /**
      * @param p_gameEngine gameEngine object
      */
-    public void setPlayerIds(GameEngine p_gameEngine) {
-
-        int l_i = 1;
-        for (Player l_player : p_gameEngine.getPlayers()) {
-
+    public void setPlayerIds(GameEngine p_gameEngine){
+        
+        int l_i=p_gameEngine.getPlayers().size() ;
+        for(Player l_player : p_gameEngine.getPlayers()){
+            
             l_player.setL_playerid(l_i);
         }
 
@@ -118,9 +120,11 @@ public class PlayerFeatures {
     public void showStats(GameEngine p_gameengine) {
         List<Player> l_listOfPlayers = p_gameengine.getPlayers();
         for (Player l_p : l_listOfPlayers) {
-            System.out.println("Player Name:" + l_p.d_playername + "-PlayerId:" + l_p.d_playerid);
+            System.out.println("Player Name:" + l_p.d_playername + "\nPlayerId:" + l_p.d_playerid);
             System.out.println("Total Armies available per round: " + l_p.getReinforcementArmies());
             System.out.println("CountryID - Countries Owned - Armies");
+            List<Country> coun = l_p.getListOfTerritories();
+
             for (Country t : l_p.getListOfTerritories()) {
                 System.out.println(t.getCountryId() + " - " + t.getCountryName() + " - " + t.getNumberOfArmies());
             }
@@ -139,8 +143,9 @@ public class PlayerFeatures {
 
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
         List<Player> l_players = p_gameEngine.getPlayers();
+
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-        Country l_country = p_gameEngine.gameMap.getNodes().get(p_countryID - 1).getData();
+        Country l_country = p_gameEngine.gameMap.getNodes().get(p_countryID-1).getData();
 
         /**
          * Check if the player has enough armies in the reinforcement pool to deploy
@@ -156,15 +161,23 @@ public class PlayerFeatures {
 
         Optional<Country> l_territory = l_player.d_listOfCountriesOwned.stream()
                 .filter(c -> c.getCountryName().equals(l_country.getCountryName())).findFirst();
+       
 
         if (!l_territory.isPresent()) {
             return "Country is not owned by the player";
         }
 
-        Order order = new Order();
-        order.setL_numberOfArmies(p_armies);
-        order.setL_territory(l_country);
-        l_player.issue_order(order);
+        // Order l_deployOrder = new OrderMethods();
+        // l_deployOrder.setL_numberOfArmies(p_armies);
+        // l_deployOrder.setL_territory(l_country);
+
+        java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
+
+        l_orderDetails.put("Armies", p_armies);
+        l_orderDetails.put("CountryId", p_countryID);
+
+       //IssueOrder        
+        l_player.issue_order(0,l_orderDetails);
 
         /**
          * Main Game loop in round robin fashion which checks the reinforcement pool of
@@ -172,9 +185,10 @@ public class PlayerFeatures {
          * ask the next player to deploy armies. If all players have deployed all their
          * armies, then execute the orders
          */
+        p_gameEngine.execute_orders();
 
         Boolean l_flag = false;
-        int l_i = PlayerCommands.d_CurrentPlayerId + 1;
+        int l_i = PlayerCommands.d_CurrentPlayerId+1;
 
         while (l_i != PlayerCommands.d_CurrentPlayerId) {
             if (l_i == l_players.size()) {
