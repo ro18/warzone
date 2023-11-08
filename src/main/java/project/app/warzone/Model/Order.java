@@ -78,7 +78,7 @@ public class Order {
             //this card is only for 1 player
             
             //validate method need to create which check both the country are of current one player
-            //one validate method can be used for blockage and airlift
+            if(blockade_validate()){
             
             targetcountry.setNumberOfArmies(targetcountry.getNumberOfArmies() * 2);
 
@@ -91,31 +91,30 @@ public class Order {
             player.setTerritoriesOwned(l_newOwnedCountryList);
 
             return "Blockade executed successfully";
-
+            }
         }
 
 
         if (this.d_orderType == "AIRLIFT") {
 
-            //if(airilftValidate())       create validate functino to check if source and target country should be both player's
+            //if(airlift_validate())  {     create validate functino to check if source and target country should be both player's
 
             //this card is only for 1 player
             
             //validate method need to create which check both the country are of current one player
-            //one validate method can be used for blockage and airlift
 
 
             source.setNumberOfArmies(source.getNumberOfArmies() - numOfArmyToAirlift);
             target.setNumberOfArmies(target.getNumberOfArmies() + numOfArmyToAirlift);
             return "Airlift executed successfully";
-
+        }
         }
 
         if (this.d_orderType == "NEGOTIATE") {
 
             //no need to validate here
 
-            //need to change player 1 and 2 
+            //need to change player 1 and 2 variables below
 
             //setting frinds for player 1
             List<Player> l_friendlyAlliesfor_player1 ;
@@ -159,7 +158,7 @@ public class Order {
 
     }
 
-    boolean block_Airlift_validate() {
+    boolean blockade_validate() {
 
         // get lpayers owned country list if required
 
@@ -169,7 +168,20 @@ public class Order {
             return false;
         }
 
-    } */
+    }
+    
+    boolean airlift_validate() {
+
+        // get lpayers owned country list if required
+
+        if (player.getlistOfCountriesOwned.contains(country1) && player.getlistOfCountriesOwned.contains(country2) && sourcecountry.getNumberOfArmies() > numOfArmyToAirlift ) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    */
 
     
 }
