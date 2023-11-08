@@ -157,7 +157,7 @@ public class PlayerFeatures {
      */
 
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
-        List<Player> l_players = p_gameEngine.getPlayers();
+        // List<Player> l_players = p_gameEngine.getPlayers();
 
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
         Country l_country = p_gameEngine.gameMap.getNodes().get(p_countryID-1).getData();
@@ -182,47 +182,25 @@ public class PlayerFeatures {
             return "Country is not owned by the player";
         }
 
-        // Order l_deployOrder = new OrderMethods();
-        // l_deployOrder.setL_numberOfArmies(p_armies);
-        // l_deployOrder.setL_territory(l_country);
-
         java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
 
         l_orderDetails.put("Armies", p_armies);
         l_orderDetails.put("CountryId", p_countryID);
 
        //IssueOrder        
-        l_player.issue_order(0,l_orderDetails);
+        l_player.issue_order(p_gameEngine,0,l_orderDetails);
 
-        /**
-         * Main Game loop in round robin fashion which checks the reinforcement pool of the player and if it is 0, then
-         * ask the next player to deploy armies. If all players have deployed all their armies, then execute the orders
-         */
-        p_gameEngine.execute_orders();
+      
+        p_gameEngine.checkPlayersReinforcements();
 
-        Boolean l_flag = false;
-        int l_i = PlayerCommands.d_CurrentPlayerId+1;
 
-        while (l_i != PlayerCommands.d_CurrentPlayerId) {
-            if (l_i == l_players.size()) {
-                l_i = 0;
-                continue;
-            }
+        return "";
 
-            if (l_players.get(l_i).getReinforcementArmies() > 0) {
-                l_flag = true;
-                break;
-            }
-            l_i++;
-        }
+        
 
-        if (l_flag) {
-            PlayerCommands.d_CurrentPlayerId = l_i;
-            return "Turn of " + l_players.get(l_i).getL_playername() + " to deploy army";
-        } else {
-            p_gameEngine.execute_orders();
-            return "Orders successfully executed";
-        }
+
+
+      
     }
 
 }

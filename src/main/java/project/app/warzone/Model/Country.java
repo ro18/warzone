@@ -101,7 +101,7 @@ public class Country {
      * @param p_newNumberOfArmies       used for setting newNumberofArmies
      */
     public void setNumberOfArmies(int p_newNumberOfArmies) {
-        d_numberOfArmies = p_newNumberOfArmies;         
+        d_numberOfArmies = d_numberOfArmies + p_newNumberOfArmies;         
     }
 
     /**

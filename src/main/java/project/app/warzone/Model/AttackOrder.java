@@ -15,6 +15,7 @@ import project.app.warzone.Commands.PlayerCommands;
 public class AttackOrder {
  
     //Constructor
+
     public AttackOrder()
     {
 
@@ -23,10 +24,12 @@ public class AttackOrder {
   /**
  * This method is used to deploy armies on a country
  */
-  public String Deploy()
+  public String Deploy(int p_armies, Country p_country)
   {
-   System.out.println("Inside Deploy Method");
-   return null;
+    p_country.setNumberOfArmies(p_country.getNumberOfArmies() + p_armies);
+    
+
+    return "Deployed armies successfully";
   }
 
   // /**

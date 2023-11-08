@@ -112,14 +112,17 @@ public class Player {
 	 * @param order storing order to add
 	 */
 
-	public void issue_order(int orderType,java.util.Map<String,Integer> order_details) {
+	public void issue_order(GameEngine p_gameEngine,int orderType,java.util.Map<String,Integer> order_details) {
 
 		switch (orderType) {
 			case 0:
 				System.out.println("Order List:"+d_listOfOrders);
 				System.out.print(order_details.get("Armies"));
 
-				d_listOfOrders.add(new ConcreteDeploy(order_details.get("Armies"),order_details.get("CountryId")));
+				;
+				Country l_country = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryId")-1).getData();
+
+				d_listOfOrders.add(new ConcreteDeploy(order_details.get("Armies"),l_country));
 				// ConcreteDeploy l_order = ;
 
 				// l_order.setL_numberOfArmies(p_armies);

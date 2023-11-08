@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Utilities.Commands;
 
 /**
@@ -46,6 +47,79 @@ public class GameEngine {
     public Map getGameMap() {
         return gameMap;
     }
+
+
+    public void checkPlayersReinforcements(){
+
+        /**
+         * Main Game loop in round robin fashion which checks the reinforcement pool of the player and if it is 0, then
+         * ask the next player to deploy armies. If all players have deployed all their armies, then execute the orders
+         */
+        // p_gameEngine.execute_orders();
+
+        System.out.println("checkPlayersReinforcements");
+
+        Boolean l_flag = false;
+        int l_i = PlayerCommands.d_CurrentPlayerId+1;
+
+        List<Player> l_players = getPlayers();
+
+
+        while (l_i != PlayerCommands.d_CurrentPlayerId) {
+            if (l_i == l_players.size()) {
+                l_i = 0;
+                continue;
+            }
+
+            if (l_players.get(l_i).getReinforcementArmies() > 0) {
+                l_flag = true;
+                break;
+            }
+            l_i++;
+        }
+
+        if (l_flag) {
+            PlayerCommands.d_CurrentPlayerId = l_i;
+            System.out.println("Turn of " + l_players.get(l_i).getL_playername());
+
+
+        } else {
+            execute_orders();
+            System.out.println("Orders successfully executed");
+        }
+
+    }
+
+    // public String takePlayerOrders(){
+
+    //     List<Player> l_players = getPlayers();
+
+        
+        
+
+    // }
+
+    // public String startGame() {
+
+	// 	// run the game turns
+
+	// 	// for (int turn = 1; turn <= numTurns; turn++) {
+	// 	// 	boolean an_order = true;
+	// 	// 	do {
+	// 	// 		for (Player p : players) {
+	// 	// 			an_order = p.createOrder(map, players);
+	// 	// 			if (!an_order)
+	// 	// 				break;
+	// 	// 		}
+	// 	// 	} while (an_order);
+	// 	// 	executeAllOrders();
+	// 	// 	printMap();
+	// 	// }
+
+
+        
+
+	// }
 
     /**
      * This method is used to execute orders all at once.
