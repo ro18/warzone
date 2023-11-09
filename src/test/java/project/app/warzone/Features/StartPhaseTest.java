@@ -56,7 +56,6 @@ public class StartPhaseTest {
         Map l_map = new Map();
         GameEngine l_gameEngine = new GameEngine(l_map);
         l_gameEngine.getGamePhase().loadMap("europe");
-        l_gameEngine.setPhase(new Attack(l_gameEngine));
         String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
     
         assertEquals("Postload", nextPhase);
