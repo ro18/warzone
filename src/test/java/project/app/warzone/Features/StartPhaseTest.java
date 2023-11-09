@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Utilities.MapResources;
@@ -36,22 +37,9 @@ public class StartPhaseTest {
         l_gameEngine.getGamePhase().getClass().getSimpleName();
         assertEquals("Preload", l_gameEngine.getGamePhase().getClass().getSimpleName());
     }
-    
-    //checks if game is moving ahead to next phase corretly after preloading
-    @Test
-    public void checkPostloadValidate(){
-        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "europe.map";
-        Map l_map = new Map();
-        l_map=mapFeatures.readMap(l_mapFileName);
-        GameEngine l_gameEngine = new GameEngine(l_map);
-        l_gameEngine.getGamePhase().loadMap(l_mapFileName);
-        l_gameEngine.getGamePhase().next();
-        String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
-    
-        assertEquals("Postload", nextPhase);
-    }
 
-     
+
+
     //checks if savemap is in preload state
     @Test
     public void checkPeloadValidate(){
@@ -60,5 +48,17 @@ public class StartPhaseTest {
         l_gameEngine.getGamePhase().saveMap();
         String currPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
         assertEquals("Preload", currPhase);
+    }
+    
+    //checks if game is moving ahead to next phase corretly after preloading
+    @Test
+    public void checkPostloadValidate(){
+        Map l_map = new Map();
+        GameEngine l_gameEngine = new GameEngine(l_map);
+        l_gameEngine.getGamePhase().loadMap("europe");
+        l_gameEngine.setPhase(new Attack(l_gameEngine));
+        String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
+    
+        assertEquals("Postload", nextPhase);
     }
 }
