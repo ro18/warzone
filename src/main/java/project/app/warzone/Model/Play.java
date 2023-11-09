@@ -46,6 +46,13 @@ public abstract class Play extends Phase {
         System.out.println("STATS COMPLETE");
 	}
 
+	public void showmapstatus() {
+        System.out.println("========================================");
+        System.out.println("CURRENT MAP STATUS:");
+        d_playerFeatures.showMapStatus(ge);
+        System.out.println("STATS COMPLETE");
+	}
+
 	public void editCountry(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 		
 	}

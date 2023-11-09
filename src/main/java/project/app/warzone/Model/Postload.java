@@ -45,6 +45,10 @@ public class Postload extends Edit {
         printInvalidCommandMessage();
     }
 
+    public void showmapstatus() {
+        printInvalidCommandMessage();
+    }
+
     public void reinforce(int p_countryID, int p_armies) {
         printInvalidCommandMessage();
     }

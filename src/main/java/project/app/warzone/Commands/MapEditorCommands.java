@@ -111,8 +111,8 @@ public class MapEditorCommands implements java.util.Observer {
     public void editNeighbor(@ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 20) String p_editcmd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 20) String p_editremovecmd)
             throws IOException {
-
-    }
+            d_gameEngine.getGamePhase().editNeighbor(p_editcmd, p_editremovecmd);
+        }
 
     /**
      * @param p_filename storing user selected file
