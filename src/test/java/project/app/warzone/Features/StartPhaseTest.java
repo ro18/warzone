@@ -6,20 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import project.app.warzone.Model.Continent;
+import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
-import project.app.warzone.Model.Node;
-import project.app.warzone.Model.Phase;
 import project.app.warzone.Utilities.MapResources;
 
-public class PreloadTest {
+public class StartPhaseTest {
 
 
     MapFeatures mapFeatures = MapFeatures.getInstance();
@@ -42,15 +37,25 @@ public class PreloadTest {
         l_gameEngine.getGamePhase().getClass().getSimpleName();
         assertEquals("Preload", l_gameEngine.getGamePhase().getClass().getSimpleName());
     }
+
+
+
+    //checks if savemap is in preload state
+    @Test
+    public void checkPeloadValidate(){
+        Map l_map = new Map();
+        GameEngine l_gameEngine = new GameEngine(l_map);
+        l_gameEngine.getGamePhase().saveMap();
+        String currPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
+        assertEquals("Preload", currPhase);
+    }
+    
     //checks if game is moving ahead to next phase corretly after preloading
     @Test
     public void checkPostloadValidate(){
-        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "europe.map";
         Map l_map = new Map();
-        l_map=mapFeatures.readMap(l_mapFileName);
         GameEngine l_gameEngine = new GameEngine(l_map);
-        l_gameEngine.getGamePhase().loadMap(l_mapFileName);
-        l_gameEngine.getGamePhase().next();
+        l_gameEngine.getGamePhase().loadMap("europe");
         String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
     
         assertEquals("Postload", nextPhase);
