@@ -504,6 +504,7 @@ public class PlayerFeatures {
 
         List<Player> l_friendlyAlliesfor_player_1 = null;
 
+        if(l_player_1 != l_player_2){
 
         for (Player player : l_player_1.getD_friendlyAlliesList()) {
             l_friendlyAlliesfor_player_1.add(player);
@@ -523,9 +524,11 @@ public class PlayerFeatures {
         l_player_2.setD_friendlyAlliesList(l_friendlyAllies_for_player_2);
 
         return "Negotiate executed successfully";
-
+    }
+        return "Negotiate unsuccessful : both players cannot be the same";
+}
         ///order details constructor
 
-    }
+    
 
 }
