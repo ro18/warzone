@@ -78,7 +78,30 @@ public class PlaySetup extends Play implements Observer{
 			Player player = ge.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 			d_playerFeatures.assignCountries(ge);
 			System.out.println("Assigned Countries to the players are:");
-			d_playerFeatures.showAllAssignments(ge.getPlayers());
+			// d_playerFeatures.showAllAssignments(ge.getPlayers());
+			ge.prevUserCommand = Commands.ASSIGNCOUNTRIES;
+			l_logObject.setStatus(true, "Countries assigned successfully");
+			l_logEntryBuffer.notifyClasses(l_logObject);
+			System.out.println("Assignment of countries is completed. \nNow its turn of player: "+player.getL_playername()+" to deploy armies");
+			ge.setPhase(new Reinforcement(ge));
+		}
+        
+	}
+
+
+	public void assignCountriesForDemo() {
+		LogObject l_logObject = new LogObject();
+		l_logObject.setD_command("assigncountries");
+
+		if(ge.getPlayers().size() < 2){
+			l_logObject.setStatus(false, "You need atleast 2 players to play the game. Please add more players");
+			l_logEntryBuffer.notifyClasses(l_logObject);
+            System.out.println("You need atleast 2 players to play the game. Please add more players");
+        } else {
+			Player player = ge.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
+			d_playerFeatures.assignCountriesForDemo(ge);
+			System.out.println("Assigned Countries to the players are:");
+			// d_playerFeatures.showAllAssignments(ge.getPlayers());
 			ge.prevUserCommand = Commands.ASSIGNCOUNTRIES;
 			l_logObject.setStatus(true, "Countries assigned successfully");
 			l_logEntryBuffer.notifyClasses(l_logObject);

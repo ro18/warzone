@@ -28,6 +28,11 @@ public abstract class MainPlay extends Play {
 		this.printInvalidCommandMessage();
 	}
 
+	public void assignCountriesForDemo() {
+		this.printInvalidCommandMessage();
+	}
+
+
 
 	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
 		printInvalidCommandMessage(); 

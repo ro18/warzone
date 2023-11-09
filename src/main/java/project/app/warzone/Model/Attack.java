@@ -29,8 +29,10 @@ public class Attack extends MainPlay {
 	}
 	
 	public void attack() {
+		ge.setPhase(new Attack(ge));
+
 		System.out.println("attack done");
-		ge.setPhase(new Fortify(ge));
+		// ge.setPhase(new Fortify(ge));
 	}
 
 	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {

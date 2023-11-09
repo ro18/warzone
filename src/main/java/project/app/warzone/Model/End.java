@@ -32,6 +32,12 @@ public class End extends Phase {
 		printInvalidCommandMessage(); 
 	}
 
+	public void assignCountriesForDemo() {
+		printInvalidCommandMessage(); 
+	}
+
+
+
 	public void reinforce(int p_countryID, int p_armies) {
 		printInvalidCommandMessage(); 
 	}

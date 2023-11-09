@@ -16,6 +16,11 @@ public abstract class Edit extends Phase{
 		printInvalidCommandMessage(); 
 	}
 
+	public void assignCountriesForDemo() {
+		printInvalidCommandMessage(); 
+	}
+
+
 	public void reinforce() {
 		printInvalidCommandMessage(); 
 	}

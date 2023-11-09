@@ -49,6 +49,8 @@ public abstract class Phase implements Observer {
 	abstract public void setPlayers(String p_attribute, String p_playerName);
 	abstract public void assignCountries();
 
+	abstract public void assignCountriesForDemo();
+
 	// reinforcement commands
 	abstract public void reinforce(int p_countryID, int p_armies);
 

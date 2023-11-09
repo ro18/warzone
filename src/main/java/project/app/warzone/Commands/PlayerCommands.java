@@ -67,7 +67,9 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "assigncountries", value = "This is used to assign countries to players randomly")
     public void assigncountries() {
-        d_gameEngine.getGamePhase().assignCountries();
+        // d_gameEngine.getGamePhase().assignCountries();
+        d_gameEngine.getGamePhase().assignCountriesForDemo(); // Added to demonstrate different attacks during presentation
+
         showStats();
     }
 
@@ -237,7 +239,7 @@ public class PlayerCommands implements Observer {
                 BufferedWriter l_writer = new BufferedWriter(new FileWriter(System.getProperty("logFileLocation"), true));
                 l_writer.newLine();
                 l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
-                System.out.println( "Inside update method of MapEditorCommands");
+                // System.out.println( "Inside update method of MapEditorCommands");
                 l_writer.newLine();
                 l_writer.close();
             } catch (IOException e) {

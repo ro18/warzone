@@ -27,7 +27,13 @@ public class AttackOrder implements Observer {
    * This method is used to deploy armies on a country
    */
   public String Deploy(int p_armies, Country p_country) {
+
+    LogObject l_logObject = new LogObject();
+    l_logObject.setD_command("Deploy");
     p_country.setNumberOfArmies(p_country.getNumberOfArmies() + p_armies);
+
+    l_logObject.setStatus(true, "Executed Deploy Attack");
+    logEntryBuffer.notifyClasses(l_logObject);
 
     return "Deployed armies successfully";
   }
@@ -35,7 +41,10 @@ public class AttackOrder implements Observer {
   //Advance
   public void Advance( Player player1 , Player player2, int p_armiesToAdv, Country source, Country target)
   {
-   System.out.println("Inside Advance Method");
+  //  System.out.println("Inside Advance Method");
+
+    LogObject l_logObject = new LogObject();
+    l_logObject.setD_command("Advance");
 
     List<Player> getAllies = player1.getD_friendlyAlliesList();
 
@@ -119,6 +128,9 @@ public class AttackOrder implements Observer {
       System.out.println(" Attack stopped as"+player1.getL_playername()+"used negotiation card on"+player2.getL_playername());
     }
 
+
+    l_logObject.setStatus(true, "Executed Advance Attack");
+    logEntryBuffer.notifyClasses(l_logObject);
     
 
   }
@@ -131,7 +143,7 @@ public class AttackOrder implements Observer {
     p_countryFrom.setNumberOfArmies(p_countryFrom.getNumberOfArmies() - p_airliftArmies);
     p_countryTo.setNumberOfArmies(p_countryTo.getNumberOfArmies() + p_airliftArmies);
 
-    l_logObject.setStatus(true, "Airlift executed successfully");
+    l_logObject.setStatus(true, "Executed Airlift Attack");
     logEntryBuffer.notifyClasses(l_logObject);
   }
 
@@ -143,7 +155,7 @@ public class AttackOrder implements Observer {
     target.setOwnerId(0);
 
     player.removeTerritory(target);
-    l_logObject.setStatus(true, "Blockade executed successfully");
+    l_logObject.setStatus(true, "Executed Blockade Attack");
     logEntryBuffer.notifyClasses(l_logObject);
 
   }
@@ -151,7 +163,13 @@ public class AttackOrder implements Observer {
   //Bomb
   public void Bomb(Country target)
   {
-   target.setNumberOfArmies(target.getNumberOfArmies()/2);
+    LogObject l_logObject = new LogObject();
+    l_logObject.setD_command("Airlift");
+    target.setNumberOfArmies(target.getNumberOfArmies()/2);
+    l_logObject.setStatus(true, "Executed Bomb Attack");
+
+    logEntryBuffer.notifyClasses(l_logObject);
+
 
   }
 
@@ -159,9 +177,19 @@ public class AttackOrder implements Observer {
   //Negotiate
   public void Negotiate(Player p_playerToNegotiate,Player currentPlayer)
   {
+      LogObject l_logObject = new LogObject();
+
       p_playerToNegotiate.addriendlyAlly(p_playerToNegotiate);
 
       currentPlayer.addriendlyAlly(p_playerToNegotiate);
+
+      l_logObject.setStatus(true, "Executed Negotiate Attack");
+
+      logEntryBuffer.notifyClasses(l_logObject);
+
+
+
+
 
 
   }

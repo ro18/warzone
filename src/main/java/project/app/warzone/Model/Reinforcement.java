@@ -29,7 +29,7 @@ public class Reinforcement extends MainPlay implements Observer {
 	   l_logObject.setStatus(true, l_reString);
 	   l_logEntryBuffer.notifyClasses(l_logObject);
 	   System.out.println(l_reString);
-	   next();
+	 
 
 
 	}
