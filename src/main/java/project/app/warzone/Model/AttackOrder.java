@@ -143,7 +143,9 @@ public class AttackOrder {
       //Add the territory to attackers list
       player1.setTerritories(target);
 
-      // add bonus armies on conquering territory
+
+
+      //add bonus armies on conquering territory
 
       player1.addReinforcementArmies(2);
 
