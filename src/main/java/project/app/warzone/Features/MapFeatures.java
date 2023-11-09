@@ -30,12 +30,24 @@ import project.app.warzone.Utilities.MapResources;;
 @Component
 public class MapFeatures implements Observer{
 
-    public MapResources mapResouces;
     private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
+    public static MapResources mapResouces;
+    private static MapFeatures d_singleInstance = null; 
 
     public MapFeatures(MapResources mapResouces){
-        this.mapResouces = mapResouces;
+        MapFeatures.mapResouces = mapResouces;
 
+    }
+    /**
+     * used for getting instance
+     * @return MapFeatures
+     */
+    public static synchronized MapFeatures getInstance() 
+    { 
+        if (d_singleInstance == null) 
+            d_singleInstance = new MapFeatures(mapResouces); 
+  
+        return d_singleInstance; 
     }
 
     
@@ -164,7 +176,7 @@ public class MapFeatures implements Observer{
             }
             System.out.print(c.getData().getCountryName()+" : ");
             String borderString ="";
-            if(c.getBorders().size()> 0 &&  c.getBorders() != null){
+            if(c.getBorders() != null &&  c.getBorders().size()> 0  ){
                 List<Node> listOfBorders = c.getBorders();
 
                 for(Node border : listOfBorders ){
@@ -201,7 +213,7 @@ public class MapFeatures implements Observer{
 
         }
 
-       Node n = l_visitedList.entrySet().iterator().next().getKey();
+    //    Node n = l_visitedList.entrySet().iterator().next().getKey();
        depthFirstSearch(l_visitedList.entrySet().iterator().next().getKey(),l_visitedList);
 
        return l_visitedList;
@@ -234,15 +246,6 @@ public class MapFeatures implements Observer{
             if(!l_result){
                 return false;
             }            
-
-        }
-                        
-        
-
-        System.out.println("Final visited list:");
-        for(Node n : l_visitedList.keySet()){
-
-            System.out.println(n.getData().getCountryName()+":"+l_visitedList.get(n));
 
         }
 
@@ -281,9 +284,6 @@ public class MapFeatures implements Observer{
 
 
     }
-
-
-    
     /** 
      * used for implementing DFS
      * 
@@ -297,21 +297,26 @@ public class MapFeatures implements Observer{
 
         List<Node> l_listOfBorderNodes = currentCountry.getBorders();
 
-        for( Node l_currentNode : l_listOfBorderNodes){ 
-                       
-            if(!l_visitedList.keySet().contains(l_currentNode)){
-              l_visitedList.put(l_currentNode,false);
+        if(l_listOfBorderNodes != null && l_listOfBorderNodes.size() > 0){
 
-            }        
+            for( Node l_currentNode : l_listOfBorderNodes){ 
+                
+                if(!l_visitedList.keySet().contains(l_currentNode)){
+                l_visitedList.put(l_currentNode,false);
 
-        }
+                }        
 
-
-        for(Node node : l_listOfBorderNodes){
-            if(l_visitedList.get(node) != true){
-                depthFirstSearch(node,l_visitedList);
             }
+
+
+            for(Node node : l_listOfBorderNodes){
+                if(l_visitedList.get(node) != true){
+                    depthFirstSearch(node,l_visitedList);
+                }
+            }
+
         }
+       
 
         return l_visitedList;
     }
@@ -459,18 +464,26 @@ public class MapFeatures implements Observer{
 
     while(currentLine != null){
 
-        System.out.println(currentLine.toString().split(" ")[0]);
+        //System.out.println(currentLine.toString().split(" ")[0]);
         if(listofNeighBours.keySet().contains(currentLine.split(" ")[0]))
         {
             currentLine = currentLine +" "+listofNeighBours.get((currentLine.split(" ")[0]));
             listofNeighBours.remove(currentLine.split(" ")[0]);
 
 
-            writer.write(currentLine + System.getProperty("line.separator"));
+            //writer.write(currentLine + System.getProperty("line.separator"));
+            
 
 
         }
+
+        if(!currentLine.toString().equals("[borders]")){
+            writer.write(currentLine + System.getProperty("line.separator"));
+
+        }
+
         currentLine= reader.readLine();
+
     } 
 
     for(String l_i : listofNeighBours.keySet()){
@@ -495,7 +508,6 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
     // Push the line as string to list of string
     // Iterate through the list of string and remove the line which contains the country
     // Write the list of string to the file
-    System.out.println(listofCountries.get(0));
     
     String l_mapLocation=gameEngine.gameMap.getMapDirectory()+"/"+gameEngine.gameMap.get_USER_SELECTED_FILE()+".map"; //mac
     // System.out.println(l_mapLocation);
@@ -508,7 +520,6 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
 
     String currentLine;
     Set<String> countriesToremoved = new HashSet<>(listofCountries);
-    System.out.println(countriesToremoved);
     do{
         currentLine = reader.readLine();
         if(currentLine == null) break;
@@ -517,10 +528,7 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
     while(!currentLine.toString().equals("[countries]"));
         
     while((currentLine = reader.readLine()) != null) {
-        System.out.println(currentLine);
-        
-        System.out.println(currentLine.split(" ")[0]);
-        System.out.println(countriesToremoved.contains(currentLine.split(" ")[0]));
+
         if(countriesToremoved.contains(currentLine.split(" ")[0])) continue;
         writer.write(currentLine + System.getProperty("line.separator"));
     }
@@ -534,7 +542,7 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
 
    public void removeContinentFromFile(List<String> listofContinent,GameEngine gameEngine)throws IOException{
 
-    java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
+    // java.util.Map<Integer, String> listOfContinentsResource = mapResouces.getAllContinents();
     System.out.println(listofContinent.get(0));
     
 
@@ -548,7 +556,7 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
 
     String currentLine;
     Set<String> continentsToremoved = new HashSet<>(listofContinent);
-    System.out.println(continentsToremoved);
+    //System.out.println(continentsToremoved);
     // change here
 
     do{
@@ -561,9 +569,9 @@ public void removeCountriesFromFile(List<String> listofCountries,GameEngine game
         
 
     while((currentLine = reader.readLine()) != null) {
-        System.out.println(currentLine);        
-        System.out.println(currentLine.split(" ")[0]);
-        System.out.println(continentsToremoved.contains(currentLine.split(" ")[0]));
+        // System.out.println(currentLine);        
+        // System.out.println(currentLine.split(" ")[0]);
+        // System.out.println(continentsToremoved.contains(currentLine.split(" ")[0]));
         //String l_continentName  = listOfContinentsResource.get()
         if(continentsToremoved.contains(currentLine.split(" ")[0])) continue;
 
@@ -608,6 +616,7 @@ public void removeborderFromFile(java.util.Map<String, String> listofNeighBours,
             for(int i=1 ; i < mainString.length ;i++){
                 if(l_ToRemove.contains(mainString[i].toString())){
                     mainString[i]="";
+                    finalString.trim();
                 }
             }
             for(String s : mainString){
@@ -619,7 +628,10 @@ public void removeborderFromFile(java.util.Map<String, String> listofNeighBours,
 
 
         }
-        writer.write(currentLine + System.getProperty("line.separator"));
+        if(!currentLine.toString().equals("[borders]")){
+            writer.write(currentLine + System.getProperty("line.separator"));
+
+        }
 
         currentLine= reader.readLine();
     }

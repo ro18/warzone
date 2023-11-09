@@ -3,11 +3,6 @@ package project.app.warzone.Commands;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Observer;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -25,13 +20,12 @@ import project.app.warzone.Utilities.MapResources;
  * This class stores all the map-related commands allowed in gameplay
  */
 @ShellComponent
-public class MapEditorCommands implements Observer {
-
-    private final MapFeatures d_mapFeatures;
+public class MapEditorCommands implements java.util.Observer {
     public GameEngine d_gameEngine;
     public PlayerCommands d_playerCommands;
     public PlayerFeatures d_playerFeatures;
-    private final MapResources d_mapResources;
+    public MapFeatures dMapFeatures;
+    public project.app.warzone.Model.Map dMap;
     private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
     /**
@@ -44,10 +38,9 @@ public class MapEditorCommands implements Observer {
      */
     public MapEditorCommands(MapFeatures p_mapFeatures, GameEngine p_gameEngine, PlayerFeatures p_playerFeatures,
             MapResources p_mapResources) {
-        this.d_mapFeatures = p_mapFeatures;
+        // this.d_mapFeatures = p_mapFeatures;
         this.d_gameEngine = p_gameEngine;
         d_playerCommands = new PlayerCommands(p_gameEngine, p_playerFeatures);
-        this.d_mapResources = p_mapResources;
     }
 
     /**
@@ -57,26 +50,13 @@ public class MapEditorCommands implements Observer {
      * @return String returns message if the map is loaded
      */
     @ShellMethod(key = "loadmap", value = "Player can create or open an existing map")
-    public String loadMap(@ShellOption String p_filename) {
-
+    public void loadMap(@ShellOption String p_filename) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("loadmap " + p_filename);
         l_logEntryBuffer.addObserver(this);
 
         d_gameEngine.prevUserCommand = Commands.LOADMAP;
-        if (d_gameEngine.gameMap.fileExists(p_filename)) {
-            System.out.println("One file found.");
-            d_gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
-
-            l_logObject.setStatus(true, "User loaded map " + p_filename);
-            l_logEntryBuffer.notifyClasses(l_logObject);
-            return "Choose one of the below commands to proceed:\n 1. showmap 2.editmap";
-        } else {
-
-            l_logObject.setStatus(false, "User tried to load map " + p_filename);
-            l_logEntryBuffer.notifyClasses(l_logObject);
-            return "Map not found.";
-        }
+        d_gameEngine.getGamePhase().loadMap(p_filename);
     }
 
     /**
@@ -85,18 +65,15 @@ public class MapEditorCommands implements Observer {
      * @return String returns message about the map validation
      */
     @ShellMethod(key = "showmap", value = "Used to display map continents with terriotories and boundaries")
-    public String showmap() {
+    public void showmap() {
+        d_gameEngine.getGamePhase().showMap();
+    }
+
+    public project.app.warzone.Model.Map returnMap() {
         String p_mapLocation = d_gameEngine.gameMap.getMapDirectory() + "/"
                 + d_gameEngine.gameMap.get_USER_SELECTED_FILE() + ".map";
-
-        d_gameEngine.gameMap = d_mapFeatures.readMap(p_mapLocation);
-        Boolean l_result = d_mapFeatures.validateEntireGraph(d_gameEngine);
-        if (!l_result) {
-            return ("This map is not valid.Please try with some other map");
-        } else {
-            return ("You can now proceed to add gameplayers");
-        }
-
+        dMap = dMapFeatures.readMap(p_mapLocation);
+        return dMap;
     }
 
     /**
@@ -107,100 +84,9 @@ public class MapEditorCommands implements Observer {
      * @return returns the message about status of command
      */
     @ShellMethod(key = "editcontinent", prefix = "-", value = "This is used to add or update continents")
-    public String editcontinent(@ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 10) String p_editcmd,
-            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_editremovecmd) {
-
-
-        LogObject l_logObject = new LogObject();
-        l_logEntryBuffer.addObserver(this);
-        l_logObject.setD_command("editcontinent " + p_editcmd + " " + p_editremovecmd);
-
-        Map<String, String> listofContinents = new HashMap<String, String>();
-        java.util.Map<Integer, String> listOfContinentsResource = d_mapResources.getAllContinents();
-
-        if (d_gameEngine.prevUserCommand == Commands.EDITMAP || d_gameEngine.prevUserCommand == Commands.ADDCONTINENT
-                || d_gameEngine.prevUserCommand == Commands.REMOVECONTINENT
-                || d_gameEngine.prevUserCommand == Commands.ADDCOUNTRY
-                || d_gameEngine.prevUserCommand == Commands.REMOVECOUNTRY
-                || d_gameEngine.prevUserCommand == Commands.ADDNEIGHBOUR
-                || d_gameEngine.prevUserCommand == Commands.REMOVENEIGHBOUR) {
-
-            if (p_editcmd != null && p_editcmd != "") {
-                d_gameEngine.prevUserCommand = Commands.ADDCONTINENT;
-                String[] l_editCmd = p_editcmd.split(",");
-
-                int l_i = 0;
-
-                String l_commandToCheck = "-add";
-                while (l_i < l_editCmd.length) {
-
-                    System.out.println(l_editCmd[l_i] + ":" + l_commandToCheck);
-                    if (l_editCmd[l_i].toString().equals(l_commandToCheck)) {
-                        l_i++;
-                        continue;
-
-                    } else {
-                        listofContinents.put(l_editCmd[l_i], l_editCmd[l_i + 1]);
-                        l_i += 2;
-
-                    }
-
-                }
-
-                try {
-                    d_mapFeatures.writeContinentsToFile(listofContinents, d_gameEngine);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-                l_logObject.setStatus(true, "Continents addded succesfully");
-                l_logEntryBuffer.notifyClasses(l_logObject);
-                return "Continents addded succesfully";
-            } else {
-
-                d_gameEngine.prevUserCommand = Commands.REMOVECONTINENT;
-
-                List<String> l_listOfContinentsToRemove = new ArrayList<>();
-                String[] l_editremovecmd = p_editremovecmd.split(",");
-                int l_i = 0;
-
-                String commandToCheck = "-remove";
-
-                while (l_i < l_editremovecmd.length) {
-
-                    System.out.println(l_editremovecmd[l_i] + ":" + commandToCheck);
-                    if (l_editremovecmd[l_i].toString().equals(commandToCheck)) {
-
-                        l_i++;
-                        continue;
-
-                    } else {
-                        l_listOfContinentsToRemove
-                                .add(listOfContinentsResource.get(Integer.parseInt(l_editremovecmd[l_i])));
-                        System.out.println("listofContinents" + l_listOfContinentsToRemove);
-                        l_i++;
-                    }
-
-                }
-                try {
-                    d_mapFeatures.removeContinentFromFile(l_listOfContinentsToRemove, d_gameEngine);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-                l_logObject.setStatus(true, "Continent removed succesfully");
-                l_logEntryBuffer.notifyClasses(l_logObject);
-                return "Continent removed succesfully";
-            }
-        }else {
-            l_logObject.setStatus(false, "Can't add continent");
-            l_logEntryBuffer.notifyClasses(l_logObject);
-            return "You cannnot add continent.";
-
-        }
-
+    public void editcontinent(@ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 20) String p_editcmd,
+            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 20) String p_editremovecmd) {
+        d_gameEngine.getGamePhase().editContinent(p_editcmd, p_editremovecmd);
     }
 
     /**
@@ -210,93 +96,9 @@ public class MapEditorCommands implements Observer {
      * @throws IOException throwing statement incase of any Exception
      */
     @ShellMethod(key = "editcountry", prefix = "-", value = "This is used to add continents")
-    public String editcountry(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
+    public void editcountry(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL) String p_editremovecmd) throws IOException {
-
-                
-        LogObject l_logObject = new LogObject();
-        l_logEntryBuffer.addObserver(this);
-        l_logObject.setD_command("editcountry " + p_editcmd + " " + p_editremovecmd);
-
-        if (d_gameEngine.prevUserCommand == Commands.ADDCONTINENT
-                || d_gameEngine.prevUserCommand == Commands.REMOVECONTINENT
-                || d_gameEngine.prevUserCommand == Commands.ADDCOUNTRY
-                || d_gameEngine.prevUserCommand == Commands.REMOVECOUNTRY) {
-
-            if (p_editcmd != null && p_editcmd != "") {
-                Map<String, String> listofCountries = new HashMap<String, String>();
-                d_gameEngine.prevUserCommand = Commands.ADDCOUNTRY;
-
-                String[] editCmd = p_editcmd.split(",");
-                int l_i = 0;
-
-                String commandToCheck = "-add";
-                while (l_i < editCmd.length) {
-
-                    if (editCmd[l_i].toString().equals(commandToCheck)) {
-                        l_i++;
-                        continue;
-
-                    } else {
-                        listofCountries.put(editCmd[l_i], editCmd[l_i + 1]);
-                        l_i += 2;
-
-                    }
-
-                }
-                try {
-                    d_mapFeatures.writeCountriesToFile(listofCountries, d_gameEngine);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-                l_logObject.setStatus(true, "Countries addded succesfully");
-                l_logEntryBuffer.notifyClasses(l_logObject);
-                return "Countries addded succesfully";
-            } else {
-
-                List<String> l_listofCountries = new ArrayList<>();
-                String[] l_editremovecmd = p_editremovecmd.split(",");
-
-                int l_i = 0;
-
-                String commandToCheck = "-remove";
-
-                while (l_i < l_editremovecmd.length) {
-
-                    System.out.println(l_editremovecmd[l_i] + ":" + commandToCheck);
-                    if (l_editremovecmd[l_i].toString().equals(commandToCheck)) {
-
-                        l_i++;
-                        continue;
-
-                    } else {
-                        l_listofCountries.add(l_editremovecmd[l_i]);
-
-                        System.out.println("listofCountries" + l_listofCountries);
-                        l_i++;
-                    }
-
-                }
-                try {
-                    d_mapFeatures.removeCountriesFromFile(l_listofCountries, d_gameEngine);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-                l_logObject.setStatus(true, "Countries removed succesfully");
-                l_logEntryBuffer.notifyClasses(l_logObject);
-                return "Countries removed succesfully";
-            }
-        } else {
-            l_logObject.setStatus(false, "Can't add country");
-            l_logEntryBuffer.notifyClasses(l_logObject);
-            return "You cannnot add country";
-
-        }
-
+        d_gameEngine.getGamePhase().editCountry(p_editcmd, p_editremovecmd);
     }
 
     /**
@@ -306,93 +108,9 @@ public class MapEditorCommands implements Observer {
      * @throws IOException throwing statement incase of any Exception
      */
     @ShellMethod(key = "editneighbor", prefix = "-", value = "This is used to add or update neighbor")
-    public String editNeighbor(@ShellOption(value = "a", defaultValue = ShellOption.NULL) String p_editcmd,
-            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_editremovecmd)
+    public void editNeighbor(@ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 20) String p_editcmd,
+            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 20) String p_editremovecmd)
             throws IOException {
-        LogObject l_logObject = new LogObject();
-        l_logEntryBuffer.addObserver(this);
-        l_logObject.setD_command("editneighbor " + p_editcmd + " " + p_editremovecmd);
-        if (d_gameEngine.prevUserCommand == Commands.ADDCOUNTRY
-                || d_gameEngine.prevUserCommand == Commands.REMOVECOUNTRY
-                || d_gameEngine.prevUserCommand == Commands.ADDNEIGHBOUR
-                || d_gameEngine.prevUserCommand == Commands.REMOVENEIGHBOUR) {
-            if (p_editcmd != null && p_editcmd != "") {
-                Map<String, String> listofBorders = new HashMap<String, String>();
-                String[] editCmd = p_editcmd.split(",");
-
-                int l_i = 0;
-
-                String l_commandToCheck = "-add";
-                while (l_i < editCmd.length) {
-
-                    if (editCmd[l_i].toString().equals(l_commandToCheck)) {
-                        l_i++;
-                        continue;
-
-                    } else {
-                        listofBorders.put(editCmd[l_i],
-                                listofBorders.get(editCmd[l_i]) != null
-                                        ? listofBorders.get(editCmd[l_i]).toString() + " " + editCmd[l_i + 1].toString()
-                                        : editCmd[l_i + 1]);
-                        l_i += 2;
-
-                    }
-
-                }
-                try {
-                    d_mapFeatures.writeCountriesNeighborToFile(listofBorders, d_gameEngine);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-                l_logObject.setStatus(true, "Country borders addded succesfully");
-                l_logEntryBuffer.notifyClasses(l_logObject);
-                return "Country borders addded succesfully";
-            } else {
-
-                d_gameEngine.prevUserCommand = Commands.REMOVENEIGHBOUR;
-
-                String[] l_editremovecmd = p_editremovecmd.split(",");
-                int l_i = 0;
-
-                String commandToCheck = "-remove";
-                Map<String, String> listofBorders = new HashMap<String, String>();
-
-                while (l_i < l_editremovecmd.length) {
-
-                    if (l_editremovecmd[l_i].toString().equals(commandToCheck)) {
-
-                        l_i++;
-                        continue;
-
-                    } else {
-                        listofBorders.put(l_editremovecmd[l_i],
-                                listofBorders.get(l_editremovecmd[l_i]) != null
-                                        ? listofBorders.get(l_editremovecmd[l_i]).toString() + " "
-                                                + l_editremovecmd[l_i + 1].toString()
-                                        : l_editremovecmd[l_i + 1]);
-                        l_i += 2;
-                    }
-
-                }
-                try {
-                    d_mapFeatures.removeborderFromFile(listofBorders, d_gameEngine);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-                l_logObject.setStatus(true, "Borders removed succesfully");
-                l_logEntryBuffer.notifyClasses(l_logObject);
-                return "Borders removed succesfully";
-            }
-
-        }
-        // }
-        l_logObject.setStatus(false, "Can't edit neighbor");
-        l_logEntryBuffer.notifyClasses(l_logObject);
-        return "You cannot use edit neighbor command now.";
 
     }
 
@@ -401,54 +119,10 @@ public class MapEditorCommands implements Observer {
      * @return returns status of editing map
      */
     @ShellMethod(key = "editmap", value = "This is used to add or create map")
-    public String editmap(@ShellOption String p_filename) {
-
-        LogObject l_logObject = new LogObject();
-        l_logEntryBuffer.addObserver(this);
-        l_logObject.setD_command("editmap " + p_filename);
-        if (d_gameEngine.gameMap.fileExists(p_filename)) {
-            System.out.println("One file found.");
-            d_gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
-            showmap(); // add check to see if file is proper
-
-            System.out.println("\n");
-            l_logObject.setStatus(true, "Map loaded for editing succesfully");
-            l_logEntryBuffer.notifyClasses(l_logObject);
-            return ("Please use gameplayer -add command to add players in the game");
-        } else {
-            d_gameEngine.prevUserCommand = Commands.EDITMAP;
-            // System.out.println("File not found.");
-            d_gameEngine.gameMap.set_USER_SELECTED_FILE(p_filename);
-
-            d_gameEngine.gameMap.createNewMapFile(p_filename);
-            // System.out.println("New File created successfully..");
-            System.out.println("\n");
-            System.out.println(
-                    "Choose one of the below commands to proceed:\n 1.editcontinent 2.editcountry 3.editneighbor");
-            System.out.println("\n");
-            System.out.println("Continet list:::: Select the continents you need to add");
-            System.out.println("----------------------------------------------------------");
-            d_mapResources.printMapDetails(d_mapResources.getAllContinents());
-            System.out.println("\n");
-            System.out.println("Countries list:::: Select the Countries you need to add");
-            System.out.println("----------------------------------------------------------");
-
-            d_mapResources.printMapDetails(d_mapResources.getAllCountries());
-
-            System.out.println("\n");
-            l_logObject.setStatus(true, "Map created succesfully");
-            l_logEntryBuffer.notifyClasses(l_logObject);
-            return "Please select the add or remove command";
-
-        }
-
+    public void editmap(@ShellOption String p_filename) {
+        d_gameEngine.prevUserCommand = Commands.EDITMAP;
+        d_gameEngine.getGamePhase().editMap(p_filename);
     }
-
-    /**
-     * This method is used to update the log
-     * 
-     * @param p_obj to be updated
-     */
 
     public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
@@ -466,5 +140,7 @@ public class MapEditorCommands implements Observer {
             }
         }
     }
+        
+  
 
 }

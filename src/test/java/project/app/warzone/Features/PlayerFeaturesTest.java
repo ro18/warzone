@@ -31,7 +31,7 @@ public class PlayerFeaturesTest {
         this.d_mapResources = new MapResources();
         this.d_mapFeatures = new MapFeatures(d_mapResources);
 
-        String p_mapLocation = d_gameEngine.gameMap.getMapDirectory()+"\\europe.map";
+        String p_mapLocation = d_gameEngine.gameMap.getMapDirectory()+"//europe.map";
         d_gameEngine.gameMap = d_mapFeatures.readMap(p_mapLocation);
         
         d_playerFeatures.addPlayers("prashant", d_gameEngine);
@@ -55,6 +55,7 @@ public class PlayerFeaturesTest {
         for (Player player : l_testPlayerList) {
             l_expectedPlayers.add(player.d_playername);
         }
+
 
         List<String> l_actualPlayers = new ArrayList<>();
 
@@ -125,16 +126,18 @@ public class PlayerFeaturesTest {
 
         }
         
-        int l_countryId = 2;
+        int l_countryId = 1;
         int l_deployArmy = 3;
+        String l_result = "";
+        for(int i = 0 ; i < 4; i++){
+             l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId++, l_deployArmy);
 
-        for(int i = 0 ; i < 3; i++){
-            d_playerFeatures.deployArmies(d_gameEngine, l_countryId + i, l_deployArmy);
+
         }
-
-        String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId-1, l_deployArmy);
-
         assertEquals("Orders successfully executed", l_result);      
+
+
+
 
     }
 
@@ -148,16 +151,16 @@ public class PlayerFeaturesTest {
 
         }
 
-        int l_countryId = 2;
+        int l_countryId = 1;
         int l_deployArmy = 5;
 
         for(int i = 0 ; i < 3; i++){
-            d_playerFeatures.deployArmies(d_gameEngine, l_countryId + i, l_deployArmy);
+            String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId, l_deployArmy);
+            assertEquals("Not enough armies to be deployed. Available armies: 3", l_result);     
+
         }
 
-        String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId-1, l_deployArmy);
 
-        assertEquals("Not enough armies to be deployed. Available armies: 3", l_result);     
 
     }
 }

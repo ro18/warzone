@@ -45,6 +45,7 @@ public class Country {
         this.d_countryName = p_countryName;
         this.d_continent = p_continent;
         this.d_countryId=p_countryId;
+        this.d_ownerId=0;
     }
 
     /**
@@ -60,6 +61,8 @@ public class Country {
     public int getOwnerId() {
         return d_ownerId;
     }
+
+ 
 
     /**
      * @return                  returns numberofArmies
@@ -96,11 +99,18 @@ public class Country {
         d_ownerId = p_newOwnerId;             
     }
 
-    /**
+    // /**
+    //  * @param p_newNumberOfArmies       used for setting newNumberofArmies
+    //  */
+    // public void addNumberOfArmies(int p_newNumberOfArmies) {
+    //     d_numberOfArmies = d_numberOfArmies + p_newNumberOfArmies;         
+    // }
+
+     /**
      * @param p_newNumberOfArmies       used for setting newNumberofArmies
      */
     public void setNumberOfArmies(int p_newNumberOfArmies) {
-        d_numberOfArmies = p_newNumberOfArmies;         
+        d_numberOfArmies =  p_newNumberOfArmies;         
     }
 
     /**
