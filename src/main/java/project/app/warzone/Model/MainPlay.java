@@ -27,4 +27,25 @@ public abstract class MainPlay extends Play {
 	public void assignCountries() {
 		this.printInvalidCommandMessage();
 	}
+
+
+	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
+		printInvalidCommandMessage(); 
+	}
+
+	public void bomb(int p_countryID) {
+		printInvalidCommandMessage(); 
+	}
+
+	public void blockade( int p_countryID) {
+		printInvalidCommandMessage(); 
+	}
+
+	public void airlift( int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
+		printInvalidCommandMessage(); 
+	}
+
+	public void negotiate(int p_targetPlayerId) {
+		printInvalidCommandMessage(); 
+	}
 }

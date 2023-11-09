@@ -22,12 +22,20 @@ public class Attack extends MainPlay {
 	}
 	
 	public void reinforce(int p_countryID, int p_armies) {
-		printInvalidCommandMessage(); 
+		String l_reString = d_playerFeatures.deployArmies(ge, p_countryID, p_armies);
+		
+		System.out.println(l_reString);
+	
 	}
-
+	
 	public void attack() {
 		System.out.println("attack done");
 		ge.setPhase(new Fortify(ge));
+	}
+
+	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
+		String l_reString = d_playerFeatures.advanceArmies(ge, p_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
+
 	}
 
 	public void fortify() {

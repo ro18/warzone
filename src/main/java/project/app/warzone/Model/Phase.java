@@ -44,6 +44,17 @@ public abstract class Phase {
 	// attack commands
 	abstract public void attack();
 
+	abstract public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies);
+
+	abstract public void bomb(int p_countryID);
+
+	abstract public void blockade( int p_countryID);
+
+	abstract public void airlift( int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift);
+
+	abstract public void negotiate(int p_targetPlayerId);
+
+
 	// fortify commands
 	abstract public void fortify();
 
