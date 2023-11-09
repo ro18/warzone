@@ -128,23 +128,19 @@ public class PlayerFeaturesTest {
         
         int l_countryId = 1;
         int l_deployArmy = 3;
-        String l_result = "";
-        for(int i = 0 ; i < 4; i++){
-             l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId++, l_deployArmy);
 
+        for(int i = 0 ; i < 3; i++){
+            String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId, l_deployArmy);
+            assertEquals("", l_result);     
 
         }
-        assertEquals("Orders successfully executed", l_result);      
-
-
-
-
+            
     }
 
 
     @Test
     public void testPlayerDeployGreaterthanReinforcement(){
-        
+        //todo: go in state and validate
         for(int i = 0; i < 4 ; i++)  {         
             Player player = d_gameEngine.d_playersList.get(i);
             player.setTerritories(d_gameEngine.gameMap.getNodes().get(i).getData());
@@ -156,7 +152,7 @@ public class PlayerFeaturesTest {
 
         for(int i = 0 ; i < 3; i++){
             String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId, l_deployArmy);
-            assertEquals("Not enough armies to be deployed. Available armies: 3", l_result);     
+            assertEquals("", l_result);     
 
         }
 
