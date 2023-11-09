@@ -7,7 +7,7 @@ package project.app.warzone.Model;
 
 public class Attack extends MainPlay {
 
-	Attack(GameEngine p_ge) {
+	public Attack(GameEngine p_ge) {
 		super(p_ge);
 	}
 	public void loadMap(String p_filename) {
@@ -42,23 +42,4 @@ public class Attack extends MainPlay {
 		printInvalidCommandMessage(); 
 	}
 
-	public void bomb(int p_countryId) {
-		String l_reString = d_playerFeatures.bombCountry(ge, p_countryId);
- 
-	}
-
-	public void blockade( int p_countryID) {
-		String l_reString = d_playerFeatures.blockadeCountry(ge, p_countryID);
-
-	}
-
-	public void airlift( int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
-		String l_reString = d_playerFeatures.airlift(ge,p_countryIDFrom, p_countryIDTo,  p_armiesToAirlift);
-
-	}
-
-	public void negotiate(int p_targetPlayerId) {
-		String l_reString = d_playerFeatures.negotiate(ge,p_targetPlayerId);
- 
-	}
 }

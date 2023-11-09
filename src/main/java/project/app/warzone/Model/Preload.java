@@ -32,7 +32,8 @@ public class Preload extends Edit {
     
     public void loadMap(String p_filename) {
         if(ge.gameMap.fileExists(p_filename)){
-            System.out.println("One file found.");
+            System.out.println("Current Phase: Preload");
+            System.out.println("One file found");
             ge.gameMap.set_USER_SELECTED_FILE(p_filename);
             System.out.println("Choose one of the below commands to proceed:\n 1. showmap 2.editmap");
             next();
