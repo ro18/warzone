@@ -19,7 +19,7 @@ public class PlayerCommands {
     public GameEngine d_gameEngine;
     public PlayerFeatures d_playerFeatures;
     public String d_prevUserCommand;
-    public static int d_CurrentPlayerId = 1;
+    public static int d_CurrentPlayerId = 0;
 
     /**
      * Constructor for Playercommands
@@ -55,6 +55,7 @@ public class PlayerCommands {
     @ShellMethod(key = "assigncountries", value = "This is used to assign countries to players randomly")
     public void assigncountries() {
         d_gameEngine.getGamePhase().assignCountries();
+        showStats();
     }
 
     /**
@@ -64,6 +65,29 @@ public class PlayerCommands {
     public void showStats() {
         d_gameEngine.getGamePhase().showstats();
     }
+
+    /**
+     * @return String returns status of showstats
+     */
+    @ShellMethod(key = "showmapstatus", value = "Displays map armies and other details")
+    public void showMapStatus() {
+        d_gameEngine.getGamePhase().showmapstatus();
+    }
+
+     /**
+     * @param p_countryID               storing country ID
+     * @param p_armies                  storing number of armies to deploy
+     * @return                          returns status of deploying army
+     */
+    @ShellMethod(key = "deploy", value = "This is used to deploy armies")
+    public String deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
+        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
+            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
+        }
+        return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
+    }
+
+
 
     /**
      * @param p_countryID storing country ID
