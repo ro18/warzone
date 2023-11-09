@@ -73,60 +73,9 @@ public class GameEngine {
         return gameMap;
     }
 
-    // public boolean roundRobin(){
-
-    // //     System.out.println("checkPlayersReinforcements");
-
-    // //     Boolean l_flag = false;
-    // //     int l_i = PlayerCommands.d_CurrentPlayerId+1;
-
-    // //     List<Player> l_players = getPlayers();
-
-    // //      while (l_i != PlayerCommands.d_CurrentPlayerId) {
-    // //         if (l_i == l_players.size()) {
-    // //             l_i = 0;
-    // //             continue;
-    // //         }
-
-    // //         if (l_players.get(l_i).getReinforcementArmies() > 0 || l_players.get(l_i).pendingOrder == true ) {
-    // //             l_flag = true;
-    // //             break;
-    // //         }
-    // //         l_i++;
-    // //     }
-        
-    // //     return l_flag;
-    // //     if (l_flag) {
-    // //         PlayerCommands.d_CurrentPlayerId = l_i;
-    // //         System.out.println("Turn of " + l_players.get(l_i).getL_playername());
-
-    // //         if(l_players.get(l_i).pendingOrder == true && l_players.get(l_i).getReinforcementArmies() == 0 ){
-
-    // //         String value = this.lineReader.readLine("Do you want to add more orders? Y or N:\n");
-    // //         if(value.equals("N")){
-    // //             l_players.get(l_i).pendingOrder = false;
-    // //             roundRobin();
-
-    // //         }
-    // //         else{
-    // //             System.out.println("Please proceed with your orders");
-    // //         }
-
-    // //         }
-           
-
-
-
-    // //     } else {
-
-    // //            execute_orders();
-    // //            System.out.println("Orders successfully executed");
-
-    // //     }
-    // // }
+    
     public void checkPlayersReinforcements(){
 
-    //    System.out.println("checkPlayersReinforcements");
 
         Boolean l_flag = false;
         int l_i = PlayerCommands.d_CurrentPlayerId+1;

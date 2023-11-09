@@ -93,11 +93,13 @@ public class PlayerCommands implements Observer {
      * @return                          returns status of deploying army
      */
     @ShellMethod(key = "deploy", value = "This is used to deploy armies")
-    public String deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
+    public void deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
         if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
+            System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
         }
-        return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
+
+        d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
+        // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
     }
 
 
@@ -108,11 +110,14 @@ public class PlayerCommands implements Observer {
      * @return returns status of deploying army
      */
     @ShellMethod(key = "advance", value = "This is used to deploy armies")
-    public String advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
+    public void advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
         if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
+            System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
+
+
         }
-        return d_playerFeatures.advanceArmies(d_CurrentPlayerId,d_gameEngine, p_countryfrom,p_countryTo, p_armies);
+        d_gameEngine.getGamePhase().advance(d_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
+        // return d_playerFeatures.advanceArmies(d_CurrentPlayerId,d_gameEngine, p_countryfrom,p_countryTo, p_armies);
     }
 
     /**
@@ -131,7 +136,10 @@ public class PlayerCommands implements Observer {
 
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("bomb")){
-                return d_playerFeatures.bombCountry(d_gameEngine,p_countryId);
+
+                d_gameEngine.getGamePhase().bomb(p_countryId);
+
+                // return d_playerFeatures.bombCountry(d_gameEngine,p_countryId);
 
             }
             else{
@@ -157,7 +165,9 @@ public class PlayerCommands implements Observer {
 
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("blockade")){
-        return d_playerFeatures.blockadeCountry(d_gameEngine,p_countryId);
+                d_gameEngine.getGamePhase().blockade(p_countryId);
+
+        // return d_playerFeatures.blockadeCountry(d_gameEngine,p_countryId);
             }
             else{
                 return "The Player does not have Blockade card";
@@ -181,7 +191,9 @@ public class PlayerCommands implements Observer {
 
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("airlift")){
-        return d_playerFeatures.airlift(d_gameEngine,p_countryfrom,p_countryTo, p_airliftArmies);
+                d_gameEngine.getGamePhase().airlift(p_countryfrom,p_countryTo, p_airliftArmies);
+
+        // return d_playerFeatures.airlift(d_gameEngine,p_countryfrom,p_countryTo, p_airliftArmies);
         }
             else{
                 return "The Player does not have Airlift card";
@@ -202,7 +214,9 @@ public class PlayerCommands implements Observer {
 
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("negotiate")){
-        return d_playerFeatures.negotiate(d_gameEngine,p_targetPlayerId);
+
+                d_gameEngine.getGamePhase().negotiate(p_targetPlayerId);
+
             }
             else{
                 return "The Player does not have Negotiate card";

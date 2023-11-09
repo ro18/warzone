@@ -138,6 +138,10 @@ public class Player {
 		return d_friendlyAlliesList;
 	}
 
+	public void addriendlyAlly(Player player) {
+		d_friendlyAlliesList.add(player);
+	}
+
 	public void setD_friendlyAlliesList(List<Player> d_friendlyAlliesList) {
 		this.d_friendlyAlliesList = d_friendlyAlliesList;
 	}
@@ -216,9 +220,11 @@ public class Player {
 
 			break;
 			case 5:
-			    System.out.println("Inside Switch 5");
-				System.out.print(order_details.get("Armies"));
-				d_listOfOrders.add(new ConcreteNegotiate());
+				Player playerToNegotiate = p_gameEngine.getPlayers().get(order_details.get("PlayerToBlock"));
+				Player currentPlayer = p_gameEngine.getPlayers().get(order_details.get("currentPlayer"));
+
+
+				d_listOfOrders.add(new ConcreteNegotiate(playerToNegotiate,currentPlayer));
 
 			break;
 

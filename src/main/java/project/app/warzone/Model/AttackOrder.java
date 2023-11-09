@@ -3,6 +3,7 @@ package project.app.warzone.Model;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Observer;
 
 import org.springframework.stereotype.Component;
@@ -31,164 +32,97 @@ public class AttackOrder implements Observer {
     return "Deployed armies successfully";
   }
 
-  // /**
-  // * This method is used to deploy armies on a country
-  // * @param p_gameEngine Instance of the game engine
-  // * @param p_countryID ID of the country to deploy armies on
-  // * @param p_armies Number of armies to deploy
-  // * @return A string containing status of the game.
-  // */
+  //Advance
+  public void Advance( Player player1 , Player player2, int p_armiesToAdv, Country source, Country target)
+  {
+   System.out.println("Inside Advance Method");
 
-  // public String Deploy(GameEngine p_gameEngine, int p_countryID, int p_armies)
-  // {
-  // List<Player> l_players = p_gameEngine.getPlayers();
+    List<Player> getAllies = player1.getD_friendlyAlliesList();
 
-  // Player l_player =
-  // p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-  // Country l_country =
-  // p_gameEngine.gameMap.getNodes().get(p_countryID-1).getData();
+    if(!getAllies.contains(player2)){
 
-  // /**
-  // * Check if the player has enough armies in the reinforcement pool to deploy
-  // */
+      long targetArmiesKilled = Math.round( target.getNumberOfArmies() * 0.7) ;
 
-  // if (l_player.getReinforcementArmies() < p_armies) {
-  // return "Not enough armies to be deployed. Available armies: " +
-  // l_player.getReinforcementArmies();
-  // }
+      long sourceArmiesKilled = Math.round (source.getNumberOfArmies() * 0.6);
 
-  // /**
-  // * Check if the country is owned by the player
-  // */
+      if(( p_armiesToAdv - targetArmiesKilled ) > target.getNumberOfArmies() - sourceArmiesKilled){
 
-  // Optional<Country> l_territory = l_player.d_listOfCountriesOwned.stream()
-  // .filter(c ->
-  // c.getCountryName().equals(l_country.getCountryName())).findFirst();
 
-  // if (!l_territory.isPresent()) {
-  // return "Country is not owned by the player";
-  // }
+      //Set armies in target country
 
-  // // Order l_deployOrder = new OrderMethods();
-  // // l_deployOrder.setL_numberOfArmies(p_armies);
-  // // l_deployOrder.setL_territory(l_country);
+      target.setNumberOfArmies((int)(p_armiesToAdv - targetArmiesKilled));
 
-  // java.util.Map<String, Integer> l_orderDetails = new HashMap<String,
-  // Integer>();
 
-  // l_orderDetails.put("Armies", p_armies);
-  // l_orderDetails.put("CountryId", p_countryID);
+      //Set armies in source country
 
-  // //IssueOrder
-  // l_player.issue_order(0,l_orderDetails);
+      source.setNumberOfArmies(source.getNumberOfArmies() -  p_armiesToAdv);
 
-  // /**
-  // * Main Game loop in round robin fashion which checks the reinforcement pool
-  // of the player and if it is 0, then
-  // * ask the next player to deploy armies. If all players have deployed all
-  // their armies, then execute the orders
-  // */
-  // p_gameEngine.execute_orders();
 
-  // Boolean l_flag = false;
-  // int l_i = PlayerCommands.d_CurrentPlayerId+1;
-
-  // while (l_i != PlayerCommands.d_CurrentPlayerId) {
-  // if (l_i == l_players.size()) {
-  // l_i = 0;
-  // continue;
-  // }
-
-  // if (l_players.get(l_i).getReinforcementArmies() > 0) {
-  // l_flag = true;
-  // break;
-  // }
-  // l_i++;
-  // }
-
-  // if (l_flag) {
-  // PlayerCommands.d_CurrentPlayerId = l_i;
-  // return "Turn of " + l_players.get(l_i).getL_playername() + " to deploy army";
-  // } else {
-  // p_gameEngine.execute_orders();
-  // return "Orders successfully executed";
-  // }
-  // }
-
-  // Advance
-  public void Advance(Player player1, Player player2, int p_armiesToAdv, Country source, Country target) {
-    LogObject l_logObject = new LogObject();
-    l_logObject.setD_command("advance");
-
-    System.out.println("Inside Advance Method");
-
-    long targetArmiesKilled = Math.round(target.getNumberOfArmies() * 0.7);
-
-    long sourceArmiesKilled = Math.round(source.getNumberOfArmies() * 0.6);
-
-    if ((p_armiesToAdv - targetArmiesKilled) > target.getNumberOfArmies() - sourceArmiesKilled) {
-
-      // Set armies in target country
-
-      target.setNumberOfArmies((int) (p_armiesToAdv - targetArmiesKilled));
-
-      // Set armies in source country
-
-      source.setNumberOfArmies(source.getNumberOfArmies() - p_armiesToAdv);
-
-      // Remove the territory from defenders list
-      if (player2 != null) {
+      //Remove the territory from defenders list
+      if(player2 != null){
         player2.removeTerritory(target);
 
       }
+      
 
-      // Add the territory to attackers list
+      //Add the territory to attackers list
       player1.setTerritories(target);
 
-      // adding card to players list
+      //adding card to players list
 
-      Cards l_card;
+                                        Cards l_card ;
 
-      int l_randomInt = (int) (Math.random() * 4);
+                                        int l_randomInt = (int) (Math.random() * 4);
 
-      switch (l_randomInt) {
-        case 0:
-          l_card = new Cards("BOMB");
-          break;
-        case 1:
-          l_card = new Cards("BLOCKADE");
-          break;
-        case 2:
-          l_card = new Cards("AIRLIFT");
-          break;
-        case 3:
-          l_card = new Cards("NEGOTIATE");
-          break;
+                                        switch (l_randomInt) {
+                                            case 0:
+                                                l_card = new Cards("BOMB");
+                                                break;
+                                            case 1:
+                                                l_card = new Cards("BLOCKADE");
+                                                break;
+                                            case 2:
+                                                l_card = new Cards("AIRLIFT");
+                                                break;
+                                            case 3:
+                                                l_card = new Cards("NEGOTIATE");
+                                                break;
 
-        default:
-          throw new IllegalArgumentException("Invalid card type");
-      }
+                                            default:
+                                                throw new IllegalArgumentException("Invalid card type");
+                                        }
 
-      player1.d_cardsInCollection.add(l_card);
+                                        player1.d_cardsInCollection.add(l_card);
 
       // add bonus armies on conquering territory
+
       player1.addReinforcementArmies(2);
 
-    } else {
-
-      target.setNumberOfArmies((int) (target.getNumberOfArmies() - sourceArmiesKilled));
-
-      if ((source.getNumberOfArmies() - sourceArmiesKilled) >= 0) {
-        source.setNumberOfArmies((int) (source.getNumberOfArmies() - sourceArmiesKilled));
-      } else {
-        
-        source.setNumberOfArmies(0);
-      }
     }
-      l_logObject.setStatus(true, "Player " + player1.getL_playername() + " has attacked " + target.getCountryName());
-      logEntryBuffer.notifyClasses(l_logObject);
+    else{
+
+
+          target.setNumberOfArmies((int)(target.getNumberOfArmies() - sourceArmiesKilled));
+
+          if ((source.getNumberOfArmies() - sourceArmiesKilled) >= 0)
+          {
+              source.setNumberOfArmies((int)(source.getNumberOfArmies() - sourceArmiesKilled));
+          }
+          else
+          {
+              source.setNumberOfArmies(0);
+          }
+  }
+
+    }
+    else{
+      System.out.println(" Attack stopped as"+player1.getL_playername()+"used negotiation card on"+player2.getL_playername());
+    }
+
+    
 
   }
+
 
   // Airlift
   public void Airlift(Country p_countryFrom, Country p_countryTo, int p_airliftArmies) {
@@ -214,21 +148,22 @@ public class AttackOrder implements Observer {
 
   }
 
-  // Bomb
-  public void Bomb(Country target) {
-    LogObject l_logObject = new LogObject();
-    l_logObject.setD_command("bomb");
-    
-    System.out.println("Inside Bomb Method");
-    target.setNumberOfArmies(target.getNumberOfArmies() / 2);
-    l_logObject.setStatus(true, "Bomb attack executed successfully");
-    logEntryBuffer.notifyClasses(l_logObject);
+  //Bomb
+  public void Bomb(Country target)
+  {
+   target.setNumberOfArmies(target.getNumberOfArmies()/2);
+
   }
 
-  // Negotiate
-  public String Negotiate() {
-    System.out.println("Inside Negotiate Method");
-    return "--Inside Negotiate Method";
+
+  //Negotiate
+  public void Negotiate(Player p_playerToNegotiate,Player currentPlayer)
+  {
+      p_playerToNegotiate.addriendlyAlly(p_playerToNegotiate);
+
+      currentPlayer.addriendlyAlly(p_playerToNegotiate);
+
+
   }
 
   public void update(java.util.Observable p_obj, Object p_arg) {

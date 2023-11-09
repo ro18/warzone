@@ -226,7 +226,7 @@ public class PlayerFeatures implements Observer {
      * @return A string containing status of the game.
      */
 
-    public String advanceArmies(int currentPlayerId, GameEngine p_gameEngine, int p_countryIDFrom, int p_countryIDTo,
+    public String advanceArmies( GameEngine p_gameEngine, int currentPlayerId,int p_countryIDFrom, int p_countryIDTo,
             int p_armiesToAdv) {
         // List<Player> l_players = p_gameEngine.getPlayers();
 
@@ -518,32 +518,38 @@ public class PlayerFeatures implements Observer {
         Player l_player_1 = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
         Player l_player_2 = p_gameEngine.getPlayers().get(p_targetPlayerId);
 
-        List<Player> l_friendlyAlliesfor_player_1 = null;
-
         if(l_player_1 != l_player_2){
 
-        for (Player player : l_player_1.getD_friendlyAlliesList()) {
-            l_friendlyAlliesfor_player_1.add(player);
+
+            
+
+            java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
+
+            l_orderDetails.put("PlayerToBlock", p_targetPlayerId);
+
+            l_orderDetails.put("CurrentPlayer", PlayerCommands.d_CurrentPlayerId);
+
+            
+
+            // IssueOrder
+            l_player_1.issue_order(p_gameEngine, 5, l_orderDetails);
+
+            p_gameEngine.checkPlayersReinforcements();
+
+            return "";
+
         }
 
-        l_friendlyAlliesfor_player_1.add(l_player_2);
-        l_player_1.setD_friendlyAlliesList(l_friendlyAlliesfor_player_1);
+        else{
 
-        // setting frinds for player 2
+            return "Negotiate unsuccessful : both players cannot be the same";
 
-        List<Player> l_friendlyAllies_for_player_2 = null;
-        for (Player player : l_player_2.getD_friendlyAlliesList()) {
-            l_friendlyAllies_for_player_2.add(player);
         }
-
-        l_friendlyAllies_for_player_2.add(l_player_1);
-        l_player_2.setD_friendlyAlliesList(l_friendlyAllies_for_player_2);
-
-        return "Negotiate executed successfully";
     }
-        return "Negotiate unsuccessful : both players cannot be the same";
-}
-        ///order details constructor
+
+        
+       
+       
 
     /**
      * This method is used to update the log
