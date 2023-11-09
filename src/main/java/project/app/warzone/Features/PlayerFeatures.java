@@ -74,6 +74,9 @@ public class PlayerFeatures implements Observer {
         }
     }
 
+    /**
+     * @param p_gameEngine  gameengine
+     */
     public void assignCountriesForDemo(GameEngine p_gameEngine) {
 
         List<Integer> countryIds = new ArrayList<>() {
@@ -303,6 +306,12 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    /**
+     * @param p_gameEngine  gameengine
+     * @param p_countryID   country ID
+     * @param p_armies      number of armies
+     * @return      returns string
+     */
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
         // List<Player> l_players = p_gameEngine.getPlayers();
         LogObject l_logObject = new LogObject();
@@ -360,19 +369,13 @@ public class PlayerFeatures implements Observer {
 
     }
 
-    /** 
-     * This method is used to advance armies on a country
-     * 
-     * @param currentPlayerId player initiating this command
-     * 
-     * @param p_gameEngine    Instance of the game engine
-     * @param p_countryIDFrom ID of the source country
-     * @param p_countryIDTo   ID of the target country
-     * 
-     * @param p_armiesToAdv   Number of armies to advance
-     * @return A string containing status of the game.
-     */
+   
 
+    /**
+     * @param p_gameEngine  gameengine
+     * @param p_countryID   country ID
+     * @return     returns string
+     */
     public String blockadeCountry(GameEngine p_gameEngine, int p_countryID) {
 
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
@@ -402,6 +405,11 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    /**
+     * @param p_gameEngine  gameengine
+     * @param p_countryID   country ID
+     * @return  returns
+     */
     public String bombCountry(GameEngine p_gameEngine, int p_countryID) {
         // List<Player> l_players = p_gameEngine.getPlayers();
 
@@ -467,6 +475,13 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    /**
+     * @param p_gameEngine      gameengine
+     * @param p_countryIDFrom   country from
+     * @param p_countryIDTo     country to
+     * @param p_armiesToAirlift    armies to airlift
+     * @return  returns string
+     */
     public String airlift(GameEngine p_gameEngine, int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
 
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
@@ -513,6 +528,11 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    /**
+     * @param p_gameEngine  gameengine
+     * @param p_targetPlayerId  target player ID
+     * @return      returns string
+     */
     public String negotiate(GameEngine p_gameEngine, int p_targetPlayerId) {
 
         Player l_player_1 = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
@@ -555,6 +575,7 @@ public class PlayerFeatures implements Observer {
      * This method is used to update the log
      * 
      * @param p_obj to be updated
+     * @param p_arg to be updated
      */
     public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;

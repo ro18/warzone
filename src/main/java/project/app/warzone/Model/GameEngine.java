@@ -187,29 +187,11 @@ public class GameEngine {
     }
 
     public void start(){
-        //include this function inside the main caller function that starts the application execution
-        // Set the initial state, call all state methods in order
+        
         System.out.println("G **************************************************************** Inside Start");
         Preload d_Preload = new Preload(this);
         setPhase(d_Preload);
-        // d_Preload.loadMap();
-        // setPhase(new Postload(this));
-
-        //setPhase(new Play(this));
-        //setPhase(new Playsetup(this));
-        //setPhase(new Reinforcement(this));
-        //setPhase(new Attack(this));
-        //setPhase(new Fortification(this));
-
-        // Can trigger State-dependent behavior by using
-        // The methods defined in the State (Phase) object, e.g.
-        //gamePhase.loadMap(p_filename);
-
-        // Player states
-        //gamePhase.attack();
-        //gamePhase.fortify();
-        //gamePhase.reinforce();
-        //gamePhase.next();
+       
     };
 
 }

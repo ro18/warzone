@@ -5,7 +5,10 @@ private AttackOrder attackOrder;
 private Country d_blockadeCountry ;
 private Player d_player;
 
-//constructor
+/**
+ * @param p_player  player
+ * @param p_blockadeCountry country to blockade
+ */
 public ConcreteBlockade(Player p_player,Country p_blockadeCountry)
 {
     this.attackOrder = new AttackOrder();

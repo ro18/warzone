@@ -8,6 +8,10 @@ public class ConcreteNegotiate extends OrderMethods  implements OrderInterface {
 
     public Player d_currentPlayer;
 
+    /**
+     * @param p_playerToNegotiate   player to negotiate
+     * @param p_currenPlayer        current player
+     */
     public ConcreteNegotiate(Player p_playerToNegotiate,Player p_currenPlayer)
     {
         this.d_playerToNegotiate = p_playerToNegotiate;
