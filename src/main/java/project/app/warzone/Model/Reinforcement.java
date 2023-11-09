@@ -15,7 +15,11 @@ public class Reinforcement extends MainPlay {
 
 	public void reinforce(int p_countryID, int p_armies) {
        String l_reString = d_playerFeatures.deployArmies(ge, p_countryID, p_armies);
+	   
 	   System.out.println(l_reString);
+	   next();
+
+
 	}
 
 	public void attack() {

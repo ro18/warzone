@@ -27,7 +27,7 @@ public class Cards {
         if (cardType.equals("BOMB") || cardType.equals("REINFORCEMENT") || cardType.equals("BLOCKADE") || cardType.equals("AIRLIFT") || cardType.equals("NEGOTIATE")) {
             this.cardType = cardType;
         } else {
-            throw new IllegalArgumentException("Invalid card type");
+            System.out.println("Invalid card type");
         }
     }
 

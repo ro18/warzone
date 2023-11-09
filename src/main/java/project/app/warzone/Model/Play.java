@@ -75,4 +75,6 @@ public abstract class Play extends Phase {
 	public void endGame() {
 		ge.setPhase(new End(ge));
 	}
+
+	
 }
