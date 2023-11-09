@@ -14,7 +14,11 @@ public class LogEntryBuffer extends Observable{
 
     public void notifyClasses(LogObject p_obj) {
         setChanged();
-        notifyObservers(p_obj);
+        try {
+        notifyObservers(p_obj);            
+        } catch (Exception e) {
+            System.out.println("Exception occured while notifying observers");
+        }
     }
 
 }

@@ -20,14 +20,13 @@ import project.app.warzone.Utilities.MapResources;
 
 public class MapFeaturesTest {
 
-    public MapFeatures mapFeatures;
+    MapFeatures mapFeatures = MapFeatures.getInstance();
     public MapResources mapResources;
     private Map map;
 
     @BeforeEach
     public void setUp(){
         this.mapResources = new MapResources();
-        this.mapFeatures = new MapFeatures(mapResources);
     }
 
     //File validity check

@@ -15,8 +15,6 @@ import project.app.warzone.Model.Map;
 import project.app.warzone.Utilities.MapResources;
 
 public class StartPhaseTest {
-
-
     MapFeatures mapFeatures = MapFeatures.getInstance();
     public MapResources mapResources;
     public GameEngine gameEngine;
@@ -24,7 +22,7 @@ public class StartPhaseTest {
     @BeforeEach
     public void setUp(){
         this.mapResources = new MapResources();
-        this.mapFeatures = new MapFeatures(mapResources);
+        // this.mapFeatures = new MapFeatures(mapResources);
     }
 
 
