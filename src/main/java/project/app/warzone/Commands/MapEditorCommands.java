@@ -1,7 +1,4 @@
 package project.app.warzone.Commands;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.springframework.shell.standard.ShellComponent;
@@ -11,22 +8,19 @@ import org.springframework.shell.standard.ShellOption;
 import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.GameEngine;
-import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Utilities.Commands;
-import project.app.warzone.Utilities.LogObject;
 import project.app.warzone.Utilities.MapResources;
 
 /**
  * This class stores all the map-related commands allowed in gameplay
  */
 @ShellComponent
-public class MapEditorCommands implements java.util.Observer {
+public class MapEditorCommands {
     public GameEngine d_gameEngine;
     public PlayerCommands d_playerCommands;
     public PlayerFeatures d_playerFeatures;
     public MapFeatures dMapFeatures;
     public project.app.warzone.Model.Map dMap;
-    private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
     /**
      * Constructor for MapEditorCommands
@@ -51,9 +45,6 @@ public class MapEditorCommands implements java.util.Observer {
      */
     @ShellMethod(key = "loadmap", value = "Player can create or open an existing map")
     public void loadMap(@ShellOption String p_filename) {
-        LogObject l_logObject = new LogObject();
-        l_logObject.setD_command("loadmap " + p_filename);
-        l_logEntryBuffer.addObserver(this);
 
         d_gameEngine.prevUserCommand = Commands.LOADMAP;
         d_gameEngine.getGamePhase().loadMap(p_filename);
@@ -122,25 +113,5 @@ public class MapEditorCommands implements java.util.Observer {
     public void editmap(@ShellOption String p_filename) {
         d_gameEngine.prevUserCommand = Commands.EDITMAP;
         d_gameEngine.getGamePhase().editMap(p_filename);
-    }
-
-    public void update(java.util.Observable p_obj, Object p_arg) {
-        LogObject l_logObject = (LogObject) p_arg;
-        if (p_arg instanceof LogObject) {
-            try {
-                BufferedWriter l_writer = new BufferedWriter(
-                        new FileWriter(System.getProperty("logFileLocation"), true));
-                l_writer.newLine();
-                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: "
-                        + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
-                l_writer.newLine();
-                l_writer.close();
-            } catch (IOException e) {
-                System.out.println("Error Reading file");
-            }
-        }
-    }
-        
-  
-
+    }   
 }

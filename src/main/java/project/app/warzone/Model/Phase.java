@@ -1,10 +1,19 @@
 package project.app.warzone.Model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Observer;
+
+import org.jline.utils.Log;
+
+import project.app.warzone.Utilities.LogObject;
+
 // This class is Phase.java state design pattern class with GameEngine.java as the context class.  
 // This class will implement the state design pattern. The state pattern will be used to implement the game phases.
 // The game play phase must be divided into the following phases: startup, issue order, and order execution phases
 
-public abstract class Phase {
+public abstract class Phase implements Observer {
 
 	/**
 	 *  Contains a reference to the State of the GameEngine 
@@ -12,9 +21,11 @@ public abstract class Phase {
 	 *  the GameEngine to transition between states. 
 	 */
 	GameEngine ge;
+	private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
 	Phase(GameEngine p_ge) {
 		ge = p_ge;
+		l_logEntryBuffer.addObserver(this);
 	}
 
 	// common commands
@@ -57,6 +68,27 @@ public abstract class Phase {
 	 *  Common method to all States. 
 	 */
 	public void printInvalidCommandMessage() {
+		LogObject l_logObject = new LogObject();
+		l_logObject.d_command = "";
+		l_logObject.setStatus(false, "Invalid command in state " + this.getClass().getSimpleName());
+		l_logEntryBuffer.notifyClasses(l_logObject);
 		System.out.println("Invalid command in state " + this.getClass().getSimpleName() );
 	}
+
+	public void update(java.util.Observable p_obj, Object p_arg) {
+        LogObject l_logObject = (LogObject) p_arg;
+        if (p_arg instanceof LogObject) {
+            try {
+                BufferedWriter l_writer = new BufferedWriter(
+                        new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: "
+                        + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
+        }
+    }
 }
