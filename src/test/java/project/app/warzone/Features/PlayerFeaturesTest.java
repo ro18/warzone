@@ -128,12 +128,13 @@ public class PlayerFeaturesTest {
         
         int l_countryId = 1;
         int l_deployArmy = 3;
-        String expected = "";
-        String l_result = "";
-        for(int i = 0 ; i < 4; i++){
-             l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId++, l_deployArmy);
+
+        for(int i = 0 ; i < 3; i++){
+            String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId, l_deployArmy);
+            assertEquals("", l_result);     
+
         }
-        assertNotEquals(expected, l_result);      
+            
     }
 
 

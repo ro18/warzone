@@ -15,6 +15,7 @@ import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Phase;
+import project.app.warzone.Model.Reinforcement;
 import project.app.warzone.Utilities.MapResources;
 
 public class PlayPhaseTest {
@@ -41,6 +42,19 @@ public class PlayPhaseTest {
             String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
         
             assertEquals("Attack", nextPhase);
+        }
+
+    //checks if game allows loading new map in the middle of play i.e reinforecemnt phase
+
+    @Test
+    public void attackPhaseValidity(){
+            Map l_map = new Map();
+            GameEngine l_gameEngine = new GameEngine(l_map);
+            l_gameEngine.setPhase(new Attack(l_gameEngine));
+            l_gameEngine.getGamePhase().loadMap("europe");
+            String nexphase = l_gameEngine.getGamePhase().getClass().getSimpleName();
+        
+            assertEquals("Attack", nexphase); //doesn't allow to go previous phase of Attack phase
         }
     
 

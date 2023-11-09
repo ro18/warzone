@@ -39,7 +39,7 @@ public class CardTest {
     
     }
 
-     @Test
+    @Test
     public void bombSelf(){
         
         d_gameEngine.getGamePhase().loadMap("europe");
@@ -68,6 +68,11 @@ public class CardTest {
         assertEquals("You cannot target your own country", result); // since we are expecting armies to be reduced in half
 
     }
+
+
+    
+
+
 
 
     @Test
