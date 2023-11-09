@@ -20,7 +20,7 @@ public ConcreteAdvance(Player p_player1, Player p_player2,int p_armies, Country 
     this.d_player1 = p_player1;
     this.d_player2 = p_player2;
 
-    System.out.println("Inside ConcreteAdvance");
+    // System.out.println("Inside ConcreteAdvance");
     this.attackOrder = new AttackOrder();
 }
 

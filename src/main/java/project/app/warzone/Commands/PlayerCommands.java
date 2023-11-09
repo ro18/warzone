@@ -100,6 +100,9 @@ public class PlayerCommands implements Observer {
             System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
         }
 
+        System.out.println("in deploy");
+
+        System.out.println(d_gameEngine.getGamePhase());
         d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
         // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
     }
