@@ -56,6 +56,7 @@ public class PlayerFeaturesTest {
             l_expectedPlayers.add(player.d_playername);
         }
 
+
         List<String> l_actualPlayers = new ArrayList<>();
 
         for (Player l_player : d_gameEngine.d_playersList) {
@@ -125,16 +126,18 @@ public class PlayerFeaturesTest {
 
         }
         
-        int l_countryId = 2;
+        int l_countryId = 1;
         int l_deployArmy = 3;
+        String l_result = "";
+        for(int i = 0 ; i < 4; i++){
+             l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId++, l_deployArmy);
 
-        for(int i = 0 ; i < 3; i++){
-            d_playerFeatures.deployArmies(d_gameEngine, l_countryId + i, l_deployArmy);
+
         }
-
-        String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId-1, l_deployArmy);
-
         assertEquals("Orders successfully executed", l_result);      
+
+
+
 
     }
 
@@ -148,16 +151,16 @@ public class PlayerFeaturesTest {
 
         }
 
-        int l_countryId = 2;
+        int l_countryId = 1;
         int l_deployArmy = 5;
 
         for(int i = 0 ; i < 3; i++){
-            d_playerFeatures.deployArmies(d_gameEngine, l_countryId + i, l_deployArmy);
+            String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId, l_deployArmy);
+            assertEquals("Not enough armies to be deployed. Available armies: 3", l_result);     
+
         }
 
-        String l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId-1, l_deployArmy);
 
-        assertEquals("Not enough armies to be deployed. Available armies: 3", l_result);     
 
     }
 }
