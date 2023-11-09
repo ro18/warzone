@@ -29,7 +29,7 @@ public class AttackOrder implements Observer {
   public String Deploy(int p_armies, Country p_country) {
 
     LogObject l_logObject = new LogObject();
-    l_logObject.setD_command("Deploy");
+    l_logObject.setD_command("deploy " + p_armies + " " + p_country.getCountryId() + " " + p_armies);
     p_country.setNumberOfArmies(p_country.getNumberOfArmies() + p_armies);
 
     l_logObject.setStatus(true, "Executed Deploy Attack");

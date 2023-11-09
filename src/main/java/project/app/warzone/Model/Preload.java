@@ -100,29 +100,29 @@ public class Preload extends Edit implements java.util.Observer {
         next();
 	}
     public void editNeighbor(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("editNeighbor " + p_editcmd + " " + p_editremovecmd);
 	}
 
     public void editCountry(String p_editcmd,String p_editremovecmd) {
-        printInvalidCommandMessage(); 
+        printInvalidCommandMessage("editCountry " + p_editcmd + " " + p_editremovecmd);
     }	
 
 	public void saveMap() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("saveMap");
 	}
 
     public void editContinent(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("editContinent " + p_editcmd + " " + p_editremovecmd);
 	}
 
     public void showstats() {
-        printInvalidCommandMessage(); 
+        printInvalidCommandMessage("showstats"); // "Invalid command in this phase
     }
     public void showmapstatus() {
-        printInvalidCommandMessage(); 
+        printInvalidCommandMessage("showmapstatus"); // "Invalid command in this phase
     }
     public void reinforce(int p_countryID, int p_armies) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("reinforce " + p_countryID + " " + p_armies);
 	}
 
 	public void next() {

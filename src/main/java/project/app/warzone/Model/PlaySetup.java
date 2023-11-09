@@ -20,7 +20,7 @@ public class PlaySetup extends Play implements Observer{
 	}
 
 	public void loadMap(String p_filename) {
-		printInvalidCommandMessage();
+		printInvalidCommandMessage("loadMap " + p_filename); // "Invalid command in this phase
     }
 
 	public void setPlayers(String p_attribute, String p_playerName) {
@@ -113,19 +113,19 @@ public class PlaySetup extends Play implements Observer{
 	}
 
 	public void reinforce(int p_countryID, int p_armies) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("reinforce " + p_countryID + " " + p_armies); // "Invalid command in this phase
 	}
 
 	public void attack() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("attack"); // "Invalid command in this phase
 	}
 
 	public void fortify() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("fortify"); // "Invalid command in this phase
 	}
 
 	public void endGame() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("endGame"); // "Invalid command in this phase
 	}
 
 	public void next() {
@@ -149,22 +149,22 @@ public class PlaySetup extends Play implements Observer{
         }
     }
 	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("advance " + p_countryfrom + " " + p_countryTo + " " + p_armies);
 	}
 
 	public void bomb(int p_countryID) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("bomb " + p_countryID);
 	}
 
 	public void blockade( int p_countryID) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("blockade " + p_countryID);
 	}
 
 	public void airlift(int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("airlift " + p_countryIDFrom + " " + p_countryIDTo + " " + p_armiesToAirlift);
 	}
 
 	public void negotiate(int p_targetPlayerId) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("negotiate " + p_targetPlayerId);
 	}
 }

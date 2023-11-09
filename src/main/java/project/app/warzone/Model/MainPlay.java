@@ -17,40 +17,40 @@ public abstract class MainPlay extends Play {
 	}
 
 	public void loadMap() {
-		this.printInvalidCommandMessage();
+		this.printInvalidCommandMessage("loadMap");
 	}
 
 	public void setPlayers(String p_attribute, String p_playerName) {
-		this.printInvalidCommandMessage();	
+		this.printInvalidCommandMessage("setPlayers" + p_attribute + " " + p_playerName);
 	}
 
 	public void assignCountries() {
-		this.printInvalidCommandMessage();
+		this.printInvalidCommandMessage("assignCountries");
 	}
 
 	public void assignCountriesForDemo() {
-		this.printInvalidCommandMessage();
+		this.printInvalidCommandMessage("assignCountries");
 	}
 
 
 
 	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("advance " + p_countryTo + " " + p_armies);
 	}
 
 	public void bomb(int p_countryID) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("bomb " + p_countryID);
 	}
 
 	public void blockade( int p_countryID) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("blockade " + p_countryID);
 	}
 
 	public void airlift( int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("airlift " + p_countryIDFrom + " " + p_countryIDTo + " " + p_armiesToAirlift);
 	}
 
 	public void negotiate(int p_targetPlayerId) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("negotiate " + p_targetPlayerId);
 	}
 }

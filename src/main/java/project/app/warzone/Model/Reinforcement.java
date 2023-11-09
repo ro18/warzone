@@ -19,7 +19,7 @@ public class Reinforcement extends MainPlay implements Observer {
 	}
 
 	public void loadMap(String p_filename) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("loadMap " + p_filename); // "Invalid command in this phase
 	}
 
 	public void reinforce(int p_countryID, int p_armies) {
@@ -37,11 +37,11 @@ public class Reinforcement extends MainPlay implements Observer {
 	}
 
 	public void attack() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("attack"); // "Invalid command in this phase
 	}
 
 	public void fortify() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("fortify"); // "Invalid command in this phase
 	}
 
 	public void next() {

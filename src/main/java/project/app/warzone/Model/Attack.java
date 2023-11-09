@@ -11,7 +11,7 @@ public class Attack extends MainPlay {
 		super(p_ge);
 	}
 	public void loadMap(String p_filename) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("loadMap " + p_filename); // "Invalid command in this phase
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Attack extends MainPlay {
 	}
 
 	public void fortify() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("fortify"); // "Invalid command in this phase
 	}
 
 }

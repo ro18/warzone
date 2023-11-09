@@ -77,22 +77,21 @@ public abstract class Play extends Phase implements Observer {
 	}
 
 	public void editCountry(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 		
+		printInvalidCommandMessage("editCountry " + p_editcmd + " " + p_editremovecmd);
 	}
-
 	public void saveMap() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("saveMap");
 	}
 
 	public void editMap(String p_fileName){
-		printInvalidCommandMessage();
+		printInvalidCommandMessage("editMap " + p_fileName);
 	}
 
 	public void editContinent(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("editContinent " + p_editcmd + " " + p_editremovecmd);
 	}
 	public void editNeighbor(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("editNeighbor " + p_editcmd + " " + p_editremovecmd); 
 	}
 
 	public void endGame() {

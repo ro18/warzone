@@ -1,7 +1,12 @@
 package project.app.warzone.Model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.jline.reader.LineReader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +16,15 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Utilities.Commands;
+import project.app.warzone.Utilities.LogObject;
 /**
  * This class represents the main instance of the Warzone game.
  */
 @Component
-public class GameEngine {
+public class GameEngine implements Observer {
 
     private Phase gamePhase; // current state of the GameEngine object
+    private LogEntryBuffer d_LogEntryBuffer = new LogEntryBuffer();
 
 	
     
@@ -36,6 +43,7 @@ public class GameEngine {
         this.gamePhase = new Preload(this);
         this.gameMap = gameMap; // this is required
         this.d_playersList = new ArrayList<>();
+        d_LogEntryBuffer.addObserver(this);
     }
     
     /**
@@ -45,6 +53,11 @@ public class GameEngine {
 	public void setPhase(Phase p_phase) {
 		this.gamePhase = p_phase;
 		System.out.println("new phase: " + p_phase.getClass().getSimpleName());
+
+        LogObject l_logObject = new LogObject();
+        l_logObject.d_command = "*New Phase*";
+        l_logObject.setStatus(true, p_phase.getClass().getSimpleName() + " phase started");
+        d_LogEntryBuffer.notifyClasses(l_logObject);
 	}
     /**
      * used for getting game phase
@@ -186,30 +199,20 @@ public class GameEngine {
 
     }
 
-    public void start(){
-        //include this function inside the main caller function that starts the application execution
-        // Set the initial state, call all state methods in order
-        System.out.println("G **************************************************************** Inside Start");
-        Preload d_Preload = new Preload(this);
-        setPhase(d_Preload);
-        // d_Preload.loadMap();
-        // setPhase(new Postload(this));
-
-        //setPhase(new Play(this));
-        //setPhase(new Playsetup(this));
-        //setPhase(new Reinforcement(this));
-        //setPhase(new Attack(this));
-        //setPhase(new Fortification(this));
-
-        // Can trigger State-dependent behavior by using
-        // The methods defined in the State (Phase) object, e.g.
-        //gamePhase.loadMap(p_filename);
-
-        // Player states
-        //gamePhase.attack();
-        //gamePhase.fortify();
-        //gamePhase.reinforce();
-        //gamePhase.next();
-    };
+    public void update(Observable o, Object arg) {
+        if(arg instanceof LogObject){
+            LogObject l_logObject = (LogObject) arg;
+            try {
+                BufferedWriter l_writer = new BufferedWriter(new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                // System.out.println( "Inside update method of MapEditorCommands");
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
+        }
+    }
 
 }

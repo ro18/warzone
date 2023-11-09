@@ -1559,3 +1559,25 @@
 1699554702100:deploy 1 2
 1699554706419:Y
 1699554720072:advance 8 1 3
+1699560298739:loadmap europe
+1699560306175:showmap
+1699560315262:gameplayer -add anash numan
+1699560335018:assigncountries
+1699560608048:loadmap europe
+1699562444148:assigncountries
+1699564219887:loadmap europe
+1699564226038:showmap
+1699564272514:gameplayer -add anash numan
+1699564298332:assigncountries
+1699564366354:deploy 1 3
+1699564455812:deploy 8 3
+1699564477501:N
+1699564490762:showstats
+1699564733589:advance cd /Users/anash/Desktop/ConcordiaU\\'25/APP/project/warzone ; /usr/bin/env /opt/homebrew/Cellar/openjdk@17/17.0.8.1/libexec/openjdk.jdk/Contents/Home/bin/java @/var/folders/dg/vmwrssjd5c1dkmk8yxly5f4r0000gn/T/cp_682zyoeiktkae9pl8snqlcizi.argfile project.app.warzone.WarzoneApplication
+1699564759886:loadmap europe
+1699564767843:showmap
+1699564777273:gameplayer -add anash numan
+1699564785325:assigncountries
+1699564791703:deploy 1 3
+1699564795305:deploy 8 3
+1699564799243:N

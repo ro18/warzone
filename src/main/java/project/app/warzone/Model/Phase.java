@@ -80,9 +80,9 @@ public abstract class Phase implements Observer {
 	/**
 	 *  Common method to all States. 
 	 */
-	public void printInvalidCommandMessage() {
+	public void printInvalidCommandMessage(String p_command) {
 		LogObject l_logObject = new LogObject();
-		l_logObject.d_command = "";
+		l_logObject.d_command = p_command;
 		l_logObject.setStatus(false, "Invalid command in state " + this.getClass().getSimpleName());
 		l_logEntryBuffer.notifyClasses(l_logObject);
 		System.out.println("Invalid command in state " + this.getClass().getSimpleName() );

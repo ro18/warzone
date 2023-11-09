@@ -7,87 +7,91 @@ public class End extends Phase {
 	}
 
 	public void loadMap(String p_filename) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("loadMap " + p_filename); // "Invalid command in this phase
 	}
 
 	public void showMap() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("showMap");
 	}
 
 	public void editCountry(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("editCountry " + p_editcmd + " " + p_editremovecmd);
 	}
 	public void editNeighbor(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("editNeighbor " + p_editcmd + " " + p_editremovecmd);
 	}
 	public void saveMap() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("saveMap");
 	}
 
 	public void setPlayers(String p_attribute, String p_playerName) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("setPlayers" + p_attribute + " " + p_playerName);
 	}
 
 	public void assignCountries() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("assignCountries");
 	}
 
-	public void assignCountriesForDemo() {
-		printInvalidCommandMessage(); 
+	public void assignCountriesFnullorDemo() {
+		printInvalidCommandMessage("assignCountries");
 	}
 
 
 
 	public void reinforce(int p_countryID, int p_armies) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("reinforce " + p_countryID + " " + p_armies);
 	}
 
 	public void attack() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("attack");
 	}
 
 	public void fortify() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("fortify");
 	}
 
 	public void endGame() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("endGame");
 	}
 
 	public void showstats() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("showstats"); // "Invalid command in this phase
 	}
 
 	public void showmapstatus() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("showmapstatus"); // "Invalid command in this phase
 	}
 	public void editMap(String p_fileName){
-		printInvalidCommandMessage();
+		printInvalidCommandMessage("editMap " +p_fileName);
 	}
 	public void editContinent(String p_editcmd,String p_editremovecmd){
-		printInvalidCommandMessage();
+		printInvalidCommandMessage("editContinent " +p_editcmd + " " + p_editremovecmd);
 	}
 	public void next() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("next"); // "Invalid command in this phase
 	}
 
 	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("advance " + p_countryfrom + " " + p_countryTo + " " + p_armies);
 	}
 
 	public void bomb(int p_countryID) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("bomb " + p_countryID);
 	}
 
 	public void blockade( int p_countryID) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("blockade " + p_countryID);
 	}
 
 	public void airlift( int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("airlift " + p_countryIDFrom + " " + p_countryIDTo + " " + p_armiesToAirlift);
 	}
 
 	public void negotiate(int p_targetPlayerId) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage("negotiate " + p_targetPlayerId);
+	}
+
+	public void assignCountriesForDemo() {
+		printInvalidCommandMessage("assignCountries");
 	}
 }
