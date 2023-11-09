@@ -7,6 +7,10 @@ public class ConcreteDeploy extends OrderMethods implements OrderInterface {
 
 
 
+    /**
+     * @param p_armies  no of armies
+     * @param p_country     country
+     */
     public ConcreteDeploy(int p_armies, Country p_country)
     {
         super.d_numberOfArmies = p_armies;

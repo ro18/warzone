@@ -124,6 +124,12 @@ public class AttackOrderTest {
 
     }
 
+    
+    /** 
+     * @param player1
+     * @param player2
+     * @return String
+     */
     public String Negotiate(Player player1, Player player2) {
         return "";
     }

@@ -92,14 +92,25 @@ public class Player {
 		d_playername = p_playername;
 	}
 
+	
+	/** 
+	 * @param p_noOfArmies no of armies
+	 */
 	public void setReinforcementMap(int p_noOfArmies) {
 		this.d_reinforcementPool = p_noOfArmies;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getReinforcementMap() {
 		return d_reinforcementPool;
 	}
 
+	/**
+	 * @return lists
+	 */
 	public List<Country> getlistOfCountriesOwned() {
 		return d_listOfCountriesOwned;
 	}
@@ -129,40 +140,73 @@ public class Player {
 		return d_listOfCountriesOwned;
 	}
 
+	/**
+	 * @return lists
+	 */
 	public List<Cards> getCardsInCollection() {
 		return d_cardsInCollection;
 	}
 
+	
+	/** 
+	 * @param p_cardsInCollection cards in collection
+	 */
 	public void setCardsInCollection(List<Cards> p_cardsInCollection) {
 		this.d_cardsInCollection = p_cardsInCollection;
 	}
 
+	
+	/** 
+	 * @return List<Player>
+	 */
 	public List<Player> getD_friendlyAlliesList() {
 		return d_friendlyAlliesList;
 	}
 
+	
+	/** 
+	 * @param player player
+	 */
 	public void addriendlyAlly(Player player) {
 		d_friendlyAlliesList.add(player);
 	}
 
+	
+	/** 
+	 * @param d_friendlyAlliesList	allies lists
+	 */
 	public void setD_friendlyAlliesList(List<Player> d_friendlyAlliesList) {
 		this.d_friendlyAlliesList = d_friendlyAlliesList;
 	}
 
+	
+	/** 
+	 * @param p_player	player
+	 * @param p_card	card
+	 */
 	void addCardToCollection(Player p_player, Cards p_card) {
 		p_player.d_cardsInCollection.add(p_card);
 
 	}
 
+	
+	/** 
+	 * @param p_player	player
+	 * @param p_cardType	card type
+	 */
 	void removeCardfromCollection(Player p_player, String p_cardType) {
 		p_player.d_cardsInCollection.removeIf(card -> card.getCardType().equalsIgnoreCase(p_cardType));
 
 	}
 
-	/**
-	 * @param order storing order to add
-	 */
+	
 
+	
+	/** 
+	 * @param p_gameEngine	gameengine
+	 * @param orderType	order type
+	 * @param order_details		order details
+	 */
 	public void issue_order(GameEngine p_gameEngine,int orderType,java.util.Map<String,Integer> order_details) {
 
 		switch (orderType) {

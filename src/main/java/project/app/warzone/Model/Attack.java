@@ -10,14 +10,26 @@ import project.app.warzone.Utilities.LogObject;
 public class Attack extends MainPlay {
 
 
+
+
+
 	private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
 
+	/**
+	 * @param p_ge	gameengine
+	 */
+	
 	public Attack(GameEngine p_ge) {
 		super(p_ge);
 		l_logEntryBuffer.addObserver(this);
 
 	}
+	
+	
+	/** 
+	 * @param p_filename
+	 */
 	public void loadMap(String p_filename) {
 		printInvalidCommandMessage(); 
 	}
@@ -29,6 +41,11 @@ public class Attack extends MainPlay {
 		ge.setPhase(new Fortify(ge));
 	}
 	
+	
+	/** 
+	 * @param p_countryID
+	 * @param p_armies
+	 */
 	public void reinforce(int p_countryID, int p_armies) {
 		LogObject l_logObject = new LogObject();
 		l_logObject.setD_command("reinforce " + p_countryID + " " + p_armies);
@@ -46,6 +63,13 @@ public class Attack extends MainPlay {
 		// ge.setPhase(new Fortify(ge));
 	}
 
+	
+	/** 
+	 * @param p_CurrentPlayerId
+	 * @param p_countryfrom
+	 * @param p_countryTo
+	 * @param p_armies
+	 */
 	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
 		LogObject l_logObject = new LogObject();
 		l_logObject.setD_command("attack from" + p_countryfrom + " to " + p_countryTo +"with armies:"+p_armies);

@@ -18,10 +18,19 @@ public class Reinforcement extends MainPlay implements Observer {
 		l_logEntryBuffer.addObserver(this);
 	}
 
+	
+	/** 
+	 * @param p_filename
+	 */
 	public void loadMap(String p_filename) {
 		printInvalidCommandMessage(); 
 	}
 
+	
+	/** 
+	 * @param p_countryID
+	 * @param p_armies
+	 */
 	public void reinforce(int p_countryID, int p_armies) {
 		LogObject l_logObject = new LogObject();
 		l_logObject.setD_command("reinforce " + p_countryID + " " + p_armies);
@@ -47,6 +56,11 @@ public class Reinforcement extends MainPlay implements Observer {
 		ge.setPhase(new Attack(ge));
 	}
 
+	
+	/** 
+	 * @param p_obj
+	 * @param p_arg
+	 */
 	public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
         if (p_arg instanceof LogObject) {

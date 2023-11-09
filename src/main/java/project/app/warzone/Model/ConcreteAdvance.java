@@ -11,7 +11,13 @@ private Player d_player1;
 private Player d_player2;
 
 
-    //constructor
+/**
+ * @param p_player1 player 1
+ * @param p_player2 player 2
+ * @param p_armies  no of armies
+ * @param p_countryFrom source country
+ * @param p_countryTo   target country
+ */
 public ConcreteAdvance(Player p_player1, Player p_player2,int p_armies, Country p_countryFrom , Country p_countryTo)
 {
     super.d_numberOfArmies = p_armies;
@@ -20,7 +26,6 @@ public ConcreteAdvance(Player p_player1, Player p_player2,int p_armies, Country 
     this.d_player1 = p_player1;
     this.d_player2 = p_player2;
 
-    // System.out.println("Inside ConcreteAdvance");
     this.attackOrder = new AttackOrder();
 }
 

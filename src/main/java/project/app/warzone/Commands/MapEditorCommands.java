@@ -60,6 +60,10 @@ public class MapEditorCommands {
         d_gameEngine.getGamePhase().showMap();
     }
 
+    
+    /** 
+     * @return Map
+     */
     public project.app.warzone.Model.Map returnMap() {
         String p_mapLocation = d_gameEngine.gameMap.getMapDirectory() + "/"
                 + d_gameEngine.gameMap.get_USER_SELECTED_FILE() + ".map";

@@ -187,10 +187,12 @@ public class PlayerCommands implements Observer {
     }
 
 
-     /**
-     * @param p_countryfrom             storing  target country ID to blockade
-
-     * @return                          returns status 
+     
+    /**
+     * @param p_countryfrom     storing  source country ID to blockade
+     * @param p_countryTo       storing  target country ID to blockade
+     * @param p_airliftArmies   storing  armies to airlift
+     * @return
      */
     @ShellMethod(key = "airlift", value = "This is used to play Airlift card")
     public String airlift(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_airliftArmies) {
@@ -218,8 +220,12 @@ public class PlayerCommands implements Observer {
     }
 
     
-    //negotiate function....need to check
+    
 
+    /**
+     * @param p_targetPlayerId      storing  target player
+     * @return
+     */
     @ShellMethod(key = "negotiate", value = "This is used to play Negotiate card")
     public String negotiate(@ShellOption int p_targetPlayerId) {
         if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
