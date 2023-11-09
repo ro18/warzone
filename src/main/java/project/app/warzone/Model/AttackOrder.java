@@ -1,35 +1,33 @@
 package project.app.warzone.Model;
 
-import java.util.HashMap;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
+import java.util.Observer;
 
 import org.springframework.stereotype.Component;
 
-import project.app.warzone.Commands.PlayerCommands;
+import project.app.warzone.Utilities.LogObject;
 
 /**
  * This class is a receiver class which have implementation for all the commands
  */
 @Component
-public class AttackOrder {
- 
-    //Constructor
+public class AttackOrder implements Observer {
+  private LogEntryBuffer logEntryBuffer = new LogEntryBuffer();
 
-    public AttackOrder()
-    {
+  // Constructor
 
-    }
+  public AttackOrder() {
+    logEntryBuffer.addObserver(this);
+  }
 
   /**
- * This method is used to deploy armies on a country
- */
-  public String Deploy(int p_armies, Country p_country)
-  {
+   * This method is used to deploy armies on a country
+   */
+  public String Deploy(int p_armies, Country p_country) {
     p_country.setNumberOfArmies(p_country.getNumberOfArmies() + p_armies);
-
-
-    
 
     return "Deployed armies successfully";
   }
@@ -125,25 +123,28 @@ public class AttackOrder {
 
   }
 
-  //Airlift
-  public void Airlift(Country p_countryFrom,Country p_countryTo,int p_airliftArmies)
-  {
+
+  // Airlift
+  public void Airlift(Country p_countryFrom, Country p_countryTo, int p_airliftArmies) {
+    LogObject l_logObject = new LogObject();
+    l_logObject.setD_command("airlift");
     p_countryFrom.setNumberOfArmies(p_countryFrom.getNumberOfArmies() - p_airliftArmies);
     p_countryTo.setNumberOfArmies(p_countryTo.getNumberOfArmies() + p_airliftArmies);
+
+    l_logObject.setStatus(true, "Airlift executed successfully");
+    logEntryBuffer.notifyClasses(l_logObject);
   }
 
-//Blockade
-  public void Blockade(Player player,Country target)
-  {
-    target.setNumberOfArmies(target.getNumberOfArmies()*3);
+  // Blockade
+  public void Blockade(Player player, Country target) {
+    LogObject l_logObject = new LogObject();
+    l_logObject.setD_command("blockade");
+    target.setNumberOfArmies(target.getNumberOfArmies() * 3);
     target.setOwnerId(0);
 
     player.removeTerritory(target);
-
-
-
-
-
+    l_logObject.setStatus(true, "Blockade executed successfully");
+    logEntryBuffer.notifyClasses(l_logObject);
 
   }
 
@@ -165,5 +166,21 @@ public class AttackOrder {
 
   }
 
-}
+  public void update(java.util.Observable p_obj, Object p_arg) {
+        LogObject l_logObject = (LogObject) p_arg;
+        if (p_arg instanceof LogObject) {
+            try {
+                BufferedWriter l_writer = new BufferedWriter(
+                        new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: "
+                        + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
+        }
+    }
 
+}

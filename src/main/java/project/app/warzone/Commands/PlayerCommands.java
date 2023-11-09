@@ -1,5 +1,11 @@
 package project.app.warzone.Commands;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
@@ -7,18 +13,21 @@ import org.springframework.shell.standard.ShellOption;
 import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.Cards;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Utilities.Commands;
+import project.app.warzone.Utilities.LogObject;
 
 /**
  * This class stores all the player-related commands allowed in gameplay
  */
 @ShellComponent
-public class PlayerCommands {
+public class PlayerCommands implements Observer {
 
     public GameEngine d_gameEngine;
     public PlayerFeatures d_playerFeatures;
     public String d_prevUserCommand;
+    private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
     public static int d_CurrentPlayerId = 0;
 
     /**
@@ -44,6 +53,10 @@ public class PlayerCommands {
             @ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 10) String p_playerNameOne,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_playerNameTwo) {
 
+        LogObject l_logObject = new LogObject();
+        l_logEntryBuffer.addObserver(this);
+        boolean isAdd = (p_playerNameOne != null && p_playerNameOne != "");
+        l_logObject.d_command = "gameplayer -" +  (isAdd ? "add " + p_playerNameOne : "remove " + p_playerNameTwo);
         d_gameEngine.getGamePhase().setPlayers(p_playerNameOne, p_playerNameTwo);
         return null;
 
@@ -210,6 +223,27 @@ public class PlayerCommands {
             }
         }
         return "Diplomacy executed successfully";
+    }
+
+    /**
+     * This method is used to update the log file
+     * @param o is the observable object
+     * @param arg is the object to be updated
+     */
+    public void update(Observable o, Object arg) {
+        if(arg instanceof LogObject){
+            LogObject l_logObject = (LogObject) arg;
+            try {
+                BufferedWriter l_writer = new BufferedWriter(new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                System.out.println( "Inside update method of MapEditorCommands");
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
+        }
     }
 
 

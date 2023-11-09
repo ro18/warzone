@@ -1,5 +1,4 @@
 package project.app.warzone.Commands;
-
 import java.io.IOException;
 
 import org.springframework.shell.standard.ShellComponent;
@@ -46,6 +45,7 @@ public class MapEditorCommands {
      */
     @ShellMethod(key = "loadmap", value = "Player can create or open an existing map")
     public void loadMap(@ShellOption String p_filename) {
+
         d_gameEngine.prevUserCommand = Commands.LOADMAP;
         d_gameEngine.getGamePhase().loadMap(p_filename);
     }
@@ -102,8 +102,8 @@ public class MapEditorCommands {
     public void editNeighbor(@ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 20) String p_editcmd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 20) String p_editremovecmd)
             throws IOException {
-
-    }
+            d_gameEngine.getGamePhase().editNeighbor(p_editcmd, p_editremovecmd);
+        }
 
     /**
      * @param p_filename storing user selected file
@@ -113,10 +113,5 @@ public class MapEditorCommands {
     public void editmap(@ShellOption String p_filename) {
         d_gameEngine.prevUserCommand = Commands.EDITMAP;
         d_gameEngine.getGamePhase().editMap(p_filename);
-    }
-
-
-        
-  
-
+    }   
 }

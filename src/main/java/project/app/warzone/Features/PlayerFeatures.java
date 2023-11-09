@@ -1,8 +1,12 @@
 package project.app.warzone.Features;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observer;
 import java.util.Optional;
 import java.util.Random;
 
@@ -10,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.LogEntryBuffer;
+import project.app.warzone.Utilities.LogObject;
 import project.app.warzone.Model.Node;
 //import project.app.warzone.Model.Order;
 import project.app.warzone.Model.OrderMethods;
@@ -22,7 +28,8 @@ import project.app.warzone.Model.Country;
  * This class stores all the player-related functions in gameplay
  */
 @Component
-public class PlayerFeatures {
+public class PlayerFeatures implements Observer {
+    private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
     /**
      * @param p_allPlayers list of all players
@@ -298,6 +305,9 @@ public class PlayerFeatures {
 
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
         // List<Player> l_players = p_gameEngine.getPlayers();
+        LogObject l_logObject = new LogObject();
+        l_logEntryBuffer.addObserver(this);
+        l_logObject.d_command = "deploy " + p_countryID + " " + p_armies;
 
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
         Country l_country = p_gameEngine.gameMap.getNodes().get(p_countryID - 1).getData();
@@ -307,6 +317,8 @@ public class PlayerFeatures {
          */
 
         if (l_player.getReinforcementArmies() < p_armies) {
+            l_logObject.setStatus(false, "User tried to deploy armies more than the remaining reinforcement pool.");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             System.out.println(
                     "Not enough armies to be deployed. Available armies: " + l_player.getReinforcementArmies());
         }
@@ -319,6 +331,8 @@ public class PlayerFeatures {
                 .filter(c -> c.getCountryName().equals(l_country.getCountryName())).findFirst();
 
         if (!l_territory.isPresent()) {
+            l_logObject.setStatus(false, "User tried to deploy armies on a country not owned by him.");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             System.out.println("Country is not owned by the player");
         }
 
@@ -332,6 +346,8 @@ public class PlayerFeatures {
 
         if (l_player.getReinforcementArmies() - p_armies > 0) {
             l_player.setReinforcementMap(l_player.getReinforcementArmies() - p_armies);
+            l_logObject.setStatus(true, "Armies deployed successfully.");
+            l_logEntryBuffer.notifyClasses(l_logObject);
 
         } else {
             l_player.setReinforcementMap(0);
@@ -344,7 +360,7 @@ public class PlayerFeatures {
 
     }
 
-    /**
+    /** 
      * This method is used to advance armies on a country
      * 
      * @param currentPlayerId player initiating this command
@@ -529,12 +545,31 @@ public class PlayerFeatures {
             return "Negotiate unsuccessful : both players cannot be the same";
 
         }
+    }
 
         
        
        
 
-    
-
+    /**
+     * This method is used to update the log
+     * 
+     * @param p_obj to be updated
+     */
+    public void update(java.util.Observable p_obj, Object p_arg) {
+        LogObject l_logObject = (LogObject) p_arg;
+        if (p_arg instanceof LogObject) {
+            try {
+                BufferedWriter l_writer = new BufferedWriter(
+                        new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: "
+                        + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
+        }
     }
 }

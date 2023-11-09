@@ -10,22 +10,27 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
 import project.app.warzone.Model.Continent;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Node;
+import project.app.warzone.Utilities.LogObject;
 import project.app.warzone.Utilities.MapResources;;
 
 /**
  * This class stores all the map-related functions in gameplay
  */
 @Component
-public class MapFeatures {
+public class MapFeatures implements Observer{
 
+    private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
     public static MapResources mapResouces;
     private static MapFeatures d_singleInstance = null; 
 
@@ -53,6 +58,9 @@ public class MapFeatures {
      * @return Map          returns gamemap
      */
     public Map readMap(String filename){
+        LogObject l_logObject = new LogObject();
+        l_logObject.setD_command("showmap");
+        l_logEntryBuffer.addObserver(this);
 
         String l_line="";
         List<Continent> continentsList = new ArrayList<>();
@@ -124,16 +132,22 @@ public class MapFeatures {
             }   
        
             reader.close();
+            l_logObject.setStatus(true, "User printed map " + filename.split("/")[filename.split("/").length-1].split(".map")[0]);
+            l_logEntryBuffer.notifyClasses(l_logObject);
             printMap(gameMap);
             return gameMap;
 
         }
         catch(FileNotFoundException e){
+            l_logObject.setStatus(false, "Error: File not found");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             e.printStackTrace();
             return gameMap;
 
         }
         catch (IOException e) {
+            l_logObject.setStatus(false, "IO Exception");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             e.printStackTrace();
             return gameMap;
 
@@ -629,6 +643,28 @@ public void removeborderFromFile(java.util.Map<String, String> listofNeighBours,
 
 
 }
+
+    /**
+     * This method is used to update the log file
+     * @param o is the observable object
+     * @param arg is the object to be updated
+     */
+    public void update(Observable o, Object arg) {
+        if(arg instanceof LogObject){
+            LogObject l_logObject = (LogObject) arg;
+            try {
+                BufferedWriter l_writer = new BufferedWriter(new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                System.out.println( "Inside update method of MapEditorCommands");
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
+        }
+    }
+
 
 
 }

@@ -1,5 +1,7 @@
 package project.app.warzone.Model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,11 +10,13 @@ import java.util.Map;
 
 import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Utilities.Commands;
+import project.app.warzone.Utilities.LogObject;
 import project.app.warzone.Utilities.MapResources;
 
-public class Postload extends Edit {
+public class Postload extends Edit implements java.util.Observer {
     private MapFeatures d_mapFeatures = MapFeatures.getInstance();
     private MapResources d_mapResources;
+    private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
     Postload(GameEngine p_ge) {
         super(p_ge);
@@ -28,14 +32,21 @@ public class Postload extends Edit {
     }
 
     public void showMap() {
+        LogObject l_logObject = new LogObject();
+        l_logObject.setD_command("showmap");
+
         String p_mapLocation = ge.gameMap.getMapDirectory() + "//" + ge.gameMap.get_USER_SELECTED_FILE() + ".map";
         Boolean l_result = false;
         ge.gameMap = d_mapFeatures.readMap(p_mapLocation);
         l_result = d_mapFeatures.validateEntireGraph(ge);
         if (!l_result) {
+            l_logObject.setStatus(false, "Map is not shown but map is not valid!");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             ge.setPhase(new Preload(ge));
             System.out.println("This map is not valid.Please try with some other map");
         } else {
+            l_logObject.setStatus(true, "Map is shown");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             ge.setPhase(new PlaySetup(ge));
             System.out.println("You can now proceed to add gameplayers");
         }
@@ -56,6 +67,9 @@ public class Postload extends Edit {
     public void editCountry(String p_editcmd, String p_editremovecmd) {
         // Please call this function
         // dMapEditorCommands.editcountry("-a India", "-r India");
+
+        LogObject l_logObject = new LogObject();
+        l_logObject.setD_command("editcountry " + p_editcmd + " " + p_editremovecmd);
 
         if (p_editcmd != null && p_editcmd != "") {
             Map<String, String> listofCountries = new HashMap<String, String>();
@@ -85,6 +99,8 @@ public class Postload extends Edit {
                 e.printStackTrace();
 
             }
+            l_logObject.setStatus(true, "Countries added successfully");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             System.out.println("Countries addded succesfully");
         } else {
 
@@ -118,11 +134,16 @@ public class Postload extends Edit {
                 e.printStackTrace();
 
             }
+            l_logObject.setStatus(true, "Countries removed successfully");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             System.out.println("Countries removed succesfully");
         }
     }
 
     public void editContinent(String p_editcmd, String p_editremovecmd) {
+        LogObject l_logObject = new LogObject();
+        l_logObject.setD_command("editcontinent " + p_editcmd + " " + p_editremovecmd);
+
         Map<String, String> listofContinents = new HashMap<String, String>();
         java.util.Map<Integer, String> listOfContinentsResource = d_mapResources.getAllContinents();
 
@@ -154,6 +175,8 @@ public class Postload extends Edit {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+                l_logObject.setStatus(true, "Continents added successfully");
+                l_logEntryBuffer.notifyClasses(l_logObject);
         } else {
 
             ge.prevUserCommand = Commands.REMOVECONTINENT;
@@ -186,10 +209,16 @@ public class Postload extends Edit {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            l_logObject.setStatus(true, "Continents removed successfully");
+            l_logEntryBuffer.notifyClasses(l_logObject);
         }
     }
 
     public void editNeighbor(String p_editcmd, String p_editremovecmd) {
+        LogObject l_logObject = new LogObject();
+        l_logObject.setD_command("editneighbor " + p_editcmd + " " + p_editremovecmd);
+
         if (p_editcmd != null && p_editcmd != "") {
             Map<String, String> listofBorders = new HashMap<String, String>();
             String[] editCmd = p_editcmd.split(",");
@@ -220,6 +249,8 @@ public class Postload extends Edit {
                 e.printStackTrace();
 
             }
+            l_logObject.setStatus(true, "Country borders added successfully");
+            l_logEntryBuffer.notifyClasses(l_logObject);
             System.out.println("Country borders addded succesfully");
         } else {
 
@@ -257,7 +288,8 @@ public class Postload extends Edit {
             }
             System.out.println("Borders removed succesfully");
         }
-
+        l_logObject.setStatus(true, "Country borders removed successfully");
+        l_logEntryBuffer.notifyClasses(l_logObject);
         System.out.println("You cannot use edit neighbor command now.");
     }
 
@@ -268,5 +300,22 @@ public class Postload extends Edit {
 
     public void next() {
         System.out.println("must save map");
+    }
+
+    public void update(java.util.Observable p_obj, Object p_arg) {
+        LogObject l_logObject = (LogObject) p_arg;
+        if (p_arg instanceof LogObject) {
+            try {
+                BufferedWriter l_writer = new BufferedWriter(
+                        new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: "
+                        + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
+        }
     }
 }
