@@ -52,7 +52,7 @@ public class AttackOrder implements Observer {
 
       long targetArmiesKilled = Math.round( target.getNumberOfArmies() * 0.7) ;
 
-      long sourceArmiesKilled = Math.round (source.getNumberOfArmies() * 0.6);
+      long sourceArmiesKilled = Math.round (p_armiesToAdv * 0.6);
 
       if(( p_armiesToAdv - targetArmiesKilled ) > target.getNumberOfArmies() - sourceArmiesKilled){
 
@@ -81,9 +81,9 @@ public class AttackOrder implements Observer {
 
                                         Cards l_card ;
 
-                                        int l_randomInt = (int) (Math.random() * 4);
+                                        // int l_randomInt = (int) (Math.random() * 4);
 
-                                        switch (l_randomInt) {
+                                        switch (3) {
                                             case 0:
                                                 l_card = new Cards("BOMB");
                                                 break;
@@ -121,7 +121,7 @@ public class AttackOrder implements Observer {
           {
               source.setNumberOfArmies(0);
           }
-  }
+    }
 
     }
     else{
@@ -129,8 +129,13 @@ public class AttackOrder implements Observer {
     }
 
 
+    
+ 
+
+
     l_logObject.setStatus(true, "Executed Advance Attack");
     logEntryBuffer.notifyClasses(l_logObject);
+
     
 
   }

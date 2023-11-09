@@ -14,6 +14,9 @@ public class ConcreteNegotiate extends OrderMethods  implements OrderInterface {
 
         this.d_currentPlayer = p_currenPlayer;
 
+        this.attackOrder = new AttackOrder();
+
+
     }
 
     @Override

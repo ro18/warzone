@@ -35,6 +35,9 @@ public class Player {
 		this.d_playername = p_playername;
 		this.d_listOfCountriesOwned = new ArrayList<>();
 		this.d_reinforcementPool = 3;
+		d_friendlyAlliesList = new ArrayList<>();
+		d_cardsInCollection = new ArrayList<>();
+		d_friendlyAlliesList.add(this);
 
 	}
 
@@ -174,7 +177,7 @@ public class Player {
 
 				break;
 			case 1:
-			    System.out.println("Inside Switch 1");
+			    // System.out.println("Inside Switch 1");
 
 				Country l_countryFrom = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryIdFrom")-1).getData();
 				Country l_countryTo = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryIdTo")-1).getData();
@@ -201,7 +204,7 @@ public class Player {
 				Country l_countryToAirlift = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryIdTo")-1).getData();
 
 
-				d_listOfOrders.add(new ConcreteAirlift(l_countryFromAirlift,l_countryToAirlift,order_details.get("AirliftArmies")));
+				d_listOfOrders.add(new ConcreteAirlift(l_countryFromAirlift,l_countryToAirlift,order_details.get("AirLiftArmies")));
 
 			break;
 			case 3:
@@ -221,7 +224,7 @@ public class Player {
 			break;
 			case 5:
 				Player playerToNegotiate = p_gameEngine.getPlayers().get(order_details.get("PlayerToBlock"));
-				Player currentPlayer = p_gameEngine.getPlayers().get(order_details.get("currentPlayer"));
+				Player currentPlayer = p_gameEngine.getPlayers().get(order_details.get("CurrentPlayer"));
 
 
 				d_listOfOrders.add(new ConcreteNegotiate(playerToNegotiate,currentPlayer));

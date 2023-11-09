@@ -12,8 +12,10 @@ private int d_airliftArmies;
 public ConcreteAirlift(Country p_countryFrom,Country p_countryTo,int p_airliftArmies)
 {
     this.d_countryFrom = p_countryFrom;
-    this.d_countryFrom = p_countryTo;
+    this.d_countryTo = p_countryTo;
     this.d_airliftArmies = p_airliftArmies;
+
+    this.attackOrder = new AttackOrder();
 
 }
 
