@@ -51,6 +51,10 @@ public class End extends Phase {
 	public void showstats() {
 		printInvalidCommandMessage(); 
 	}
+
+	public void showmapstatus() {
+		printInvalidCommandMessage(); 
+	}
 	public void editMap(String p_fileName){
 		printInvalidCommandMessage();
 	}

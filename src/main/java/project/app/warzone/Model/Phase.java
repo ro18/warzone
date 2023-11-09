@@ -31,6 +31,9 @@ public abstract class Phase {
 	// Play commands
 	//common commands
 	abstract public void showstats();
+
+	abstract public void showmapstatus();
+
 	// game setup commands
 	abstract public void setPlayers(String p_attribute, String p_playerName);
 	abstract public void assignCountries();

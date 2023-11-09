@@ -90,6 +90,9 @@ public class Preload extends Edit {
     public void showstats() {
         printInvalidCommandMessage(); 
     }
+    public void showmapstatus() {
+        printInvalidCommandMessage(); 
+    }
     public void reinforce(int p_countryID, int p_armies) {
 		printInvalidCommandMessage(); 
 	}
