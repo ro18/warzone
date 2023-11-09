@@ -101,9 +101,17 @@ public class GameEngine {
             System.out.println("Turn of " + l_players.get(l_i).getL_playername());
 
             if(l_players.get(l_i).pendingOrder == true && l_players.get(l_i).getReinforcementArmies() == 0 ){
+            
+            String value ="";
 
-            String value = this.lineReader.readLine("Do you want to add more orders? Y or N:\n");
-            if(value.equals("N")){
+            while(true){
+                 value = this.lineReader.readLine("Do you want to add more orders? Y or N:\n");
+                 if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y")){
+                    break;
+                 }
+
+            }
+            if(value.equalsIgnoreCase("N")){
                 l_players.get(l_i).pendingOrder = false;
                 checkPlayersReinforcements();
 
@@ -128,6 +136,8 @@ public class GameEngine {
                 PlayerCommands.d_CurrentPlayerId = l_i;
                 System.out.println("Turn of " + l_players.get(l_i).getL_playername());
                 
+
+              
 
                 for( Player p : l_players){
                     p.pendingOrder = true;

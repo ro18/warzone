@@ -107,6 +107,7 @@ public class PlaySetup extends Play implements Observer{
 			l_logEntryBuffer.notifyClasses(l_logObject);
 			System.out.println("Assignment of countries is completed. \nNow its turn of player: "+player.getL_playername()+" to deploy armies");
 			ge.setPhase(new Reinforcement(ge));
+			System.out.println("Players can now start with deploying armies");
 		}
         
 	}
