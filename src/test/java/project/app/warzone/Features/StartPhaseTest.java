@@ -40,12 +40,9 @@ public class StartPhaseTest {
     //checks if game is moving ahead to next phase corretly after preloading
     @Test
     public void checkPostloadValidate(){
-        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "europe.map";
         Map l_map = new Map();
-        l_map=mapFeatures.readMap(l_mapFileName);
         GameEngine l_gameEngine = new GameEngine(l_map);
-        l_gameEngine.getGamePhase().loadMap(l_mapFileName);
-        l_gameEngine.getGamePhase().next();
+        l_gameEngine.getGamePhase().loadMap("europe");
         String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
     
         assertEquals("Postload", nextPhase);
