@@ -2,6 +2,7 @@ package project.app.warzone.Features;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -42,7 +43,20 @@ public class EditPhaseTest {
         assertNotEquals("Play", currPhase);
     }
 
-    //checks if game is not skippping phase directly to next phase corretly in postloading
+    //checks if game is in any other phase other than edit phase
+    @Test
+    public void inEditValidate() {
+        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "europe.map";
+        Map l_map = new Map();
+        l_map=mapFeatures.readMap(l_mapFileName);
+        GameEngine l_gameEngine = new GameEngine(l_map);
+        l_gameEngine.getGamePhase().loadMap(l_mapFileName); //postload phase command in edit phase
+        String currPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
+        //assertEquals("Play", currPhase); //Should fail
+        assertNotEquals("MainPlay", currPhase);
+    }
+
+    //checks if game is not skippping to End directly from edit phase
     @Test
     public void inEditPostPhaseValidate(){
         String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "europe.map";
@@ -54,5 +68,7 @@ public class EditPhaseTest {
         //assertEquals("Play", currPhase); //Should fail
         assertNotEquals("End", currPhase);
     }
+
+    
 
 }
