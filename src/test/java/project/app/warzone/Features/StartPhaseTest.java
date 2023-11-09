@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Utilities.MapResources;
@@ -43,6 +44,7 @@ public class StartPhaseTest {
         Map l_map = new Map();
         GameEngine l_gameEngine = new GameEngine(l_map);
         l_gameEngine.getGamePhase().loadMap("europe");
+        l_gameEngine.setPhase(new Attack(l_gameEngine));
         String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
     
         assertEquals("Postload", nextPhase);

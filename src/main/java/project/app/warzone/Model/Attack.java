@@ -7,7 +7,7 @@ package project.app.warzone.Model;
 
 public class Attack extends MainPlay {
 
-	Attack(GameEngine p_ge) {
+	public Attack(GameEngine p_ge) {
 		super(p_ge);
 	}
 	public void loadMap(String p_filename) {
