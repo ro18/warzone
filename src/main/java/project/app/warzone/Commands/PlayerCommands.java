@@ -171,17 +171,23 @@ public class PlayerCommands implements Observer {
         }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
+
+        boolean found = false;
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("blockade")){
+                
+               found = true;
+
                 l_player.d_cardsInCollection.remove(card);
 
                 d_gameEngine.getGamePhase().blockade(p_countryId);
 
         // return d_playerFeatures.blockadeCountry(d_gameEngine,p_countryId);
             }
-            else{
-                return "The Player does not have Blockade card";
-            }
+           
+        }
+        if(found = false){
+            return "Player does not have airlift card";
         }
         return "Blockade attack order added successfully";
     }
@@ -249,9 +255,10 @@ public class PlayerCommands implements Observer {
             
         }
 
-        if(found = false){
-                return "The Player does not have Negotiate card";
-            }
+        if(found == false)
+        {
+           return "The Player does not have Negotiate card";
+        }
         return "Negotiated Order Added successfully";
     }
 

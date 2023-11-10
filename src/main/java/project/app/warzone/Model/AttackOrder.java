@@ -92,9 +92,9 @@ public class AttackOrder implements Observer {
 
                                         Cards l_card ;
 
-                                        // int l_randomInt = (int) (Math.random() * 4);
+                                        int l_randomInt = (int) (Math.random() * 3);
 
-                                        switch (3) {
+                                        switch (2) {
                                             case 0:
                                                 l_card = new Cards("BOMB");
                                                 break;
