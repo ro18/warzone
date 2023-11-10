@@ -23,10 +23,18 @@ public class Postload extends Edit implements java.util.Observer {
         d_mapResources = new MapResources();
     }
 
+    
+    /** 
+     * @param p_filename filename
+     */
     public void loadMap(String p_filename) {
         printInvalidCommandMessage();
     }
 
+    
+    /** 
+     * @param p_fileName filename
+     */
     public void editMap(String p_fileName) {
         printInvalidCommandMessage();
     }
@@ -60,10 +68,20 @@ public class Postload extends Edit implements java.util.Observer {
         printInvalidCommandMessage();
     }
 
+    
+    /**  
+     * @param p_countryID country ID
+     * @param p_armies  no of armies
+     */
     public void reinforce(int p_countryID, int p_armies) {
         printInvalidCommandMessage();
     }
 
+    
+    /** 
+     * @param p_editcmd edit command
+     * @param p_editremovecmd   remove cmd
+     */ 
     public void editCountry(String p_editcmd, String p_editremovecmd) {
         // Please call this function
         // dMapEditorCommands.editcountry("-a India", "-r India");
@@ -140,6 +158,11 @@ public class Postload extends Edit implements java.util.Observer {
         }
     }
 
+    
+    /** 
+     * @param p_editcmd edit cmd
+     * @param p_editremovecmd   remove cmd
+     */
     public void editContinent(String p_editcmd, String p_editremovecmd) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("editcontinent " + p_editcmd + " " + p_editremovecmd);
@@ -215,6 +238,11 @@ public class Postload extends Edit implements java.util.Observer {
         }
     }
 
+    
+    /** 
+     * @param p_editcmd edit cmd
+     * @param p_editremovecmd   remove cmd
+     */
     public void editNeighbor(String p_editcmd, String p_editremovecmd) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("editneighbor " + p_editcmd + " " + p_editremovecmd);
@@ -302,6 +330,11 @@ public class Postload extends Edit implements java.util.Observer {
         System.out.println("must save map");
     }
 
+    
+    /** 
+     * @param p_obj object
+     * @param p_arg argument
+     */
     public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
         if (p_arg instanceof LogObject) {

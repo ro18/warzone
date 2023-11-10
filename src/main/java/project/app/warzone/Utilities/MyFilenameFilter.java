@@ -21,6 +21,12 @@ public class MyFilenameFilter implements FilenameFilter {
         this.d_initials = p_initials;
     }
     
+    
+    /** 
+     * @param p_dir
+     * @param p_name
+     * @return boolean
+     */
     // overriding the accept method of FilenameFilter
     // interface
     public boolean accept(File p_dir, String p_name)

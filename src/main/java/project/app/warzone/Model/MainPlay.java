@@ -20,32 +20,59 @@ public abstract class MainPlay extends Play {
 		this.printInvalidCommandMessage();
 	}
 
+	/**
+	 * @param p_attribute	attribute
+	 * @param p_playerName	player names
+	 */
 	public void setPlayers(String p_attribute, String p_playerName) {
-		this.printInvalidCommandMessage();	
+		this.printInvalidCommandMessage();
 	}
 
 	public void assignCountries() {
 		this.printInvalidCommandMessage();
 	}
 
-
-	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
-		printInvalidCommandMessage(); 
+	public void assignCountriesForDemo() {
+		this.printInvalidCommandMessage();
 	}
 
+	/**
+	 * @param p_CurrentPlayerId	current player
+	 * @param p_countryfrom	source country
+	 * @param p_countryTo	target country
+	 * @param p_armies	no  of armies
+	 */
+	public void advance(int p_CurrentPlayerId, int p_countryfrom, int p_countryTo, int p_armies) {
+		printInvalidCommandMessage();
+	}
+
+	/**
+	 * @param p_countryID	country ID
+	 */
 	public void bomb(int p_countryID) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
-	public void blockade( int p_countryID) {
-		printInvalidCommandMessage(); 
+	/**
+	 * @param p_countryID	country ID
+	 */
+	public void blockade(int p_countryID) {
+		printInvalidCommandMessage();
 	}
 
-	public void airlift( int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
-		printInvalidCommandMessage(); 
+	/**
+	 * @param p_countryIDFrom	source cuontry
+	 * @param p_countryIDTo	target country
+	 * @param p_armiesToAirlift	army to airlift
+	 */
+	public void airlift(int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
+		printInvalidCommandMessage();
 	}
 
+	/**
+	 * @param p_targetPlayerId	target player
+	 */
 	public void negotiate(int p_targetPlayerId) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 }

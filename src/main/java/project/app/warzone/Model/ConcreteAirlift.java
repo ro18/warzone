@@ -8,12 +8,18 @@ private Country d_countryFrom ;
 private Country d_countryTo ;
 private int d_airliftArmies;
 
-//constructor
+/**
+ * @param p_countryFrom source country
+ * @param p_countryTo   target country
+ * @param p_airliftArmies   army to airlift
+ */
 public ConcreteAirlift(Country p_countryFrom,Country p_countryTo,int p_airliftArmies)
 {
     this.d_countryFrom = p_countryFrom;
-    this.d_countryFrom = p_countryTo;
+    this.d_countryTo = p_countryTo;
     this.d_airliftArmies = p_airliftArmies;
+
+    this.attackOrder = new AttackOrder();
 
 }
 

@@ -11,10 +11,12 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
 import project.app.warzone.Features.PlayerFeatures;
+import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.Cards;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Model.Player;
+import project.app.warzone.Model.Reinforcement;
 import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.LogObject;
 
@@ -67,7 +69,9 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "assigncountries", value = "This is used to assign countries to players randomly")
     public void assigncountries() {
-        d_gameEngine.getGamePhase().assignCountries();
+        // d_gameEngine.getGamePhase().assignCountries();
+        d_gameEngine.getGamePhase().assignCountriesForDemo(); // Added to demonstrate different attacks during presentation
+
         showStats();
     }
 
@@ -98,6 +102,7 @@ public class PlayerCommands implements Observer {
             System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
         }
 
+        // System.out.println("in deploy");
         d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
         // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
     }
@@ -116,6 +121,8 @@ public class PlayerCommands implements Observer {
 
 
         }
+        d_gameEngine.setPhase(new Attack(d_gameEngine));
+
         d_gameEngine.getGamePhase().advance(d_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
         // return d_playerFeatures.advanceArmies(d_CurrentPlayerId,d_gameEngine, p_countryfrom,p_countryTo, p_armies);
     }
@@ -137,6 +144,7 @@ public class PlayerCommands implements Observer {
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("bomb")){
 
+                l_player.d_cardsInCollection.remove(card);
                 d_gameEngine.getGamePhase().bomb(p_countryId);
 
                 // return d_playerFeatures.bombCountry(d_gameEngine,p_countryId);
@@ -146,7 +154,7 @@ public class PlayerCommands implements Observer {
                 return "The Player does not have BOMB card";
             }
         }
-        return "Bomb attack executed successfully";
+        return "Bomb attack order added successfully";
 
     }
 
@@ -163,24 +171,34 @@ public class PlayerCommands implements Observer {
         }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
+
+        boolean found = false;
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("blockade")){
+                
+               found = true;
+
+                l_player.d_cardsInCollection.remove(card);
+
                 d_gameEngine.getGamePhase().blockade(p_countryId);
 
         // return d_playerFeatures.blockadeCountry(d_gameEngine,p_countryId);
             }
-            else{
-                return "The Player does not have Blockade card";
-            }
+           
         }
-        return "Blockade attack executed successfully";
+        if(found = false){
+            return "Player does not have airlift card";
+        }
+        return "Blockade attack order added successfully";
     }
 
 
-     /**
-     * @param p_countryfrom             storing  target country ID to blockade
-
-     * @return                          returns status 
+     
+    /**
+     * @param p_countryfrom     storing  source country ID to blockade
+     * @param p_countryTo       storing  target country ID to blockade
+     * @param p_airliftArmies   storing  armies to airlift
+     * @return
      */
     @ShellMethod(key = "airlift", value = "This is used to play Airlift card")
     public String airlift(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_airliftArmies) {
@@ -189,22 +207,31 @@ public class PlayerCommands implements Observer {
         }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
+        boolean found = true;
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("airlift")){
-                d_gameEngine.getGamePhase().airlift(p_countryfrom,p_countryTo, p_airliftArmies);
+                l_player.d_cardsInCollection.remove(card);
 
+                d_gameEngine.getGamePhase().airlift(p_countryfrom,p_countryTo, p_airliftArmies);
+                found = true;
         // return d_playerFeatures.airlift(d_gameEngine,p_countryfrom,p_countryTo, p_airliftArmies);
         }
-            else{
-                return "The Player does not have Airlift card";
-            }
+           
+        }
+
+        if(found = false){
+            return "Player does not have airlift card";
         }
         return "Airlift Card executed successfully";
     }
 
     
-    //negotiate function....need to check
+    
 
+    /**
+     * @param p_targetPlayerId      storing  target player
+     * @return
+     */
     @ShellMethod(key = "negotiate", value = "This is used to play Negotiate card")
     public String negotiate(@ShellOption int p_targetPlayerId) {
         if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
@@ -212,17 +239,27 @@ public class PlayerCommands implements Observer {
         }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
+        boolean found = false;
+
+
         for (Cards card : l_player.d_cardsInCollection) {
             if (card.getCardType().equalsIgnoreCase("negotiate")){
 
+                l_player.d_cardsInCollection.remove(card);
+
+
                 d_gameEngine.getGamePhase().negotiate(p_targetPlayerId);
+                found = true;
 
             }
-            else{
-                return "The Player does not have Negotiate card";
-            }
+            
         }
-        return "Diplomacy executed successfully";
+
+        if(found == false)
+        {
+           return "The Player does not have Negotiate card";
+        }
+        return "Negotiated Order Added successfully";
     }
 
     /**
@@ -237,7 +274,7 @@ public class PlayerCommands implements Observer {
                 BufferedWriter l_writer = new BufferedWriter(new FileWriter(System.getProperty("logFileLocation"), true));
                 l_writer.newLine();
                 l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
-                System.out.println( "Inside update method of MapEditorCommands");
+                // System.out.println( "Inside update method of MapEditorCommands");
                 l_writer.newLine();
                 l_writer.close();
             } catch (IOException e) {

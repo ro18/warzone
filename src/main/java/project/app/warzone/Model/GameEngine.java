@@ -27,6 +27,8 @@ public class GameEngine {
     public List<Player> d_playersList;              //storing player list  
     public Map gameMap;                             //storing gameMap
     public Commands prevUserCommand;                //storing user's previous command
+
+    public int gameRound=1;
     /**
      * Initializing gameMap and d_playersList
      * 
@@ -74,7 +76,11 @@ public class GameEngine {
     }
 
     
-    public void checkPlayersReinforcements(){
+    public String checkPlayersReinforcements(){
+
+
+      
+
 
 
         Boolean l_flag = false;
@@ -82,7 +88,17 @@ public class GameEngine {
 
         List<Player> l_players = getPlayers();
 
-         while (l_i != PlayerCommands.d_CurrentPlayerId) {
+        for(Player p : l_players ){
+            if(p.getListOfTerritories().size() == 0 ){
+                System.out.println("Player: "+p.getL_playername()+"has lost the game");
+                l_players.remove(p);
+             
+            }
+        }
+
+        if( l_players.size() > 1){
+
+             while (l_i != PlayerCommands.d_CurrentPlayerId) {
             if (l_i == l_players.size()) {
                 l_i = 0;
                 continue;
@@ -100,16 +116,27 @@ public class GameEngine {
             PlayerCommands.d_CurrentPlayerId = l_i;
             System.out.println("Turn of " + l_players.get(l_i).getL_playername());
 
-            if(l_players.get(l_i).pendingOrder == true && l_players.get(l_i).getReinforcementArmies() == 0 ){
 
-            String value = this.lineReader.readLine("Do you want to add more orders? Y or N:\n");
-            if(value.equals("N")){
+            if(l_players.get(l_i).pendingOrder == true && l_players.get(l_i).getReinforcementArmies() == 0 ){
+            
+            String value ="";
+
+            while(true){
+                 value = this.lineReader.readLine("Do you want to add more orders? Y or N:\n");
+                 if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y")){
+                    break;
+                 }
+
+            }
+            if(value.equalsIgnoreCase("N")){
                 l_players.get(l_i).pendingOrder = false;
                 checkPlayersReinforcements();
 
             }
             else{
                 System.out.println("Please proceed with your orders");
+                return "";
+
             }
 
             }
@@ -118,6 +145,9 @@ public class GameEngine {
 
 
         } else {
+
+
+               System.out.println(" ------- GAME ROUND: "+gameRound++);
 
                execute_orders();
                System.out.println("Orders successfully executed");
@@ -129,16 +159,33 @@ public class GameEngine {
                 System.out.println("Turn of " + l_players.get(l_i).getL_playername());
                 
 
+              
+
                 for( Player p : l_players){
                     p.pendingOrder = true;
+                    if(p.getL_playerid() == 1){
+                       p.addReinforcementArmies(10); // add reinforcement armies of 2 after every level
 
+                    }
                     p.addReinforcementArmies(2); // add reinforcement armies of 2 after every level
                 }
+
+  
 
         }
 
       
 
+        }
+        else{
+            for(Player p : l_players){
+                System.out.println("Player "+ p.getL_playername()+"has won the game");
+                setPhase(new End(this));
+            }
+        }
+        
+
+        return "";
 
        
         
@@ -169,37 +216,30 @@ public class GameEngine {
                 }
             }
 
+            
+            for(Player p : l_players ){
+                if(p.getListOfTerritories().size() == 0 ){
+                    System.out.println("Player: "+p.getL_playername()+"has lost the game");
+                    l_players.remove(p);
+                    
+                }
+            }
+
             if (l_playersOrdersProcessed == 0) {
                 break;
             }
         }
 
+
+
     }
 
     public void start(){
-        //include this function inside the main caller function that starts the application execution
-        // Set the initial state, call all state methods in order
+        
         System.out.println("G **************************************************************** Inside Start");
         Preload d_Preload = new Preload(this);
         setPhase(d_Preload);
-        // d_Preload.loadMap();
-        // setPhase(new Postload(this));
-
-        //setPhase(new Play(this));
-        //setPhase(new Playsetup(this));
-        //setPhase(new Reinforcement(this));
-        //setPhase(new Attack(this));
-        //setPhase(new Fortification(this));
-
-        // Can trigger State-dependent behavior by using
-        // The methods defined in the State (Phase) object, e.g.
-        //gamePhase.loadMap(p_filename);
-
-        // Player states
-        //gamePhase.attack();
-        //gamePhase.fortify();
-        //gamePhase.reinforce();
-        //gamePhase.next();
+       
     };
 
 }

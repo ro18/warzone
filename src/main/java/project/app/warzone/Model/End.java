@@ -6,82 +6,144 @@ public class End extends Phase {
 		super(p_ge);
 	}
 
+	/**
+	 * @param p_filename filename
+	 */
 	public void loadMap(String p_filename) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
 	public void showMap() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
-	public void editCountry(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
+	/**
+	 * @param p_editcmd       edit command
+	 * @param p_editremovecmd remove command
+	 */
+	public void editCountry(String p_editcmd, String p_editremovecmd) {
+		printInvalidCommandMessage();
 	}
-	public void editNeighbor(String p_editcmd,String p_editremovecmd) {
-		printInvalidCommandMessage(); 
+
+	/**
+	 * @param p_editcmd       edit command
+	 * @param p_editremovecmd remove command
+	 */
+	public void editNeighbor(String p_editcmd, String p_editremovecmd) {
+		printInvalidCommandMessage();
 	}
+
 	public void saveMap() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
+	/**
+	 * @param p_attribute  attribute
+	 * @param p_playerName player name
+	 */
 	public void setPlayers(String p_attribute, String p_playerName) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
 	public void assignCountries() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
+	public void assignCountriesForDemo() {
+		printInvalidCommandMessage();
+	}
+
+	/**
+	 * @param p_countryID country ID
+	 * @param p_armies    armies
+	 */
 	public void reinforce(int p_countryID, int p_armies) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
 	public void attack() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
 	public void fortify() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
 	public void endGame() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
 	public void showstats() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
 	public void showmapstatus() {
-		printInvalidCommandMessage(); 
-	}
-	public void editMap(String p_fileName){
 		printInvalidCommandMessage();
 	}
-	public void editContinent(String p_editcmd,String p_editremovecmd){
+
+	
+	/** 
+	 * @param p_fileName	filename
+	 */
+	public void editMap(String p_fileName) {
 		printInvalidCommandMessage();
 	}
+
+	
+	/** 
+	 * @param p_editcmd	edit command
+	 * @param p_editremovecmd	remove command
+	 */
+	public void editContinent(String p_editcmd, String p_editremovecmd) {
+		printInvalidCommandMessage();
+	}
+
 	public void next() {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
-	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
-		printInvalidCommandMessage(); 
+	
+	/** 
+	 * @param p_CurrentPlayerId	current player
+	 * @param p_countryfrom	source country
+	 * @param p_countryTo	target country
+	 * @param p_armies	no of army
+	 */
+	public void advance(int p_CurrentPlayerId, int p_countryfrom, int p_countryTo, int p_armies) {
+		printInvalidCommandMessage();
 	}
 
+	
+	/** 	
+	 * @param p_countryID	country ID
+	 */
 	public void bomb(int p_countryID) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 
-	public void blockade( int p_countryID) {
-		printInvalidCommandMessage(); 
+	
+	/** 
+	 * @param p_countryID	country ID
+	 */
+	public void blockade(int p_countryID) {
+		printInvalidCommandMessage();
 	}
 
-	public void airlift( int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
-		printInvalidCommandMessage(); 
+	
+	/** 
+	 * @param p_countryIDFrom	source country
+	 * @param p_countryIDTo	target country
+	 * @param p_armiesToAirlift	armies to airlift
+	 */
+	public void airlift(int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
+		printInvalidCommandMessage();
 	}
 
+	
+	/** 
+	 * @param p_targetPlayerId	target player
+	 */
 	public void negotiate(int p_targetPlayerId) {
-		printInvalidCommandMessage(); 
+		printInvalidCommandMessage();
 	}
 }
