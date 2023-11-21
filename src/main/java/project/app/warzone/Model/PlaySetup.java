@@ -49,7 +49,6 @@ public class PlaySetup extends Play implements Observer{
 			}
 
 			d_playerFeatures.printAllPlayers(ge);
-			ge.prevUserCommand = Commands.ADDPLAYER;
 			l_logObject.setStatus(true, "Players added successfully");
 			l_logEntryBuffer.notifyClasses(l_logObject);
 			System.out.println("Players added successfully");
@@ -67,7 +66,6 @@ public class PlaySetup extends Play implements Observer{
 				l_i++;
 			}
 			d_playerFeatures.printAllPlayers(ge);
-			ge.prevUserCommand = Commands.REMOVEPLAYER;
 			l_logObject.setStatus(true, "Players removed successfully");
 			l_logEntryBuffer.notifyClasses(l_logObject);
 			System.out.println("Players removed successfully");
@@ -88,7 +86,6 @@ public class PlaySetup extends Play implements Observer{
 			d_playerFeatures.assignCountries(ge);
 			System.out.println("Assigned Countries to the players are:");
 			// d_playerFeatures.showAllAssignments(ge.getPlayers());
-			ge.prevUserCommand = Commands.ASSIGNCOUNTRIES;
 			l_logObject.setStatus(true, "Countries assigned successfully");
 			l_logEntryBuffer.notifyClasses(l_logObject);
 			System.out.println("Assignment of countries is completed. \nNow its turn of player: "+player.getL_playername()+" to deploy armies");
@@ -111,7 +108,6 @@ public class PlaySetup extends Play implements Observer{
 			d_playerFeatures.assignCountriesForDemo(ge);
 			// System.out.println("Assigned Countries to the players are:");
 			// d_playerFeatures.showAllAssignments(ge.getPlayers());
-			ge.prevUserCommand = Commands.ASSIGNCOUNTRIES;
 			l_logObject.setStatus(true, "Countries assigned successfully");
 			l_logEntryBuffer.notifyClasses(l_logObject);
 			System.out.println("Assignment of countries is completed. \nNow its turn of player: "+player.getL_playername()+" to deploy armies");

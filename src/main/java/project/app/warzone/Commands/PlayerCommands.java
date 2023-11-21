@@ -1,6 +1,9 @@
 package project.app.warzone.Commands;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
@@ -28,7 +31,6 @@ public class PlayerCommands implements Observer {
 
     public GameEngine d_gameEngine;
     public PlayerFeatures d_playerFeatures;
-    public String d_prevUserCommand;
     private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
     public static int d_CurrentPlayerId = 0;
 
@@ -98,13 +100,7 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "deploy", value = "This is used to deploy armies")
     public void deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
-        }
-
-        // System.out.println("in deploy");
         d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
-        // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
     }
 
 
@@ -116,11 +112,6 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "advance", value = "This is used to deploy armies")
     public void advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
-
-
-        }
         d_gameEngine.setPhase(new Attack(d_gameEngine));
 
         d_gameEngine.getGamePhase().advance(d_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
@@ -134,9 +125,6 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "bomb", value = "This is used to play Bomb card")
     public String bombCountry(@ShellOption int p_countryId) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
-        }
         // @Prashant please add here check to see if player has bomb card ****
         
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
@@ -166,9 +154,6 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "blockade", value = "This is used to play Blockade card")
     public String blockade(@ShellOption int p_countryId) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
-        }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
 
@@ -202,9 +187,6 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "airlift", value = "This is used to play Airlift card")
     public String airlift(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_airliftArmies) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot airlift armies at this stage. Please follow the sequence of commands in the game.";
-        }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
         boolean found = true;
@@ -234,9 +216,6 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "negotiate", value = "This is used to play Negotiate card")
     public String negotiate(@ShellOption int p_targetPlayerId) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot negotiate armies at this stage. Please follow the sequence of commands in the game.";
-        }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
         boolean found = false;
@@ -260,6 +239,127 @@ public class PlayerCommands implements Observer {
            return "The Player does not have Negotiate card";
         }
         return "Negotiated Order Added successfully";
+    }
+
+    @ShellMethod(key = "savegame", value = "This is used to save the game to a file")
+    public void saveGame(@ShellOption String p_fileName) {
+        // Take log file and save it with the name p_fileName
+        String l_logFileLocation = System.getProperty("logFileLocation");
+        // String l_logFileLocationNew = l_logFileLocation.substring(0, l_logFileLocation.lastIndexOf("/")) + "/" + p_fileName + ".log";
+        // save it in SavedGames folder
+        String l_logFileLocationNew = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/SavedGames/" + p_fileName + ".log";
+
+        try{
+            File l_file = new File(l_logFileLocationNew);
+            l_file.createNewFile();
+            BufferedWriter l_writer = new BufferedWriter(new FileWriter(l_logFileLocationNew, false));
+            BufferedReader l_reader = new BufferedReader(new FileReader(l_logFileLocation));
+            String l_line = l_reader.readLine();
+            String l_command = "";
+            while(l_line != null){
+                if(l_line.matches("^\\d+.*")){
+                    String[] l_split = l_line.split(" ");
+                    // Get the last index of the split array
+                    for(int i = 1; i < l_split.length; i++){
+                        l_command += l_split[i] + " ";
+                    }
+                    System.out.println(l_command);
+                    
+                }
+                if (l_line.matches("^Status.*")){
+                    String[] l_split = l_line.split(" ");
+                    if(l_split[1].equals("SUCCESS")){
+                        l_writer.append(l_command);
+                        l_writer.newLine();
+                    }
+                    l_command = "";
+                }
+                l_line = l_reader.readLine();
+            }
+            l_writer.close();
+            l_reader.close();
+        } catch (IOException e) {
+            System.out.println("Error Reading file");
+        }
+    }
+
+    @ShellMethod(key = "loadgame", value = "This is used to load the game from a file")
+    public void loadGame(@ShellOption String p_fileName) {
+        String l_logFileLocationNew = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/SavedGames/" + p_fileName + ".log";
+        MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
+        try{
+            BufferedReader l_reader = new BufferedReader(new FileReader(l_logFileLocationNew));
+            String l_line = l_reader.readLine();
+            //check if the file is empty
+            if(l_line == null){
+                l_reader.close();
+                throw new IOException("File is empty");
+            }
+            while(l_line != null){
+                String[] l_split = l_line.split(" ");
+                switch (l_split[0]) {
+                    case "loadmap":
+                        l_mapEditorCommands.loadMap(l_split[1]);
+                        break;
+                    case "showmap":
+                        l_mapEditorCommands.showmap();
+                        break;
+                    case "editmap":
+                        l_mapEditorCommands.editmap(l_split[1]);
+                        break;
+                    case "editcontinent":
+                        l_mapEditorCommands.editcontinent(l_split[1], l_split[2]);
+                        break;
+                    case "editcountry":
+                        l_mapEditorCommands.editcountry(l_split[1], l_split[2]);
+                        break;
+                    case "editneighbor":
+                        l_mapEditorCommands.editNeighbor(l_split[1], l_split[2]);
+                        break;
+                    
+                    case "showstats":
+                        break;
+                    case "showmapstatus":
+                        break;
+                    case "assigncountries":
+                        assigncountries();
+                        break;
+                    case "gameplayer":
+                        if(l_split[1].equals("-add")){
+                            gamePlayerAdd(l_split[2], null);
+                        } else {
+                            gamePlayerAdd(null, l_split[2]);
+                        }
+                        break;
+                    case "deploy":
+                        deployArmies(Integer.parseInt(l_split[1]), Integer.parseInt(l_split[2]));
+                        break;
+                    case "advance":
+                        advancearmies(Integer.parseInt(l_split[1]), Integer.parseInt(l_split[2]), Integer.parseInt(l_split[3]));
+                        break;
+                    case "bomb":
+                        bombCountry(Integer.parseInt(l_split[1]));
+                        break;
+                    case "blockade":
+                        blockade(Integer.parseInt(l_split[1]));
+                        break;
+                    case "airlift":
+                        airlift(Integer.parseInt(l_split[1]), Integer.parseInt(l_split[2]), Integer.parseInt(l_split[3]));
+                        break;
+                    case "negotiate":
+                        negotiate(Integer.parseInt(l_split[1]));
+                        break;
+                    default:
+                        break;
+                }
+
+
+                l_line = l_reader.readLine();
+            }
+            l_reader.close();
+        } catch (IOException e) {
+            System.out.println("File error: " + e);
+        }
     }
 
     /**

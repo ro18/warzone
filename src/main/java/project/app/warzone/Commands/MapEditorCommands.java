@@ -46,7 +46,6 @@ public class MapEditorCommands {
     @ShellMethod(key = "loadmap", value = "Player can create or open an existing map")
     public void loadMap(@ShellOption String p_filename) {
 
-        d_gameEngine.prevUserCommand = Commands.LOADMAP;
         d_gameEngine.getGamePhase().loadMap(p_filename);
     }
 
@@ -115,7 +114,6 @@ public class MapEditorCommands {
      */
     @ShellMethod(key = "editmap", value = "This is used to add or create map")
     public void editmap(@ShellOption String p_filename) {
-        d_gameEngine.prevUserCommand = Commands.EDITMAP;
         d_gameEngine.getGamePhase().editMap(p_filename);
     }   
 }

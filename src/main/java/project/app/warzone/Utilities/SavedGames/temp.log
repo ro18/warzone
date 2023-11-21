@@ -1,0 +1,12 @@
+loadmap europe 
+showmap 
+gameplayer -add anash,-add,aish 
+gameplayer -add numan 
+gameplayer -remove numan 
+assigncountries 
+showstats 
+deploy 1 3 
+Deploy 
+Deploy 
+deploy 8 3 
+showstats 

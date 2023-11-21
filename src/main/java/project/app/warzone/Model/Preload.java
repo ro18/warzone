@@ -86,7 +86,6 @@ public class Preload extends Edit implements java.util.Observer {
                 return;
             }
         } else {
-            ge.prevUserCommand = Commands.EDITMAP;
             ge.gameMap.set_USER_SELECTED_FILE(p_fileName);
 
             ge.gameMap.createNewMapFile(p_fileName);

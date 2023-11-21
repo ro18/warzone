@@ -26,7 +26,6 @@ public class GameEngine {
     private LineReader lineReader;
     public List<Player> d_playersList;              //storing player list  
     public Map gameMap;                             //storing gameMap
-    public Commands prevUserCommand;                //storing user's previous command
 
     public int gameRound=1;
     /**
@@ -77,11 +76,6 @@ public class GameEngine {
 
     
     public String checkPlayersReinforcements(){
-
-
-      
-
-
 
         Boolean l_flag = false;
         int l_i = PlayerCommands.d_CurrentPlayerId+1;

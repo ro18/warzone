@@ -48,7 +48,7 @@ public class Attack extends MainPlay {
 	 */
 	public void reinforce(int p_countryID, int p_armies) {
 		LogObject l_logObject = new LogObject();
-		l_logObject.setD_command("reinforce " + p_countryID + " " + p_armies);
+		l_logObject.setD_command("deploy " + p_countryID + " " + p_armies);
        	String l_reString = d_playerFeatures.deployArmies(ge, p_countryID, p_armies);
 	   	l_logObject.setStatus(true, l_reString);
 	   	l_logEntryBuffer.notifyClasses(l_logObject);
@@ -72,7 +72,7 @@ public class Attack extends MainPlay {
 	 */
 	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
 		LogObject l_logObject = new LogObject();
-		l_logObject.setD_command("attack from" + p_countryfrom + " to " + p_countryTo +"with armies:"+p_armies);
+		l_logObject.setD_command("advance" + p_countryfrom + " " + p_countryTo +" "+p_armies);
 		String l_reString = d_playerFeatures.advanceArmies(ge, p_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
 		l_logObject.setStatus(true, l_reString);
 	   	l_logEntryBuffer.notifyClasses(l_logObject);
