@@ -105,6 +105,8 @@ public class PlayerCommands implements Observer {
         // System.out.println("in deploy");
         d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
         // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
+        // return "Deploy order added successfully";
+
     }
 
 
@@ -115,7 +117,7 @@ public class PlayerCommands implements Observer {
      * @return returns status of deploying army
      */
     @ShellMethod(key = "advance", value = "This is used to deploy armies")
-    public void advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
+    public String advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
         if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
             System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
 
@@ -125,6 +127,8 @@ public class PlayerCommands implements Observer {
 
         d_gameEngine.getGamePhase().advance(d_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
         // return d_playerFeatures.advanceArmies(d_CurrentPlayerId,d_gameEngine, p_countryfrom,p_countryTo, p_armies);
+        return "Advance order added successfully";
+
     }
 
     /**
