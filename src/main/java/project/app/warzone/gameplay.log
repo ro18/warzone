@@ -2,146 +2,61 @@ Game Commnece
 
 
 1 loadmap europe
-Time: 07:36:12
+Time: 05:28:13
 Status: SUCCESS
 Description: Map loaded successfully europe
 
 2 showmap
-Time: 07:36:14
+Time: 05:28:15
 Status: SUCCESS
 Description: User printed map europe
 
 4 gameplayer -add p1,-add,p2
-Time: 07:36:20
+Time: 05:28:20
 Status: SUCCESS
 Description: Players added successfully
 
 5 assigncountries
-Time: 07:36:25
+Time: 05:28:26
 Status: SUCCESS
 Description: Countries assigned successfully
 
 6 showstats
-Time: 07:36:25
+Time: 05:28:26
 Status: SUCCESS
 Description: Stats shown.
 
 7 reinforce 1 3
-Time: 07:36:41
+Time: 05:28:32
 Status: SUCCESS
 Description: 
 
-8 Deploy
-Time: 07:36:54
+8 deploy 8 1
+Time: 05:28:45
+Status: SUCCESS
+Description: Armies deployed successfully.
+
+9 reinforce 8 1
+Time: 05:28:45
+Status: SUCCESS
+Description: 
+
+10 Deploy
+Time: 05:30:48
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-9 Deploy
-Time: 07:36:54
+11 Deploy
+Time: 05:30:48
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-10 reinforce 8 3
-Time: 07:36:50
-Status: SUCCESS
-Description: 
-
-11 showstats
-Time: 07:36:57
-Status: SUCCESS
-Description: Stats shown.
-
-12 deploy 1 12
-Time: 07:37:12
-Status: FAILURE
-Description: User tried to deploy armies more than the remaining reinforcement pool.
-
-13 reinforce 1 12
-Time: 07:37:12
-Status: SUCCESS
-Description: 
-
-14 reinforce 1 12
-Time: 07:37:16
-Status: SUCCESS
-Description: 
-
-15 Deploy
-Time: 07:37:29
+12 Deploy
+Time: 05:30:48
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-16 Deploy
-Time: 07:37:29
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-17 reinforce 8 2
-Time: 07:37:26
+13 reinforce 8 2
+Time: 05:29:03
 Status: SUCCESS
 Description: 
-
-18 showstats
-Time: 07:37:33
-Status: SUCCESS
-Description: Stats shown.
-
-19 deploy 1 15
-Time: 07:37:49
-Status: FAILURE
-Description: User tried to deploy armies more than the remaining reinforcement pool.
-
-20 reinforce 1 15
-Time: 07:37:49
-Status: SUCCESS
-Description: 
-
-21 deploy 1 15
-Time: 07:37:54
-Status: FAILURE
-Description: User tried to deploy armies more than the remaining reinforcement pool.
-
-22 reinforce 1 15
-Time: 07:37:54
-Status: SUCCESS
-Description: 
-
-23 reinforce 8 2
-Time: 07:38:14
-Status: SUCCESS
-Description: 
-
-24 reinforce 1 12
-Time: 07:38:43
-Status: SUCCESS
-Description: 
-
-25 attack from1 to 8with armies:8
-Time: 07:38:56
-Status: SUCCESS
-Description: Country is not owned by the player
-
-26 attack from8 to 10with armies:2
-Time: 07:39:14
-Status: SUCCESS
-Description: Country is not owned by the player
-
-27 Deploy
-Time: 07:39:33
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-28 Deploy
-Time: 07:39:33
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-29 attack from1 to 6with armies:5
-Time: 07:39:31
-Status: SUCCESS
-Description: Country is not owned by the player
-
-30 showstats
-Time: 07:39:36
-Status: SUCCESS
-Description: Stats shown.

@@ -100,10 +100,18 @@ public class GameEngine {
 
         l_players.removeAll(l_playersToRemove);
 
+        int l_iterateThroughAllPlayers =  0;
         if( l_players.size() > 1){
 
-            while (l_i != PlayerCommands.d_CurrentPlayerId) {
+           // while (l_i != PlayerCommands.d_CurrentPlayerId) {
+            while (true) {
+
+                if(l_iterateThroughAllPlayers == 2){
+                    break;
+                }
+
                 if (l_i == l_players.size()) {
+                    l_iterateThroughAllPlayers++;
                     l_i = 0;
                     continue;
                 }
@@ -112,6 +120,7 @@ public class GameEngine {
                     l_flag = true;
                     break;
                 }
+                
                 l_i++;
             }
         
@@ -140,7 +149,7 @@ public class GameEngine {
 
             }
             else{
-                System.out.println("Please proceed with your orders");
+                System.out.println("Please with your orders");
 
             }
 

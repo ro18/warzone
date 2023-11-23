@@ -97,7 +97,7 @@ public class PlayerCommands implements Observer {
      * @return                          returns status of deploying army
      */
     @ShellMethod(key = "deploy", value = "This is used to deploy armies")
-    public String deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
+    public void deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
         if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
             System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
         }
@@ -105,7 +105,7 @@ public class PlayerCommands implements Observer {
         // System.out.println("in deploy");
         d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
         // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
-        return "Deploy order added successfully";
+        // return "Deploy order added successfully";
 
     }
 
