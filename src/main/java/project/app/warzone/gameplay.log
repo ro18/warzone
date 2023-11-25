@@ -2,86 +2,61 @@ Game Commnece
 
 
 1 loadmap europe
-Time: 12:20:31
+Time: 04:18:51
 Status: SUCCESS
 Description: Map loaded successfully europe
 
 2 showmap
-Time: 12:20:31
+Time: 04:18:54
 Status: SUCCESS
 Description: User printed map europe
 
 4 gameplayer -add anash,-add,aish
-Time: 12:20:31
+Time: 04:18:58
 Status: SUCCESS
 Description: Players added successfully
 
-5 gameplayer -add numan
-Time: 12:20:31
-Status: SUCCESS
-Description: Players added successfully
-
-6 gameplayer -remove numan
-Time: 12:20:31
-Status: SUCCESS
-Description: Players removed successfully
-
-7 assigncountries
-Time: 12:20:31
+5 assigncountries
+Time: 04:19:01
 Status: SUCCESS
 Description: Countries assigned successfully
 
-8 showstats
-Time: 12:20:31
+6 showstats
+Time: 04:19:01
 Status: SUCCESS
 Description: Stats shown.
 
-9 deploy 1 3
-Time: 12:20:31
+7 deploy 1 3
+Time: 04:19:05
 Status: SUCCESS
 Description: 
 
-10 Deploy
-Time: 12:20:45
+9 N
+Time: 04:19:10
 Status: SUCCESS
-Description: Executed Deploy Attack
+Description: Player chose not to add ordes and proceed with the game!
+
+10 deploy 8 3
+Time: 04:19:10
+Status: SUCCESS
+Description: 
 
 11 Deploy
-Time: 12:20:45
+Time: 04:27:39
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-12 deploy 8 3
-Time: 12:20:31
+12 Deploy
+Time: 04:27:39
 Status: SUCCESS
-Description: 
+Description: Executed Deploy Attack
 
-13 showstats
-Time: 12:23:52
+13 advance8 1 2
+Time: 04:27:39
+Status: SUCCESS
+Description: Not enough armies to be advance. Available armies in Denmark:3
+
+14 showstats
+Time: 04:27:47
 Status: SUCCESS
 Description: Stats shown.
-
-14 advance8 1 3
-Time: 12:24:18
-Status: SUCCESS
-Description: 
-
-15 deploy 1 3
-Time: 12:24:53
-Status: FAILURE
-Description: User tried to deploy armies more than the remaining reinforcement pool.
-
-16 deploy 1 3
-Time: 12:24:53
-Status: SUCCESS
-Description: 
-
-17 deploy 1 2
-Time: 12:24:58
-Status: FAILURE
-Description: User tried to deploy armies on a country not owned by him.
-
-18 deploy 1 2
-Time: 12:24:58
-Status: SUCCESS
-Description: 

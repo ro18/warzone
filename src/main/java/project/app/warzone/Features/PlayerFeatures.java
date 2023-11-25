@@ -489,7 +489,6 @@ public class PlayerFeatures implements Observer {
         else {
 
             System.out.println("You cannot target your own country");
-
             p_gameEngine.checkPlayersReinforcements();
 
         }

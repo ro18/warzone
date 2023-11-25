@@ -1,7 +1,12 @@
 package project.app.warzone.Model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.jline.reader.LineReader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +16,13 @@ import org.springframework.stereotype.Component;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Utilities.Commands;
+import project.app.warzone.Utilities.LogObject;
+import project.app.warzone.Utilities.UserCommands;
 /**
  * This class represents the main instance of the Warzone game.
  */
 @Component
-public class GameEngine {
+public class GameEngine implements Observer {
 
     private Phase gamePhase; // current state of the GameEngine object
 
@@ -26,6 +33,7 @@ public class GameEngine {
     private LineReader lineReader;
     public List<Player> d_playersList;              //storing player list  
     public Map gameMap;                             //storing gameMap
+    private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
     public int gameRound=1;
     /**
@@ -77,6 +85,10 @@ public class GameEngine {
     
     public String checkPlayersReinforcements(){
 
+
+        LogObject l_logObject = new LogObject();
+        l_logEntryBuffer.addObserver(this);
+
         Boolean l_flag = false;
         int l_i = PlayerCommands.d_CurrentPlayerId+1;
 
@@ -114,20 +126,32 @@ public class GameEngine {
             if(l_players.get(l_i).pendingOrder == true && l_players.get(l_i).getReinforcementArmies() == 0 ){
             
             String value ="";
-
-            while(true){
-                 value = this.lineReader.readLine("Do you want to add more orders? Y or N:\n");
-                 if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y")){
-                    break;
-                 }
-
+            if(UserCommands.checkSize() > 0){
+                value = UserCommands.popCommand();
+            }
+            else{
+                while(true){
+                        value = this.lineReader.readLine("Do you want to add more orders? Y or N:\n");
+                        if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y")){
+                            break;
+                        }            
+                    }
             }
             if(value.equalsIgnoreCase("N")){
+
+                l_logObject.d_command = "N";
+                l_logObject.setStatus(true, "Player chose not to add ordes and proceed with the game!");
+
                 l_players.get(l_i).pendingOrder = false;
                 checkPlayersReinforcements();
+                l_logEntryBuffer.notifyClasses(l_logObject);
 
             }
             else{
+                l_logObject.d_command = "Y";
+                l_logObject.setStatus(true, "Player chose to add ordes!");
+                l_logEntryBuffer.notifyClasses(l_logObject);
+
                 System.out.println("Please proceed with your orders");
                 return "";
 
@@ -235,5 +259,26 @@ public class GameEngine {
         setPhase(d_Preload);
        
     };
+
+    /**
+     * This method is used to update the log file
+     * @param o is the observable object
+     * @param arg is the object to be updated
+     */
+    public void update(Observable o, Object arg) {
+        if(arg instanceof LogObject){
+            LogObject l_logObject = (LogObject) arg;
+            try {
+                BufferedWriter l_writer = new BufferedWriter(new FileWriter(System.getProperty("logFileLocation"), true));
+                l_writer.newLine();
+                l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: " + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);
+                // System.out.println( "Inside update method of MapEditorCommands");
+                l_writer.newLine();
+                l_writer.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file");
+            }
+        }
+    }
 
 }

@@ -72,9 +72,9 @@ public class Attack extends MainPlay {
 	 */
 	public void advance(int p_CurrentPlayerId,int p_countryfrom,int p_countryTo, int p_armies) {
 		LogObject l_logObject = new LogObject();
-		l_logObject.setD_command("advance" + p_countryfrom + " " + p_countryTo +" "+p_armies);
+		l_logObject.setD_command("advance " + p_countryfrom + " " + p_countryTo +" "+p_armies);
 		String l_reString = d_playerFeatures.advanceArmies(ge, p_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
-		l_logObject.setStatus(true, l_reString);
+		l_logObject.setStatus(l_reString == "", l_reString);
 	   	l_logEntryBuffer.notifyClasses(l_logObject);
 
 

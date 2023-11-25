@@ -22,6 +22,7 @@ import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Reinforcement;
 import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.LogObject;
+import project.app.warzone.Utilities.UserCommands;
 
 /**
  * This class stores all the player-related commands allowed in gameplay
@@ -289,14 +290,34 @@ public class PlayerCommands implements Observer {
         MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
         try{
             BufferedReader l_reader = new BufferedReader(new FileReader(l_logFileLocationNew));
+            BufferedReader l_BufferedReader = new BufferedReader(new FileReader(l_logFileLocationNew));
             String l_line = l_reader.readLine();
+            String l_command = l_BufferedReader.readLine();
             //check if the file is empty
             if(l_line == null){
                 l_reader.close();
+                l_BufferedReader.close();
                 throw new IOException("File is empty");
             }
-            while(l_line != null){
+            while (l_line!= null) {
                 String[] l_split = l_line.split(" ");
+                switch(l_split[0]) {
+                    case "N":
+                        UserCommands.pushCommand("N");
+                        break;
+                    case "Y":
+                        UserCommands.pushCommand("Y");
+                        break;
+                    default:
+                        break;
+                }
+                l_line = l_reader.readLine();
+                
+            }
+            l_reader.close();
+
+            while(l_command != null){
+                String[] l_split = l_command.split(" ");
                 switch (l_split[0]) {
                     case "loadmap":
                         l_mapEditorCommands.loadMap(l_split[1]);
@@ -354,9 +375,9 @@ public class PlayerCommands implements Observer {
                 }
 
 
-                l_line = l_reader.readLine();
+                l_command = l_BufferedReader.readLine();
             }
-            l_reader.close();
+            l_BufferedReader.close();
         } catch (IOException e) {
             System.out.println("File error: " + e);
         }
