@@ -112,7 +112,7 @@ public class PlayerCommands implements Observer {
      * @return returns status of deploying army
      */
     @ShellMethod(key = "advance", value = "This is used to deploy armies")
-    public void advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
+    public String advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
         d_gameEngine.setPhase(new Attack(d_gameEngine));
 
         d_gameEngine.getGamePhase().advance(d_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
@@ -384,6 +384,42 @@ public class PlayerCommands implements Observer {
             System.out.println("File error: " + e);
         }
     }
+
+    @ShellMethod(key = "tournament", prefix = "-", value = "This is used to play tournament")
+    public void tournament(@ShellOption(value = "M", defaultValue = ShellOption.NULL, arity = 5) String p_mapFiles,
+            @ShellOption(value = "P", defaultValue = ShellOption.NULL, arity = 4) String p_playerStrategies,
+            @ShellOption(value = "G", defaultValue = ShellOption.NULL, arity = 1) String p_numberOfGames,
+            @ShellOption(value = "D", defaultValue = ShellOption.NULL, arity = 1) String p_maxNumberOfTurns) {
+            
+                System.out.println("Tournament started");
+                System.out.println("Map Files: " + p_mapFiles);
+                System.out.println("Player Strategies: " + p_playerStrategies);
+                System.out.println("Number of Games: " + p_numberOfGames);
+                System.out.println("Max Number of Turns: " + p_maxNumberOfTurns);
+                System.out.println("Tournament ended");
+
+                MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
+
+                for (int i = 0; i < Integer.parseInt(p_mapFiles); i++) {
+                    for (int j = 0; j < Integer.parseInt(p_numberOfGames); j++) {
+                        // System.out.println("Game " + (j + 1) + " started");
+                        // System.out.println("Map File: " + p_mapFiles.split(",")[i]);
+                        // System.out.println("Player Strategies: " + p_playerStrategies);
+                        // System.out.println("Game " + (j + 1) + " ended");
+
+                        l_mapEditorCommands.loadMap(p_mapFiles.split(",")[i]);
+                        assigncountries();
+                        for(int k = 0; k < (p_playerStrategies.split(",").length); k++){
+                            gamePlayerAdd(p_playerStrategies.split(",")[k], null);
+                        }
+                        for(int k = 0; k < Integer.parseInt(p_maxNumberOfTurns); k++){
+                            //TODO: Add code to play the game
+                            // System.out.println("Turn " + (k + 1) + " started");
+                        }
+                    }
+                }
+            }
+
 
     /**
      * This method is used to update the log file

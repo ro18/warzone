@@ -2371,3 +2371,6 @@
 1700605732538:N
 1700605741340:deploy 8 2
 1700605782380:N
+1701151205225:tournament -M europe asda asda -P anash aish -G 3 -D 2
+1701151254265:tournament -M europe asda asda -P anash aish -G 3 -D 2 cd /Users/anash/Desktop/ConcordiaU\\'25/APP/project/warzone ; /usr/bin/env /opt/homebrew/Cellar/openjdk@17/17.0.9/libexec/openjdk.jdk/Contents/Home/bin/java @/var/folders/dg/vmwrssjd5c1dkmk8yxly5f4r0000gn/T/cp_682zyoeiktkae9pl8snqlcizi.argfile project.app.warzone.WarzoneApplication
+1701151273620:tournament -M europe asda asda -P anash aish -G 3 -D 2
