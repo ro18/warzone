@@ -39,6 +39,18 @@ public class Postload extends Edit implements java.util.Observer {
         printInvalidCommandMessage();
     }
 
+    /** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap(String p_fileName) {
+		printInvalidCommandMessage();
+	}
+
+    public void saveMap() {
+        // Call savemap func after creation of it
+        ge.setPhase(new PlaySetup(ge));
+    }
+
     public void showMap() {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("showmap");
@@ -321,10 +333,8 @@ public class Postload extends Edit implements java.util.Observer {
         System.out.println("You cannot use edit neighbor command now.");
     }
 
-    public void saveMap() {
-        // Call savemap func after creation of it
-        ge.setPhase(new PlaySetup(ge));
-    }
+    
+
 
     public void next() {
         System.out.println("must save map");

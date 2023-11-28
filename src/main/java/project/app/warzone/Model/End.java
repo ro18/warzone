@@ -89,6 +89,13 @@ public class End extends Phase {
 		printInvalidCommandMessage();
 	}
 
+	/** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap(String p_fileName) {
+		printInvalidCommandMessage();
+	}
+
 	
 	/** 
 	 * @param p_editcmd	edit command

@@ -42,6 +42,30 @@ public class Preload extends Edit implements java.util.Observer {
             return true;
         }
     }
+
+    /** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap(String p_fileName) {
+        String p_mapLocation = ge.gameMap.getMapDirectory() + "//" + p_fileName + ".map";
+        Boolean l_result = false;
+        ge.gameMap = d_mapFeatures.readMap(p_mapLocation);
+        l_result = d_mapFeatures.validateEntireGraph(ge);
+        if (!l_result) {
+            System.out.println("This map is not valid.Please try with some other map");
+            l_result = false;
+        } else {
+            System.out.println("Map is validated. You can now proceed to add gameplayers");
+            l_result = true;
+        }
+
+	}
+
+    public void saveMap() {
+        // Call savemap func after creation of it
+        ge.setPhase(new PlaySetup(ge));
+    }  	
+    
     
     
     /** 
@@ -129,9 +153,7 @@ public class Preload extends Edit implements java.util.Observer {
         printInvalidCommandMessage(); 
     }	
 
-	public void saveMap() {
-		printInvalidCommandMessage(); 
-	}
+
 
     
     /** 
