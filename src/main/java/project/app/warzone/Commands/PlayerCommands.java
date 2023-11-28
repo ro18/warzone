@@ -117,6 +117,8 @@ public class PlayerCommands implements Observer {
 
         d_gameEngine.getGamePhase().advance(d_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
         // return d_playerFeatures.advanceArmies(d_CurrentPlayerId,d_gameEngine, p_countryfrom,p_countryTo, p_armies);
+        return "Advance order added successfully";
+
     }
 
     /**
