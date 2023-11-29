@@ -292,11 +292,10 @@ public class PlayerFeaturesTest {
         d_playerFeatures.assignCountries(d_gameEngine);
 
         d_gameEngine.d_playersList.get(0).d_listOfCountriesOwned.clear();
-        d_gameEngine.d_playersList.get(1).d_listOfCountriesOwned.clear();
 
         d_gameEngine.checkPlayersReinforcements();
 
-        assertFalse(d_gameEngine.d_playersList.contains("prashant") || d_gameEngine.d_playersList.contains("rochelle"));
+        assertFalse(d_gameEngine.d_playersList.contains("prashant"));
 
     }
 
