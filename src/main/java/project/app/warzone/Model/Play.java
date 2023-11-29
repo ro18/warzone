@@ -76,6 +76,11 @@ public abstract class Play extends Phase implements Observer {
         System.out.println("STATS COMPLETE");
 	}
 
+	
+	/** 
+	 * @param p_editcmd	edit command
+	 * @param p_editremovecmd	remove command
+	 */
 	public void editCountry(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 		
 	}
@@ -84,6 +89,10 @@ public abstract class Play extends Phase implements Observer {
 		printInvalidCommandMessage(); 
 	}
 
+	
+	/** 
+	 * @param p_fileName	filename
+	 */
 	public void editMap(String p_fileName){
 		printInvalidCommandMessage();
 	}

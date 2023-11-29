@@ -13,14 +13,25 @@ public class Cards {
 
 
 
+    /**
+     * @param cardType  card type
+     */
     public Cards(String cardType) {
         this.cardType = cardType;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getCardType() {
         return cardType;
     }
 
+    
+    /** 
+     * @param cardType card type
+     */
     public void setCardType(String cardType) {
         cardType = cardType.toUpperCase();
 

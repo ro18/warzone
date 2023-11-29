@@ -23,8 +23,11 @@ public class AttackOrder implements Observer {
     logEntryBuffer.addObserver(this);
   }
 
+  
   /**
-   * This method is used to deploy armies on a country
+   * @param p_armies  no of armies
+   * @param p_country   country
+   * @return    returns string
    */
   public String Deploy(int p_armies, Country p_country) {
 
@@ -38,6 +41,14 @@ public class AttackOrder implements Observer {
     return "Deployed armies successfully";
   }
 
+  
+  /** 
+   * @param player1 player 1
+   * @param player2 player 2
+   * @param p_armiesToAdv no of armies to advance
+   * @param source  source country
+   * @param target  target country
+   */
   //Advance
   public void Advance( Player player1 , Player player2, int p_armiesToAdv, Country source, Country target)
   {
@@ -52,7 +63,7 @@ public class AttackOrder implements Observer {
 
       long targetArmiesKilled = Math.round( target.getNumberOfArmies() * 0.7) ;
 
-      long sourceArmiesKilled = Math.round (source.getNumberOfArmies() * 0.6);
+      long sourceArmiesKilled = Math.round (p_armiesToAdv * 0.6);
 
       if(( p_armiesToAdv - targetArmiesKilled ) > target.getNumberOfArmies() - sourceArmiesKilled){
 
@@ -81,9 +92,9 @@ public class AttackOrder implements Observer {
 
                                         Cards l_card ;
 
-                                        int l_randomInt = (int) (Math.random() * 4);
+                                        int l_randomInt = (int) (Math.random() * 3);
 
-                                        switch (l_randomInt) {
+                                        switch (2) {
                                             case 0:
                                                 l_card = new Cards("BOMB");
                                                 break;
@@ -121,7 +132,7 @@ public class AttackOrder implements Observer {
           {
               source.setNumberOfArmies(0);
           }
-  }
+    }
 
     }
     else{
@@ -129,14 +140,23 @@ public class AttackOrder implements Observer {
     }
 
 
+    
+ 
+
+
     l_logObject.setStatus(true, "Executed Advance Attack");
     logEntryBuffer.notifyClasses(l_logObject);
+
     
 
   }
 
 
-  // Airlift
+  /**
+   * @param p_countryFrom source country
+   * @param p_countryTo   target country
+   * @param p_airliftArmies army to airlift
+   */
   public void Airlift(Country p_countryFrom, Country p_countryTo, int p_airliftArmies) {
     LogObject l_logObject = new LogObject();
     l_logObject.setD_command("airlift");
@@ -147,6 +167,11 @@ public class AttackOrder implements Observer {
     logEntryBuffer.notifyClasses(l_logObject);
   }
 
+  
+  /** 
+   * @param player  current player
+   * @param target  target player
+   */
   // Blockade
   public void Blockade(Player player, Country target) {
     LogObject l_logObject = new LogObject();
@@ -160,7 +185,10 @@ public class AttackOrder implements Observer {
 
   }
 
-  //Bomb
+  
+  /** 
+   * @param target  target player
+   */
   public void Bomb(Country target)
   {
     LogObject l_logObject = new LogObject();
@@ -174,6 +202,11 @@ public class AttackOrder implements Observer {
   }
 
 
+  
+  /** 
+   * @param p_playerToNegotiate player to negotiate
+   * @param currentPlayer current player
+   */
   //Negotiate
   public void Negotiate(Player p_playerToNegotiate,Player currentPlayer)
   {

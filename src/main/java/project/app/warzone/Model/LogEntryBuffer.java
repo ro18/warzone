@@ -8,10 +8,11 @@ import project.app.warzone.Utilities.LogObject;
  */
 public class LogEntryBuffer extends Observable{
     
-    /**
-     * This method is used to add set the object changed to true so hasTrue() returns false. Also it nnotifies all the observer of the change
-     */
+    
 
+    /**
+     * @param p_obj Log object
+     */
     public void notifyClasses(LogObject p_obj) {
         setChanged();
         try {

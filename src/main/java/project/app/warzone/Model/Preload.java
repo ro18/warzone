@@ -25,6 +25,10 @@ public class Preload extends Edit implements java.util.Observer {
         l_logEntryBuffer.addObserver(this);
 	} 
 
+    
+    /** 
+     * @return boolean
+     */
     private boolean validateMap() {
         String p_mapLocation = ge.gameMap.getMapDirectory() + "//" + ge.gameMap.get_USER_SELECTED_FILE() + ".map";
         Boolean l_result = false;
@@ -39,6 +43,10 @@ public class Preload extends Edit implements java.util.Observer {
         }
     }
     
+    
+    /** 
+     * @param p_filename
+     */
     public void loadMap(String p_filename) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("loadmap " + p_filename);
@@ -57,6 +65,10 @@ public class Preload extends Edit implements java.util.Observer {
         }
     }
 
+    
+    /** 
+     * @param p_fileName
+     */
     public void editMap(String p_fileName){
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("editmap " + p_fileName);
@@ -99,10 +111,20 @@ public class Preload extends Edit implements java.util.Observer {
         }
         next();
 	}
+    
+    /** 
+     * @param p_editcmd
+     * @param p_editremovecmd
+     */
     public void editNeighbor(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 
 	}
 
+    
+    /** 
+     * @param p_editcmd
+     * @param p_editremovecmd
+     */
     public void editCountry(String p_editcmd,String p_editremovecmd) {
         printInvalidCommandMessage(); 
     }	
@@ -111,6 +133,11 @@ public class Preload extends Edit implements java.util.Observer {
 		printInvalidCommandMessage(); 
 	}
 
+    
+    /** 
+     * @param p_editcmd
+     * @param p_editremovecmd
+     */
     public void editContinent(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 
 	}
@@ -121,6 +148,11 @@ public class Preload extends Edit implements java.util.Observer {
     public void showmapstatus() {
         printInvalidCommandMessage(); 
     }
+    
+    /** 
+     * @param p_countryID
+     * @param p_armies
+     */
     public void reinforce(int p_countryID, int p_armies) {
 		printInvalidCommandMessage(); 
 	}
@@ -129,6 +161,11 @@ public class Preload extends Edit implements java.util.Observer {
         ge.setPhase(new Postload(ge));
 	}
 
+    
+    /** 
+     * @param p_obj
+     * @param p_arg
+     */
     public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
         if (p_arg instanceof LogObject) {

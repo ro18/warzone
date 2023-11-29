@@ -29,6 +29,17 @@ public abstract class Phase implements Observer {
 		l_logEntryBuffer.addObserver(this);
 	}
 
+	
+	/** 
+	 * @param p_editcmd	edit command
+	 * @param p_attribute attribute
+	 * @param p_countryID	country ID
+	 * @param p_CurrentPlayerId	current player
+	 * @param p_countryfrom	source country
+	 * @param p_countryTo	target country
+	 * @param p_countryIDFrom	source country ID
+	 * @param p_countryIDTo	target country ID
+	 */
 	// common commands
 	abstract public void loadMap(String p_filename);
 	abstract public void showMap(MapFeatures newmapFeatures);
@@ -89,6 +100,11 @@ public abstract class Phase implements Observer {
 		System.out.println("Invalid command in state " + this.getClass().getSimpleName() );
 	}
 
+	
+	/** 
+	 * @param p_obj	object
+	 * @param p_arg	argument
+	 */
 	public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
         if (p_arg instanceof LogObject) {

@@ -20,6 +20,7 @@ import project.app.warzone.Model.Node;
 //import project.app.warzone.Model.Order;
 import project.app.warzone.Model.OrderMethods;
 import project.app.warzone.Model.Player;
+import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.Cards;
 import project.app.warzone.Model.ConcreteDeploy;
 import project.app.warzone.Model.Country;
@@ -74,6 +75,9 @@ public class PlayerFeatures implements Observer {
         }
     }
 
+    /**
+     * @param p_gameEngine  gameengine
+     */
     public void assignCountriesForDemo(GameEngine p_gameEngine) {
 
         List<Integer> countryIds = new ArrayList<>() {
@@ -171,6 +175,12 @@ public class PlayerFeatures implements Observer {
             for (Country t : l_p.getListOfTerritories()) {
                 System.out.println(t.getCountryId() + " - " + t.getCountryName() + " - " + t.getNumberOfArmies());
             }
+            System.out.println("Available Cards:");
+            int l_i=1;
+            for( Cards c : l_p.d_cardsInCollection){
+                System.out.println(l_i+". "+c.getCardType());
+                l_i++;
+            }
             System.out.println("-------------------------------");
         }
 
@@ -230,6 +240,8 @@ public class PlayerFeatures implements Observer {
             int p_armiesToAdv) {
         // List<Player> l_players = p_gameEngine.getPlayers();
 
+
+
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
         Country l_countryFrom = p_gameEngine.gameMap.getNodes().get(p_countryIDFrom - 1).getData();
 
@@ -239,6 +251,9 @@ public class PlayerFeatures implements Observer {
                 .filter(c -> c.getCountryName().equals(l_countryFrom.getCountryName())).findFirst();
 
         if (!countryInPlayer.isPresent()) {
+            System.out.println("Country is not owned by the player");
+            p_gameEngine.checkPlayersReinforcements();
+
             return "Country is not owned by the player";
         }
 
@@ -274,16 +289,20 @@ public class PlayerFeatures implements Observer {
         }
 
         if (found == false) {
-            return "Target Country " + l_countryFrom.getCountryName() + " is not connected with "
-                    + l_countryTo.getCountryName();
+            System.out.println("Target Country" + l_countryFrom.getCountryName() +" is not connected with" + l_countryTo.getCountryName());
+            p_gameEngine.checkPlayersReinforcements();
+
+            return "Target Country " + l_countryFrom.getCountryName() + " is not connected with " + l_countryTo.getCountryName();
         }
 
         /**
          * Check if the player has enough armies in the reinforcement pool to deploy
          */
         if (l_countryFrom.getNumberOfArmies() < p_armiesToAdv) {
-            return "Not enough armies to be advance. Available armies in " + l_countryFrom.getCountryName() + ":"
-                    + l_countryFrom.getNumberOfArmies();
+            System.out.println("Not enough armies to be advance. Available armies in " + l_countryFrom.getCountryName() + ":"+ l_countryFrom.getNumberOfArmies());
+            p_gameEngine.checkPlayersReinforcements();
+
+            return "Not enough armies to be advance. Available armies in " + l_countryFrom.getCountryName() + ":"+ l_countryFrom.getNumberOfArmies();
 
         }
 
@@ -303,6 +322,12 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    /**
+     * @param p_gameEngine  gameengine
+     * @param p_countryID   country ID
+     * @param p_armies      number of armies
+     * @return      returns string
+     */
     public String deployArmies(GameEngine p_gameEngine, int p_countryID, int p_armies) {
         // List<Player> l_players = p_gameEngine.getPlayers();
         LogObject l_logObject = new LogObject();
@@ -319,9 +344,12 @@ public class PlayerFeatures implements Observer {
         if (l_player.getReinforcementArmies() < p_armies) {
             l_logObject.setStatus(false, "User tried to deploy armies more than the remaining reinforcement pool.");
             l_logEntryBuffer.notifyClasses(l_logObject);
-            System.out.println(
-                    "Not enough armies to be deployed. Available armies: " + l_player.getReinforcementArmies());
+            System.out.println("Not enough armies to be deployed. Available armies: " + l_player.getReinforcementArmies());
+            p_gameEngine.checkPlayersReinforcements();
+
+            return "";
         }
+        
 
         /**
          * Check if the country is owned by the player
@@ -334,6 +362,11 @@ public class PlayerFeatures implements Observer {
             l_logObject.setStatus(false, "User tried to deploy armies on a country not owned by him.");
             l_logEntryBuffer.notifyClasses(l_logObject);
             System.out.println("Country is not owned by the player");
+
+            p_gameEngine.checkPlayersReinforcements();
+
+            return "";
+
         }
 
         java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
@@ -360,19 +393,13 @@ public class PlayerFeatures implements Observer {
 
     }
 
-    /** 
-     * This method is used to advance armies on a country
-     * 
-     * @param currentPlayerId player initiating this command
-     * 
-     * @param p_gameEngine    Instance of the game engine
-     * @param p_countryIDFrom ID of the source country
-     * @param p_countryIDTo   ID of the target country
-     * 
-     * @param p_armiesToAdv   Number of armies to advance
-     * @return A string containing status of the game.
-     */
+   
 
+    /**
+     * @param p_gameEngine  gameengine
+     * @param p_countryID   country ID
+     * @return     returns string
+     */
     public String blockadeCountry(GameEngine p_gameEngine, int p_countryID) {
 
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
@@ -383,6 +410,7 @@ public class PlayerFeatures implements Observer {
                 .filter(c -> c.getCountryName().equals(l_country.getCountryName())).findFirst();
 
         if (!countryInPlayer.isPresent()) {
+            p_gameEngine.checkPlayersReinforcements();
 
             return "You do not own the country" + l_country.getCountryName() + "to blockade it";
 
@@ -402,6 +430,11 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    /**
+     * @param p_gameEngine  gameengine
+     * @param p_countryID   country ID
+     * @return  returns
+     */
     public String bombCountry(GameEngine p_gameEngine, int p_countryID) {
         // List<Player> l_players = p_gameEngine.getPlayers();
 
@@ -445,13 +478,20 @@ public class PlayerFeatures implements Observer {
             }
 
             if (found == false) {
-                return "Target Country " + l_country.getCountryName() + " is not a neighbouring country";
+                System.out.println("Target Country " + l_country.getCountryName() + " is not a neighbouring country");
+
+                p_gameEngine.checkPlayersReinforcements();
+
             }
 
         }
 
         else {
-            return "You cannot target your own country";
+
+            System.out.println("You cannot target your own country");
+
+            p_gameEngine.checkPlayersReinforcements();
+
         }
 
         java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
@@ -467,6 +507,13 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    /**
+     * @param p_gameEngine      gameengine
+     * @param p_countryIDFrom   country from
+     * @param p_countryIDTo     country to
+     * @param p_armiesToAirlift    armies to airlift
+     * @return  returns string
+     */
     public String airlift(GameEngine p_gameEngine, int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
 
         Player l_player = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
@@ -481,19 +528,33 @@ public class PlayerFeatures implements Observer {
                 .filter(c -> c.getCountryName().equals(l_countryTo.getCountryName())).findFirst();
 
         if (!countryInPlayerFrom.isPresent()) {
-            return "FromCountry is not owned by the player";
+
+            System.out.println("FromCountry is not owned by the player");
+
+            p_gameEngine.checkPlayersReinforcements();
+
         }
 
         if (!countryInPlayerTo.isPresent()) {
-            return "ToCountry is not owned by the player";
+
+
+            System.out.println("ToCountry is not owned by the player");
+
+            p_gameEngine.checkPlayersReinforcements();
+
         }
 
         /**
          * Check if the player has enough armies in the reinforcement pool to deploy
          */
         if (l_countryFrom.getNumberOfArmies() < p_armiesToAirlift) {
-            return "Not enough armies to be advance. Available armies in " + l_countryFrom.getCountryName() + ":"
-                    + l_countryFrom.getNumberOfArmies();
+
+
+            System.out.println("Not enough armies to be advance. Available armies in " + l_countryFrom.getCountryName() + ":"
+                    + l_countryFrom.getNumberOfArmies());
+
+            p_gameEngine.checkPlayersReinforcements();
+
 
         }
 
@@ -513,10 +574,15 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    /**
+     * @param p_gameEngine  gameengine
+     * @param p_targetPlayerId  target player ID
+     * @return      returns string
+     */
     public String negotiate(GameEngine p_gameEngine, int p_targetPlayerId) {
 
         Player l_player_1 = p_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-        Player l_player_2 = p_gameEngine.getPlayers().get(p_targetPlayerId);
+        Player l_player_2 = p_gameEngine.getPlayers().get(p_targetPlayerId-1);
 
         if(l_player_1 != l_player_2){
 
@@ -525,7 +591,7 @@ public class PlayerFeatures implements Observer {
 
             java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();
 
-            l_orderDetails.put("PlayerToBlock", p_targetPlayerId);
+            l_orderDetails.put("PlayerToBlock", p_targetPlayerId-1);
 
             l_orderDetails.put("CurrentPlayer", PlayerCommands.d_CurrentPlayerId);
 
@@ -542,7 +608,12 @@ public class PlayerFeatures implements Observer {
 
         else{
 
-            return "Negotiate unsuccessful : both players cannot be the same";
+            System.out.println("Negotiate unsuccessful : both players cannot be the same");
+
+            p_gameEngine.checkPlayersReinforcements();
+
+            return "";
+
 
         }
     }
@@ -555,6 +626,7 @@ public class PlayerFeatures implements Observer {
      * This method is used to update the log
      * 
      * @param p_obj to be updated
+     * @param p_arg to be updated
      */
     public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
