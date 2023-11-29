@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Features.PlayerFeatures;
+import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Model.Cards;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.Map;
@@ -41,10 +42,10 @@ public class CardTest {
 
     @Test
     public void bombSelf(){
-        
+        MapFeatures mapFeatures= MapFeatures.getInstance();
         d_gameEngine.getGamePhase().loadMap("europe");
         String l_res ="1";
-        d_gameEngine.getGamePhase().showMap();
+        d_gameEngine.getGamePhase().showMap(mapFeatures);
         d_gameEngine.getGamePhase().setPlayers("add","rochelle");
         d_gameEngine.getGamePhase().setPlayers("add","numan");
         d_gameEngine.getGamePhase().assignCountries();
@@ -80,9 +81,10 @@ public class CardTest {
 
         //Map l_map = new Map();
         //GameEngine l_gameEngine = new GameEngine(l_map);
+        MapFeatures mapFeatures= MapFeatures.getInstance();
         d_gameEngine.getGamePhase().loadMap("europe");
         String l_res ="1";
-        d_gameEngine.getGamePhase().showMap();
+        d_gameEngine.getGamePhase().showMap(mapFeatures);
         d_gameEngine.getGamePhase().setPlayers("add","rochelle");
         d_gameEngine.getGamePhase().setPlayers("add","numan");
         d_gameEngine.getGamePhase().setPlayers("add","anash");

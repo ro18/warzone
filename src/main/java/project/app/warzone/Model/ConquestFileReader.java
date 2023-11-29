@@ -17,6 +17,7 @@ public class ConquestFileReader {
     public ConquestFileReader(){
        
     }
+   
     public Map readMap(String filename){
         System.out.println("Inside ConquestFileReader: readMap()");
         // LogObject l_logObject = new LogObject();
@@ -33,42 +34,59 @@ public class ConquestFileReader {
             while ( l_line !=null ) { 
                 
                 l_line=reader.readLine();
-                if(l_line.equals("[continents]")){
+                if(l_line.equals("[Map]")){
+                    do{
                     l_line=reader.readLine();
 
-                    while(!l_line.equals("")){
+                    }while(!l_line.equals(""));
+                  
+                    if(l_line.equals("[Continents]")){
+                    l_line=reader.readLine();
 
-                        String[] continentDetails = l_line.split(" ");            
-                        gameMap.createContinent(continentDetails[0], Integer.parseInt((continentDetails[1])));
-                        l_line= reader.readLine();
+                    do{
+                    String[] continentDetails =l_line.split("=");
+                    gameMap.createContinent(continentDetails[0], Integer.parseInt((continentDetails[1])));
+                    l_line=reader.readLine();
 
-                    }
-                        
+                    }while(!l_line.equals(""));
+                    }     
                     continentsList= gameMap.getListOfContinents();
 
-                    
+                     l_line=reader.readLine();
                 }
-
-                if(l_line.equals("[countries]")){
+              
+                if(l_line.equals("[Territories]")){
 
                     l_line=reader.readLine();
+                    int i=0;
+                   // int k=1;
+                      String[][] listOfCountries={}; 
+                    while(!l_line.equals(" ") ){
 
-                    while(!l_line.equals("") ){
-
-                        String[] countryDetails = l_line.split(" ");
-                        gameMap.createAndInsertCountry(Integer.parseInt(countryDetails[0]),countryDetails[1],continentsList.get(Integer.parseInt(countryDetails[2])-1) );
+                          
+                        String[] countryDetails = l_line.split(",");
+                        for(int j=0; j<countryDetails.length; j++){
+                        listOfCountries[i][j]=countryDetails[j];
+                        }
+                          
+                        gameMap.createAndInsertCountry(i++,countryDetails[0],continentsList.get(Integer.parseInt(countryDetails[3])-1) );
+                      
                         l_line= reader.readLine();
-
-
                     }
+                    nodesList = gameMap.getNodes();      
+                    for(int k=0; k<listOfCountries.length; k++){
+
+                    List<Node> bordersToConnect = new ArrayList<>();
+                    Node currentTerritory = nodesList.get(k); //setting an id for borders
+                    // for(int j=0; j< ;j++)
+                    // {
+
+                    // }
+                    }
+
                     
-                    nodesList = gameMap.getNodes();
-                
-                    
-                
                 }
                
-
                 if(l_line.equals("[borders]")){
 
                     l_line=reader.readLine();
