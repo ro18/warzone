@@ -121,5 +121,9 @@ public class Attack extends MainPlay {
 	}
 
 
-	
+	public void setPlayerStrategy(){
+		printInvalidCommandMessage();
+	}
+
+
 }

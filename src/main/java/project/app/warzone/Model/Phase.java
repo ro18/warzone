@@ -65,6 +65,7 @@ public abstract class Phase implements Observer {
 	// game setup commands
 	abstract public void setPlayers(String p_attribute, String p_playerName);
 
+	abstract public void setPlayerStrategy();
 	abstract public void assignCountries();
 
 	abstract public void assignCountriesForDemo();

@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.jline.reader.LineReader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
@@ -25,6 +28,11 @@ import project.app.warzone.Utilities.LogObject;
  */
 @ShellComponent
 public class PlayerCommands implements Observer {
+
+
+    @Autowired
+    @Lazy
+    private LineReader lineReader;
 
     public GameEngine d_gameEngine;
     public PlayerFeatures d_playerFeatures;
@@ -46,20 +54,43 @@ public class PlayerCommands implements Observer {
     /**
      * command for add player
      * 
-     * @param p_playerNameOne storing player 1 name
-     * @param p_playerNameTwo storing player 2 name
+     * @param p_playerToAdd storing player to add
+     * @param p_playerToRemove player to remove
      * @return returns status of adding player
      */
     @ShellMethod(key = "gameplayer", prefix = "-", value = "Player can create or remove a player")
     public String gamePlayerAdd(
-            @ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 10) String p_playerNameOne,
-            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_playerNameTwo) {
+            @ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 10) String p_playerToAdd,
+            @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_playerToRemove) {
 
         LogObject l_logObject = new LogObject();
         l_logEntryBuffer.addObserver(this);
-        boolean isAdd = (p_playerNameOne != null && p_playerNameOne != "");
-        l_logObject.d_command = "gameplayer -" +  (isAdd ? "add " + p_playerNameOne : "remove " + p_playerNameTwo);
-        d_gameEngine.getGamePhase().setPlayers(p_playerNameOne, p_playerNameTwo);
+        boolean isAdd = (p_playerToAdd != null && p_playerToAdd != "");
+        l_logObject.d_command = "gameplayer -" +  (isAdd ? "add " + p_playerToAdd : "remove " + p_playerToRemove);
+        d_gameEngine.getGamePhase().setPlayers(p_playerToAdd, p_playerToRemove);
+
+        if(d_gameEngine.d_playersList.size() >= 2){
+            String value = "";
+            while(true){
+                value = this.lineReader.readLine("Do you want to add more players?:\n");
+
+                if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y"))
+                    break;
+
+            }
+        
+            if(value.equalsIgnoreCase("Y")){
+
+                System.out.println("Please proceed to add more players");
+
+            }
+            else{
+                System.out.println("Please choose strategy for players:");
+                d_gameEngine.getGamePhase().setPlayerStrategy();
+            }
+        }
+
+        
         return null;
 
     }
@@ -73,6 +104,8 @@ public class PlayerCommands implements Observer {
         d_gameEngine.getGamePhase().assignCountriesForDemo(); // Added to demonstrate different attacks during presentation
 
         showStats();
+
+        d_gameEngine.checkPlayersReinforcements();
     }
 
     /**
@@ -106,6 +139,7 @@ public class PlayerCommands implements Observer {
         d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
         // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
         // return "Deploy order added successfully";
+    
 
     }
 
