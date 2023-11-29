@@ -6,7 +6,6 @@ import java.util.List;
 import org.jline.reader.LineReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.shell.component.StringInput;
 import org.springframework.stereotype.Component;
 
 import project.app.warzone.Commands.PlayerCommands;
@@ -75,6 +74,29 @@ public class GameEngine {
         return gameMap;
     }
 
+    // public void checkPlayers(){
+
+    //     if(PlayerCommands.d_CurrentPlayerId)
+    // }
+
+    public boolean checkPlayerStrategy(){
+
+        List<Player> l_players = getPlayers();
+        
+        for(Player p : l_players){
+            if(p.getStrategy().getClass().getSimpleName() == "HumanStrategy"){
+                return true;
+                
+            }
+            else{
+                
+            }
+        }
+
+
+        return false;
+
+    }
     
     public String checkPlayersReinforcements(){
 
@@ -84,7 +106,7 @@ public class GameEngine {
 
 
         Boolean l_flag = false;
-        int l_i = PlayerCommands.d_CurrentPlayerId+1;
+        int l_i = PlayerCommands.d_CurrentPlayerId;
 
         List<Player> l_players = getPlayers();
         List<Player> l_playersToRemove = new ArrayList<>();
@@ -128,6 +150,8 @@ public class GameEngine {
         if (l_flag) {
             PlayerCommands.d_CurrentPlayerId = l_i;
             System.out.println("Turn of " + l_players.get(l_i).getL_playername());
+
+            boolean humanPlayer = checkPlayerStrategy();
 
 
             if(l_players.get(l_i).pendingOrder == true && l_players.get(l_i).getReinforcementArmies() == 0 ){

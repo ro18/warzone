@@ -5,10 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
+import org.jline.reader.LineReader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+
 /**
  * This class represents a player in the Warzone game.
  */
 public class Player {
+
+
+	
 
 	public int d_playerid; // Player id of the player to decide the round robin order to deploy
 	public String d_playername; // Name of the player assigned by the user
@@ -20,6 +27,10 @@ public class Player {
 
 	public List<Cards> d_cardsInCollection; // List of cards owned by the player
 	public List<Player> d_friendlyAlliesList; // List of cards owned by the player
+
+	public PlayerStrategy d_playerStrategy; 
+
+
 
 
 	
@@ -39,6 +50,16 @@ public class Player {
 		d_cardsInCollection = new ArrayList<>();
 		d_friendlyAlliesList.add(this);
 
+	}
+
+
+	public void setStrategy(PlayerStrategy p_strat) {
+		d_playerStrategy = p_strat; 
+	} 
+
+
+	public PlayerStrategy getStrategy(){
+		return d_playerStrategy;
 	}
 
 	/**
@@ -199,6 +220,14 @@ public class Player {
 
 	}
 
+
+	public void issue_order(PlayerStrategy playerStrategy){
+
+		List<OrderInterface> newOrder  = playerStrategy.createOrder();
+
+		d_listOfOrders.addAll(newOrder);
+
+	}
 	
 
 	
@@ -216,6 +245,8 @@ public class Player {
 
 				
 				Country l_country = p_gameEngine.gameMap.getNodes().get(order_details.get("CountryId")-1).getData();
+
+
 
 				d_listOfOrders.add(new ConcreteDeploy(order_details.get("Armies"),l_country));
 
