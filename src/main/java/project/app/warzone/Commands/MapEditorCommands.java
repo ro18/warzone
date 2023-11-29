@@ -72,7 +72,7 @@ public class MapEditorCommands {
     BufferedReader reader = new BufferedReader(new FileReader(p_mapLocation));
     MapFeatures mapFeatures= MapFeatures.getInstance();
     l_line=reader.readLine();
-                if(l_line.equals("conquest")){
+                if(l_line.equals("[Map]")){
                    mapFeatures = new MapFeatureAdapter(new ConquestFileReader());
                     // newmMapFeatures.readMap(p_mapLocation);
                 }  
