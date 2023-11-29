@@ -13,7 +13,7 @@ import project.app.warzone.Utilities.LogObject;
 public class Reinforcement extends MainPlay implements Observer {
 
 	private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
-	Reinforcement(GameEngine p_ge) {
+	public Reinforcement(GameEngine p_ge) {
 		super(p_ge);
 		l_logEntryBuffer.addObserver(this);
 	}

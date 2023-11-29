@@ -75,4 +75,8 @@ public abstract class MainPlay extends Play {
 	public void negotiate(int p_targetPlayerId) {
 		printInvalidCommandMessage();
 	}
+
+	public void setPlayerStrategy(){
+		printInvalidCommandMessage();
+	}
 }

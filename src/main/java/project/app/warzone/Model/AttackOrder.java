@@ -59,7 +59,7 @@ public class AttackOrder implements Observer {
 
     List<Player> getAllies = player1.getD_friendlyAlliesList();
 
-    if(!getAllies.contains(player2)){
+    if(!getAllies.contains(player2) ){
 
       long targetArmiesKilled = Math.round( target.getNumberOfArmies() * 0.7) ;
 
@@ -77,6 +77,8 @@ public class AttackOrder implements Observer {
 
       source.setNumberOfArmies(source.getNumberOfArmies() -  p_armiesToAdv);
 
+      System.out.println("Player:"+player1.getL_playername()+" has won the attack");
+
 
       //Remove the territory from defenders list
       if(player2 != null){
@@ -90,6 +92,7 @@ public class AttackOrder implements Observer {
 
       //adding card to players list
 
+      if(player1.getStrategy().getClass().getSimpleName().equalsIgnoreCase("HumanStrategy")){
                                         Cards l_card ;
 
                                         int l_randomInt = (int) (Math.random() * 3);
@@ -115,7 +118,7 @@ public class AttackOrder implements Observer {
                                         player1.d_cardsInCollection.add(l_card);
 
       // add bonus armies on conquering territory
-
+      }
       player1.addReinforcementArmies(2);
 
     }
@@ -136,7 +139,7 @@ public class AttackOrder implements Observer {
 
     }
     else{
-      System.out.println(" Attack stopped as"+player1.getL_playername()+"used negotiation card on"+player2.getL_playername());
+      System.out.println(" Attack stopped as "+player1.getL_playername()+" used negotiation card on"+player2.getL_playername());
     }
 
 

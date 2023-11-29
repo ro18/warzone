@@ -4,12 +4,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observer;
 
+import org.jline.reader.LineReader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.LogObject;
 
 public class PlaySetup extends Play implements Observer{
+
+	
 	public PlayerFeatures d_playerFeatures;
 	private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
@@ -38,10 +44,11 @@ public class PlaySetup extends Play implements Observer{
 		if (p_attribute != null && p_attribute != "") {
 			String l_players[] = p_attribute.split(",");
 			int l_i = 0;
+			
 			while (l_i < l_players.length) {
 
 				if (l_players[l_i].toString().equals("-add") == false) {
-
+					
 					d_playerFeatures.addPlayers(l_players[l_i], ge);
 
 				}
@@ -115,6 +122,17 @@ public class PlaySetup extends Play implements Observer{
 			System.out.println("Players can now start with deploying armies");
 		}
         
+	}
+
+	public void setPlayerStrategy(){
+		LogObject l_logObject = new LogObject();
+		
+		l_logObject.setStatus(false, "Setting Strategy for players");
+
+		d_playerFeatures.setPlayerStrategy(ge);
+
+
+
 	}
 
 	
