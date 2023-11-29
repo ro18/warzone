@@ -243,7 +243,7 @@ public class PlayerFeatures implements Observer {
     public void showStats(GameEngine p_gameengine) {
         List<Player> l_listOfPlayers = p_gameengine.getPlayers();
         for (Player l_p : l_listOfPlayers) {
-            System.out.println("Player Name:" + l_p.d_playername + "\nPlayerId:" + l_p.d_playerid);
+            System.out.println("Player Name:" + l_p.d_playername + "\nPlayerId:" + l_p.d_playerid +"\nPlayer Strategy:" + l_p.getStrategy().getClass().getSimpleName());
             System.out.println("Total Armies available per round: " + l_p.getReinforcementArmies());
             System.out.println("CountryID - Countries Owned - Armies");
             List<Country> coun = l_p.getListOfTerritories();
