@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import org.jline.utils.Log;
 
+import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Utilities.LogObject;
 
 // This class is Phase.java state design pattern class with GameEngine.java as the context class.  
@@ -30,7 +31,7 @@ public abstract class Phase implements Observer {
 
 	// common commands
 	abstract public void loadMap(String p_filename);
-	abstract public void showMap();
+	abstract public void showMap(MapFeatures newmapFeatures);
 
 	// Edit map commands
 	abstract public void editCountry(String p_editcmd,String p_editremovecmd);

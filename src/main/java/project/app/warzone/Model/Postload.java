@@ -31,13 +31,13 @@ public class Postload extends Edit implements java.util.Observer {
         printInvalidCommandMessage();
     }
 
-    public void showMap() {
+    public void showMap(MapFeatures newmapFeatures) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("showmap");
 
         String p_mapLocation = ge.gameMap.getMapDirectory() + "//" + ge.gameMap.get_USER_SELECTED_FILE() + ".map";
         Boolean l_result = false;
-        ge.gameMap = d_mapFeatures.readMap(p_mapLocation);
+        ge.gameMap = newmapFeatures.readMap(p_mapLocation);
         l_result = d_mapFeatures.validateEntireGraph(ge);
         if (!l_result) {
             l_logObject.setStatus(false, "Map is not shown but map is not valid!");

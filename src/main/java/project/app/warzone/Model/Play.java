@@ -31,7 +31,7 @@ public abstract class Play extends Phase implements Observer {
 		l_logEntryBuffer.addObserver(this);
 	}
 	
-	public void showMap() {
+	public void showMap(MapFeatures newmapFeatures) {
 		LogObject l_logObject = new LogObject();
 		l_logObject.setD_command("showmap");
 		

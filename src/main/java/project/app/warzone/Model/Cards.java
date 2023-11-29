@@ -24,11 +24,14 @@ public class Cards {
     public void setCardType(String cardType) {
         cardType = cardType.toUpperCase();
 
-        if (cardType.equals("BOMB") || cardType.equals("REINFORCEMENT") || cardType.equals("BLOCKADE") || cardType.equals("AIRLIFT") || cardType.equals("NEGOTIATE")) {
+        if (isValidCardType(cardType)) {
             this.cardType = cardType;
         } else {
             System.out.println("Invalid card type");
         }
+    }
+    public boolean isValidCardType(String cardType) {
+        return List.of("BOMB", "REINFORCEMENT", "BLOCKADE", "AIRLIFT", "NEGOTIATE").contains(cardType);
     }
 
 }

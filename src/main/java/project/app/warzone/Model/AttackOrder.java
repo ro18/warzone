@@ -197,9 +197,8 @@ public class AttackOrder implements Observer {
   public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
         if (p_arg instanceof LogObject) {
-            try {
-                BufferedWriter l_writer = new BufferedWriter(
-                        new FileWriter(System.getProperty("logFileLocation"), true));
+            try (BufferedWriter l_writer = new BufferedWriter(
+                        new FileWriter(System.getProperty("logFileLocation"), true))){
                 l_writer.newLine();
                 l_writer.append(LogObject.d_logLevel + " " + l_logObject.d_command + "\n" + "Time: " + l_logObject.d_timestamp + "\n" + "Status: "
                         + l_logObject.d_statusCode + "\n" + "Description: " + l_logObject.d_message);

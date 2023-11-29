@@ -1,4 +1,7 @@
 package project.app.warzone.Commands;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 
 import org.springframework.shell.standard.ShellComponent;
@@ -7,7 +10,10 @@ import org.springframework.shell.standard.ShellOption;
 
 import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Features.PlayerFeatures;
+import project.app.warzone.Model.ConquestFileReader;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.Map;
+import project.app.warzone.Model.MapFeatureAdapter;
 import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.MapResources;
 
@@ -54,18 +60,51 @@ public class MapEditorCommands {
      * Display the game map
      * 
      * @return String returns message about the map validation
+     * @throws IOException
      */
     @ShellMethod(key = "showmap", value = "Used to display map continents with terriotories and boundaries")
     public void showmap() {
-        d_gameEngine.getGamePhase().showMap();
+        String p_mapLocation = d_gameEngine.gameMap.getMapDirectory() + "/"
+              + d_gameEngine.gameMap.get_USER_SELECTED_FILE() + ".map";
+        String l_line="";
+             
+        try{
+    BufferedReader reader = new BufferedReader(new FileReader(p_mapLocation));
+    MapFeatures mapFeatures= MapFeatures.getInstance();
+    l_line=reader.readLine();
+                if(l_line.equals("conquest")){
+                   mapFeatures = new MapFeatureAdapter(new ConquestFileReader());
+                    // newmMapFeatures.readMap(p_mapLocation);
+                }  
+            else{
+                 mapFeatures = MapFeatures.getInstance();
+                // mapFeatures.readMap(p_mapLocation);
+            }
+
+
+
+
+        d_gameEngine.getGamePhase().showMap(mapFeatures);
+    
+}
+    catch(FileNotFoundException e)
+    {
+   System.out.println("File Not Found----");
+    }
+    catch (IOException e) {
+        System.out.println("IOException----");
+    }
     }
 
-    public project.app.warzone.Model.Map returnMap() {
-        String p_mapLocation = d_gameEngine.gameMap.getMapDirectory() + "/"
-                + d_gameEngine.gameMap.get_USER_SELECTED_FILE() + ".map";
-        dMap = dMapFeatures.readMap(p_mapLocation);
-        return dMap;
-    }
+    // public project.app.warzone.Model.Map returnMap() {
+    //     String p_mapLocation = d_gameEngine.gameMap.getMapDirectory() + "/"
+    //             + d_gameEngine.gameMap.get_USER_SELECTED_FILE() + ".map";
+
+
+
+    //     dMap = dMapFeatures.readMap(p_mapLocation);
+    //     return dMap;
+    // }
 
     /**
      * command for editing continent

@@ -1,5 +1,7 @@
 package project.app.warzone.Model;
 
+import project.app.warzone.Features.MapFeatures;
+
 public class End extends Phase {
 
 	End(GameEngine p_ge) {
@@ -10,7 +12,7 @@ public class End extends Phase {
 		printInvalidCommandMessage(); 
 	}
 
-	public void showMap() {
+	public void showMap(MapFeatures newmapFeatures) {
 		printInvalidCommandMessage(); 
 	}
 

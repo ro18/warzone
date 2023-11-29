@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
@@ -24,6 +25,7 @@ import project.app.warzone.Utilities.LogObject;
 @ShellComponent
 public class PlayerCommands implements Observer {
 
+   
     public GameEngine d_gameEngine;
     public PlayerFeatures d_playerFeatures;
     public String d_prevUserCommand;
@@ -135,9 +137,10 @@ public class PlayerCommands implements Observer {
         // @Prashant please add here check to see if player has bomb card ****
         
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-
+        
         for (Cards card : l_player.d_cardsInCollection) {
-            if (card.getCardType().equalsIgnoreCase("bomb")){
+            boolean hasBombCard= card.getCardType().equalsIgnoreCase("bomb"); 
+            if (hasBombCard){
 
                 d_gameEngine.getGamePhase().bomb(p_countryId);
 

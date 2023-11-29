@@ -38,6 +38,11 @@ public class MapFeatures implements Observer{
         MapFeatures.mapResouces = mapResouces;
 
     }
+    
+//Empty Constructor
+    public MapFeatures(){
+       
+    }
     /**
      * used for getting instance
      * @return MapFeatures
@@ -58,6 +63,7 @@ public class MapFeatures implements Observer{
      * @return Map          returns gamemap
      */
     public Map readMap(String filename){
+        System.out.println("Inside Domination::MapFeatures: readMap()");
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("showmap");
         l_logEntryBuffer.addObserver(this);
@@ -162,7 +168,7 @@ public class MapFeatures implements Observer{
      * @param gameMap       used for storing game map
      */
     public void printMap(Map gameMap){
-
+        System.out.println("------Domination Map ------");
         System.out.println("------ Map ------");
         System.out.println();
         String continent ="";
@@ -228,7 +234,7 @@ public class MapFeatures implements Observer{
      * @param gameEngine           storing gameEngine
      * @return Boolean             returns the status of validating
      */
-    public Boolean validateEntireGraph(GameEngine gameEngine){
+    public boolean validateEntireGraph(GameEngine gameEngine){
 
 
         System.out.println();
@@ -268,7 +274,7 @@ public class MapFeatures implements Observer{
     public boolean validateSubGraph(Continent con, List<Node> l_listOfNodes,java.util.Map<Node,Boolean> l_visitedList){
 
         List<Node> l_nodesOfContinent = l_listOfNodes.stream().filter(c-> c.getData().getContinent().equals(con)).toList();
-        if(l_nodesOfContinent.size() == 0){
+        if(l_nodesOfContinent.isEmpty()){
             return false;
         }
         l_visitedList =validateByNodes(l_nodesOfContinent,l_visitedList);
