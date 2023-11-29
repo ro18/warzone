@@ -61,9 +61,11 @@ public class Preload extends Edit implements java.util.Observer {
         } else {
             l_logObject.setStatus(false, "Map not found");
             l_logEntryBuffer.notifyClasses(l_logObject);
-            System.out.println("Map not found.");
-        }
+            System.out.println(p_filename +"Map not found.");
+            System.out.println("To create new Map use command editmap filename");
+    
     }
+}
 
     
     /** 
