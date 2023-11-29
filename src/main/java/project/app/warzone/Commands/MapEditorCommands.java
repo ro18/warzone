@@ -120,14 +120,14 @@ public class MapEditorCommands {
     }   
 
     @ShellMethod(key = "validatemap", value = "This is used to validate map")
-    public void validateMap(@ShellOption String p_filename) {
+    public void validateMap() {
         d_gameEngine.prevUserCommand = Commands.VALIDATEMAP;
-        d_gameEngine.getGamePhase().validateMap(p_filename);
+        d_gameEngine.getGamePhase().validateMap();
     }   
     
     @ShellMethod(key = "savemap", value = "This is used to save map")
-    public void saveMap() {
+    public void saveMap(@ShellOption String p_filename) {
         d_gameEngine.prevUserCommand = Commands.SAVEMAP;
-        d_gameEngine.getGamePhase().saveMap();
+        d_gameEngine.getGamePhase().saveMap(p_filename);
     }   
 }

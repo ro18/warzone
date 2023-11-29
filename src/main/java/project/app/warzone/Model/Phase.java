@@ -46,7 +46,7 @@ public abstract class Phase implements Observer {
 	// Edit map commands
 	abstract public void editCountry(String p_editcmd, String p_editremovecmd);
 
-	abstract public void saveMap();
+	abstract public void saveMap(String p_filename);
 
 	abstract public void editMap(String p_fileName);
 
@@ -55,8 +55,7 @@ public abstract class Phase implements Observer {
 	abstract public void editNeighbor(String p_editcmd, String p_editremovecmd);
 
 	// validate map command
-	abstract public void validateMap(String p_fileName);
-
+	abstract public void validateMap();
 	// Play commands
 	// common commands
 	abstract public void showstats();
@@ -126,5 +125,10 @@ public abstract class Phase implements Observer {
 				System.out.println("Error Reading file");
 			}
 		}
+	}
+
+	public void saveMap() {
+		ge.setPhase(new PlaySetup(ge));
+
 	}
 }

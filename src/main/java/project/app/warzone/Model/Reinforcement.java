@@ -29,7 +29,11 @@ public class Reinforcement extends MainPlay implements Observer {
 		/** 
 	 * @param p_fileName	filename
 	 */
-	public void validateMap(String p_fileName) {
+	public void validateMap() {
+		printInvalidCommandMessage();
+	}
+
+	public void saveMap(String p_filename) {
 		printInvalidCommandMessage();
 	}
 

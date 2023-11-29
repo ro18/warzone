@@ -37,7 +37,11 @@ public class Attack extends MainPlay {
 	/** 
 	 * @param p_fileName	filename
 	 */
-	public void validateMap(String p_fileName) {
+	public void validateMap() {
+		printInvalidCommandMessage();
+	}
+
+	public void saveMap(String p_filename) {
 		printInvalidCommandMessage();
 	}
 
@@ -116,4 +120,6 @@ public class Attack extends MainPlay {
 		printInvalidCommandMessage(); 
 	}
 
+
+	
 }
