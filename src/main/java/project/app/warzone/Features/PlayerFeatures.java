@@ -9,19 +9,29 @@ import java.util.List;
 import java.util.Observer;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Scanner;
 
+import org.jline.reader.LineReader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import jakarta.validation.constraints.Pattern;
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.HumanStrategy;
 import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Utilities.LogObject;
 import project.app.warzone.Model.Node;
 //import project.app.warzone.Model.Order;
 import project.app.warzone.Model.OrderMethods;
 import project.app.warzone.Model.Player;
+import project.app.warzone.Model.RandomStrategy;
+import project.app.warzone.Model.AggressiveStrategy;
 import project.app.warzone.Model.Attack;
+import project.app.warzone.Model.BenevolentStrategy;
 import project.app.warzone.Model.Cards;
+import project.app.warzone.Model.CheaterStrategy;
 import project.app.warzone.Model.ConcreteDeploy;
 import project.app.warzone.Model.Country;
 
@@ -30,6 +40,10 @@ import project.app.warzone.Model.Country;
  */
 @Component
 public class PlayerFeatures implements Observer {
+
+    // @Autowired
+    // @Lazy
+    // private LineReader lineReader;
     private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
 
     /**
@@ -120,6 +134,68 @@ public class PlayerFeatures implements Observer {
 
         Player player = new Player(p_gameEngine.getPlayers().size() + 1, p_playerName);
         p_gameEngine.d_playersList.add(player);
+
+    }
+
+    public void setPlayerStrategy(GameEngine p_gameEngine){
+       
+        for(Player l_p : p_gameEngine.d_playersList){
+
+        
+        
+            System.out.println("Current Player: "+l_p.d_playername);
+            String input ="";
+
+
+            while(true){
+
+                    Scanner reader = new Scanner(System.in);
+                    System.out.println("Choose one of the following:\n 1.Human\n 2. Aggressive\n 3. Benevolent\n 4. Random\n 5.Cheater\n");
+                    System.out.print("->");
+                    input = reader.nextLine();
+                     
+            
+                    
+                    if(input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2") || input.equalsIgnoreCase("3") || input.equalsIgnoreCase("4") || input.equalsIgnoreCase("5") ){
+                        
+                        break;
+                       
+                    }
+                    else{
+                        
+                        System.out.println("Incorrect Input");
+                    }
+
+                    reader.close();
+
+            }
+            
+            switch(input){
+
+                case "1": l_p.setStrategy(new HumanStrategy(l_p,p_gameEngine));
+                break;
+
+                case "2": l_p.setStrategy(new AggressiveStrategy(l_p,p_gameEngine));
+                break;
+
+                case "3": l_p.setStrategy(new BenevolentStrategy(l_p,p_gameEngine));
+                break;
+
+                case "4": l_p.setStrategy(new RandomStrategy(l_p,p_gameEngine));
+                break;
+
+                case "5": l_p.setStrategy(new CheaterStrategy(l_p,p_gameEngine));
+                break;
+
+
+            
+
+            }
+
+        }  
+            
+
+        
 
     }
 
@@ -387,8 +463,9 @@ public class PlayerFeatures implements Observer {
 
         }
 
-        p_gameEngine.checkPlayersReinforcements();
+        PlayerCommands.d_CurrentPlayerId = PlayerCommands.d_CurrentPlayerId + 1;
 
+        p_gameEngine.checkPlayersReinforcements();
         return "";
 
     }
