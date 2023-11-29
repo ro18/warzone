@@ -1,8 +1,9 @@
 package project.app.warzone.Model;
 
+import java.util.Collections;
 import java.util.List;
 
-public abstract class HumanStrategy extends PlayerStrategy {
+public class HumanStrategy extends PlayerStrategy {
 
 
   
@@ -22,11 +23,26 @@ public abstract class HumanStrategy extends PlayerStrategy {
 	}
 
     
-	
+	 public List<Country> toDefend(){
+
+        List<Country> listOfCountriesOwned = d_player.getlistOfCountriesOwned();
+
+        Collections.sort(listOfCountriesOwned);
+
+        return listOfCountriesOwned;
+
+    }
+
+
+    public List<Country> toAttack(){
+
+
+        return null;
+    }
 
 	public List<OrderInterface> createOrder(){
 
-
+        System.out.println("Enter your order for deploying armies");
         return null;
 
     }	

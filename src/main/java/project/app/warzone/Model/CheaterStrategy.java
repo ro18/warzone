@@ -6,16 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class CheaterStrategy extends PlayerStrategy{
-    
-          /**
-	 *	THe Strategy needs to have access to the map to determine target territories for the orders.   
-	 */
-    GameEngine d_gameEngine;
-	/**
-	 * gameEngine
-	 */
-	Player d_player; 
-
 
 
     public CheaterStrategy(Player p_player,GameEngine p_gameEngine) {
@@ -29,12 +19,9 @@ public class CheaterStrategy extends PlayerStrategy{
 
         List<Country> listOfCountriesOwned = d_player.getlistOfCountriesOwned();
 
-        List<Country> allBorderCountries = new ArrayList<>(null);
-
-
         List<Node> nodeList = d_gameEngine.getGameMap().getNodes();
 
-        List<Country> toAttackCountries = new ArrayList<>(null);
+        List<Country> toAttackCountries = new ArrayList<>();
 
         for (Node n : nodeList) {
 
@@ -76,12 +63,9 @@ public class CheaterStrategy extends PlayerStrategy{
 
         List<Country> listOfCountriesOwned = d_player.getlistOfCountriesOwned();
 
-        List<Country> allBorderCountries = new ArrayList<>(null);
-
-
         List<Node> nodeList = d_gameEngine.getGameMap().getNodes();
 
-        List<Country> countriesWithEnemyNeighbours = new ArrayList<>(null);
+        List<Country> countriesWithEnemyNeighbours = new ArrayList<>();
 
         for (Node n : nodeList) {
 
@@ -111,7 +95,7 @@ public class CheaterStrategy extends PlayerStrategy{
           
         }
 
-
+        d_player.pendingOrder=false;
         return countriesWithEnemyNeighbours;
 
          
@@ -121,8 +105,15 @@ public class CheaterStrategy extends PlayerStrategy{
 
 	public List<OrderInterface> createOrder(){
 
+        List<Country> countriesToAttack = toAttack();
 
-        for(Country c : toAttack()){
+
+        d_player.setReinforcementMap(0);
+
+
+        // Cheater takes in all the immediate enemy territories 
+
+        for(Country c : countriesToAttack){
 
             int l_countryToOwner = c.getOwnerId();
 
@@ -138,8 +129,11 @@ public class CheaterStrategy extends PlayerStrategy{
         }
 
 
-        for(Country c : getCountriesWithEnemyNeighbour()){
+        // Cheater takes in all the immediate enemy territories 
 
+        List<Country> getCountriesWithEnemyNeighbours = getCountriesWithEnemyNeighbour();
+
+        for(Country c : getCountriesWithEnemyNeighbours){
             
             c.setNumberOfArmies(c.getNumberOfArmies()*2);
         }
@@ -148,6 +142,7 @@ public class CheaterStrategy extends PlayerStrategy{
 
 
 
+        d_player.pendingOrder=false;
 
         return null;
 

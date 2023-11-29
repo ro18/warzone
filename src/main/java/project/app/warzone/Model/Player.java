@@ -223,10 +223,18 @@ public class Player {
 
 	public void issue_order(PlayerStrategy playerStrategy){
 
-		List<OrderInterface> newOrder  = playerStrategy.createOrder();
+		List<OrderInterface> newOrders  = playerStrategy.createOrder();
 
-		d_listOfOrders.addAll(newOrder);
+		if(newOrders != null && newOrders.size() > 0){
 
+			for(OrderInterface order : newOrders){
+				d_listOfOrders.add(order);
+
+			}
+
+			
+		}
+		
 	}
 	
 

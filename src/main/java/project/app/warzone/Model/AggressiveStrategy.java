@@ -10,11 +10,11 @@ public class AggressiveStrategy extends PlayerStrategy{
      /**
 	 *	THe Strategy needs to have access to the map to determine target territories for the orders.   
 	 */
-	GameEngine d_gameEngine;
-	/**
-	 * 
-	*/
-	Player d_player; 
+	// GameEngine d_gameEngine;
+	// /**
+	//  * 
+	// */
+	// Player d_player; 
     
     int initialGameRound = 0;
 
@@ -50,8 +50,8 @@ public class AggressiveStrategy extends PlayerStrategy{
 
         List<Node> nodeList = d_gameEngine.getGameMap().getNodes();
 
-        List<Country> allBorderCountries = new ArrayList<>(null);
-        List<Country> toAttackCountries = new ArrayList<>(null);
+        // List<Country> allBorderCountries = new ArrayList<>(null);
+        List<Country> toAttackCountries = new ArrayList<>();
 
         for (Node n : nodeList) {
 
@@ -67,7 +67,7 @@ public class AggressiveStrategy extends PlayerStrategy{
 
                             // if(border.getData().getNumberOfArmies() >=1){
 
-                            if(border.getData().getOwnerId() != d_player.getL_playerid())
+                            if(border.getData().getOwnerId() != d_player.getL_playerid() && border.getData().getOwnerId() !=0)
                                 toAttackCountries.add(border.getData());
 
                             }
@@ -104,21 +104,25 @@ public class AggressiveStrategy extends PlayerStrategy{
 
 	public List<OrderInterface> createOrder(){
 
-        List<OrderInterface> listOfOrders = new ArrayList<>(null);
+        List<OrderInterface> listOfOrders = new ArrayList<OrderInterface>();
 
         Country targetCountry = toDefend().get(0);
 
         while(d_player.getReinforcementArmies() > 0){
 
+            int armiesToDeploy = d_player.getReinforcementArmies();
+            OrderInterface newDeployOrder = new ConcreteDeploy(armiesToDeploy,targetCountry);
 
-            OrderInterface newDeployOrder = new ConcreteDeploy(d_player.getReinforcementArmies(),targetCountry);
-
-            d_player.setReinforcementMap(d_player.getReinforcementArmies() - d_player.getReinforcementArmies());
+            d_player.setReinforcementMap(d_player.getReinforcementArmies() - armiesToDeploy);
             // l_logObject.setStatus(true, "Armies deployed successfully.");
             // l_logEntryBuffer.notifyClasses(l_logObject);
 
 
             listOfOrders.add(newDeployOrder);
+
+            System.out.println("Added Deploy Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
+
+            System.out.println("Armies:"+armiesToDeploy+" OnCountry:"+targetCountry.getCountryName());
 
 
 
@@ -126,16 +130,16 @@ public class AggressiveStrategy extends PlayerStrategy{
 
         }
 
-
-
         int attackers = targetCountry.getNumberOfArmies() ;
 
-        while(toAttack().size() > 0 && attackers > 0 ){
+        List<Country> toAttackCountries = toAttack();
+
+        while(toAttackCountries!=null && toAttackCountries.size() > 0 && attackers > 0 ){
 
 
             // Get the country with the least army
 
-            Country countryToAttack = toAttack().get(0);
+            Country countryToAttack = toAttackCountries.get(0);
 
             // Random l_random = new Random();
 
@@ -145,9 +149,18 @@ public class AggressiveStrategy extends PlayerStrategy{
 
             Player player2 = d_gameEngine.getPlayers().get(l_countryToOwner-1);
 
-            OrderInterface newAdvanceOrdr = new ConcreteAdvance(d_player,player2,attackers,targetCountry,countryToAttack);
+            int armiesToAttack = attackers;
+
+            OrderInterface newAdvanceOrdr = new ConcreteAdvance(d_player,player2,armiesToAttack,targetCountry,countryToAttack);
+
+            attackers = attackers - armiesToAttack;
 
             listOfOrders.add(newAdvanceOrdr);
+
+            System.out.println("Added Attack Order for player:"+d_player.getL_playername()+" with "+d_player.getStrategy().getClass().getSimpleName());
+
+            System.out.println("Armies:"+armiesToAttack+" FromCountry:"+targetCountry.getCountryName()+" ToCountry:"+countryToAttack.getCountryName() );
+
 
 
 
@@ -155,7 +168,7 @@ public class AggressiveStrategy extends PlayerStrategy{
 
         }
 
-
+        d_player.pendingOrder=false;
         return listOfOrders;
     }	
 	

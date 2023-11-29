@@ -172,8 +172,8 @@ public class PlayerFeatures implements Observer {
             
             switch(input){
 
-                // case "1": l_p.setStrategy(new HumanStrategy(l_p));
-                // break;
+                case "1": l_p.setStrategy(new HumanStrategy(l_p,p_gameEngine));
+                break;
 
                 case "2": l_p.setStrategy(new AggressiveStrategy(l_p,p_gameEngine));
                 break;
@@ -463,8 +463,9 @@ public class PlayerFeatures implements Observer {
 
         }
 
-        p_gameEngine.checkPlayersReinforcements();
+        PlayerCommands.d_CurrentPlayerId = PlayerCommands.d_CurrentPlayerId + 1;
 
+        p_gameEngine.checkPlayersReinforcements();
         return "";
 
     }

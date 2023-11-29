@@ -70,7 +70,15 @@ public class PlayerCommands implements Observer {
         d_gameEngine.getGamePhase().setPlayers(p_playerToAdd, p_playerToRemove);
 
         if(d_gameEngine.d_playersList.size() >= 2){
-            String value = this.lineReader.readLine("Do you want to add more players?:\n");
+            String value = "";
+            while(true){
+                value = this.lineReader.readLine("Do you want to add more players?:\n");
+
+                if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y"))
+                    break;
+
+            }
+        
             if(value.equalsIgnoreCase("Y")){
 
                 System.out.println("Please proceed to add more players");
@@ -131,6 +139,7 @@ public class PlayerCommands implements Observer {
         d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
         // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
         // return "Deploy order added successfully";
+    
 
     }
 
