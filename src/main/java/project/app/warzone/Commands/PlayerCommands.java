@@ -505,11 +505,13 @@ public class PlayerCommands implements Observer {
                 System.out.println("Number of Games: " + p_numberOfGames);
                 System.out.println("Max Number of Turns: " + p_maxNumberOfTurns);
 
-                MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
+                d_gameEngine.setTournament(true);
+                d_gameEngine.setMaxTurns(Integer.parseInt(p_maxNumberOfTurns));
 
                 for (int i = 0; i < p_mapFiles.split(",").length; i++) {
                     for (int j = 0; j < Integer.parseInt(p_numberOfGames); j++) {
 
+                        MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
                         l_mapEditorCommands.loadMap(p_mapFiles.split(",")[i]);
                         l_mapEditorCommands.showmap();
                         for(int k = 0; k < (p_playerStrategies.split(",").length); k++){
