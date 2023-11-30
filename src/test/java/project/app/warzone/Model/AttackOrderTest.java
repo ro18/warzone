@@ -104,6 +104,33 @@ public class AttackOrderTest {
 
 
     @Test
+    public void testAirliftToNegotiatedCountry() {
+        d_playerFeatures.assignCountries(d_gameEngine);
+        LogObject l_logObject = new LogObject();
+
+           
+            Player player = d_gameEngine.d_playersList.get(0);
+            player.setTerritories(d_gameEngine.gameMap.getNodes().get(0).getData());
+
+            player.setTerritories(d_gameEngine.gameMap.getNodes().get(1).getData());
+
+    
+        Player player1 = d_gameEngine.d_playersList.get(0);
+        Player player2 = d_gameEngine.d_playersList.get(1);
+        String l_result = Negotiate(player1, player2);
+
+        Country l_countryIdfrom = d_gameEngine.gameMap.getNodes().get(0).getData();
+        Country l_countryIdto = d_gameEngine.gameMap.getNodes().get(1).getData();
+        int l_armiestoAirlift = 3;
+
+        d_attackOrderObject.Airlift( l_countryIdfrom, l_countryIdto, l_armiestoAirlift);
+
+        assertNotEquals("AirLift Card executed Successfully", l_result);
+
+    }
+
+
+    @Test
     public void testBlockade() {
         d_playerFeatures.assignCountries(d_gameEngine);
         LogObject l_logObject = new LogObject();
@@ -241,6 +268,46 @@ public class AttackOrderTest {
 
     }
 
-    
+    @Test
+    public void testAttackonNegotiatedCountry() {
 
+
+    d_playerFeatures.assignCountries(d_gameEngine);
+        LogObject l_logObject = new LogObject();
+
+        d_gameEngine.getGamePhase().loadMap("europe");
+        d_gameEngine.getGamePhase().showMap();
+        d_gameEngine.getGamePhase().setPlayers("add","rochelle");
+        d_gameEngine.getGamePhase().setPlayers("add","numan");
+        d_gameEngine.getGamePhase().assignCountriesForDemo();
+
+        for(Player p: d_gameEngine.d_playersList){
+
+            p.setStrategy(new HumanStrategy(p,d_gameEngine));
+
+        }
+
+        for(int i = 0; i < 2; i++)  {         
+            Player player = d_gameEngine.d_playersList.get(i);
+            player.setTerritories(d_gameEngine.gameMap.getNodes().get(i).getData());
+
+        }
+
+        
+           
+        Player player1 = d_gameEngine.d_playersList.get(0);
+        Player player2 = d_gameEngine.d_playersList.get(1);
+        String l_result = Negotiate(player1, player2);
+
+        int l_countryId = 2;
+        int l_deployArmy = 3;
+
+        for (int i = 0; i < 3; i++) {
+            l_result = d_playerFeatures.deployArmies(d_gameEngine, l_countryId, l_deployArmy);
+            assertNotEquals("Attack order successful", l_result);
+
+        }
+
+
+    }
 }

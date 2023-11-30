@@ -13,6 +13,18 @@ public class Fortify extends MainPlay {
 	public void loadMap(String p_filename) {
 		printInvalidCommandMessage(); 
 	}
+
+	/** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap() {
+		printInvalidCommandMessage();
+	}
+
+	public void saveMap(String p_filename) {
+		printInvalidCommandMessage();
+	}
+
 	
 	/** 
 	 * @param p_countryID	country ID

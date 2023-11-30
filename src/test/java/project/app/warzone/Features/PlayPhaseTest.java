@@ -57,5 +57,16 @@ public class PlayPhaseTest {
             assertEquals("Attack", nexphase); //doesn't allow to go previous phase of Attack phase
         }
     
+     @Test
+    public void attackPhaseContinuity(){
+            Map l_map = new Map();
+            GameEngine l_gameEngine = new GameEngine(l_map);
+            l_gameEngine.setPhase(new Attack(l_gameEngine));
+            l_gameEngine.getGamePhase().loadMap("europe");
+            l_gameEngine.getGamePhase().next();
+            String nexphase = l_gameEngine.getGamePhase().getClass().getSimpleName();
+            assertNotEquals("END", nexphase); //must not end the game after Attack
+        }
+    
 
 }

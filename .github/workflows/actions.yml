@@ -36,7 +36,8 @@ jobs:
     - name: Run 'native-build
       run: mvn native:compile -Pnative -DskipTests=true
     - name: Run maven tests
-      run: mvn test -Dtest=WarzoneApplicationTest
+      run: mvn test -Dtest=PlayerFeaturesTest#TestaddPlayers#TestremovePlayers
+     
 
     - name: Test Report
       uses: mikepenz/action-junit-report@v4
