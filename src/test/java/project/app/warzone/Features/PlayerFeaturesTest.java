@@ -267,7 +267,6 @@ public class PlayerFeaturesTest {
     @Test
     public void testRemovingLooserFromList() {
 
-        d_playerFeatures.assignCountries(d_gameEngine);
 
         d_gameEngine.d_playersList.get(0).d_listOfCountriesOwned.clear();
         d_gameEngine.d_playersList.get(1).d_listOfCountriesOwned.clear();
@@ -296,8 +295,6 @@ public class PlayerFeaturesTest {
 
      @Test
     public void testCheckLooserInList() {
-
-        d_playerFeatures.assignCountries(d_gameEngine);
 
         d_gameEngine.d_playersList.get(0).d_listOfCountriesOwned.clear();
 
