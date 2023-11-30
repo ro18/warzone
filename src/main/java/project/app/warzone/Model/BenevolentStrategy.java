@@ -65,13 +65,10 @@ public class BenevolentStrategy extends PlayerStrategy{
 
         }
 
-        // This will advance armies from the players strongest territory over to their weakest one
-
-
         int movers = toDefend().get(toDefend().size()-1).getNumberOfArmies() ;
 
 
-        while(movers > 0 && toDefend()!= null && toDefend().size() > 0 ){
+        while(movers > 0 && toDefend()!= null && toDefend().size() > 0 && toDefend().size()>1 ){
 
 
                 
@@ -92,7 +89,7 @@ public class BenevolentStrategy extends PlayerStrategy{
 
             listOfOrders.add(newAdvanceOrdr);
 
-            System.out.println("Added Attack Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
+            System.out.println("Move Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
 
             System.out.println("Armies:"+numberofArmies+" FromCountry:"+targetCountry.getCountryName()+" ToCountry:"+l_countryToAdvance.getCountryName() );
 

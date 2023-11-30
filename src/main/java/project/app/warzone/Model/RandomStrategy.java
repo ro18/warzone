@@ -113,68 +113,71 @@ public class RandomStrategy extends PlayerStrategy {
 
         }
 
+        // Attack randomly to a different country
+        if(toAttack().size() > 0 && toDefend().size()>0){
 
-        List<Country> countriesToAttack = toAttack();
-        List<Country> countriesToAttackFrom = toDefend();
+            List<Country> countriesToAttack = toAttack();
+            List<Country> countriesToAttackFrom = toDefend();
 
-        Country randomCountryToAttack = countriesToAttack.get(l_random.nextInt(toAttack().size()));
-        Country randomCountryToFrom =countriesToAttackFrom.get(l_random.nextInt(toDefend().size()));
+            Country randomCountryToAttack = countriesToAttack.get(l_random.nextInt(toAttack().size()));
+            Country randomCountryToFrom =countriesToAttackFrom.get(l_random.nextInt(toDefend().size()));
 
-        int attackers = randomCountryToFrom.getNumberOfArmies() ;
+            int attackers = randomCountryToFrom.getNumberOfArmies() ;
 
-        if(countriesToAttack.size() > 0 && attackers > 0 ){
-
-
-            int numberofArmies = (l_random.nextInt() % attackers) + 1;
-
-            int l_countryToOwner = randomCountryToAttack.getOwnerId();
-
-            Player player2 = d_gameEngine.getPlayers().get(l_countryToOwner-1);
-
-            OrderInterface newAdvanceOrdr = new ConcreteAdvance(d_player,player2,numberofArmies,randomCountryToFrom,randomCountryToAttack);
-
-            listOfOrders.add(newAdvanceOrdr);
-
-            System.out.println("Added Attack Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
-
-            System.out.println("Armies:"+attackers+" FromCountry:"+randomCountryToFrom.getCountryName()+" ToCountry:"+randomCountryToAttack.getCountryName() );
+            if(countriesToAttack.size() > 0 && attackers > 0 ){
 
 
+                int numberofArmies = (l_random.nextInt() % attackers) + 1;
+
+                int l_countryToOwner = randomCountryToAttack.getOwnerId();
+
+                Player player2 = d_gameEngine.getPlayerFromID(l_countryToOwner);
+
+
+                OrderInterface newAdvanceOrdr = new ConcreteAdvance(d_player,player2,numberofArmies,randomCountryToFrom,randomCountryToAttack);
+
+                listOfOrders.add(newAdvanceOrdr);
+
+                System.out.println("Added Attack Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
+
+                System.out.println("Armies:"+attackers+" FromCountry:"+randomCountryToFrom.getCountryName()+" ToCountry:"+randomCountryToAttack.getCountryName() );
 
 
 
         }
 
+            
+        }
+
+      
 
         // Advance randomly to a different country
 
-        Country randomCountryToMoveFrom = toDefend().get(l_random.nextInt(toAttack().size()));
-        Country randomCountryToMoveTo = toDefend().get(l_random.nextInt(toDefend().size()));
+        if(toAttack().size() > 0 && toDefend().size() > 0 ){
+
+            Country randomCountryToMoveFrom = toDefend().get(l_random.nextInt(toAttack().size()));
+            Country randomCountryToMoveTo = toDefend().get(l_random.nextInt(toDefend().size()));
 
 
-        if(randomCountryToMoveFrom!=null && randomCountryToMoveTo !=null && randomCountryToMoveFrom.getNumberOfArmies()>0 ){
+            if(randomCountryToMoveFrom!=null && randomCountryToMoveTo !=null && randomCountryToMoveFrom.getNumberOfArmies()>0 ){
 
-            int numberofArmies = (l_random.nextInt() % randomCountryToMoveFrom.getNumberOfArmies()) + 1;
+                int numberofArmies = (l_random.nextInt() % randomCountryToMoveFrom.getNumberOfArmies()) + 1;
 
-                
-            OrderInterface newMoveOrder = new ConcreteAdvance(d_player,null,numberofArmies,randomCountryToMoveFrom,randomCountryToMoveTo);
-
-
-            listOfOrders.add(newMoveOrder);
-
-            System.out.println("Added Advance Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
-
-            System.out.println("Armies:"+numberofArmies+" FromCountry:"+randomCountryToMoveFrom.getCountryName()+" ToCountry:"+randomCountryToMoveTo.getCountryName() );
+                    
+                OrderInterface newMoveOrder = new ConcreteAdvance(d_player,null,numberofArmies,randomCountryToMoveFrom,randomCountryToMoveTo);
 
 
+                listOfOrders.add(newMoveOrder);
+
+                System.out.println("Added Advance Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
+
+                System.out.println("Armies:"+numberofArmies+" FromCountry:"+randomCountryToMoveFrom.getCountryName()+" ToCountry:"+randomCountryToMoveTo.getCountryName() );
+
+
+
+            }
 
         }
-
-
-  
-
-
-
 
         d_player.pendingOrder=false;
         return listOfOrders;

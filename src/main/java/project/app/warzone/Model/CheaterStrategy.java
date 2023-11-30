@@ -117,7 +117,7 @@ public class CheaterStrategy extends PlayerStrategy{
 
             int l_countryToOwner = c.getOwnerId();
 
-            Player player2 = d_gameEngine.getPlayers().get(l_countryToOwner-1);
+            Player player2 = d_gameEngine.getPlayerFromID(l_countryToOwner);
 
             player2.removeTerritory(c);
 

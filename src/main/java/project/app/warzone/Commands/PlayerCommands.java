@@ -113,11 +113,16 @@ public class PlayerCommands implements Observer {
     @ShellMethod(key = "assigncountries", value = "This is used to assign countries to players randomly")
     public void assigncountries() {
         // d_gameEngine.getGamePhase().assignCountries();
-        d_gameEngine.getGamePhase().assignCountriesForDemo(); // Added to demonstrate different attacks during presentation
+        if(d_gameEngine.getPlayers().size() > 1){
+            d_gameEngine.getGamePhase().assignCountriesForDemo(); // Added to demonstrate different attacks during presentation
 
-        showStats();
+            showStats();
 
         d_gameEngine.checkPlayersReinforcements();
+        }
+        else{
+            System.out.println("You need atleast 2 players to play the game. Please add more players");
+        }
     }
 
     /**

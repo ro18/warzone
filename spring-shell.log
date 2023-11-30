@@ -2694,3 +2694,58 @@
 1701315722367:tournament -M europe -P 2 3 -G 1 -D 5
 1701316265609:N
 1701317150649:tournament -M europe -P 2 3 -G 1 -D 5
+1701368995788:loadmap europe
+1701368997662:showmap
+1701369006238:gameplayer -add p1 -add p2
+1701369012292:N
+1701369022341:assigncountries
+1701369203132:loadmap europe
+1701369204636:showmap
+1701369216559:gameplayer -add p1 -add p2 -add p3 -add p3 -add p4
+1701369222913:N
+1701369243352:assigncountries
+1701369252719:stacktrace
+1701369309175:showmapstatus
+1701369723373:loadmap Montreal
+1701369727327:showmap
+1701370177124:gameplayer -add p1 -add p2 -add p3 -add p4
+1701370178959:N
+1701370190601:assigncountries
+1701370201874:stacktrace
+1701370600551:loadmap Montreal
+1701370602222:showmap
+1701370613873:gameplayer -add p1 -add p2 -add p3 -add p4
+1701370615765:N
+1701370627875:assigncountries
+1701370688204:loadmap europe
+1701370709446:showmap
+1701370717741:gameplayer -add p1 -add p2
+1701370720320:N
+1701370725879:4
+1701370739395:assigncountries
+1701370906373:loadmap Montreal
+1701370915533:showmap
+1701370919500:assigncountries
+1701371359783:loadmap europe
+1701371361654:showmap
+1701371371214:gameplayer -add p1 -add p2 -add p3 -add p3
+1701371372979:N
+1701371384636:assigncountries
+1701371392795:stacktrace
+1701371547725:loadmap europe
+1701371549336:showmap
+1701371557853:gameplayer -add p1 -add p2 -add p3 -add p4
+1701371559848:N
+1701371571961:assigncountries
+1701371636261:loadmap europe
+1701371638716:showmap
+1701371649473:gameplayer -add p1 -add p2 -add p3 -add p4
+1701371651421:N
+1701371659982:assigncountries
+1701372143703:loadmap euroep
+1701372148148:loadmap europe
+1701372150241:showmap
+1701372159196:gameplayer -add p1 -add p2 -add p3 -add p4
+1701372163187:N
+1701372176007:assigncountries
+1701372257720:loadmap europe

@@ -121,6 +121,7 @@ public class PlaySetup extends Play implements Observer{
 			l_logObject.setStatus(false, "You need atleast 2 players to play the game. Please add more players");
 			l_logEntryBuffer.notifyClasses(l_logObject);
 			System.out.println("You need atleast 2 players to play the game. Please add more players");
+			
 		} else {
 			Player player = ge.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 			d_playerFeatures.assignCountriesForDemo(ge);

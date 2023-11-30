@@ -76,6 +76,20 @@ public class GameEngine implements Observer {
         return d_playersList;
     }
 
+
+      /**
+    * @return returns player from Id
+    */
+    public Player getPlayerFromID(int id) {
+
+        for(Player p : getPlayers() ){
+            if(p.getL_playerid() == id){
+                return p;
+            }
+        }
+        return null;
+    }
+
     /**
      * used for returning game map
      * 

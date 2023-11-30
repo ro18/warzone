@@ -101,6 +101,8 @@ public class PlayerFeatures implements Observer {
                 add(7);
                 add(20);
                 add(9);
+                add(13);
+                add(16);
             }
         };
 
