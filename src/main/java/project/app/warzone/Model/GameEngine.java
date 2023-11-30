@@ -172,8 +172,8 @@ public class GameEngine implements Observer {
                     if(l_players.get(l_i).getStrategy().getClass().getSimpleName().equalsIgnoreCase(new HumanStrategy(null, null).getClass().getSimpleName())){
 
                         String value ="";
-                        if(UserCommands.checkSize() > 0){
-                            value = UserCommands.popCommand();
+                        if(UserCommands.checkSize("orders") > 0){
+                            value = UserCommands.popCommand("orders");
                         } else {
 
                             while(true){

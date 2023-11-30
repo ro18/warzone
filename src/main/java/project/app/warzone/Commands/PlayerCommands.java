@@ -65,7 +65,6 @@ public class PlayerCommands implements Observer {
     public String gamePlayerAdd(
             @ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 10) String p_playerToAdd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_playerToRemove) {
-
         LogObject l_logObject = new LogObject();
         l_logEntryBuffer.addObserver(this);
         boolean isAdd = (p_playerToAdd != null && p_playerToAdd != "");
@@ -74,12 +73,20 @@ public class PlayerCommands implements Observer {
 
         if(d_gameEngine.d_playersList.size() >= 2){
             String value = "";
-            while(true){
-                value = this.lineReader.readLine("Do you want to add more players?:\n");
+            if(UserCommands.checkSize("playerAdd") > 0){
+                value = UserCommands.popCommand("playerAdd");
+            } else {
+                while(true){
+                    value = this.lineReader.readLine("Do you want to add more players?:\n");
 
-                if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y"))
-                    break;
+                    if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y")){
+                        l_logObject.setD_command(value + "_players");
+                        l_logObject.setStatus(true, "User wants to add more players");
+                        l_logEntryBuffer.notifyClasses(l_logObject);
+                        break;
+                    }
 
+                }
             }
         
             if(value.equalsIgnoreCase("Y")){
@@ -277,6 +284,9 @@ public class PlayerCommands implements Observer {
         return "Negotiated Order Added successfully";
     }
 
+    /**
+     * @param p_fileName                storing file name
+     */
     @ShellMethod(key = "savegame", value = "This is used to save the game to a file")
     public void saveGame(@ShellOption String p_fileName) {
         // Take log file and save it with the name p_fileName
@@ -319,6 +329,11 @@ public class PlayerCommands implements Observer {
         }
     }
 
+    /**
+     * @param p_fileName                storing file name
+     * @return                          returns status of loading game
+     */
+
     @ShellMethod(key = "loadgame", value = "This is used to load the game from a file")
     public void loadGame(@ShellOption String p_fileName) {
         String l_logFileLocationNew = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/SavedGames/" + p_fileName + ".log";
@@ -338,10 +353,31 @@ public class PlayerCommands implements Observer {
                 String[] l_split = l_line.split(" ");
                 switch(l_split[0]) {
                     case "N":
-                        UserCommands.pushCommand("N");
+                        UserCommands.pushCommand("N", "orders");
                         break;
                     case "Y":
-                        UserCommands.pushCommand("Y");
+                        UserCommands.pushCommand("Y", "orders");
+                        break;
+                    case "Y_players":
+                        UserCommands.pushCommand("Y", "playerAdd");
+                        break;
+                    case "N_players":
+                        UserCommands.pushCommand("N", "playerAdd");
+                        break;
+                    case "1_strategy":
+                        UserCommands.pushCommand("1", "strategy");
+                        break;
+                    case "2_strategy":
+                        UserCommands.pushCommand("2", "strategy");
+                        break;
+                    case "3_strategy":
+                        UserCommands.pushCommand("3", "strategy");
+                        break;
+                    case "4_strategy":
+                        UserCommands.pushCommand("4", "strategy");
+                        break;
+                    case "5_strategy":
+                        UserCommands.pushCommand("5", "strategy");
                         break;
                     default:
                         break;
@@ -418,6 +454,11 @@ public class PlayerCommands implements Observer {
         }
     }
 
+    /**
+     * @param p_countryID               storing country ID
+     * @param p_armies                  storing number of armies to deploy
+     * @return                          returns status of deploying army
+     */
     @ShellMethod(key = "tournament", prefix = "-", value = "This is used to play tournament")
     public void tournament(@ShellOption(value = "M", defaultValue = ShellOption.NULL, arity = 5) String p_mapFiles,
             @ShellOption(value = "P", defaultValue = ShellOption.NULL, arity = 4) String p_playerStrategies,
@@ -429,28 +470,35 @@ public class PlayerCommands implements Observer {
                 System.out.println("Player Strategies: " + p_playerStrategies);
                 System.out.println("Number of Games: " + p_numberOfGames);
                 System.out.println("Max Number of Turns: " + p_maxNumberOfTurns);
-                System.out.println("Tournament ended");
 
                 MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
 
-                for (int i = 0; i < Integer.parseInt(p_mapFiles); i++) {
+                for (int i = 0; i < p_mapFiles.split(",").length; i++) {
                     for (int j = 0; j < Integer.parseInt(p_numberOfGames); j++) {
-                        // System.out.println("Game " + (j + 1) + " started");
-                        // System.out.println("Map File: " + p_mapFiles.split(",")[i]);
-                        // System.out.println("Player Strategies: " + p_playerStrategies);
-                        // System.out.println("Game " + (j + 1) + " ended");
 
                         l_mapEditorCommands.loadMap(p_mapFiles.split(",")[i]);
-                        assigncountries();
+                        l_mapEditorCommands.showmap();
                         for(int k = 0; k < (p_playerStrategies.split(",").length); k++){
-                            gamePlayerAdd(p_playerStrategies.split(",")[k], null);
+                            UserCommands.pushCommand(p_playerStrategies.split(",")[k], "strategy");
+                            if(k != 0) {
+                                if(k <= p_playerStrategies.split(",").length - 1){
+                                    UserCommands.pushCommand("N", "playerAdd");
+                                } else {
+                                    UserCommands.pushCommand("Y", "playerAdd");
+                                }
+                            }
                         }
-                        for(int k = 0; k < Integer.parseInt(p_maxNumberOfTurns); k++){
-                            //TODO: Add code to play the game
-                            // System.out.println("Turn " + (k + 1) + " started");
+                        for(int k = 1; k <= p_playerStrategies.split(",").length; k++){
+                            gamePlayerAdd(("Player_" + k), null);
                         }
+                        assigncountries();
+                        // for(int k = 0; k < Integer.parseInt(p_maxNumberOfTurns); k++){
+                        //     System.out.println("Turn " + (k + 1) + " started");
+                        // }
                     }
                 }
+
+                System.out.println("Tournament ended");
             }
 
 

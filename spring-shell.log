@@ -2656,3 +2656,41 @@
 1701294639859:deploy 1 3
 1701294657098:N
 1701294664607:showstats
+1701298695069:loadmap europe
+1701298697668:showmap
+1701298710766:gameplayer -add anash -add aish
+1701298940378:N
+1701300388518:loadmap europe
+1701300390772:showmap
+1701300393021:gameplayer -add anash -add aish
+1701300403177:N
+1701300428901:loadmap europe
+1701300430298:showmap
+1701300438781:gameplayer -add anash
+1701300444280:gameplayer -add aish
+1701300445623:Y
+1701300482311:gameplayer -add anash
+1701300486182:loadmap europe
+1701300492064:showmap
+1701300495607:gameplayer -add anash -add aish
+1701300499890:N
+1701300752318:loadmap europe
+1701300754653:showmap
+1701300757145:gameplayer -add anash -add aish
+1701300759269:N
+1701300828772:loadmap europe
+1701300830533:showmap
+1701300832644:gameplayer -add anash -add aish
+1701300834622:N
+1701302611008:loadmap europe
+1701302612799:showmap
+1701302614367:gameplayer -add anash -add aish
+1701302616402:N
+1701302703233:savegame temp21
+1701315370268:tournament -M europe -P 2 3 -G 1 -D 5
+1701315381363:stacktrace
+1701315434054:tournament -M europe -P 2 3 -G 1 -D 5
+1701315450114:stacktrace
+1701315722367:tournament -M europe -P 2 3 -G 1 -D 5
+1701316265609:N
+1701317150649:tournament -M europe -P 2 3 -G 1 -D 5
