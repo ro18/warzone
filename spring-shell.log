@@ -2244,6 +2244,97 @@
 1699576771358:advance 1 6 5
 1699576772796:N
 1699576776650:showstats
+1700287425056:loadmap europe
+1700287426809:showmap
+1700287435136:gameplayer -add anash -add numan
+1700287442841:assigncountries
+1700287459840:savegame tempsss
+1700289327759:loadgame tempsss
+1700289391941:showstats
+1700289653108:loadgame tempsss
+1700289841372:showstats
+1700538844900:loadmap europe
+1700538849158:showmap
+1700538864616:gameplayer -add anash -add roch
+1700538875499:savegame
+1700538882610:savegame temp1
+1700539310892:loadmap europe
+1700539312915:showmap
+1700539316387:deploy 1 2
+1700539371726:gameplayer -add anash -add aish
+1700539400531:savegame temp2
+1700539466528:loadmap europe
+1700539468732:showmap
+1700539472596:deploy 1 2
+1700539477422:gameplayer -add anash -add aish
+1700539488658:savegame temp1
+1700539692553:loadmap europe
+1700539694396:showmap
+1700539699515:gameplayer -add anash -add aish
+1700539710280:gameplayer -add numan
+1700539714607:savegame temp1
+1700539728151:gameplayer -add anash,-add,aish
+1700539758566:loadgame temp1
+1700540236554:help
+1700541673488:loadgame temp1
+1700542128123:gameplayer -remove numan
+1700542145278:assigncountries
+1700542188609:deploy 1 3
+1700542192656:deploy 8 3
+1700542195240:N
+1700542250892:showstats
+1700542425685:savegame temp
+1700542474352:loadgame temp
+1700542488484:N
+1700542507261:showstats
+1700543383040:showmap
+1700543424566:loadgame temp
+1700543426542:N
+1700543435867:showmap
+1700543442685:advance 1 2
+1700543606156:advance 1 8 3
+1700543808494:loadmap 1
+1700543837559:loadgame 1
+1700543907467:loadgame temp
+1700544044302:N
+1700544232871:showstats
+1700544258915:advance 8 1 3
+1700544293908:deploy 1 3
+1700544298652:deploy 1 2
+1700770843047:loadgame temp
+1700770845388:N
+1700770849818:n
+1700772003146:loadgame temp
+1700772008072:N
+1700773441598:loadmap europe
+1700773444039:showmap
+1700773456153:gameplayer -add anash -add aish
+1700773476338:assigncountries
+1700773511516:deploy 1 3
+1700773515746:deploy 8 3
+1700773517714:N
+1700773550546:savegame temps
+1700774053414:loadmap europe
+1700774058687:showmap
+1700774062166:gameplayer -add anash -add aish
+1700774065227:assigncountries
+1700774071388:deploy 1 3
+1700774083653:deploy 8 3
+1700774086227:N
+1700774133744:Y
+1700774253289:advance 8 1 1
+1700774286238:N
+1700774299633:deploy 8 1 2
+1700774331571:loadmap europe
+1700774334875:showmap
+1700774338123:gameplayer -add anash -add aish
+1700774341611:assigncountries
+1700774345900:deploy 1 3
+1700774350306:deploy 8 3
+1700774355897:N
+1700774376332:Y
+1700774859083:advance 8 1 2
+1700774867339:showstats
 1700591357308:loadmap europe
 1700591359782:showmap
 1700591369624:gameplayer -add p1 -add p2
@@ -2280,6 +2371,9 @@
 1700605732538:N
 1700605741340:deploy 8 2
 1700605782380:N
+1701151205225:tournament -M europe asda asda -P anash aish -G 3 -D 2
+1701151254265:tournament -M europe asda asda -P anash aish -G 3 -D 2 cd /Users/anash/Desktop/ConcordiaU\\'25/APP/project/warzone ; /usr/bin/env /opt/homebrew/Cellar/openjdk@17/17.0.9/libexec/openjdk.jdk/Contents/Home/bin/java @/var/folders/dg/vmwrssjd5c1dkmk8yxly5f4r0000gn/T/cp_682zyoeiktkae9pl8snqlcizi.argfile project.app.warzone.WarzoneApplication
+1701151273620:tournament -M europe asda asda -P anash aish -G 3 -D 2
 1701227807913:loadmap europe
 1701227810391:showmap
 1701227818917:gameplayer -add p1 -add p2
@@ -2562,3 +2656,41 @@
 1701294639859:deploy 1 3
 1701294657098:N
 1701294664607:showstats
+1701298695069:loadmap europe
+1701298697668:showmap
+1701298710766:gameplayer -add anash -add aish
+1701298940378:N
+1701300388518:loadmap europe
+1701300390772:showmap
+1701300393021:gameplayer -add anash -add aish
+1701300403177:N
+1701300428901:loadmap europe
+1701300430298:showmap
+1701300438781:gameplayer -add anash
+1701300444280:gameplayer -add aish
+1701300445623:Y
+1701300482311:gameplayer -add anash
+1701300486182:loadmap europe
+1701300492064:showmap
+1701300495607:gameplayer -add anash -add aish
+1701300499890:N
+1701300752318:loadmap europe
+1701300754653:showmap
+1701300757145:gameplayer -add anash -add aish
+1701300759269:N
+1701300828772:loadmap europe
+1701300830533:showmap
+1701300832644:gameplayer -add anash -add aish
+1701300834622:N
+1701302611008:loadmap europe
+1701302612799:showmap
+1701302614367:gameplayer -add anash -add aish
+1701302616402:N
+1701302703233:savegame temp21
+1701315370268:tournament -M europe -P 2 3 -G 1 -D 5
+1701315381363:stacktrace
+1701315434054:tournament -M europe -P 2 3 -G 1 -D 5
+1701315450114:stacktrace
+1701315722367:tournament -M europe -P 2 3 -G 1 -D 5
+1701316265609:N
+1701317150649:tournament -M europe -P 2 3 -G 1 -D 5

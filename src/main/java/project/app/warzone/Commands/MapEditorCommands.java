@@ -52,7 +52,6 @@ public class MapEditorCommands {
     @ShellMethod(key = "loadmap", value = "Player can create or open an existing map")
     public void loadMap(@ShellOption String p_filename) {
 
-        d_gameEngine.prevUserCommand = Commands.LOADMAP;
         d_gameEngine.getGamePhase().loadMap(p_filename);
     }
 
@@ -150,7 +149,18 @@ public class MapEditorCommands {
      */
     @ShellMethod(key = "editmap", value = "This is used to add or create map")
     public void editmap(@ShellOption String p_filename) {
-        d_gameEngine.prevUserCommand = Commands.EDITMAP;
         d_gameEngine.getGamePhase().editMap(p_filename);
+    }   
+
+    @ShellMethod(key = "validatemap", value = "This is used to validate map")
+    public void validateMap() {
+        d_gameEngine.prevUserCommand = Commands.VALIDATEMAP;
+        d_gameEngine.getGamePhase().validateMap();
+    }   
+    
+    @ShellMethod(key = "savemap", value = "This is used to save map")
+    public void saveMap(@ShellOption String p_filename) {
+        d_gameEngine.prevUserCommand = Commands.SAVEMAP;
+        d_gameEngine.getGamePhase().saveMap(p_filename);
     }   
 }

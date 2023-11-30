@@ -1,8 +1,13 @@
 package project.app.warzone.Commands;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -22,6 +27,7 @@ import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Reinforcement;
 import project.app.warzone.Utilities.Commands;
 import project.app.warzone.Utilities.LogObject;
+import project.app.warzone.Utilities.UserCommands;
 
 /**
  * This class stores all the player-related commands allowed in gameplay
@@ -36,7 +42,6 @@ public class PlayerCommands implements Observer {
 
     public GameEngine d_gameEngine;
     public PlayerFeatures d_playerFeatures;
-    public String d_prevUserCommand;
     private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
     public static int d_CurrentPlayerId = 0;
 
@@ -62,7 +67,6 @@ public class PlayerCommands implements Observer {
     public String gamePlayerAdd(
             @ShellOption(value = "a", defaultValue = ShellOption.NULL, arity = 10) String p_playerToAdd,
             @ShellOption(value = "r", defaultValue = ShellOption.NULL, arity = 10) String p_playerToRemove) {
-
         LogObject l_logObject = new LogObject();
         l_logEntryBuffer.addObserver(this);
         boolean isAdd = (p_playerToAdd != null && p_playerToAdd != "");
@@ -71,12 +75,20 @@ public class PlayerCommands implements Observer {
 
         if(d_gameEngine.d_playersList.size() >= 2){
             String value = "";
-            while(true){
-                value = this.lineReader.readLine("Do you want to add more players?:\n");
+            if(UserCommands.checkSize("playerAdd") > 0){
+                value = UserCommands.popCommand("playerAdd");
+            } else {
+                while(true){
+                    value = this.lineReader.readLine("Do you want to add more players?:\n");
 
-                if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y"))
-                    break;
+                    if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y")){
+                        l_logObject.setD_command(value + "_players");
+                        l_logObject.setStatus(true, "User wants to add more players");
+                        l_logEntryBuffer.notifyClasses(l_logObject);
+                        break;
+                    }
 
+                }
             }
         
             if(value.equalsIgnoreCase("Y")){
@@ -131,16 +143,7 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "deploy", value = "This is used to deploy armies")
     public void deployArmies(@ShellOption int p_countryID, @ShellOption int p_armies) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
-        }
-
-        // System.out.println("in deploy");
         d_gameEngine.getGamePhase().reinforce(p_countryID, p_armies);
-        // return d_playerFeatures.deployArmies(d_gameEngine, p_countryID, p_armies);
-        // return "Deploy order added successfully";
-    
-
     }
 
 
@@ -152,48 +155,50 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "advance", value = "This is used to deploy armies")
     public String advancearmies(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_armies) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            System.out.println("You cannot deploy armies at this stage. Please follow the sequence of commands in the game.");
-
-
-        }
         d_gameEngine.setPhase(new Attack(d_gameEngine));
 
         d_gameEngine.getGamePhase().advance(d_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
         // return d_playerFeatures.advanceArmies(d_CurrentPlayerId,d_gameEngine, p_countryfrom,p_countryTo, p_armies);
-        return "Advance order added successfully";
+        // return "Advance order added successfully";
+        return "";
 
     }
 
     /**
      * @param p_countryfrom             storing  target country ID to bomb
-     *
+     
      * @return                          returns status 
      */
     @ShellMethod(key = "bomb", value = "This is used to play Bomb card")
     public String bombCountry(@ShellOption int p_countryId) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
-        }
         // @Prashant please add here check to see if player has bomb card ****
         
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-        
+
+        List<Cards> cardsToRemove = new ArrayList<Cards>();
+
+        boolean found = false;
+
+
         for (Cards card : l_player.d_cardsInCollection) {
-            boolean hasBombCard= card.getCardType().equalsIgnoreCase("bomb"); 
-            if (hasBombCard){
+            if (card.getCardType().equalsIgnoreCase("bomb") && found == false){
 
-                l_player.d_cardsInCollection.remove(card);
+                found = true;
+                cardsToRemove.add(card);
                 d_gameEngine.getGamePhase().bomb(p_countryId);
-
-                // return d_playerFeatures.bombCountry(d_gameEngine,p_countryId);
+                break;
 
             }
-            else{
-                return "The Player does not have BOMB card";
-            }
+            
         }
-        return "Bomb attack order added successfully";
+        if(found == false){
+                return "The Player does not have BOMB card";
+        }
+        else{
+            l_player.d_cardsInCollection.removeAll(cardsToRemove);
+
+        }
+        return "";
 
     }
 
@@ -205,29 +210,35 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "blockade", value = "This is used to play Blockade card")
     public String blockade(@ShellOption int p_countryId) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot deploy armies at this stage. Please follow the sequence of commands in the game.";
-        }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
 
         boolean found = false;
-        for (Cards card : l_player.d_cardsInCollection) {
-            if (card.getCardType().equalsIgnoreCase("blockade")){
-                
-               found = true;
 
-                l_player.d_cardsInCollection.remove(card);
+        List<Cards> cardsToRemove = new ArrayList<>();
+
+        for (Cards card : l_player.d_cardsInCollection) {
+            if (card.getCardType().equalsIgnoreCase("blockade") && found == false){
+                
+                found = true;
+
+                cardsToRemove.add(card);
 
                 d_gameEngine.getGamePhase().blockade(p_countryId);
 
-        // return d_playerFeatures.blockadeCountry(d_gameEngine,p_countryId);
+                break;
+
             }
            
         }
-        if(found = false){
+        if(found == false){
             return "Player does not have airlift card";
         }
+        else{
+            l_player.d_cardsInCollection.removeAll(cardsToRemove);
+
+        }
+
         return "Blockade attack order added successfully";
     }
 
@@ -241,27 +252,30 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "airlift", value = "This is used to play Airlift card")
     public String airlift(@ShellOption int p_countryfrom,@ShellOption int p_countryTo, @ShellOption int p_airliftArmies) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot airlift armies at this stage. Please follow the sequence of commands in the game.";
-        }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
-        boolean found = true;
-        for (Cards card : l_player.d_cardsInCollection) {
-            if (card.getCardType().equalsIgnoreCase("airlift")){
-                l_player.d_cardsInCollection.remove(card);
+        boolean found = false;
+        List<Cards> cardsToRemove = new ArrayList<>();
 
+        for (Cards card : l_player.d_cardsInCollection) {
+            if (card.getCardType().equalsIgnoreCase("airlift") && found == false){
+
+                cardsToRemove.add(card);
                 d_gameEngine.getGamePhase().airlift(p_countryfrom,p_countryTo, p_airliftArmies);
                 found = true;
-        // return d_playerFeatures.airlift(d_gameEngine,p_countryfrom,p_countryTo, p_airliftArmies);
-        }
+                break;
+            }
            
         }
 
         if(found = false){
             return "Player does not have airlift card";
         }
-        return "Airlift Card executed successfully";
+        else{
+            l_player.d_cardsInCollection.removeAll(cardsToRemove);
+
+        }
+        return "";
     }
 
     
@@ -273,22 +287,21 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "negotiate", value = "This is used to play Negotiate card")
     public String negotiate(@ShellOption int p_targetPlayerId) {
-        if(d_gameEngine.prevUserCommand != Commands.ASSIGNCOUNTRIES){
-            return "You cannot negotiate armies at this stage. Please follow the sequence of commands in the game.";
-        }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
         boolean found = false;
+        List<Cards> cardsToRemove = new ArrayList<>();
 
 
         for (Cards card : l_player.d_cardsInCollection) {
-            if (card.getCardType().equalsIgnoreCase("negotiate")){
+            if (card.getCardType().equalsIgnoreCase("negotiate") && found == false){
 
-                l_player.d_cardsInCollection.remove(card);
 
+                cardsToRemove.add(card);
 
                 d_gameEngine.getGamePhase().negotiate(p_targetPlayerId);
                 found = true;
+                break;
 
             }
             
@@ -298,8 +311,230 @@ public class PlayerCommands implements Observer {
         {
            return "The Player does not have Negotiate card";
         }
+        else{
+            l_player.d_cardsInCollection.removeAll(cardsToRemove);
+
+        }
         return "Negotiated Order Added successfully";
     }
+
+    /**
+     * @param p_fileName                storing file name
+     */
+    @ShellMethod(key = "savegame", value = "This is used to save the game to a file")
+    public void saveGame(@ShellOption String p_fileName) {
+        // Take log file and save it with the name p_fileName
+        String l_logFileLocation = System.getProperty("logFileLocation");
+        // String l_logFileLocationNew = l_logFileLocation.substring(0, l_logFileLocation.lastIndexOf("/")) + "/" + p_fileName + ".log";
+        // save it in SavedGames folder
+        String l_logFileLocationNew = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/SavedGames/" + p_fileName + ".log";
+
+        try{
+            File l_file = new File(l_logFileLocationNew);
+            l_file.createNewFile();
+            BufferedWriter l_writer = new BufferedWriter(new FileWriter(l_logFileLocationNew, false));
+            BufferedReader l_reader = new BufferedReader(new FileReader(l_logFileLocation));
+            String l_line = l_reader.readLine();
+            String l_command = "";
+            while(l_line != null){
+                if(l_line.matches("^\\d+.*")){
+                    String[] l_split = l_line.split(" ");
+                    // Get the last index of the split array
+                    for(int i = 1; i < l_split.length; i++){
+                        l_command += l_split[i] + " ";
+                    }
+                    System.out.println(l_command);
+                    
+                }
+                if (l_line.matches("^Status.*")){
+                    String[] l_split = l_line.split(" ");
+                    if(l_split[1].equals("SUCCESS")){
+                        l_writer.append(l_command);
+                        l_writer.newLine();
+                    }
+                    l_command = "";
+                }
+                l_line = l_reader.readLine();
+            }
+            l_writer.close();
+            l_reader.close();
+        } catch (IOException e) {
+            System.out.println("Error Reading file");
+        }
+    }
+
+    /**
+     * @param p_fileName                storing file name
+     * @return                          returns status of loading game
+     */
+
+    @ShellMethod(key = "loadgame", value = "This is used to load the game from a file")
+    public void loadGame(@ShellOption String p_fileName) {
+        String l_logFileLocationNew = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/SavedGames/" + p_fileName + ".log";
+        MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
+        try{
+            BufferedReader l_reader = new BufferedReader(new FileReader(l_logFileLocationNew));
+            BufferedReader l_BufferedReader = new BufferedReader(new FileReader(l_logFileLocationNew));
+            String l_line = l_reader.readLine();
+            String l_command = l_BufferedReader.readLine();
+            //check if the file is empty
+            if(l_line == null){
+                l_reader.close();
+                l_BufferedReader.close();
+                throw new IOException("File is empty");
+            }
+            while (l_line!= null) {
+                String[] l_split = l_line.split(" ");
+                switch(l_split[0]) {
+                    case "N":
+                        UserCommands.pushCommand("N", "orders");
+                        break;
+                    case "Y":
+                        UserCommands.pushCommand("Y", "orders");
+                        break;
+                    case "Y_players":
+                        UserCommands.pushCommand("Y", "playerAdd");
+                        break;
+                    case "N_players":
+                        UserCommands.pushCommand("N", "playerAdd");
+                        break;
+                    case "1_strategy":
+                        UserCommands.pushCommand("1", "strategy");
+                        break;
+                    case "2_strategy":
+                        UserCommands.pushCommand("2", "strategy");
+                        break;
+                    case "3_strategy":
+                        UserCommands.pushCommand("3", "strategy");
+                        break;
+                    case "4_strategy":
+                        UserCommands.pushCommand("4", "strategy");
+                        break;
+                    case "5_strategy":
+                        UserCommands.pushCommand("5", "strategy");
+                        break;
+                    default:
+                        break;
+                }
+                l_line = l_reader.readLine();
+                
+            }
+            l_reader.close();
+
+            while(l_command != null){
+                String[] l_split = l_command.split(" ");
+                switch (l_split[0]) {
+                    case "loadmap":
+                        l_mapEditorCommands.loadMap(l_split[1]);
+                        break;
+                    case "showmap":
+                        l_mapEditorCommands.showmap();
+                        break;
+                    case "editmap":
+                        l_mapEditorCommands.editmap(l_split[1]);
+                        break;
+                    case "editcontinent":
+                        l_mapEditorCommands.editcontinent(l_split[1], l_split[2]);
+                        break;
+                    case "editcountry":
+                        l_mapEditorCommands.editcountry(l_split[1], l_split[2]);
+                        break;
+                    case "editneighbor":
+                        l_mapEditorCommands.editNeighbor(l_split[1], l_split[2]);
+                        break;
+                    
+                    case "showstats":
+                        break;
+                    case "showmapstatus":
+                        break;
+                    case "assigncountries":
+                        assigncountries();
+                        break;
+                    case "gameplayer":
+                        if(l_split[1].equals("-add")){
+                            gamePlayerAdd(l_split[2], null);
+                        } else {
+                            gamePlayerAdd(null, l_split[2]);
+                        }
+                        break;
+                    case "deploy":
+                        deployArmies(Integer.parseInt(l_split[1]), Integer.parseInt(l_split[2]));
+                        break;
+                    case "advance":
+                        advancearmies(Integer.parseInt(l_split[1]), Integer.parseInt(l_split[2]), Integer.parseInt(l_split[3]));
+                        break;
+                    case "bomb":
+                        bombCountry(Integer.parseInt(l_split[1]));
+                        break;
+                    case "blockade":
+                        blockade(Integer.parseInt(l_split[1]));
+                        break;
+                    case "airlift":
+                        airlift(Integer.parseInt(l_split[1]), Integer.parseInt(l_split[2]), Integer.parseInt(l_split[3]));
+                        break;
+                    case "negotiate":
+                        negotiate(Integer.parseInt(l_split[1]));
+                        break;
+                    default:
+                        break;
+                }
+
+
+                l_command = l_BufferedReader.readLine();
+            }
+            l_BufferedReader.close();
+        } catch (IOException e) {
+            System.out.println("File error: " + e);
+        }
+    }
+
+    /**
+     * @param p_countryID               storing country ID
+     * @param p_armies                  storing number of armies to deploy
+     * @return                          returns status of deploying army
+     */
+    @ShellMethod(key = "tournament", prefix = "-", value = "This is used to play tournament")
+    public void tournament(@ShellOption(value = "M", defaultValue = ShellOption.NULL, arity = 5) String p_mapFiles,
+            @ShellOption(value = "P", defaultValue = ShellOption.NULL, arity = 4) String p_playerStrategies,
+            @ShellOption(value = "G", defaultValue = ShellOption.NULL, arity = 1) String p_numberOfGames,
+            @ShellOption(value = "D", defaultValue = ShellOption.NULL, arity = 1) String p_maxNumberOfTurns) {
+            
+                System.out.println("Tournament started");
+                System.out.println("Map Files: " + p_mapFiles);
+                System.out.println("Player Strategies: " + p_playerStrategies);
+                System.out.println("Number of Games: " + p_numberOfGames);
+                System.out.println("Max Number of Turns: " + p_maxNumberOfTurns);
+
+                MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
+
+                for (int i = 0; i < p_mapFiles.split(",").length; i++) {
+                    for (int j = 0; j < Integer.parseInt(p_numberOfGames); j++) {
+
+                        l_mapEditorCommands.loadMap(p_mapFiles.split(",")[i]);
+                        l_mapEditorCommands.showmap();
+                        for(int k = 0; k < (p_playerStrategies.split(",").length); k++){
+                            UserCommands.pushCommand(p_playerStrategies.split(",")[k], "strategy");
+                            if(k != 0) {
+                                if(k <= p_playerStrategies.split(",").length - 1){
+                                    UserCommands.pushCommand("N", "playerAdd");
+                                } else {
+                                    UserCommands.pushCommand("Y", "playerAdd");
+                                }
+                            }
+                        }
+                        for(int k = 1; k <= p_playerStrategies.split(",").length; k++){
+                            gamePlayerAdd(("Player_" + k), null);
+                        }
+                        assigncountries();
+                        // for(int k = 0; k < Integer.parseInt(p_maxNumberOfTurns); k++){
+                        //     System.out.println("Turn " + (k + 1) + " started");
+                        // }
+                    }
+                }
+
+                System.out.println("Tournament ended");
+            }
+
 
     /**
      * This method is used to update the log file

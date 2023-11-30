@@ -39,6 +39,30 @@ public class Postload extends Edit implements java.util.Observer {
         printInvalidCommandMessage();
     }
 
+    /** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap() {
+		printInvalidCommandMessage();
+	}
+
+    public void saveMap(String p_filename) {
+        // Call savemap func after creation of it
+        ge.setPhase(new PlaySetup(ge));
+    }
+
+    /** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap() {
+		printInvalidCommandMessage();
+	}
+
+    public void saveMap(String p_filename) {
+        // Call savemap func after creation of it
+        ge.setPhase(new PlaySetup(ge));
+    }
+
     public void showMap(MapFeatures newmapFeatures) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("showmap");
@@ -91,7 +115,6 @@ public class Postload extends Edit implements java.util.Observer {
 
         if (p_editcmd != null && p_editcmd != "") {
             Map<String, String> listofCountries = new HashMap<String, String>();
-            ge.prevUserCommand = Commands.ADDCOUNTRY;
 
             String[] editCmd = p_editcmd.split(",");
             int l_i = 0;
@@ -171,7 +194,6 @@ public class Postload extends Edit implements java.util.Observer {
         java.util.Map<Integer, String> listOfContinentsResource = d_mapResources.getAllContinents();
 
         if (p_editcmd != null && p_editcmd != "") {
-            ge.prevUserCommand = Commands.ADDCONTINENT;
             String[] l_editCmd = p_editcmd.split(",");
 
             int l_i = 0;
@@ -201,8 +223,6 @@ public class Postload extends Edit implements java.util.Observer {
                 l_logObject.setStatus(true, "Continents added successfully");
                 l_logEntryBuffer.notifyClasses(l_logObject);
         } else {
-
-            ge.prevUserCommand = Commands.REMOVECONTINENT;
 
             List<String> l_listOfContinentsToRemove = new ArrayList<>();
             String[] l_editremovecmd = p_editremovecmd.split(",");
@@ -282,7 +302,6 @@ public class Postload extends Edit implements java.util.Observer {
             System.out.println("Country borders addded succesfully");
         } else {
 
-            ge.prevUserCommand = Commands.REMOVENEIGHBOUR;
 
             String[] l_editremovecmd = p_editremovecmd.split(",");
             int l_i = 0;
@@ -321,10 +340,8 @@ public class Postload extends Edit implements java.util.Observer {
         System.out.println("You cannot use edit neighbor command now.");
     }
 
-    public void saveMap() {
-        // Call savemap func after creation of it
-        ge.setPhase(new PlaySetup(ge));
-    }
+    
+
 
     public void next() {
         System.out.println("must save map");

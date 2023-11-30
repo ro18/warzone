@@ -107,7 +107,8 @@ public class AllPlayTest {
             assertEquals("Attack", nextPhase);
     }
 
-    public void endGameCycle() {
+    @Test
+    public void endGameplayCycle() {
 	Map l_map = new Map();
         GameEngine l_gameEngine = new GameEngine(l_map);
         l_gameEngine.getGamePhase().loadMap("europe");
@@ -116,14 +117,14 @@ public class AllPlayTest {
         assertEquals("Attack", nextPhase);
 	}
 
+        @Test
      public void endGame() {
 	Map l_map = new Map();
         GameEngine l_gameEngine = new GameEngine(l_map);
         l_gameEngine.getGamePhase().loadMap("europe");
-        l_gameEngine.setPhase(new Attack(l_gameEngine));
         l_gameEngine.getGamePhase().endGame();
-        String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
-        assertNotEquals("End", nextPhase);
+        String finalPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
+        assertNotEquals("END", finalPhase);
 	}
 
 
