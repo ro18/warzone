@@ -1,0 +1,313 @@
+Tournament Mode Game
+Map File: europe.map
+Game number: 1
+
+Game Commnece
+
+
+1 loadmap europe
+Time: 03:55:27
+Status: SUCCESS
+Description: Map loaded successfully europe
+
+2 showmap
+Time: 03:55:27
+Status: SUCCESS
+Description: User printed map europe
+
+4 gameplayer -add Player_1
+Time: 03:55:27
+Status: SUCCESS
+Description: Players added successfully
+
+5 gameplayer -add Player_2
+Time: 03:55:27
+Status: SUCCESS
+Description: Players added successfully
+
+7 assigncountries
+Time: 03:55:27
+Status: SUCCESS
+Description: Countries assigned successfully
+
+8 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+9 Deploy
+Time: 03:55:27
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+10 Deploy
+Time: 03:55:27
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+11 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+12 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+13 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+14 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+15 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+16 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+17 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+18 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+19 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+20 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+21 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+22 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+23 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+24 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+25 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+26 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+27 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+28 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+29 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+30 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+31 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+32 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+33 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+34 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+35 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+36 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+37 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+38 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+39 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+40 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+41 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+42 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+43 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+44 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+45 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+46 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+47 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+48 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+49 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+50 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+51 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+52 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+53 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+54 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+55 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+56 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+57 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+58 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+59 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+60 showstats
+Time: 03:55:27
+Status: SUCCESS
+Description: Stats shown.
+
+
+-------------------Game Over-----------------
+Player Name:Player_1
+PlayerId:1
+Player Strategy:AggressiveStrategy
+Total Armies available per round: 0
+CountryID - Countries Owned - Armies
+5 - Wales - 3
+-------------------------------Player Name:Player_2
+PlayerId:2
+Player Strategy:BenevolentStrategy
+Total Armies available per round: 0
+CountryID - Countries Owned - Armies
+20 - Majorca - 3
+-------------------------------Results:
+Draw

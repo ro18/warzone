@@ -284,14 +284,14 @@ public class GameEngine implements Observer {
                     System.out.println("Run showstats to see the results");
         
 
-                    for( Player p : l_players){
-                        p.pendingOrder = true;
-                        if(p.getL_playerid() == 1){
-                        p.addReinforcementArmies(10); // add reinforcement armies of 2 after every level
+                    // for( Player p : l_players){
+                    //     p.pendingOrder = true;
+                    //     if(p.getL_playerid() == 1){
+                    //     p.addReinforcementArmies(2); // add reinforcement armies of 2 after every level
 
-                        }
-                        p.addReinforcementArmies(2); // add reinforcement armies of 2 after every level
-                    }
+                    //     }
+                    //     p.addReinforcementArmies(2); // add reinforcement armies of 2 after every level
+                    // }
 
                     PlayerCommands.d_CurrentPlayerId = l_i;
                     System.out.println("Turn of " + l_players.get(l_i).getL_playername());  

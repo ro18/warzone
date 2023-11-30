@@ -124,7 +124,8 @@ public class PlaySetup extends Play implements Observer{
 			
 		} else {
 			Player player = ge.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-			d_playerFeatures.assignCountriesForDemo(ge);
+			//d_playerFeatures.assignCountriesForDemo(ge);
+			d_playerFeatures.assignCountries(ge);
 			// System.out.println("Assigned Countries to the players are:");
 			// d_playerFeatures.showAllAssignments(ge.getPlayers());
 			l_logObject.setStatus(true, "Countries assigned successfully");

@@ -2699,3 +2699,9 @@
 1701369648906:tournament -M europe -P 2 3 -G 2 -D 5
 1701369743805:stacktrace
 1701369821432:tournament -M europe -P 2 3 -G 2 -D 5
+1701375700548:tournament -M europe Montreal -P 2 3 G 2 -D 5
+1701375748501:stacktrace
+1701375897024:tournament -M europe Montreal -P 2 3 G 2 -D 5
+1701376162612:tournament -M europe,Montreal -P 2 3 -G 2 -D 5
+1701377581042:tournament -M europe,Montreal -P 2 3 -G 2 -D 50
+1701377783386:tournament -M europe,Montreal -P 2 3 4 5 -G 2 -D 5
