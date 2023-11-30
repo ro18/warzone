@@ -214,6 +214,9 @@ public class GameEngine implements Observer {
                         String value ="";
                         if(UserCommands.checkSize("orders") > 0){
                             value = UserCommands.popCommand("orders");
+                            l_logObject.d_command = value;
+                            l_logObject.setStatus(true, "Computer is executing the command: "+value);
+                            l_logEntryBuffer.notifyClasses(l_logObject);
                         } else {
 
                             while(true){
@@ -227,11 +230,10 @@ public class GameEngine implements Observer {
                         if(value.equalsIgnoreCase("N")){
                             l_logObject.d_command = "N";
                             l_logObject.setStatus(true, "Player chose not to add ordes and proceed with the game!");
+                            l_logEntryBuffer.notifyClasses(l_logObject);
 
                             l_players.get(l_i).pendingOrder = false;
                             checkPlayersReinforcements();
-
-                            l_logEntryBuffer.notifyClasses(l_logObject);
                         }
                         else{
                             l_logObject.d_command = "Y";

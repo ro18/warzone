@@ -79,13 +79,17 @@ public class PlayerCommands implements Observer {
             String value = "";
             if(UserCommands.checkSize("playerAdd") > 0){
                 value = UserCommands.popCommand("playerAdd");
+
+                l_logObject.d_command = value + "_players";
+                l_logObject.setStatus(true, "Command " + value + " was executed");
+                l_logEntryBuffer.notifyClasses(l_logObject);
             } else {
                 while(true){
                     value = this.lineReader.readLine("Do you want to add more players?:\n");
 
                     if(value.equalsIgnoreCase("N") ||  value.equalsIgnoreCase("Y")){
                         l_logObject.setD_command(value + "_players");
-                        l_logObject.setStatus(true, "User wants to add more players");
+                        l_logObject.setStatus(true, "User chose the command " + value);
                         l_logEntryBuffer.notifyClasses(l_logObject);
                         break;
                     }
