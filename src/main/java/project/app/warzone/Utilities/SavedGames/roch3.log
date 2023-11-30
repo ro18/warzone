@@ -1,0 +1,6 @@
+loadmap europe 
+showmap 
+gameplayer -add p1,-add,p2 
+N_players 
+2_strategy 
+3_strategy 

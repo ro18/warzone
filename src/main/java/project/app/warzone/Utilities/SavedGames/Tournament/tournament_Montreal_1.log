@@ -1,0 +1,623 @@
+Tournament Mode Game
+Map File: Montreal.map
+Game number: 1
+
+Game Commnece
+
+
+1 loadmap europe
+Time: 05:05:15
+Status: SUCCESS
+Description: Map loaded successfully europe
+
+2 showmap
+Time: 05:05:15
+Status: SUCCESS
+Description: User printed map europe
+
+4 gameplayer -add Player_1
+Time: 05:05:15
+Status: SUCCESS
+Description: Players added successfully
+
+5 gameplayer -add Player_2
+Time: 05:05:15
+Status: SUCCESS
+Description: Players added successfully
+
+6 N_players
+Time: 05:05:15
+Status: SUCCESS
+Description: Command N was executed
+
+8 2_strategy
+Time: 05:05:15
+Status: SUCCESS
+Description: User is setting the strategy
+
+9 4_strategy
+Time: 05:05:15
+Status: SUCCESS
+Description: User is setting the strategy
+
+10 assigncountries
+Time: 05:05:15
+Status: SUCCESS
+Description: Countries assigned successfully
+
+11 showstats
+Time: 05:05:15
+Status: SUCCESS
+Description: Stats shown.
+
+12 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+13 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+14 showstats
+Time: 05:05:15
+Status: SUCCESS
+Description: Stats shown.
+
+15 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+16 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+17 Advance
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Advance Attack
+
+18 Advance
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Advance Attack
+
+19 Advance
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Advance Attack
+
+20 showstats
+Time: 05:05:15
+Status: SUCCESS
+Description: Stats shown.
+
+21 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+22 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+23 Advance
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Advance Attack
+
+24 showstats
+Time: 05:05:15
+Status: SUCCESS
+Description: Stats shown.
+
+25 loadmap Montreal
+Time: 05:05:19
+Status: SUCCESS
+Description: Map loaded successfully Montreal
+
+27 gameplayer -add Player_1
+Time: 05:05:19
+Status: SUCCESS
+Description: Players added successfully
+
+28 gameplayer -add Player_2
+Time: 05:05:19
+Status: SUCCESS
+Description: Players added successfully
+
+29 N_players
+Time: 05:05:19
+Status: SUCCESS
+Description: Command N was executed
+
+31 2_strategy
+Time: 05:05:19
+Status: SUCCESS
+Description: User is setting the strategy
+
+32 4_strategy
+Time: 05:05:19
+Status: SUCCESS
+Description: User is setting the strategy
+
+33 assigncountries
+Time: 05:05:19
+Status: SUCCESS
+Description: Countries assigned successfully
+
+34 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+35 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+36 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+37 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+38 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+39 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+40 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+41 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+42 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+43 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+44 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+45 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+46 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+47 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+48 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+49 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+50 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+51 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+52 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+53 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+54 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+55 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+56 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+57 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+58 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+59 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+60 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+61 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+62 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+63 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+64 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+65 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+66 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+67 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+68 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+69 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+70 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+71 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+72 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+73 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+74 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+75 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+76 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+77 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+78 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+79 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+80 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+81 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+82 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+83 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+84 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+85 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+86 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+87 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+88 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+89 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+90 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+91 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+92 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+93 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+94 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+95 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+96 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+97 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+98 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+99 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+100 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+101 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+102 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+103 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+104 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+105 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+106 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+107 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+108 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+109 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+110 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+111 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+112 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+113 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+114 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+115 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+116 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+117 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+118 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+119 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+120 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+121 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+122 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+123 Deploy
+Time: 05:05:19
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+124 showstats
+Time: 05:05:19
+Status: SUCCESS
+Description: Stats shown.
+
+
+-------------------Game Over-----------------
+Player Name:Player_1
+PlayerId:1
+Player Strategy:AggressiveStrategy
+Total Armies available per round: 6
+CountryID - Countries Owned - Armies
+0 - RDP-PAT - 177
+-------------------------------Player Name:Player_2
+PlayerId:2
+Player Strategy:RandomStrategy
+Total Armies available per round: 2
+CountryID - Countries Owned - Armies
+7 - Rosemont - 61
+-------------------------------Results:
+Draw

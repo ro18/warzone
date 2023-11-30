@@ -147,7 +147,7 @@ public class AggressiveStrategy extends PlayerStrategy{
 
             int l_countryToOwner = countryToAttack.getOwnerId();
 
-            Player player2 = d_gameEngine.getPlayers().get(l_countryToOwner-1);
+            Player player2 = d_gameEngine.getPlayerFromID(l_countryToOwner);
 
             int armiesToAttack = attackers;
 

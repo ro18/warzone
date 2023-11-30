@@ -21,6 +21,7 @@ import org.springframework.shell.standard.ShellOption;
 import project.app.warzone.Features.PlayerFeatures;
 import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.Cards;
+import project.app.warzone.Model.Country;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Model.Map;
@@ -118,11 +119,20 @@ public class PlayerCommands implements Observer {
     @ShellMethod(key = "assigncountries", value = "This is used to assign countries to players randomly")
     public void assigncountries() {
         // d_gameEngine.getGamePhase().assignCountries();
-        d_gameEngine.getGamePhase().assignCountriesForDemo(); // Added to demonstrate different attacks during presentation
+        if(d_gameEngine.getPlayers().size() >1){
+            //d_gameEngine.getGamePhase().assignCountriesForDemo(); // Added to demonstrate different attacks during presentation
+            d_gameEngine.getGamePhase().assignCountries();
+            showStats();
 
-        showStats();
+            d_gameEngine.checkPlayersReinforcements();
 
-        d_gameEngine.checkPlayersReinforcements();
+
+        }
+    
+
+        else{
+            System.out.println("You need atleast 2 players to play the game. Please add more players");
+        }
     }
 
     /**
@@ -351,6 +361,18 @@ public class PlayerCommands implements Observer {
                     l_line = l_reader.readLine();
                 }
                 l_writer.append("\n\n-------------------Game Over-----------------\n");
+                List<Player> l_listOfPlayers = d_gameEngine.getPlayers();
+                for (Player l_p : l_listOfPlayers) {
+                    l_writer.append("Player Name:" + l_p.d_playername + "\nPlayerId:" + l_p.d_playerid +"\nPlayer Strategy:" + l_p.getStrategy().getClass().getSimpleName()).append("\n");
+                    l_writer.append("Total Armies available per round: " + l_p.getReinforcementArmies()).append("\n");
+                    l_writer.append("CountryID - Countries Owned - Armies").append("\n");
+
+                    for (Country t : l_p.getListOfTerritories()) {
+                        l_writer.append(t.getCountryId() + " - " + t.getCountryName() + " - " + t.getNumberOfArmies()).append("\n");
+                    }
+
+                    l_writer.append("-------------------------------");
+                }
                 l_writer.append("Results:\n");
                 if(d_gameEngine.getPlayers().size() == 1){
                     l_writer.append("Winner: " + d_gameEngine.getPlayers().get(0).getL_playername());

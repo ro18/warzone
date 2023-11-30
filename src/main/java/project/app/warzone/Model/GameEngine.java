@@ -69,6 +69,20 @@ public class GameEngine implements Observer {
     }
 
 
+      /**
+    * @return returns player from Id
+    */
+    public Player getPlayerFromID(int id) {
+
+        for(Player p : getPlayers() ){
+            if(p.getL_playerid() == id){
+                return p;
+            }
+        }
+        return null;
+    }
+
+
     /**
      * used for returning player list
      * 
@@ -254,15 +268,21 @@ public class GameEngine implements Observer {
             else{
 
 
-                System.out.println(" ------- GAME ROUND: "+gameRound++ +" - Executing Orders from players - ");
 
                 execute_orders();
 
-                if(l_players.size() == 1 ){
+                if(gameRound < 50){
 
-                System.out.println("Player:"+ l_players.get(0).getL_playername()+" is the winner of the game");
-                setPhase(new End(this));
-                checkPlayersReinforcements();
+                    System.out.println(" ------- GAME ROUND: "+gameRound++ +" - Executing Orders from players - ");
+
+
+                    if(l_players.size() == 1 ){
+
+                        System.out.println("Player:"+ l_players.get(0).getL_playername()+" is the winner of the game");
+                        playerCommands.showStats();
+
+                        setPhase(new End(this));
+                        checkPlayersReinforcements();
 
                 }
                 else{
@@ -275,7 +295,7 @@ public class GameEngine implements Observer {
                     for( Player p : l_players){
                         p.pendingOrder = true;
                         if(p.getL_playerid() == 1){
-                        p.addReinforcementArmies(10); // add reinforcement armies of 2 after every level
+                        p.addReinforcementArmies(4); // add reinforcement armies of 2 after every level
 
                         }
                         p.addReinforcementArmies(2); // add reinforcement armies of 2 after every level
@@ -293,6 +313,18 @@ public class GameEngine implements Observer {
 
 
                 }
+
+                }
+                else{
+
+                    System.out.println("Stopped game after 50 rounds");
+                    playerCommands.showStats();
+
+
+
+                }
+
+                
                 
     
 

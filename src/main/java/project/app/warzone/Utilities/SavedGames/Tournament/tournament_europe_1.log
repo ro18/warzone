@@ -1,0 +1,128 @@
+Tournament Mode Game
+Map File: europe.map
+Game number: 1
+
+Game Commnece
+
+
+1 loadmap europe
+Time: 05:05:15
+Status: SUCCESS
+Description: Map loaded successfully europe
+
+2 showmap
+Time: 05:05:15
+Status: SUCCESS
+Description: User printed map europe
+
+4 gameplayer -add Player_1
+Time: 05:05:15
+Status: SUCCESS
+Description: Players added successfully
+
+5 gameplayer -add Player_2
+Time: 05:05:15
+Status: SUCCESS
+Description: Players added successfully
+
+6 N_players
+Time: 05:05:15
+Status: SUCCESS
+Description: Command N was executed
+
+8 2_strategy
+Time: 05:05:15
+Status: SUCCESS
+Description: User is setting the strategy
+
+9 4_strategy
+Time: 05:05:15
+Status: SUCCESS
+Description: User is setting the strategy
+
+10 assigncountries
+Time: 05:05:15
+Status: SUCCESS
+Description: Countries assigned successfully
+
+11 showstats
+Time: 05:05:15
+Status: SUCCESS
+Description: Stats shown.
+
+12 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+13 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+14 showstats
+Time: 05:05:15
+Status: SUCCESS
+Description: Stats shown.
+
+15 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+16 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+17 Advance
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Advance Attack
+
+18 Advance
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Advance Attack
+
+19 Advance
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Advance Attack
+
+20 showstats
+Time: 05:05:15
+Status: SUCCESS
+Description: Stats shown.
+
+21 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+22 Deploy
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+23 Advance
+Time: 05:05:15
+Status: SUCCESS
+Description: Executed Advance Attack
+
+24 showstats
+Time: 05:05:15
+Status: SUCCESS
+Description: Stats shown.
+
+
+-------------------Game Over-----------------
+Player Name:Player_1
+PlayerId:1
+Player Strategy:AggressiveStrategy
+Total Armies available per round: 2
+CountryID - Countries Owned - Armies
+1 - England - 6
+8 - Denmark - 6
+-------------------------------Results:
+Winner: Player_1

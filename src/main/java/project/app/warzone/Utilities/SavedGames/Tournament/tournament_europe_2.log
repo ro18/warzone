@@ -1,0 +1,128 @@
+Tournament Mode Game
+Map File: europe.map
+Game number: 2
+
+Game Commnece
+
+
+1 loadmap europe
+Time: 05:02:55
+Status: SUCCESS
+Description: Map loaded successfully europe
+
+2 showmap
+Time: 05:02:55
+Status: SUCCESS
+Description: User printed map europe
+
+4 gameplayer -add Player_1
+Time: 05:02:55
+Status: SUCCESS
+Description: Players added successfully
+
+5 gameplayer -add Player_2
+Time: 05:02:55
+Status: SUCCESS
+Description: Players added successfully
+
+6 N_players
+Time: 05:02:55
+Status: SUCCESS
+Description: Command N was executed
+
+8 4_strategy
+Time: 05:02:55
+Status: SUCCESS
+Description: User is setting the strategy
+
+9 5_strategy
+Time: 05:02:55
+Status: SUCCESS
+Description: User is setting the strategy
+
+10 assigncountries
+Time: 05:02:55
+Status: SUCCESS
+Description: Countries assigned successfully
+
+11 showstats
+Time: 05:02:55
+Status: SUCCESS
+Description: Stats shown.
+
+12 Deploy
+Time: 05:02:59
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+13 showstats
+Time: 05:02:59
+Status: SUCCESS
+Description: Stats shown.
+
+14 loadmap europe
+Time: 05:03:01
+Status: SUCCESS
+Description: Map loaded successfully europe
+
+15 showmap
+Time: 05:03:01
+Status: SUCCESS
+Description: User printed map europe
+
+17 gameplayer -add Player_1
+Time: 05:03:01
+Status: SUCCESS
+Description: Players added successfully
+
+18 gameplayer -add Player_2
+Time: 05:03:01
+Status: SUCCESS
+Description: Players added successfully
+
+19 N_players
+Time: 05:03:01
+Status: SUCCESS
+Description: Command N was executed
+
+21 4_strategy
+Time: 05:03:01
+Status: SUCCESS
+Description: User is setting the strategy
+
+22 5_strategy
+Time: 05:03:01
+Status: SUCCESS
+Description: User is setting the strategy
+
+23 assigncountries
+Time: 05:03:01
+Status: SUCCESS
+Description: Countries assigned successfully
+
+24 showstats
+Time: 05:03:01
+Status: SUCCESS
+Description: Stats shown.
+
+25 Deploy
+Time: 05:03:01
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+26 showstats
+Time: 05:03:01
+Status: SUCCESS
+Description: Stats shown.
+
+
+-------------------Game Over-----------------
+Player Name:Player_2
+PlayerId:2
+Player Strategy:CheaterStrategy
+Total Armies available per round: 0
+CountryID - Countries Owned - Armies
+8 - Denmark - 0
+1 - England - 3
+-------------------------------Results:
+Winner: Player_2
