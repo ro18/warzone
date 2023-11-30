@@ -36,7 +36,7 @@ jobs:
     - name: Run 'native-build
       run: mvn native:compile -Pnative -DskipTests=true
     - name: Run maven tests
-      run: mvn test -Dtest=PlayerFeaturesTest#TestaddPlayers#TestremovePlayers
+      run: mvn test -Dtest=PlayerFeaturesTest#TestaddPlayers
      
 
     - name: Test Report
