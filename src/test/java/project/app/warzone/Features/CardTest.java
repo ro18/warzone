@@ -49,7 +49,6 @@ public class CardTest {
     public void bombSelf(){
         MapFeatures mapFeatures= MapFeatures.getInstance();
         d_gameEngine.getGamePhase().loadMap("europe");
-        String l_res ="1";
         d_gameEngine.getGamePhase().showMap(mapFeatures);
         d_gameEngine.getGamePhase().setPlayers("add","rochelle");
         d_gameEngine.getGamePhase().setPlayers("add","numan");
