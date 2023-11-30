@@ -3,7 +3,7 @@ package project.app.warzone.Model;
 /**
  * This class is a prototype of country
  */
-public class Country {
+public class Country implements Comparable<Country>{
 
     private String d_countryName;
     private int d_ownerId;
@@ -47,6 +47,14 @@ public class Country {
         this.d_countryId = p_countryId;
         this.d_ownerId = 0;
     }
+
+    @Override
+	public int compareTo(Country e) {
+
+        
+        Integer l_countryArmies = this.getNumberOfArmies();
+		return l_countryArmies.compareTo(e.getNumberOfArmies());
+	}
 
     /**
      * @return returns Countryname

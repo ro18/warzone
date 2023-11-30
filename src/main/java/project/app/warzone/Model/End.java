@@ -148,4 +148,9 @@ public class End extends Phase {
 	public void negotiate(int p_targetPlayerId) {
 		printInvalidCommandMessage();
 	}
+
+
+	public void setPlayerStrategy(){
+		printInvalidCommandMessage();
+	}
 }

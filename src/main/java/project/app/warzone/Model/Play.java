@@ -123,4 +123,9 @@ public abstract class Play extends Phase implements Observer {
             }
         }
     }
+
+	public void setPlayerStrategy(){
+		printInvalidCommandMessage();
+	}
+
 }
