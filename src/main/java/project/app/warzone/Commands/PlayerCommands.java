@@ -3,6 +3,8 @@ package project.app.warzone.Commands;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -161,13 +163,14 @@ public class PlayerCommands implements Observer {
 
         d_gameEngine.getGamePhase().advance(d_CurrentPlayerId,p_countryfrom,p_countryTo, p_armies);
         // return d_playerFeatures.advanceArmies(d_CurrentPlayerId,d_gameEngine, p_countryfrom,p_countryTo, p_armies);
-        return "Advance order added successfully";
+        // return "Advance order added successfully";
+        return "";
 
     }
 
     /**
      * @param p_countryfrom             storing  target country ID to bomb
-     *
+     
      * @return                          returns status 
      */
     @ShellMethod(key = "bomb", value = "This is used to play Bomb card")
@@ -179,20 +182,30 @@ public class PlayerCommands implements Observer {
         
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
+        List<Cards> cardsToRemove = new ArrayList<Cards>();
+
+        boolean found = false;
+
+
         for (Cards card : l_player.d_cardsInCollection) {
-            if (card.getCardType().equalsIgnoreCase("bomb")){
+            if (card.getCardType().equalsIgnoreCase("bomb") && found == false){
 
-                l_player.d_cardsInCollection.remove(card);
+                found = true;
+                cardsToRemove.add(card);
                 d_gameEngine.getGamePhase().bomb(p_countryId);
-
-                // return d_playerFeatures.bombCountry(d_gameEngine,p_countryId);
+                break;
 
             }
-            else{
-                return "The Player does not have BOMB card";
-            }
+            
         }
-        return "Bomb attack order added successfully";
+        if(found == false){
+                return "The Player does not have BOMB card";
+        }
+        else{
+            l_player.d_cardsInCollection.removeAll(cardsToRemove);
+
+        }
+        return "";
 
     }
 
@@ -211,22 +224,31 @@ public class PlayerCommands implements Observer {
 
 
         boolean found = false;
-        for (Cards card : l_player.d_cardsInCollection) {
-            if (card.getCardType().equalsIgnoreCase("blockade")){
-                
-               found = true;
 
-                l_player.d_cardsInCollection.remove(card);
+        List<Cards> cardsToRemove = new ArrayList<>();
+
+        for (Cards card : l_player.d_cardsInCollection) {
+            if (card.getCardType().equalsIgnoreCase("blockade") && found == false){
+                
+                found = true;
+
+                cardsToRemove.add(card);
 
                 d_gameEngine.getGamePhase().blockade(p_countryId);
 
-        // return d_playerFeatures.blockadeCountry(d_gameEngine,p_countryId);
+                break;
+
             }
            
         }
-        if(found = false){
+        if(found == false){
             return "Player does not have airlift card";
         }
+        else{
+            l_player.d_cardsInCollection.removeAll(cardsToRemove);
+
+        }
+
         return "Blockade attack order added successfully";
     }
 
@@ -245,22 +267,28 @@ public class PlayerCommands implements Observer {
         }
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
-        boolean found = true;
-        for (Cards card : l_player.d_cardsInCollection) {
-            if (card.getCardType().equalsIgnoreCase("airlift")){
-                l_player.d_cardsInCollection.remove(card);
+        boolean found = false;
+        List<Cards> cardsToRemove = new ArrayList<>();
 
+        for (Cards card : l_player.d_cardsInCollection) {
+            if (card.getCardType().equalsIgnoreCase("airlift") && found == false){
+
+                cardsToRemove.add(card);
                 d_gameEngine.getGamePhase().airlift(p_countryfrom,p_countryTo, p_airliftArmies);
                 found = true;
-        // return d_playerFeatures.airlift(d_gameEngine,p_countryfrom,p_countryTo, p_airliftArmies);
-        }
+                break;
+            }
            
         }
 
         if(found = false){
             return "Player does not have airlift card";
         }
-        return "Airlift Card executed successfully";
+        else{
+            l_player.d_cardsInCollection.removeAll(cardsToRemove);
+
+        }
+        return "";
     }
 
     
@@ -278,16 +306,18 @@ public class PlayerCommands implements Observer {
         Player l_player = d_gameEngine.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 
         boolean found = false;
+        List<Cards> cardsToRemove = new ArrayList<>();
 
 
         for (Cards card : l_player.d_cardsInCollection) {
-            if (card.getCardType().equalsIgnoreCase("negotiate")){
+            if (card.getCardType().equalsIgnoreCase("negotiate") && found == false){
 
-                l_player.d_cardsInCollection.remove(card);
 
+                cardsToRemove.add(card);
 
                 d_gameEngine.getGamePhase().negotiate(p_targetPlayerId);
                 found = true;
+                break;
 
             }
             
@@ -296,6 +326,10 @@ public class PlayerCommands implements Observer {
         if(found == false)
         {
            return "The Player does not have Negotiate card";
+        }
+        else{
+            l_player.d_cardsInCollection.removeAll(cardsToRemove);
+
         }
         return "Negotiated Order Added successfully";
     }
