@@ -62,9 +62,18 @@ public enum Commands {
       /**
      *command to remove neighbor country
      */
-    REMOVENEIGHBOUR
+    REMOVENEIGHBOUR,
 
 
+      /**
+     *command to validate map
+     */
+    VALIDATEMAP,
+
+    /**
+     *command to save map
+     */
+    SAVEMAP
    
     
 }

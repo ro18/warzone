@@ -34,6 +34,19 @@ public class Attack extends MainPlay {
 		printInvalidCommandMessage(); 
 	}
 
+	/** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap() {
+		printInvalidCommandMessage();
+	}
+
+	public void saveMap(String p_filename) {
+		printInvalidCommandMessage();
+	}
+
+	
+
 	/**
 	 *  Call this method to go the the next state in the sequence. 
 	 */
