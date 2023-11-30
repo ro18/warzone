@@ -20,10 +20,13 @@ public class UserCommands {
         switch (type) {
             case "orders":
                 d_stackOfCommands.add(p_command);
+                break;
             case "playerAdd":
                 d_stackOfPlayerAddCommands.add(p_command);
+                break;
             case "strategy":
                 d_stackOfStrategyCommands.add(p_command);
+                break;
         
             default:
                 return;
@@ -35,35 +38,45 @@ public class UserCommands {
      * @return command to be popped
      */
     public static String popCommand(String type) {
+        String l_command = "";
         switch (type) {
             case "orders":
-                return d_stackOfCommands.remove();
+                l_command = d_stackOfCommands.remove();
+                break;
             case "playerAdd":
-                return d_stackOfPlayerAddCommands.remove();
+                l_command = d_stackOfPlayerAddCommands.remove();
+                break;
             case "strategy":
-                return d_stackOfStrategyCommands.remove();
+                l_command = d_stackOfStrategyCommands.remove();
+                break;
         
             default:
                 return null;
         }
+        return l_command;
     };
 
     /**
      * This method is used to check the size of the queue
      * @return command to be peeked
      */
-    public static Integer checkSize(String type) {
+    public static Integer checkSize(String type) {        
+        int l_size = 0;
         switch (type) {
             case "orders":
-                return d_stackOfCommands.size();
+                l_size = d_stackOfCommands.size();
+                break;
             case "playerAdd":
-                return d_stackOfPlayerAddCommands.size();
+                l_size = d_stackOfPlayerAddCommands.size();
+                break;
             case "strategy":
-                return d_stackOfStrategyCommands.size();
+                l_size = d_stackOfStrategyCommands.size();
+                break;
         
             default:
-                return 0;
+                break;
         }
+        return l_size;
     }
 
 }

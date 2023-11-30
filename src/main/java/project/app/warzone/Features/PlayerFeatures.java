@@ -146,6 +146,7 @@ public class PlayerFeatures implements Observer {
         
             System.out.println("Current Player: "+l_p.d_playername);
             String input ="";
+            System.out.println("Strategy: "+ UserCommands.checkSize("strategy"));
             if(UserCommands.checkSize("strategy")>0){
                 input = UserCommands.popCommand("strategy");
             }

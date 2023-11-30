@@ -2694,3 +2694,8 @@
 1701315722367:tournament -M europe -P 2 3 -G 1 -D 5
 1701316265609:N
 1701317150649:tournament -M europe -P 2 3 -G 1 -D 5
+1701368530327:stacktrace
+1701368570919:tournament -M europe -P 2 3 -G 1 -D 5
+1701369648906:tournament -M europe -P 2 3 -G 2 -D 5
+1701369743805:stacktrace
+1701369821432:tournament -M europe -P 2 3 -G 2 -D 5
