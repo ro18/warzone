@@ -53,7 +53,7 @@ public class MapFeatures implements Observer{
     public static synchronized MapFeatures getInstance() 
     { 
         if (d_singleInstance == null) 
-            d_singleInstance = new MapFeatures(mapResouces); 
+            d_singleInstance = new MapFeatures(new MapResources()); 
   
         return d_singleInstance; 
     }
