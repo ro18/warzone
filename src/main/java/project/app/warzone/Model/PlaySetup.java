@@ -101,7 +101,8 @@ public class PlaySetup extends Play implements Observer{
 			System.out.println("You need atleast 2 players to play the game. Please add more players");
 		} else {
 			Player player = ge.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
-			d_playerFeatures.assignCountries(ge);
+			//d_playerFeatures.assignCountries(ge);
+			d_playerFeatures.assignCountriesForDemo(ge);
 			System.out.println("Assigned Countries to the players are:");
 			// d_playerFeatures.showAllAssignments(ge.getPlayers());
 			l_logObject.setStatus(true, "Countries assigned successfully");
@@ -125,7 +126,7 @@ public class PlaySetup extends Play implements Observer{
 		} else {
 			Player player = ge.getPlayers().get(PlayerCommands.d_CurrentPlayerId);
 			//d_playerFeatures.assignCountriesForDemo(ge);
-			d_playerFeatures.assignCountries(ge);
+			d_playerFeatures.assignCountriesForDemo(ge);
 			// System.out.println("Assigned Countries to the players are:");
 			// d_playerFeatures.showAllAssignments(ge.getPlayers());
 			l_logObject.setStatus(true, "Countries assigned successfully");

@@ -2752,3 +2752,31 @@
 1701376162612:tournament -M europe,Montreal -P 2 3 -G 2 -D 5
 1701377581042:tournament -M europe,Montreal -P 2 3 -G 2 -D 50
 1701377783386:tournament -M europe,Montreal -P 2 3 4 5 -G 2 -D 5
+1701377950162:tournament -M europe,Montreal -P 2 3 4 5 -G 2 -D 10
+1701378042785:loadgame europe
+1701378052125:loadmap europe
+1701378054598:showmap
+1701378063867:gameplayer -add p1 -add p2 -add p3 -add p4
+1701378065698:N
+1701378073928:assigncountries
+1701378119457:loadmap europe
+1701378121827:showmap
+1701378129083:gameplayer -add p1 -add p2 -add p3
+1701378132608:assigncountries
+1701378134574:N
+1701378143996:assigncountries
+1701378172586:loadmap europe
+1701378176105:showmap
+1701378180935:gameplayer -add p1 -add p2
+1701378182584:N
+1701378188256:assigncountries
+1701378477885:loadmap europe
+1701378479356:showmap
+1701378486840:gameplayer -add p1 -add p2
+1701378488298:N
+1701378495545:assigncountries
+1701378578049:loadmap europe
+1701378579515:showmap
+1701378584955:gameplayer -add p1 -add p2
+1701378586758:N
+1701378594123:assigncountries
