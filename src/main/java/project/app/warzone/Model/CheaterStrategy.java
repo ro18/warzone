@@ -14,6 +14,10 @@ public class CheaterStrategy extends PlayerStrategy{
 
 
 
+    
+    /** 
+     * @return List<Country>
+     */
     public List<Country> toAttack(){
 
 
@@ -58,6 +62,10 @@ public class CheaterStrategy extends PlayerStrategy{
     }
 
 
+    
+    /** 
+     * @return List<Country>
+     */
     public List<Country> getCountriesWithEnemyNeighbour(){
 
 
@@ -103,7 +111,11 @@ public class CheaterStrategy extends PlayerStrategy{
 
 
 
-	public List<OrderInterface> createOrder(){
+	
+    /** 
+     * @return List<OrderInterface>
+     */
+    public List<OrderInterface> createOrder(){
 
         List<Country> countriesToAttack = toAttack();
 
@@ -150,6 +162,10 @@ public class CheaterStrategy extends PlayerStrategy{
 
 
 
+    
+    /** 
+     * @return List<Country>
+     */
     @Override
     protected List<Country> toDefend() {
 

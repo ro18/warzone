@@ -18,6 +18,11 @@ public class ConquestFileReader {
        
     }
    
+    
+    /** 
+     * @param filename      filename
+     * @return Map
+     */
     public Map readMap(String filename){
        // System.out.println("Inside ConquestFileReader: readMap()");
         //  LogObject l_logObject = new LogObject();
@@ -128,6 +133,10 @@ public class ConquestFileReader {
     }
 
 
+    
+    /** 
+     * @param gameMap   gamemap
+     */
     public void printMap(Map gameMap){
  //System.out.println("Inside ConquestFileReader: printMap()");
         System.out.println("------Conquest Map ------");

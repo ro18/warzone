@@ -24,6 +24,10 @@ public class AggressiveStrategy extends PlayerStrategy{
 		super(p_player,d_gameEngine); 
 	}
 
+    
+    /** 
+     * @return List<Country>
+     */
     // This method will return the list of owned territories sorted from most to least territories on it
 
     public List<Country> toDefend(){
@@ -41,6 +45,10 @@ public class AggressiveStrategy extends PlayerStrategy{
 
 
 
+    
+    /** 
+     * @return List<Country>
+     */
     // This method will return the list of territories to attack sorted from least to most armies on the territories
 
     public List<Country> toAttack(){
@@ -102,7 +110,11 @@ public class AggressiveStrategy extends PlayerStrategy{
     
 	
 
-	public List<OrderInterface> createOrder(){
+	
+    /** 
+     * @return List<OrderInterface>
+     */
+    public List<OrderInterface> createOrder(){
 
         List<OrderInterface> listOfOrders = new ArrayList<OrderInterface>();
 

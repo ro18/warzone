@@ -20,9 +20,11 @@ public class LogObject {
     };
     public String d_statusCode;
 
-    /**
-     * This method is used to set the status of the log object (whether true or false)
-     * @param p_status to be set
+    
+    
+    /** 
+     * @param p_status
+     * @param p_message
      */
     public void setStatus(boolean p_status, String p_message) {
         d_logLevel++;

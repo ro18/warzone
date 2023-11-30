@@ -16,16 +16,17 @@ public class Preload extends Edit implements java.util.Observer {
     public MapEditorCommands dMapEditorCommands;
     public MapResources d_mapResources;
     private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
-
+    /**
+     * 
+     * @param p_ge  gameengine
+     */
     Preload(GameEngine p_ge) {
         super(p_ge);
         d_mapResources = new MapResources();
         l_logEntryBuffer.addObserver(this);
     }
 
-    /**
-     * @return boolean
-     */
+    
     public void validateMap() {
         String p_mapLocation = ge.gameMap.getMapDirectory() + "//" + ge.gameMap.get_USER_SELECTED_FILE() + ".map";
         Boolean l_result = false;
@@ -42,6 +43,10 @@ public class Preload extends Edit implements java.util.Observer {
 
 
 
+    
+    /** 
+     * @param p_filename    filename
+     */
     public void saveMap(String p_filename) {
         // Call savemap func after creation of it
         ge.setPhase(new PlaySetup(ge));
@@ -50,8 +55,8 @@ public class Preload extends Edit implements java.util.Observer {
 
     
 
-    /**
-     * @param p_filename
+    /** 
+     * @param p_filename    filename
      */
     public void loadMap(String p_filename) {
         LogObject l_logObject = new LogObject();
@@ -74,7 +79,7 @@ public class Preload extends Edit implements java.util.Observer {
 }
 
     /**
-     * @param p_fileName
+     * @param p_fileName    filename
      */
     public void editMap(String p_fileName) {
         LogObject l_logObject = new LogObject();
@@ -119,24 +124,24 @@ public class Preload extends Edit implements java.util.Observer {
     }
 
     /**
-     * @param p_editcmd
-     * @param p_editremovecmd
+      * @param p_editcmd     edit command
+     * @param p_editremovecmd   redit remove command
      */
     public void editNeighbor(String p_editcmd, String p_editremovecmd) {
         printInvalidCommandMessage();
     }
 
     /**
-     * @param p_editcmd
-     * @param p_editremovecmd
+      * @param p_editcmd     edit command
+     * @param p_editremovecmd   redit remove command
      */
     public void editCountry(String p_editcmd, String p_editremovecmd) {
         printInvalidCommandMessage();
     }
 
     /**
-     * @param p_editcmd
-     * @param p_editremovecmd
+     * @param p_editcmd     edit command
+     * @param p_editremovecmd   redit remove command
      */
     public void editContinent(String p_editcmd, String p_editremovecmd) {
         printInvalidCommandMessage();
@@ -149,7 +154,10 @@ public class Preload extends Edit implements java.util.Observer {
     public void showmapstatus() {
         printInvalidCommandMessage();
     }
-
+    /**
+     * 
+     * @return  boolean
+     */
     private boolean validate_Map() {
         String p_mapLocation = ge.gameMap.getMapDirectory() + "//" + ge.gameMap.get_USER_SELECTED_FILE() + ".map";
         Boolean l_result = false;
@@ -165,8 +173,8 @@ public class Preload extends Edit implements java.util.Observer {
     }
 
     /**
-     * @param p_countryID
-     * @param p_armies
+     * @param p_countryID   country ID
+     * @param p_armies  number of armies
      */
     public void reinforce(int p_countryID, int p_armies) {
         printInvalidCommandMessage();
@@ -177,8 +185,8 @@ public class Preload extends Edit implements java.util.Observer {
     }
 
     /**
-     * @param p_obj
-     * @param p_arg
+     * @param p_obj     object
+     * @param p_arg     argument
      */
     public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;

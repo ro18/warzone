@@ -14,7 +14,11 @@ public class BenevolentStrategy extends PlayerStrategy{
 	}
 
     
-	 public List<Country> toDefend(){
+	 
+     /** 
+      * @return List<Country>
+      */
+     public List<Country> toDefend(){
 
         List<Country> listOfCountriesOwned = d_player.getlistOfCountriesOwned();
 
@@ -25,6 +29,10 @@ public class BenevolentStrategy extends PlayerStrategy{
     }
 
 
+    
+    /** 
+     * @return List<Country>
+     */
     public List<Country> toAttack(){
 
 
@@ -38,7 +46,11 @@ public class BenevolentStrategy extends PlayerStrategy{
 
     
 
-	public List<OrderInterface> createOrder(){
+	
+    /** 
+     * @return List<OrderInterface>
+     */
+    public List<OrderInterface> createOrder(){
 
 
         List<OrderInterface> listOfOrders = new ArrayList<>();

@@ -19,7 +19,10 @@ public class PlaySetup extends Play implements Observer{
 	
 	public PlayerFeatures d_playerFeatures;
 	private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
-
+	/**
+	 * 
+	 * @param p_ge
+	 */
 	PlaySetup(GameEngine p_ge) {
 		super(p_ge);
 		this.d_playerFeatures = new PlayerFeatures();
@@ -40,6 +43,11 @@ public class PlaySetup extends Play implements Observer{
 		printInvalidCommandMessage();
 	}
 
+	
+	
+	/** 
+	 * @param p_filename	filename
+	 */
 	public void saveMap(String p_filename) {
 		printInvalidCommandMessage();
 	}

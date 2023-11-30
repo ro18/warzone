@@ -138,6 +138,10 @@ public class PlayerFeatures implements Observer {
 
     }
 
+    
+    /** 
+     * @param p_gameEngine  gameengine
+     */
     public void setPlayerStrategy(GameEngine p_gameEngine){
        
         for(Player l_p : p_gameEngine.d_playersList){

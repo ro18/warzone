@@ -23,7 +23,10 @@ public abstract class Phase implements Observer {
 	 */
 	GameEngine ge;
 	private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
-
+	/**
+	 * 
+	 * @param p_ge	gameengine
+	 */
 	Phase(GameEngine p_ge) {
 		ge = p_ge;
 		l_logEntryBuffer.addObserver(this);
@@ -38,6 +41,7 @@ public abstract class Phase implements Observer {
 	 * @param p_countryTo       target country
 	 * @param p_countryIDFrom   source country ID
 	 * @param p_countryIDTo     target country ID
+	 * @param printInvalidCommandMessage	invalid command display message
 	 */
 	// common commands
 	abstract public void loadMap(String p_filename);

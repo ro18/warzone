@@ -210,7 +210,6 @@ public class AttackOrder implements Observer {
    * @param p_playerToNegotiate player to negotiate
    * @param currentPlayer current player
    */
-  //Negotiate
   public void Negotiate(Player p_playerToNegotiate,Player currentPlayer)
   {
       LogObject l_logObject = new LogObject();
@@ -230,6 +229,11 @@ public class AttackOrder implements Observer {
 
   }
 
+  
+  /** 
+   * @param p_obj objective
+   * @param p_arg argument
+   */
   public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
         if (p_arg instanceof LogObject) {

@@ -3,7 +3,7 @@ package project.app.warzone.Model;
 import project.app.warzone.Features.MapFeatures;
 
 public abstract class Edit extends Phase{
-    //
+    
     Edit(GameEngine p_ge) {
 		super(p_ge);
 	}
@@ -45,6 +45,10 @@ public abstract class Edit extends Phase{
 		printInvalidCommandMessage();
 	}
 	
+	
+	/** 
+	 * @param newmapFeatures
+	 */
 	public void showMap(MapFeatures newmapFeatures) {
 		printInvalidCommandMessage(); 
 	}

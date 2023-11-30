@@ -9,13 +9,21 @@ import org.stringtemplate.v4.compiler.STParser.listElement_return;
 
 public class RandomStrategy extends PlayerStrategy {
 
-
+    /**
+     * 
+     * @param p_player
+     * @param p_gameEngine
+     */
     public RandomStrategy(Player p_player,GameEngine p_gameEngine) {
 		super(p_player,p_gameEngine); 
 	}
 
 
 
+    
+    /** 
+     * @return List<Country>
+     */
     public List<Country> toDefend(){
 
         List<Country> listOfCountriesOwned = d_player.getlistOfCountriesOwned();
@@ -30,6 +38,10 @@ public class RandomStrategy extends PlayerStrategy {
 
 
 
+    
+    /** 
+     * @return List<Country>
+     */
     // This method will return the list of territories to attack 
 
     public List<Country> toAttack(){
@@ -81,7 +93,11 @@ public class RandomStrategy extends PlayerStrategy {
     
 	
 
-	public List<OrderInterface> createOrder(){
+	
+    /** 
+     * @return List<OrderInterface>
+     */
+    public List<OrderInterface> createOrder(){
 
         List<OrderInterface> listOfOrders = new ArrayList<>();
 

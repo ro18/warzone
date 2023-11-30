@@ -19,7 +19,11 @@ public abstract class PlayerStrategy {
 	// protected abstract List<Country> toMoveFrom(); 
 	protected abstract List<Country> toDefend();
 	public abstract List<OrderInterface> createOrder();	
-	
+	/**
+	 * 
+	 * @param p_player	player
+	 * @param p_gameEngine	gameengine
+	 */
 	PlayerStrategy(Player p_player,GameEngine p_gameEngine){
 		d_player = p_player; 
 		d_gameEngine = p_gameEngine; 

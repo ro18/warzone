@@ -105,6 +105,10 @@ public class GameEngine implements Observer {
         GameEngine.d_maxTurns = p_maxTurns;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     // public void checkPlayers(){
 
     //     if(PlayerCommands.d_CurrentPlayerId)
@@ -130,6 +134,10 @@ public class GameEngine implements Observer {
 
     }
     
+    
+    /** 
+     * @return String
+     */
     public String checkPlayersReinforcements(){
 
         if(GameEngine.isTournament && GameEngine.d_maxTurns < gameRound){

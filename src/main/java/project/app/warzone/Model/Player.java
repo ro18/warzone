@@ -9,9 +9,7 @@ import org.jline.reader.LineReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
-/**
- * This class represents a player in the Warzone game.
- */
+
 public class Player {
 
 
@@ -53,11 +51,19 @@ public class Player {
 	}
 
 
+	
+	/** 
+	 * @param p_strat
+	 */
 	public void setStrategy(PlayerStrategy p_strat) {
 		d_playerStrategy = p_strat; 
 	} 
 
 
+	
+	/** 
+	 * @return PlayerStrategy
+	 */
 	public PlayerStrategy getStrategy(){
 		return d_playerStrategy;
 	}
@@ -221,6 +227,10 @@ public class Player {
 	}
 
 
+	
+	/** 
+	 * @param playerStrategy
+	 */
 	public void issue_order(PlayerStrategy playerStrategy){
 
 		List<OrderInterface> newOrders  = playerStrategy.createOrder();

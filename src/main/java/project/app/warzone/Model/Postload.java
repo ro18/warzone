@@ -17,7 +17,10 @@ public class Postload extends Edit implements java.util.Observer {
     private MapFeatures d_mapFeatures = MapFeatures.getInstance();
     private MapResources d_mapResources;
     private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
-
+    /**
+     * 
+     * @param p_ge  gameengine
+     */
     Postload(GameEngine p_ge) {
         super(p_ge);
         d_mapResources = new MapResources();
@@ -46,11 +49,19 @@ public class Postload extends Edit implements java.util.Observer {
 		printInvalidCommandMessage();
 	}
 
+    
+    /** 
+     * @param p_filename  filename
+     */
     public void saveMap(String p_filename) {
         // Call savemap func after creation of it
         ge.setPhase(new PlaySetup(ge));
     }
 
+    
+    /** 
+     * @param newmapFeatures    new map features
+     */
     public void showMap(MapFeatures newmapFeatures) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("showmap");

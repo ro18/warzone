@@ -15,6 +15,10 @@ public class End extends Phase {
 		printInvalidCommandMessage();
 	}
 
+	
+	/** 
+	 * @param newmapFeatures	new map features
+	 */
 	public void showMap(MapFeatures newmapFeatures) {
 		printInvalidCommandMessage(); 
 	}
@@ -36,6 +40,10 @@ public class End extends Phase {
 	}
 
 
+	
+	/** 
+	 * @param p_filename	new map features
+	 */
 	public void saveMap(String p_filename) {
 		printInvalidCommandMessage();
 	}

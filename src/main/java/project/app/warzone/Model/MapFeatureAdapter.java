@@ -9,6 +9,11 @@ public class MapFeatureAdapter extends MapFeatures {
 
     }
 
+    
+    /** 
+     * @param fileName  filename
+     * @return Map
+     */
     public Map readMap(String fileName)
     {
         return conquestReader.readMap(fileName);

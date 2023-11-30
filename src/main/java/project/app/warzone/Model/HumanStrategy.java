@@ -23,7 +23,11 @@ public class HumanStrategy extends PlayerStrategy {
 	}
 
     
-	 public List<Country> toDefend(){
+	 
+     /** 
+      * @return List<Country>
+      */
+     public List<Country> toDefend(){
 
         List<Country> listOfCountriesOwned = d_player.getlistOfCountriesOwned();
 
@@ -34,13 +38,21 @@ public class HumanStrategy extends PlayerStrategy {
     }
 
 
+    
+    /** 
+     * @return List<Country>
+     */
     public List<Country> toAttack(){
 
 
         return null;
     }
 
-	public List<OrderInterface> createOrder(){
+	
+    /** 
+     * @return List<OrderInterface>
+     */
+    public List<OrderInterface> createOrder(){
 
         System.out.println("Enter your order for deploying armies");
         return null;

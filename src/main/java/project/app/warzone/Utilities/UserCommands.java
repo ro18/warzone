@@ -12,9 +12,11 @@ public class UserCommands {
     private static Queue<String> d_stackOfPlayerAddCommands = new LinkedList<>();
     private static Queue<String> d_stackOfStrategyCommands = new LinkedList<>();
 
-    /**
-     * This method is used to push the command to the queue
-     * @param p_command command to be pushed
+    
+    
+    /** 
+     * @param p_command
+     * @param type
      */
     public static void pushCommand(String p_command, String type) {
         switch (type) {
@@ -33,9 +35,11 @@ public class UserCommands {
         }
     }
 
-    /**
-     * This method is used to pop the command from the queue
-     * @return command to be popped
+   
+    
+    /** 
+     * @param type
+     * @return String
      */
     public static String popCommand(String type) {
         String l_command = "";
@@ -56,9 +60,11 @@ public class UserCommands {
         return l_command;
     };
 
-    /**
-     * This method is used to check the size of the queue
-     * @return command to be peeked
+    
+    
+    /** 
+     * @param type
+     * @return Integer
      */
     public static Integer checkSize(String type) {        
         int l_size = 0;

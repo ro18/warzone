@@ -41,6 +41,11 @@ public class Cards {
             System.out.println("Invalid card type");
         }
     }
+    
+    /** 
+     * @param cardType  cardtype
+     * @return boolean
+     */
     public boolean isValidCardType(String cardType) {
         return List.of("BOMB", "REINFORCEMENT", "BLOCKADE", "AIRLIFT", "NEGOTIATE").contains(cardType);
     }

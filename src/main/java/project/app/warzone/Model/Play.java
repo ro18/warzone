@@ -26,11 +26,19 @@ public abstract class Play extends Phase implements Observer {
 	MapFeatures d_mapFeatures = MapFeatures.getInstance();
 	PlayerFeatures d_playerFeatures = new PlayerFeatures();
 	private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
+	/**
+	 * 
+	 * @param p_ge	gameengine
+	 */
 	Play(GameEngine p_ge) {
 		super(p_ge); 
 		l_logEntryBuffer.addObserver(this);
 	}
 	
+	
+	/** 
+	 * @param newmapFeatures	new map features
+	 */
 	public void showMap(MapFeatures newmapFeatures) {
 		LogObject l_logObject = new LogObject();
 		l_logObject.setD_command("showmap");
@@ -97,9 +105,19 @@ public abstract class Play extends Phase implements Observer {
 		printInvalidCommandMessage();
 	}
 
+	
+	/** 
+	  * @param p_editcmd	edit command
+	 * @param p_editremovecmd	editremove command
+	 */
 	public void editContinent(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 
 	}
+	
+	/** 
+	 * @param p_editcmd	edit command
+	 * @param p_editremovecmd	editremove command
+	 */
 	public void editNeighbor(String p_editcmd,String p_editremovecmd) {
 		printInvalidCommandMessage(); 
 	}
@@ -107,6 +125,11 @@ public abstract class Play extends Phase implements Observer {
 	public void endGame() {
 		ge.setPhase(new End(ge));
 	}
+	
+	/** 
+	 * @param p_obj 	object
+	 * @param p_arg		argumnt
+	 */
 	public void update(java.util.Observable p_obj, Object p_arg) {
         LogObject l_logObject = (LogObject) p_arg;
         if (p_arg instanceof LogObject) {

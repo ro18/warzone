@@ -21,6 +21,10 @@ public class Fortify extends MainPlay {
 		printInvalidCommandMessage();
 	}
 
+	
+	/** 
+	 * @param p_filename	filename
+	 */
 	public void saveMap(String p_filename) {
 		printInvalidCommandMessage();
 	}

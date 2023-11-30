@@ -41,6 +41,10 @@ public class Attack extends MainPlay {
 		printInvalidCommandMessage();
 	}
 
+	
+	/** 
+	 * @param p_filename 	map filename
+	 */
 	public void saveMap(String p_filename) {
 		printInvalidCommandMessage();
 	}
@@ -93,21 +97,41 @@ public class Attack extends MainPlay {
 
 	}
 
+
+
+	
+	/** 
+	 * @param p_countryId	country ID
+	 */
 	public void bomb(int p_countryId) {
 		String l_reString = d_playerFeatures.bombCountry(ge, p_countryId);
 
 	}
 
+	
+	/** 
+	 * @param p_countryID		country ID
+	 */
 	public void blockade( int p_countryID) {
 		String l_reString = d_playerFeatures.blockadeCountry(ge, p_countryID);
 
 	}
 
+	
+	/** 
+	 * @param p_countryIDFrom	source country
+	 * @param p_countryIDTo		target country
+	 * @param p_armiesToAirlift	armies to airlift
+	 */
 	public void airlift( int p_countryIDFrom, int p_countryIDTo, int p_armiesToAirlift) {
 		String l_reString = d_playerFeatures.airlift(ge,p_countryIDFrom, p_countryIDTo,  p_armiesToAirlift);
 
 	}
 
+	
+	/** 
+	 * @param p_targetPlayerId	target player ID
+	 */
 	public void negotiate(int p_targetPlayerId) {
 		String l_reString = d_playerFeatures.negotiate(ge,p_targetPlayerId);
 
