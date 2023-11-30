@@ -392,7 +392,11 @@ public class PlayerFeatures implements Observer {
         // IssueOrder
         l_player.issue_order(p_gameEngine, 1, l_orderDetails);
 
+
+        PlayerCommands.d_CurrentPlayerId = PlayerCommands.d_CurrentPlayerId + 1;
+
         p_gameEngine.checkPlayersReinforcements();
+
 
         return "";
 
@@ -501,6 +505,11 @@ public class PlayerFeatures implements Observer {
         // IssueOrder
         l_player.issue_order(p_gameEngine, 3, l_orderDetails);
 
+
+
+        PlayerCommands.d_CurrentPlayerId = PlayerCommands.d_CurrentPlayerId + 1;
+
+
         p_gameEngine.checkPlayersReinforcements();
 
         return "";
@@ -578,6 +587,10 @@ public class PlayerFeatures implements Observer {
         // IssueOrder
         l_player.issue_order(p_gameEngine, 4, l_orderDetails);
 
+
+        PlayerCommands.d_CurrentPlayerId = PlayerCommands.d_CurrentPlayerId + 1;
+
+
         p_gameEngine.checkPlayersReinforcements();
 
         return "";
@@ -645,6 +658,10 @@ public class PlayerFeatures implements Observer {
         // IssueOrder
         l_player.issue_order(p_gameEngine, 2, l_orderDetails);
 
+
+        PlayerCommands.d_CurrentPlayerId = PlayerCommands.d_CurrentPlayerId + 1;
+
+
         p_gameEngine.checkPlayersReinforcements();
 
         return "";
@@ -676,6 +693,9 @@ public class PlayerFeatures implements Observer {
 
             // IssueOrder
             l_player_1.issue_order(p_gameEngine, 5, l_orderDetails);
+
+            PlayerCommands.d_CurrentPlayerId = PlayerCommands.d_CurrentPlayerId + 1;
+
 
             p_gameEngine.checkPlayersReinforcements();
 
