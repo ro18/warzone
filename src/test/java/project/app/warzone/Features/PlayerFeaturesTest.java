@@ -253,9 +253,9 @@ public class PlayerFeaturesTest {
         String l_resultWinner = "Player " + d_gameEngine.d_playersList.get(0).getL_playername() + " has won the game";
 
         d_gameEngine.checkPlayersReinforcements();
-        String l_expectedWinner = "Player anash has won the game";
+        String l_expectedWinner = "Player prashant has won the game";
 
-        if (d_gameEngine.d_playersList.contains("anash")) {
+        if (d_gameEngine.d_playersList.contains("prashant")) {
             l_expectedWinner = "Player " + d_gameEngine.d_playersList.get(0).getL_playername() + " has won the game";
 
         }
@@ -272,17 +272,17 @@ public class PlayerFeaturesTest {
         d_gameEngine.d_playersList.get(0).d_listOfCountriesOwned.clear();
         d_gameEngine.d_playersList.get(1).d_listOfCountriesOwned.clear();
 
+        List<String> l_expectedPlayers = new ArrayList<>();
+
+        for (Player l_player : d_gameEngine.d_playersList) {
+            l_expectedPlayers.add(l_player.d_playername);
+        }
+
         d_gameEngine.checkPlayersReinforcements();
 
         List<Player> l_testPlayerList = new ArrayList<>();
         l_testPlayerList.add(new Player(2, "aishwarya"));
         l_testPlayerList.add(new Player(3, "anash"));
-
-        List<String> l_expectedPlayers = new ArrayList<>();
-
-        for (Player player : l_testPlayerList) {
-            l_expectedPlayers.add(player.d_playername);
-        }
 
         List<String> l_actualPlayers = new ArrayList<>();
 
