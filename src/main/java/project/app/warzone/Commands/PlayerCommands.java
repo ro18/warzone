@@ -23,6 +23,7 @@ import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.Cards;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.LogEntryBuffer;
+import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Reinforcement;
 import project.app.warzone.Utilities.Commands;
@@ -576,8 +577,15 @@ public class PlayerCommands implements Observer {
             }
     
     private void flush(){
-        // Reset every object and log file used:
-        d_gameEngine.getPlayers().clear();
+        GameEngine l_gameEngine = new GameEngine(new Map());
+        d_gameEngine = l_gameEngine;
+        PlayerCommands.d_CurrentPlayerId = 0;
+
+
+        // // Reset every object and log file used:
+        // d_gameEngine.getPlayers().clear();
+        
+
     }
 
 
