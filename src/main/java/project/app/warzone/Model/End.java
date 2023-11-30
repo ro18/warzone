@@ -33,7 +33,8 @@ public class End extends Phase {
 		printInvalidCommandMessage();
 	}
 
-	public void saveMap() {
+
+	public void saveMap(String p_filename) {
 		printInvalidCommandMessage();
 	}
 
@@ -86,6 +87,13 @@ public class End extends Phase {
 	 * @param p_fileName	filename
 	 */
 	public void editMap(String p_fileName) {
+		printInvalidCommandMessage();
+	}
+
+	/** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap() {
 		printInvalidCommandMessage();
 	}
 

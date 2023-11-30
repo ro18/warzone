@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ import project.app.warzone.Model.Phase;
 import project.app.warzone.Model.Play;
 import project.app.warzone.Utilities.MapResources;
 
-public class AttackPlayTest {
+public class AllPlayTest {
     MapFeatures mapFeatures = MapFeatures.getInstance();
     public MapResources mapResources;
     public GameEngine gameEngine;
@@ -32,6 +33,29 @@ public class AttackPlayTest {
     }
 
     //testsuite to check AttackPlay simulation and laoding of correct phases sequentially
+    
+
+    //loadgame first
+    @Test
+    public void LoadGame(){
+        String l_mapFileName = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/Maps/" + "europe.map";
+        Map l_map = new Map();
+        l_map=mapFeatures.readMap(l_mapFileName);
+        GameEngine l_gameEngine = new GameEngine(l_map);
+        l_gameEngine.getGamePhase().getClass().getSimpleName();
+        assertEquals("Preload", l_gameEngine.getGamePhase().getClass().getSimpleName()); //preload is the entry point of game
+    }
+
+    //checks if game is moving ahead to next phase corretly after preloading and initializing map and players
+    @Test
+    public void Initialziers(){
+        Map l_map = new Map();
+        GameEngine l_gameEngine = new GameEngine(l_map);
+        l_gameEngine.getGamePhase().loadMap("europe");
+        String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
+    
+        assertEquals("Postload", nextPhase);
+    }
 
     //start with attack phase
     @Test
@@ -58,7 +82,7 @@ public class AttackPlayTest {
 
     //checks if game allows reinforcement after fortifying
     @Test
-    public void renloader(){
+    public void reinforceloader(){
             Map l_map = new Map();
             GameEngine l_gameEngine = new GameEngine(l_map);
             l_gameEngine.getGamePhase().loadMap("europe");
@@ -83,12 +107,25 @@ public class AttackPlayTest {
             assertEquals("Attack", nextPhase);
     }
 
-    public void endGameCycle() {
-		Map l_map = new Map();
+    @Test
+    public void endGameplayCycle() {
+	Map l_map = new Map();
         GameEngine l_gameEngine = new GameEngine(l_map);
         l_gameEngine.getGamePhase().loadMap("europe");
         l_gameEngine.setPhase(new Attack(l_gameEngine));
         String nextPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
         assertEquals("Attack", nextPhase);
 	}
+
+        @Test
+     public void endGame() {
+	Map l_map = new Map();
+        GameEngine l_gameEngine = new GameEngine(l_map);
+        l_gameEngine.getGamePhase().loadMap("europe");
+        l_gameEngine.getGamePhase().endGame();
+        String finalPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
+        assertNotEquals("END", finalPhase);
+	}
+
+
 }

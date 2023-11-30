@@ -165,7 +165,7 @@ public class GameEngine implements Observer {
                 // boolean humanPlayer = checkPlayerStrategy();
 
 
-                if(l_players.get(l_i).pendingOrder == true && l_players.get(l_i).getReinforcementArmies() == 0 ){
+                    if(l_players.get(l_i).pendingOrder == true && l_players.get(l_i).getReinforcementArmies() == 0 ){
                     
                     String test = new HumanStrategy(null, null).getClass().getSimpleName();
                     // Human Behavior to ask for user commands
