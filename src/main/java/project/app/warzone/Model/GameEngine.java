@@ -36,6 +36,8 @@ public class GameEngine implements Observer {
     private LogEntryBuffer l_logEntryBuffer = new LogEntryBuffer();
     public Commands prevUserCommand;                //storing user's previous command
     public PlayerCommands playerCommands;          //playerCommands object
+    public static boolean isTournament = false;    //boolean to check if the game is tournament or not
+    public static int d_maxTurns = 0;             //maximum number of turns
 
     public int gameRound=1;
     /**
@@ -99,6 +101,24 @@ public class GameEngine implements Observer {
         return gameMap;
     }
 
+    /**
+     * used for setting tournament mode
+     * 
+     * @param p_isTournament        boolean value to set tournament mode
+     */
+    public void setTournament(Boolean p_isTournament) {
+        GameEngine.isTournament = p_isTournament;
+    }
+
+    /**
+     * used for setting maximum number of turns
+     * 
+     * @param p_maxTurns        maximum number of turns
+     */
+    public void setMaxTurns(int p_maxTurns) {
+        GameEngine.d_maxTurns = p_maxTurns;
+    }
+
     // public void checkPlayers(){
 
     //     if(PlayerCommands.d_CurrentPlayerId)
@@ -125,6 +145,12 @@ public class GameEngine implements Observer {
     }
     
     public String checkPlayersReinforcements(){
+
+        if(GameEngine.isTournament && GameEngine.d_maxTurns < gameRound){
+            System.out.println("Max turns reached. Game Over");
+            setPhase(new End(this));
+            return "";
+        }
 
 
         LogObject l_logObject = new LogObject();

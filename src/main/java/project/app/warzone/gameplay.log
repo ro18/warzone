@@ -2,6 +2,171 @@ Game Commnece
 
 
 1 loadmap europe
-Time: 02:24:17
+Time: 02:37:54
 Status: SUCCESS
 Description: Map loaded successfully europe
+
+2 showmap
+Time: 02:37:54
+Status: SUCCESS
+Description: User printed map europe
+
+4 gameplayer -add Player_1
+Time: 02:37:54
+Status: SUCCESS
+Description: Players added successfully
+
+5 gameplayer -add Player_2
+Time: 02:37:54
+Status: SUCCESS
+Description: Players added successfully
+
+7 assigncountries
+Time: 02:37:54
+Status: SUCCESS
+Description: Countries assigned successfully
+
+8 showstats
+Time: 02:37:54
+Status: SUCCESS
+Description: Stats shown.
+
+9 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+10 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+11 showstats
+Time: 02:37:54
+Status: SUCCESS
+Description: Stats shown.
+
+12 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+13 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+14 Advance
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Advance Attack
+
+15 Advance
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Advance Attack
+
+16 showstats
+Time: 02:37:54
+Status: SUCCESS
+Description: Stats shown.
+
+17 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+18 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+19 Advance
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Advance Attack
+
+20 loadmap europe
+Time: 02:37:54
+Status: SUCCESS
+Description: Map loaded successfully europe
+
+21 showmap
+Time: 02:37:54
+Status: SUCCESS
+Description: User printed map europe
+
+23 gameplayer -add Player_1
+Time: 02:37:54
+Status: SUCCESS
+Description: Players added successfully
+
+24 gameplayer -add Player_2
+Time: 02:37:54
+Status: SUCCESS
+Description: Players added successfully
+
+26 assigncountries
+Time: 02:37:54
+Status: SUCCESS
+Description: Countries assigned successfully
+
+27 showstats
+Time: 02:37:54
+Status: SUCCESS
+Description: Stats shown.
+
+28 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+29 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+30 showstats
+Time: 02:37:54
+Status: SUCCESS
+Description: Stats shown.
+
+31 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+32 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+33 Advance
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Advance Attack
+
+34 Advance
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Advance Attack
+
+35 showstats
+Time: 02:37:54
+Status: SUCCESS
+Description: Stats shown.
+
+36 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+37 Deploy
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+38 Advance
+Time: 02:37:54
+Status: SUCCESS
+Description: Executed Advance Attack

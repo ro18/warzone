@@ -23,6 +23,7 @@ import project.app.warzone.Model.Attack;
 import project.app.warzone.Model.Cards;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.LogEntryBuffer;
+import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Model.Reinforcement;
 import project.app.warzone.Utilities.Commands;
@@ -328,6 +329,42 @@ public class PlayerCommands implements Observer {
      */
     @ShellMethod(key = "savegame", value = "This is used to save the game to a file")
     public void saveGame(@ShellOption String p_fileName) {
+        
+        if(GameEngine.isTournament){
+            // Make a tournament folder in SavedGames folder and save the game there
+            String l_logFileLocation = System.getProperty("logFileLocation");
+            String l_logFileLocationNew = System.getProperty("user.dir") + "/src/main/java/project/app/warzone/Utilities/SavedGames/Tournament/" + p_fileName + ".log";
+            try{
+                String[] l_temp = p_fileName.split("_");
+                File l_file = new File(l_logFileLocationNew);
+                l_file.createNewFile();
+                BufferedWriter l_writer = new BufferedWriter(new FileWriter(l_logFileLocationNew, false));
+                l_writer.append("Tournament Mode Game").append("\n");
+                l_writer.append("Map File: " + l_temp[1] + ".map").append("\n");
+                l_writer.append("Game number: " + l_temp[2]).append("\n\n");
+
+                
+                BufferedReader l_reader = new BufferedReader(new FileReader(l_logFileLocation));
+                String l_line = l_reader.readLine();
+                while(l_line != null){
+                    l_writer.append(l_line);
+                    l_writer.newLine();
+                    l_line = l_reader.readLine();
+                }
+                l_writer.append("\n\n-------------------Game Over-----------------\n");
+                l_writer.append("Results:\n");
+                if(d_gameEngine.getPlayers().size() == 1){
+                    l_writer.append("Winner: " + d_gameEngine.getPlayers().get(0).getL_playername());
+                } else {
+                    l_writer.append("Draw");
+                }
+                l_writer.close();
+                l_reader.close();
+            } catch (IOException e) {
+                System.out.println("Error Reading file" + e.getMessage());
+            }
+            return;
+        }
         // Take log file and save it with the name p_fileName
         String l_logFileLocation = System.getProperty("logFileLocation");
         // String l_logFileLocationNew = l_logFileLocation.substring(0, l_logFileLocation.lastIndexOf("/")) + "/" + p_fileName + ".log";
@@ -510,11 +547,13 @@ public class PlayerCommands implements Observer {
                 System.out.println("Number of Games: " + p_numberOfGames);
                 System.out.println("Max Number of Turns: " + p_maxNumberOfTurns);
 
-                MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
+                d_gameEngine.setTournament(true);
+                d_gameEngine.setMaxTurns(Integer.parseInt(p_maxNumberOfTurns));
 
                 for (int i = 0; i < p_mapFiles.split(",").length; i++) {
                     for (int j = 0; j < Integer.parseInt(p_numberOfGames); j++) {
 
+                        MapEditorCommands l_mapEditorCommands = new MapEditorCommands(null, d_gameEngine, d_playerFeatures, null);
                         l_mapEditorCommands.loadMap(p_mapFiles.split(",")[i]);
                         l_mapEditorCommands.showmap();
                         for(int k = 0; k < (p_playerStrategies.split(",").length); k++){
@@ -531,14 +570,28 @@ public class PlayerCommands implements Observer {
                             gamePlayerAdd(("Player_" + k), null);
                         }
                         assigncountries();
-                        // for(int k = 0; k < Integer.parseInt(p_maxNumberOfTurns); k++){
-                        //     System.out.println("Turn " + (k + 1) + " started");
-                        // }
+
+                        //save the game state
+                        String l_fileName = "tournament_" + p_mapFiles.split(",")[i] + "_" + (j + 1);
+                        saveGame(l_fileName);
+                        flush();
                     }
                 }
 
                 System.out.println("Tournament ended");
             }
+    
+    private void flush(){
+        GameEngine l_gameEngine = new GameEngine(new Map());
+        d_gameEngine = l_gameEngine;
+        PlayerCommands.d_CurrentPlayerId = 0;
+
+
+        // // Reset every object and log file used:
+        // d_gameEngine.getPlayers().clear();
+        
+
+    }
 
 
     /**
