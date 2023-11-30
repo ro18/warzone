@@ -170,7 +170,16 @@ public class AttackOrderTest {
         d_gameEngine.getGamePhase().showMap();
         d_gameEngine.getGamePhase().setPlayers("add","rochelle");
         d_gameEngine.getGamePhase().setPlayers("add","numan");
-        d_gameEngine.getGamePhase().assignCountries();
+        d_gameEngine.getGamePhase().assignCountriesForDemo();
+
+
+        for(Player p: d_gameEngine.d_playersList){
+
+            p.setStrategy(new HumanStrategy(p,d_gameEngine));
+
+        }
+
+
 
         for(int i = 0; i < 2; i++)  {         
             Player player = d_gameEngine.d_playersList.get(i);
@@ -204,7 +213,13 @@ public class AttackOrderTest {
         d_gameEngine.getGamePhase().showMap();
         d_gameEngine.getGamePhase().setPlayers("add","rochelle");
         d_gameEngine.getGamePhase().setPlayers("add","numan");
-        d_gameEngine.getGamePhase().assignCountries();
+        d_gameEngine.getGamePhase().assignCountriesForDemo();
+
+        for(Player p: d_gameEngine.d_playersList){
+
+            p.setStrategy(new HumanStrategy(p,d_gameEngine));
+
+        }
 
         for(int i = 0; i < 2; i++)  {         
             Player player = d_gameEngine.d_playersList.get(i);
