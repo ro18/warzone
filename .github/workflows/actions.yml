@@ -36,7 +36,7 @@ jobs:
     - name: Run 'native-build
       run: mvn native:compile -Pnative -DskipTests=true
     - name: Run maven tests
-      run: mvnw test -Dtest=WarzoneApplicationTest
+      run: mvnw test -Dtest=JunitTestSuite
      
 
     - name: Test Report
