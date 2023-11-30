@@ -276,7 +276,7 @@ public class AttackOrderTest {
         LogObject l_logObject = new LogObject();
 
         d_gameEngine.getGamePhase().loadMap("europe");
-        d_gameEngine.getGamePhase().showMap();
+        d_gameEngine.getGamePhase().showMap(new MapFeatures());
         d_gameEngine.getGamePhase().setPlayers("add","rochelle");
         d_gameEngine.getGamePhase().setPlayers("add","numan");
         d_gameEngine.getGamePhase().assignCountriesForDemo();
