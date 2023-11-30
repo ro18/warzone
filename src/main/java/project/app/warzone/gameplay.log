@@ -2,171 +2,181 @@ Game Commnece
 
 
 1 loadmap europe
-Time: 02:37:54
+Time: 03:34:16
 Status: SUCCESS
 Description: Map loaded successfully europe
 
 2 showmap
-Time: 02:37:54
+Time: 03:34:16
 Status: SUCCESS
 Description: User printed map europe
 
-4 gameplayer -add Player_1
-Time: 02:37:54
+4 gameplayer -add anash,-add,aish
+Time: 03:34:16
 Status: SUCCESS
 Description: Players added successfully
 
-5 gameplayer -add Player_2
-Time: 02:37:54
+5 N_players
+Time: 03:34:16
 Status: SUCCESS
-Description: Players added successfully
+Description: Command N was executed
 
-7 assigncountries
-Time: 02:37:54
+7 1_strategy
+Time: 03:34:16
+Status: SUCCESS
+Description: User is setting the strategy
+
+8 1_strategy
+Time: 03:34:16
+Status: SUCCESS
+Description: User is setting the strategy
+
+9 assigncountries
+Time: 03:34:16
 Status: SUCCESS
 Description: Countries assigned successfully
 
-8 showstats
-Time: 02:37:54
+10 showstats
+Time: 03:34:16
 Status: SUCCESS
 Description: Stats shown.
 
-9 Deploy
-Time: 02:37:54
+11 deploy 1 3
+Time: 03:34:16
+Status: SUCCESS
+Description: 
+
+12 N
+Time: 03:34:16
+Status: SUCCESS
+Description: Computer is executing the command: N
+
+13 N
+Time: 03:34:16
+Status: SUCCESS
+Description: Player chose not to add ordes and proceed with the game!
+
+14 N
+Time: 03:34:16
+Status: SUCCESS
+Description: Computer is executing the command: N
+
+15 N
+Time: 03:34:16
+Status: SUCCESS
+Description: Player chose not to add ordes and proceed with the game!
+
+16 Deploy
+Time: 03:34:16
 Status: SUCCESS
 Description: Executed Deploy Attack
-
-10 Deploy
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-11 showstats
-Time: 02:37:54
-Status: SUCCESS
-Description: Stats shown.
-
-12 Deploy
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-13 Deploy
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-14 Advance
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Advance Attack
-
-15 Advance
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Advance Attack
-
-16 showstats
-Time: 02:37:54
-Status: SUCCESS
-Description: Stats shown.
 
 17 Deploy
-Time: 02:37:54
+Time: 03:34:16
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-18 Deploy
-Time: 02:37:54
+18 deploy 8 3
+Time: 03:34:16
+Status: SUCCESS
+Description: 
+
+19 deploy 1 3
+Time: 03:34:16
+Status: SUCCESS
+Description: Armies deployed successfully.
+
+20 deploy 1 3
+Time: 03:34:16
+Status: SUCCESS
+Description: 
+
+21 deploy 1 3
+Time: 03:34:16
+Status: FAILURE
+Description: User tried to deploy armies more than the remaining reinforcement pool.
+
+22 deploy 1 3
+Time: 03:34:16
+Status: SUCCESS
+Description: 
+
+23 deploy 8 3
+Time: 03:34:16
+Status: FAILURE
+Description: User tried to deploy armies more than the remaining reinforcement pool.
+
+24 deploy 8 3
+Time: 03:34:16
+Status: SUCCESS
+Description: 
+
+25 deploy 8 2
+Time: 03:34:16
+Status: SUCCESS
+Description: 
+
+26 N
+Time: 03:34:16
+Status: SUCCESS
+Description: Computer is executing the command: N
+
+27 N
+Time: 03:34:16
+Status: SUCCESS
+Description: Player chose not to add ordes and proceed with the game!
+
+28 advance 1 8 3
+Time: 03:34:16
+Status: SUCCESS
+Description: 
+
+29 deploy 1 11
+Time: 03:34:16
+Status: FAILURE
+Description: User tried to deploy armies more than the remaining reinforcement pool.
+
+30 deploy 1 11
+Time: 03:34:16
+Status: SUCCESS
+Description: 
+
+31 N
+Time: 03:34:16
+Status: SUCCESS
+Description: Computer is executing the command: N
+
+32 N
+Time: 03:34:16
+Status: SUCCESS
+Description: Player chose not to add ordes and proceed with the game!
+
+33 Deploy
+Time: 03:34:16
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-19 Advance
-Time: 02:37:54
+34 Deploy
+Time: 03:34:16
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+35 Advance
+Time: 03:34:16
 Status: SUCCESS
 Description: Executed Advance Attack
-
-20 loadmap europe
-Time: 02:37:54
-Status: SUCCESS
-Description: Map loaded successfully europe
-
-21 showmap
-Time: 02:37:54
-Status: SUCCESS
-Description: User printed map europe
-
-23 gameplayer -add Player_1
-Time: 02:37:54
-Status: SUCCESS
-Description: Players added successfully
-
-24 gameplayer -add Player_2
-Time: 02:37:54
-Status: SUCCESS
-Description: Players added successfully
-
-26 assigncountries
-Time: 02:37:54
-Status: SUCCESS
-Description: Countries assigned successfully
-
-27 showstats
-Time: 02:37:54
-Status: SUCCESS
-Description: Stats shown.
-
-28 Deploy
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-29 Deploy
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-30 showstats
-Time: 02:37:54
-Status: SUCCESS
-Description: Stats shown.
-
-31 Deploy
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-32 Deploy
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Deploy Attack
-
-33 Advance
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Advance Attack
-
-34 Advance
-Time: 02:37:54
-Status: SUCCESS
-Description: Executed Advance Attack
-
-35 showstats
-Time: 02:37:54
-Status: SUCCESS
-Description: Stats shown.
 
 36 Deploy
-Time: 02:37:54
+Time: 03:34:16
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-37 Deploy
-Time: 02:37:54
+37 deploy 1 9
+Time: 03:34:16
 Status: SUCCESS
-Description: Executed Deploy Attack
+Description: 
 
-38 Advance
-Time: 02:37:54
+38 showstats
+Time: 03:34:24
 Status: SUCCESS
-Description: Executed Advance Attack
+Description: Stats shown.
