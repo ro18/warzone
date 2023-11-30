@@ -97,7 +97,7 @@ public class AttackOrder implements Observer {
 
                                         int l_randomInt = (int) (Math.random() * 3);
 
-                                        switch (2) {
+                                        switch (3) {
                                             case 0:
                                                 l_card = new Cards("BOMB");
                                                 break;
@@ -139,7 +139,7 @@ public class AttackOrder implements Observer {
 
     }
     else{
-      System.out.println(" Attack stopped as "+player1.getL_playername()+" used negotiation card on"+player2.getL_playername());
+      System.out.println(" Attack stopped on "+player1.getL_playername()+" due to negotiation card");
     }
 
 
@@ -195,7 +195,7 @@ public class AttackOrder implements Observer {
   public void Bomb(Country target)
   {
     LogObject l_logObject = new LogObject();
-    l_logObject.setD_command("Airlift");
+    l_logObject.setD_command("Bomb");
     target.setNumberOfArmies(target.getNumberOfArmies()/2);
     l_logObject.setStatus(true, "Executed Bomb Attack");
 
@@ -215,7 +215,7 @@ public class AttackOrder implements Observer {
   {
       LogObject l_logObject = new LogObject();
 
-      p_playerToNegotiate.addriendlyAlly(p_playerToNegotiate);
+      p_playerToNegotiate.addriendlyAlly(currentPlayer);
 
       currentPlayer.addriendlyAlly(p_playerToNegotiate);
 
