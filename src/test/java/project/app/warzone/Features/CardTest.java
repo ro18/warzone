@@ -15,6 +15,7 @@ import org.stringtemplate.v4.compiler.CodeGenerator.primary_return;
 
 import project.app.warzone.Commands.PlayerCommands;
 import project.app.warzone.Features.PlayerFeatures;
+import project.app.warzone.Features.MapFeatures;
 import project.app.warzone.Model.Cards;
 import project.app.warzone.Model.ConcreteBomb;
 import project.app.warzone.Model.GameEngine;
@@ -46,9 +47,10 @@ public class CardTest {
 
     @Test
     public void bombSelf(){
-        
+        MapFeatures mapFeatures= MapFeatures.getInstance();
         d_gameEngine.getGamePhase().loadMap("europe");
-        d_gameEngine.getGamePhase().showMap();
+        String l_res ="1";
+        d_gameEngine.getGamePhase().showMap(mapFeatures);
         d_gameEngine.getGamePhase().setPlayers("add","rochelle");
         d_gameEngine.getGamePhase().setPlayers("add","numan");
         for(Player p: d_gameEngine.d_playersList){
@@ -85,8 +87,12 @@ public class CardTest {
     @Test
     public void testBombCountry() {
 
+        //Map l_map = new Map();
+        //GameEngine l_gameEngine = new GameEngine(l_map);
+        MapFeatures mapFeatures= MapFeatures.getInstance();
         d_gameEngine.getGamePhase().loadMap("europe");
-        d_gameEngine.getGamePhase().showMap();
+        String l_res ="1";
+        d_gameEngine.getGamePhase().showMap(mapFeatures);
         d_gameEngine.getGamePhase().setPlayers("add","rochelle");
         d_gameEngine.getGamePhase().setPlayers("add","numan");
 

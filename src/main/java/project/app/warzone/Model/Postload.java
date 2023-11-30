@@ -51,13 +51,25 @@ public class Postload extends Edit implements java.util.Observer {
         ge.setPhase(new PlaySetup(ge));
     }
 
-    public void showMap() {
+    /** 
+	 * @param p_fileName	filename
+	 */
+	public void validateMap() {
+		printInvalidCommandMessage();
+	}
+
+    public void saveMap(String p_filename) {
+        // Call savemap func after creation of it
+        ge.setPhase(new PlaySetup(ge));
+    }
+
+    public void showMap(MapFeatures newmapFeatures) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("showmap");
 
         String p_mapLocation = ge.gameMap.getMapDirectory() + "//" + ge.gameMap.get_USER_SELECTED_FILE() + ".map";
         Boolean l_result = false;
-        ge.gameMap = d_mapFeatures.readMap(p_mapLocation); // adding adapter here
+        ge.gameMap = newmapFeatures.readMap(p_mapLocation);
         l_result = d_mapFeatures.validateEntireGraph(ge);
         if (!l_result) {
             l_logObject.setStatus(false, "Map is not shown but map is not valid!");

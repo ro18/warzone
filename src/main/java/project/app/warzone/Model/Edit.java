@@ -1,11 +1,10 @@
 package project.app.warzone.Model;
 
-public abstract class Edit extends Phase {
-	
-	/**
-	 * @param p_ge gameengine
-	 */
-	Edit(GameEngine p_ge) {
+import project.app.warzone.Features.MapFeatures;
+
+public abstract class Edit extends Phase{
+    //
+    Edit(GameEngine p_ge) {
 		super(p_ge);
 	}
 
@@ -45,9 +44,9 @@ public abstract class Edit extends Phase {
 	public void endGame() {
 		printInvalidCommandMessage();
 	}
-
-	public void showMap() {
-		printInvalidCommandMessage();
+	
+	public void showMap(MapFeatures newmapFeatures) {
+		printInvalidCommandMessage(); 
 	}
 
 	
