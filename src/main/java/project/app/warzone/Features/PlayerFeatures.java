@@ -578,6 +578,8 @@ public class PlayerFeatures implements Observer {
 
             p_gameEngine.checkPlayersReinforcements();
 
+            return "";
+
         }
 
         java.util.Map<String, Integer> l_orderDetails = new HashMap<String, Integer>();

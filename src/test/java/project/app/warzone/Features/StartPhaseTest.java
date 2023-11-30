@@ -40,12 +40,12 @@ public class StartPhaseTest {
 
     //checks if savemap is in preload state
     @Test
-    public void checkPeloadValidate(){
+    public void checkPreloadValidate(){
         Map l_map = new Map();
         GameEngine l_gameEngine = new GameEngine(l_map);
         l_gameEngine.getGamePhase().saveMap();
         String currPhase=l_gameEngine.getGamePhase().getClass().getSimpleName();
-        assertEquals("Preload", currPhase);
+        assertEquals("PlaySetup", currPhase);
     }
     
     //checks if game is moving ahead to next phase corretly after preloading

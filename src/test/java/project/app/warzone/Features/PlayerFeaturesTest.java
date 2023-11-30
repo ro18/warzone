@@ -3,6 +3,7 @@ package project.app.warzone.Features;
 import project.app.warzone.Model.AttackOrder;
 import project.app.warzone.Model.Country;
 import project.app.warzone.Model.GameEngine;
+import project.app.warzone.Model.HumanStrategy;
 import project.app.warzone.Model.Map;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Utilities.MapResources;
@@ -41,6 +42,13 @@ public class PlayerFeaturesTest {
         d_playerFeatures.addPlayers("aishwarya", d_gameEngine);
         d_playerFeatures.addPlayers("anash", d_gameEngine);
 
+
+        for(Player p: d_gameEngine.d_playersList){
+
+            p.setStrategy(new HumanStrategy(p,d_gameEngine));
+
+        }
+        
     }
 
     @Test
