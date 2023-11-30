@@ -149,6 +149,10 @@ public class PlayerFeatures implements Observer {
             System.out.println("Strategy: "+ UserCommands.checkSize("strategy"));
             if(UserCommands.checkSize("strategy")>0){
                 input = UserCommands.popCommand("strategy");
+
+                l_logObject.d_command = input + "_strategy";
+                l_logObject.setStatus(true, "User is setting the strategy");
+                l_logEntryBuffer.notifyClasses(l_logObject);
             }
             else{
                 while (true) {
