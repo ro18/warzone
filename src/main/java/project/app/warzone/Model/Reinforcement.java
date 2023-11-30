@@ -44,7 +44,7 @@ public class Reinforcement extends MainPlay implements Observer {
 	 */
 	public void reinforce(int p_countryID, int p_armies) {
 		LogObject l_logObject = new LogObject();
-		l_logObject.setD_command("reinforce " + p_countryID + " " + p_armies);
+		l_logObject.setD_command("deploy " + p_countryID + " " + p_armies);
        	String l_reString = d_playerFeatures.deployArmies(ge, p_countryID, p_armies);
 	   	l_logObject.setStatus(true, l_reString);
 	   	l_logEntryBuffer.notifyClasses(l_logObject);

@@ -22,6 +22,7 @@ import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.HumanStrategy;
 import project.app.warzone.Model.LogEntryBuffer;
 import project.app.warzone.Utilities.LogObject;
+import project.app.warzone.Utilities.UserCommands;
 import project.app.warzone.Model.Node;
 //import project.app.warzone.Model.Order;
 import project.app.warzone.Model.OrderMethods;
@@ -140,34 +141,38 @@ public class PlayerFeatures implements Observer {
     public void setPlayerStrategy(GameEngine p_gameEngine){
        
         for(Player l_p : p_gameEngine.d_playersList){
-
-        
+            LogObject l_logObject = new LogObject();
+            l_logEntryBuffer.addObserver(this);
         
             System.out.println("Current Player: "+l_p.d_playername);
             String input ="";
-
-
-            while(true){
+            if(UserCommands.checkSize("strategy")>0){
+                input = UserCommands.popCommand("strategy");
+            }
+            else{
+                while (true) {
 
                     Scanner reader = new Scanner(System.in);
-                    System.out.println("Choose one of the following:\n 1.Human\n 2. Aggressive\n 3. Benevolent\n 4. Random\n 5.Cheater\n");
+                    System.out.println(
+                            "Choose one of the following:\n 1.Human\n 2. Aggressive\n 3. Benevolent\n 4. Random\n 5.Cheater\n");
                     System.out.print("->");
                     input = reader.nextLine();
-                     
-            
-                    
-                    if(input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2") || input.equalsIgnoreCase("3") || input.equalsIgnoreCase("4") || input.equalsIgnoreCase("5") ){
-                        
+
+                    if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2") || input.equalsIgnoreCase("3")
+                            || input.equalsIgnoreCase("4") || input.equalsIgnoreCase("5")) {
+                        l_logObject.setD_command(input + "_strategy");
+                        l_logObject.setStatus(true, "User is setting the strategy");
+                        l_logEntryBuffer.notifyClasses(l_logObject);
                         break;
-                       
-                    }
-                    else{
-                        
+
+                    } else {
+
                         System.out.println("Incorrect Input");
                     }
 
                     reader.close();
 
+                }
             }
             
             switch(input){
@@ -185,18 +190,9 @@ public class PlayerFeatures implements Observer {
                 break;
 
                 case "5": l_p.setStrategy(new CheaterStrategy(l_p,p_gameEngine));
-                break;
-
-
-            
-
+                break;          
             }
-
-        }  
-            
-
-        
-
+        }         
     }
 
     /**
@@ -246,7 +242,6 @@ public class PlayerFeatures implements Observer {
             System.out.println("Player Name:" + l_p.d_playername + "\nPlayerId:" + l_p.d_playerid +"\nPlayer Strategy:" + l_p.getStrategy().getClass().getSimpleName());
             System.out.println("Total Armies available per round: " + l_p.getReinforcementArmies());
             System.out.println("CountryID - Countries Owned - Armies");
-            List<Country> coun = l_p.getListOfTerritories();
 
             for (Country t : l_p.getListOfTerritories()) {
                 System.out.println(t.getCountryId() + " - " + t.getCountryName() + " - " + t.getNumberOfArmies());
@@ -575,7 +570,6 @@ public class PlayerFeatures implements Observer {
         else {
 
             System.out.println("You cannot target your own country");
-
             p_gameEngine.checkPlayersReinforcements();
 
             return "";
