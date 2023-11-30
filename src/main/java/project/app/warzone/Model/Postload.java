@@ -51,18 +51,6 @@ public class Postload extends Edit implements java.util.Observer {
         ge.setPhase(new PlaySetup(ge));
     }
 
-    /** 
-	 * @param p_fileName	filename
-	 */
-	public void validateMap() {
-		printInvalidCommandMessage();
-	}
-
-    public void saveMap(String p_filename) {
-        // Call savemap func after creation of it
-        ge.setPhase(new PlaySetup(ge));
-    }
-
     public void showMap(MapFeatures newmapFeatures) {
         LogObject l_logObject = new LogObject();
         l_logObject.setD_command("showmap");
