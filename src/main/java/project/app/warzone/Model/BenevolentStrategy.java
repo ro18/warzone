@@ -55,9 +55,11 @@ public class BenevolentStrategy extends PlayerStrategy{
 
         List<OrderInterface> listOfOrders = new ArrayList<>();
 
-        Country targetCountry = toDefend().get(0);
+        if(toDefend().size()>0){
 
-        while(d_player.getReinforcementArmies() > 0){
+            Country targetCountry = toDefend().get(0);
+
+            while(d_player.getReinforcementArmies() > 0){
 
             int armiesToDeploy = d_player.getReinforcementArmies();
 
@@ -83,7 +85,7 @@ public class BenevolentStrategy extends PlayerStrategy{
         int movers = toDefend().get(toDefend().size()-1).getNumberOfArmies() ;
 
 
-        while(movers > 0 && toDefend()!= null && toDefend().size() > 0 ){
+        while(movers > 0 && toDefend()!= null && toDefend().size() > 0  && toDefend().size()>1){
 
 
                 
@@ -104,7 +106,7 @@ public class BenevolentStrategy extends PlayerStrategy{
 
             listOfOrders.add(newAdvanceOrdr);
 
-            System.out.println("Added Attack Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
+            System.out.println("Move Order for player:"+d_player.getL_playername()+" with strategy:"+d_player.getStrategy().getClass().getSimpleName());
 
             System.out.println("Armies:"+numberofArmies+" FromCountry:"+targetCountry.getCountryName()+" ToCountry:"+l_countryToAdvance.getCountryName() );
 
@@ -118,6 +120,11 @@ public class BenevolentStrategy extends PlayerStrategy{
         
         d_player.pendingOrder=false;
         return listOfOrders;
+            
+        }
+
+        return null;
+        
 
     }	
     

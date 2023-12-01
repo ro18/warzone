@@ -15,9 +15,9 @@ import project.app.warzone.Features.ReinforcementPhaseTest;
 import project.app.warzone.Features.StartPhaseTest;
 import project.app.warzone.Model.AttackOrderTest;
 
-@Suite
-@SuiteDisplayName("Test Suite")
-@SelectClasses({AllPlayTest.class, CardTest.class,EditPhaseTest.class,MapFeaturesTest.class,MapFeaturesTest.class,PlayerFeaturesTest.class,PlayPhaseTest.class,ReinforcementPhaseTest.class,StartPhaseTest.class,AttackOrderTest.class})
+// @Suite
+// @SuiteDisplayName("Test Suite")
+// @SelectClasses({AllPlayTest.class, CardTest.class,EditPhaseTest.class,MapFeaturesTest.class,MapFeaturesTest.class,PlayerFeaturesTest.class,PlayPhaseTest.class,ReinforcementPhaseTest.class,StartPhaseTest.class,AttackOrderTest.class})
 
 public class JunitTestSuite {
     

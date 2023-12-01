@@ -76,7 +76,7 @@ public class PlayerFeatures implements Observer {
 
         for (Player l_player : p_gameEngine.getPlayers()) { // logic to have players -1 country
 
-            int randomCountry = l_random.nextInt(p_gameEngine.gameMap.getNodes().size());
+            int randomCountry = l_random.nextInt(p_gameEngine.gameMap.getNodes().size()-1);
 
             // int randomId = l_random.nextInt(p_gameEngine.getPlayers().size()+1);
 
@@ -101,6 +101,8 @@ public class PlayerFeatures implements Observer {
                 add(7);
                 add(20);
                 add(9);
+                add(13);
+                add(16);
             }
         };
 
@@ -150,7 +152,7 @@ public class PlayerFeatures implements Observer {
         
             System.out.println("Current Player: "+l_p.d_playername);
             String input ="";
-            System.out.println("Strategy: "+ UserCommands.checkSize("strategy"));
+            // System.out.println("Strategy: "+ UserCommands.checkSize("strategy"));
             if(UserCommands.checkSize("strategy")>0){
                 input = UserCommands.popCommand("strategy");
 

@@ -1,3 +1,7 @@
+Tournament Mode Game
+Map File: Montreal.map
+Game number: 2
+
 Game Commnece
 
 
@@ -1295,3 +1299,20 @@ Description: Executed Deploy Attack
 Time: 06:25:39
 Status: SUCCESS
 Description: Stats shown.
+
+
+-------------------Game Over-----------------
+Player Name:Player_1
+PlayerId:1
+Player Strategy:AggressiveStrategy
+Total Armies available per round: 6
+CountryID - Countries Owned - Armies
+0 - RDP-PAT - 117
+-------------------------------Player Name:Player_2
+PlayerId:2
+Player Strategy:RandomStrategy
+Total Armies available per round: 2
+CountryID - Countries Owned - Armies
+7 - Rosemont - 41
+-------------------------------Results:
+Draw
