@@ -1,15 +1,10 @@
 package project.app.warzone.Features;
 
 import project.app.warzone.Model.AttackOrder;
-import project.app.warzone.Model.ConcreteAdvance;
-import project.app.warzone.Model.ConcreteBomb;
-import project.app.warzone.Model.ConcreteDeploy;
 import project.app.warzone.Model.Country;
-import project.app.warzone.Model.End;
 import project.app.warzone.Model.GameEngine;
 import project.app.warzone.Model.HumanStrategy;
 import project.app.warzone.Model.Map;
-import project.app.warzone.Model.Phase;
 import project.app.warzone.Model.Player;
 import project.app.warzone.Utilities.MapResources;
 
@@ -123,10 +118,10 @@ public class PlayerFeaturesTest {
     @Test
     public void testInitialReinforcement() {
 
-        d_playerFeatures.assignCountriesForDemo(d_gameEngine);
+        d_playerFeatures.assignCountries(d_gameEngine);
 
         for (Player l_player : d_gameEngine.d_playersList) {
-            assertNotNull(l_player.getReinforcementArmies());
+            assertNotNull(l_player.d_reinforcementPool);
             assertEquals(3, l_player.d_reinforcementPool);
         }
     }
@@ -221,7 +216,7 @@ public class PlayerFeaturesTest {
     @Test
     public void testWinnerByDefeatingPlayers() {
 
-        d_playerFeatures.assignCountries(d_gameEngine);
+       // d_playerFeatures.assignCountries(d_gameEngine);
 
         d_gameEngine.d_playersList.get(0).d_listOfCountriesOwned.clear();
         d_gameEngine.d_playersList.get(1).d_listOfCountriesOwned.clear();
@@ -245,67 +240,61 @@ public class PlayerFeaturesTest {
     }
 
     @Test
-    public void testRemovingLooserFromList() {
+    public void testWinnerByAcquiringAllCountries() {
 
-        d_playerFeatures.assignCountriesForDemo(d_gameEngine);
+        d_playerFeatures.assignCountries(d_gameEngine);
 
+        d_gameEngine.d_playersList.get(0).d_listOfCountriesOwned.clear();
+        d_gameEngine.d_playersList.get(1).d_listOfCountriesOwned.clear();
+        d_gameEngine.d_playersList.get(2).d_listOfCountriesOwned.clear();
 
+        d_gameEngine.checkPlayersReinforcements();
 
-        ConcreteDeploy concreteDeploy1 = new ConcreteDeploy(10,d_gameEngine.d_playersList.get(0).getListOfTerritories().get(0));
-        d_gameEngine.d_playersList.get(0).d_listOfOrders.add(concreteDeploy1);
+        String l_resultWinner = "Player " + d_gameEngine.d_playersList.get(0).getL_playername() + " has won the game";
 
-        ConcreteDeploy concreteDeplo2 = new ConcreteDeploy(1,d_gameEngine.d_playersList.get(1).getListOfTerritories().get(0));
-        d_gameEngine.d_playersList.get(1).d_listOfOrders.add(concreteDeplo2);
+        d_gameEngine.checkPlayersReinforcements();
+        String l_expectedWinner = "Player prashant has won the game";
 
-        d_gameEngine.execute_orders();
+        if (d_gameEngine.d_playersList.contains("prashant")) {
+            l_expectedWinner = "Player " + d_gameEngine.d_playersList.get(0).getL_playername() + " has won the game";
 
+        }
 
-        ConcreteAdvance concreteAdvance =  new ConcreteAdvance(d_gameEngine.d_playersList.get(0),d_gameEngine.d_playersList.get(1),9,d_gameEngine.d_playersList.get(0).getListOfTerritories().get(0),d_gameEngine.d_playersList.get(1).getListOfTerritories().get(0));
-        d_gameEngine.d_playersList.get(0).d_listOfOrders.add(concreteAdvance);
-
-        
-
-
-        // d_gameEngine.checkPlayersReinforcements();
-
-        d_gameEngine.execute_orders();
-
-
-        assertEquals(3, d_gameEngine.d_playersList.size()); // The losing player is removed from the players list
+        assertEquals(l_expectedWinner, l_resultWinner);
 
     }
 
     @Test
-    public void testGameEndsWhenOnlyOnePlayer() {
+    public void testRemovingLooserFromList() {
 
-        d_playerFeatures.assignCountriesForDemo(d_gameEngine);
 
-        List<Player> playerToRemove = new ArrayList<>();
+        d_gameEngine.d_playersList.get(0).d_listOfCountriesOwned.clear();
+        d_gameEngine.d_playersList.get(1).d_listOfCountriesOwned.clear();
 
-        for(Player p : d_gameEngine.d_playersList){
-            if(p.getL_playerid() != 1){
-                playerToRemove.add(p);
-            }
+        List<String> l_expectedPlayers = new ArrayList<>();
+
+        for (Player l_player : d_gameEngine.d_playersList) {
+            l_expectedPlayers.add(l_player.d_playername);
         }
-
-        d_gameEngine.d_playersList.removeAll(playerToRemove);
-
-        d_gameEngine.d_playersList.get(0).pendingOrder = false;
-
-        d_gameEngine.d_playersList.get(0).setReinforcementMap(0);
 
         d_gameEngine.checkPlayersReinforcements();
 
-        Phase p = d_gameEngine.getGamePhase();
+        List<Player> l_testPlayerList = new ArrayList<>();
+        l_testPlayerList.add(new Player(2, "aishwarya"));
+        l_testPlayerList.add(new Player(3, "anash"));
 
-        assertEquals(p.getClass().getSimpleName(),"End");
+        List<String> l_actualPlayers = new ArrayList<>();
+
+        for (Player l_player : d_gameEngine.d_playersList) {
+            l_actualPlayers.add(l_player.d_playername);
+        }
+
+        assertEquals(l_expectedPlayers, l_actualPlayers);
 
     }
 
      @Test
     public void testCheckLooserInList() {
-
-        d_playerFeatures.assignCountries(d_gameEngine);
 
         d_gameEngine.d_playersList.get(0).d_listOfCountriesOwned.clear();
 

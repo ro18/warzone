@@ -121,7 +121,7 @@ public class PlayerCommands implements Observer {
         // d_gameEngine.getGamePhase().assignCountries();
         if(d_gameEngine.getPlayers().size() >1){
             //d_gameEngine.getGamePhase().assignCountriesForDemo(); // Added to demonstrate different attacks during presentation
-            d_gameEngine.getGamePhase().assignCountries();
+            d_gameEngine.getGamePhase().assignCountriesForDemo();
             showStats();
 
             d_gameEngine.checkPlayersReinforcements();
@@ -580,7 +580,7 @@ public class PlayerCommands implements Observer {
                         for(int k = 0; k < (p_playerStrategies.split(",").length); k++){
                             UserCommands.pushCommand(p_playerStrategies.split(",")[k], "strategy");
                             if(k != 0) {
-                                if(k <= p_playerStrategies.split(",").length - 1){
+                                if(k == p_playerStrategies.split(",").length - 1){
                                     UserCommands.pushCommand("N", "playerAdd");
                                 } else {
                                     UserCommands.pushCommand("Y", "playerAdd");

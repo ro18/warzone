@@ -160,23 +160,10 @@ public class GameEngine implements Observer {
         int l_i = PlayerCommands.d_CurrentPlayerId;
 
         List<Player> l_players = getPlayers();
-        // List<Player> l_playersToRemove = new ArrayList<>();
-
-        // for(Player p : l_players ){
-        //     if(p.getListOfTerritories().size() == 0 ){
-        //         System.out.println("Player: "+p.getL_playername()+" has lost the game");
-        //         l_playersToRemove.add(p);
-             
-        //     }
-        // }
-
-
-        // l_players.removeAll(l_playersToRemove);
-
+  
         int l_iterateThroughAllPlayers =  0;
         if( getGamePhase().getClass().getSimpleName() != new End(this).getClass().getSimpleName()){
 
-           // while (l_i != PlayerCommands.d_CurrentPlayerId) {
             while (true) {
 
                 if(l_iterateThroughAllPlayers == 2){

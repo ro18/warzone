@@ -6,123 +6,628 @@ Game Commnece
 
 
 1 loadmap europe
-Time: 05:02:55
+Time: 06:25:34
 Status: SUCCESS
 Description: Map loaded successfully europe
 
 2 showmap
-Time: 05:02:55
+Time: 06:25:34
 Status: SUCCESS
 Description: User printed map europe
 
 4 gameplayer -add Player_1
-Time: 05:02:55
+Time: 06:25:34
 Status: SUCCESS
 Description: Players added successfully
 
 5 gameplayer -add Player_2
-Time: 05:02:55
+Time: 06:25:34
 Status: SUCCESS
 Description: Players added successfully
 
 6 N_players
-Time: 05:02:55
+Time: 06:25:34
 Status: SUCCESS
 Description: Command N was executed
 
-8 4_strategy
-Time: 05:02:55
+8 2_strategy
+Time: 06:25:34
 Status: SUCCESS
 Description: User is setting the strategy
 
-9 5_strategy
-Time: 05:02:55
+9 4_strategy
+Time: 06:25:34
 Status: SUCCESS
 Description: User is setting the strategy
 
 10 assigncountries
-Time: 05:02:55
+Time: 06:25:34
 Status: SUCCESS
 Description: Countries assigned successfully
 
 11 showstats
-Time: 05:02:55
+Time: 06:25:34
 Status: SUCCESS
 Description: Stats shown.
 
 12 Deploy
-Time: 05:02:59
+Time: 06:25:34
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-13 showstats
-Time: 05:02:59
+13 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+14 showstats
+Time: 06:25:34
 Status: SUCCESS
 Description: Stats shown.
 
-14 loadmap europe
-Time: 05:03:01
+15 Deploy
+Time: 06:25:34
 Status: SUCCESS
-Description: Map loaded successfully europe
+Description: Executed Deploy Attack
 
-15 showmap
-Time: 05:03:01
+16 Deploy
+Time: 06:25:34
 Status: SUCCESS
-Description: User printed map europe
+Description: Executed Deploy Attack
 
-17 gameplayer -add Player_1
-Time: 05:03:01
+17 Advance
+Time: 06:25:34
 Status: SUCCESS
-Description: Players added successfully
+Description: Executed Advance Attack
 
-18 gameplayer -add Player_2
-Time: 05:03:01
+18 Advance
+Time: 06:25:34
 Status: SUCCESS
-Description: Players added successfully
+Description: Executed Advance Attack
 
-19 N_players
-Time: 05:03:01
+19 Advance
+Time: 06:25:34
 Status: SUCCESS
-Description: Command N was executed
+Description: Executed Advance Attack
 
-21 4_strategy
-Time: 05:03:01
+20 showstats
+Time: 06:25:34
 Status: SUCCESS
-Description: User is setting the strategy
+Description: Stats shown.
 
-22 5_strategy
-Time: 05:03:01
+21 Deploy
+Time: 06:25:34
 Status: SUCCESS
-Description: User is setting the strategy
+Description: Executed Deploy Attack
 
-23 assigncountries
-Time: 05:03:01
+22 Deploy
+Time: 06:25:34
 Status: SUCCESS
-Description: Countries assigned successfully
+Description: Executed Deploy Attack
+
+23 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
 
 24 showstats
-Time: 05:03:01
+Time: 06:25:34
 Status: SUCCESS
 Description: Stats shown.
 
 25 Deploy
-Time: 05:03:01
+Time: 06:25:34
 Status: SUCCESS
 Description: Executed Deploy Attack
 
-26 showstats
-Time: 05:03:01
+26 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+27 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+28 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+29 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+30 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+31 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+32 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+33 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+34 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+35 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+36 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+37 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+38 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+39 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+40 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+41 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+42 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+43 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+44 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+45 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+46 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+47 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+48 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+49 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+50 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+51 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+52 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+53 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+54 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+55 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+56 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+57 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+58 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+59 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+60 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+61 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+62 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+63 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+64 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+65 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+66 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+67 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+68 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+69 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+70 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+71 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+72 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+73 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+74 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+75 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+76 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+77 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+78 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+79 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+80 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+81 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+82 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+83 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+84 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+85 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+86 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+87 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+88 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+89 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+90 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+91 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+92 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+93 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+94 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+95 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+96 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+97 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+98 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+99 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+100 Deploy
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+101 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+102 Advance
+Time: 06:25:34
+Status: SUCCESS
+Description: Executed Advance Attack
+
+103 showstats
+Time: 06:25:34
+Status: SUCCESS
+Description: Stats shown.
+
+104 loadmap europe
+Time: 06:25:37
+Status: SUCCESS
+Description: Map loaded successfully europe
+
+105 showmap
+Time: 06:25:37
+Status: SUCCESS
+Description: User printed map europe
+
+107 gameplayer -add Player_1
+Time: 06:25:37
+Status: SUCCESS
+Description: Players added successfully
+
+108 gameplayer -add Player_2
+Time: 06:25:37
+Status: SUCCESS
+Description: Players added successfully
+
+109 N_players
+Time: 06:25:37
+Status: SUCCESS
+Description: Command N was executed
+
+111 2_strategy
+Time: 06:25:37
+Status: SUCCESS
+Description: User is setting the strategy
+
+112 4_strategy
+Time: 06:25:37
+Status: SUCCESS
+Description: User is setting the strategy
+
+113 assigncountries
+Time: 06:25:37
+Status: SUCCESS
+Description: Countries assigned successfully
+
+114 showstats
+Time: 06:25:37
+Status: SUCCESS
+Description: Stats shown.
+
+115 Deploy
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+116 Deploy
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+117 showstats
+Time: 06:25:37
+Status: SUCCESS
+Description: Stats shown.
+
+118 Deploy
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+119 Deploy
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+120 Advance
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Advance Attack
+
+121 Advance
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Advance Attack
+
+122 Advance
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Advance Attack
+
+123 showstats
+Time: 06:25:37
+Status: SUCCESS
+Description: Stats shown.
+
+124 Deploy
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+125 Deploy
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Deploy Attack
+
+126 Advance
+Time: 06:25:37
+Status: SUCCESS
+Description: Executed Advance Attack
+
+127 showstats
+Time: 06:25:37
 Status: SUCCESS
 Description: Stats shown.
 
 
 -------------------Game Over-----------------
-Player Name:Player_2
-PlayerId:2
-Player Strategy:CheaterStrategy
-Total Armies available per round: 0
+Player Name:Player_1
+PlayerId:1
+Player Strategy:AggressiveStrategy
+Total Armies available per round: 2
 CountryID - Countries Owned - Armies
-8 - Denmark - 0
-1 - England - 3
+1 - England - 6
+8 - Denmark - 5
 -------------------------------Results:
-Winner: Player_2
+Winner: Player_1
